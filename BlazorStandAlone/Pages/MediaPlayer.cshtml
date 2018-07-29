@@ -1,0 +1,45 @@
+@page "/mediaPlayer"
+@using Blazor.Extensions
+
+<h1>Media player!</h1>
+
+<p>Here will media player info go about series</p>
+
+@functions
+{
+
+    protected override void OnInit()
+    {
+        Console.WriteLine("asdasdasd");
+        StartWebsockets();
+        
+    }
+
+    async void StartWebsockets()
+    {
+        var connection = new HubConnectionBuilder()
+            .WithUrl("http://localhost:5080/ws/mediaPlayerHub", // The hub URL. If the Hub is hosted on the server where the blazor is hosted, you can just use the relative path.
+                opt =>
+                {
+                    opt.LogLevel = SignalRLogLevel.Trace; // Client log level
+                    opt.Transport = HttpTransportType.WebSockets; // Which transport you want to use for this connection
+                })
+            .Build(); // Build the HubConnection
+
+        connection.On<string>("Receive", Handle); // Subscribe to messages sent from the Hub to the "Receive" method by passing a handle (Func<object, Task>) to process messages.
+
+        await connection.StartAsync(); // Start the connection.
+        
+//        await connection.InvokeAsync("ServerMethod", param1, param2, paramX); // Invoke a method on the server called "ServerMethod" and pass parameters to it. 
+
+//        var result = await connection.InvokeAsync<MyResult>("ServerMethod", param1, param2, paramX); // Invoke a method on the server called "ServerMethod", pass parameters to it and get the result back.
+    }
+
+    private Task Handle(string str)
+    {
+        Console.WriteLine(str);
+
+        return Task.CompletedTask;
+    }
+
+}

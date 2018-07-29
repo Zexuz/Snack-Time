@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 
 namespace LocalNetflix.WebApi.Controllers.v1
 {
@@ -7,10 +9,18 @@ namespace LocalNetflix.WebApi.Controllers.v1
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly IHubContext<MediaPlayerHub>  _mediaPlayerHub;
+
+        public ValuesController(IHubContext<MediaPlayerHub> mediaPlayerHub)
+        {
+            _mediaPlayerHub = mediaPlayerHub;
+        }
+        
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public async Task<ActionResult<IEnumerable<string>>> Get()
         {
+            await _mediaPlayerHub.Clients.All.SendAsync("Receive", "VALUES½");
             return new string[] {"value1", "value2"};
         }
 

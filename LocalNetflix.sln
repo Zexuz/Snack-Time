@@ -2,11 +2,11 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalNetflix.MediaPlayerObserver", "LocalNetflix.MediaPlayerObserver\LocalNetflix.MediaPlayerObserver.csproj", "{BE4F73AF-3B24-44CC-8C8C-BC5CC04627B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp2", "ConsoleApp2\ConsoleApp2.csproj", "{D94F2B5F-1CC2-4F0B-99F6-E7519043EDDE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MpcHcObserver", "MpcHcObserver\MpcHcObserver.csproj", "{36DEDA91-7968-4DBD-87DC-59E42E48327C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalNetflix.WebApi", "LocalNetflix.WebApi\LocalNetflix.WebApi.csproj", "{FED6DE00-9140-4E1D-90F8-0924029CFD33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorStandAlone", "BlazorStandAlone\BlazorStandAlone.csproj", "{D5CBC51C-13BD-455C-A754-59DC72AC7E92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,10 +18,6 @@ Global
 		{BE4F73AF-3B24-44CC-8C8C-BC5CC04627B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE4F73AF-3B24-44CC-8C8C-BC5CC04627B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE4F73AF-3B24-44CC-8C8C-BC5CC04627B2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D94F2B5F-1CC2-4F0B-99F6-E7519043EDDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D94F2B5F-1CC2-4F0B-99F6-E7519043EDDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D94F2B5F-1CC2-4F0B-99F6-E7519043EDDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D94F2B5F-1CC2-4F0B-99F6-E7519043EDDE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{36DEDA91-7968-4DBD-87DC-59E42E48327C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{36DEDA91-7968-4DBD-87DC-59E42E48327C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36DEDA91-7968-4DBD-87DC-59E42E48327C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -30,5 +26,9 @@ Global
 		{FED6DE00-9140-4E1D-90F8-0924029CFD33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FED6DE00-9140-4E1D-90F8-0924029CFD33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FED6DE00-9140-4E1D-90F8-0924029CFD33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5CBC51C-13BD-455C-A754-59DC72AC7E92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5CBC51C-13BD-455C-A754-59DC72AC7E92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5CBC51C-13BD-455C-A754-59DC72AC7E92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5CBC51C-13BD-455C-A754-59DC72AC7E92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

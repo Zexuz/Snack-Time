@@ -15,6 +15,9 @@ namespace LocalNetflix.WebApi.DependencyModules
 
         protected override void Load(ContainerBuilder builder)
         {
+            
+            builder.RegisterType<MediaPlayerHub>().As<MediaPlayerHub>();
+
         }
     }
 }
