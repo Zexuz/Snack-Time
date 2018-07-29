@@ -34,7 +34,6 @@ namespace LocalNetflix.WebApi
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddSignalR();
-            services.AddHostedService<TimedHostedService>();
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -43,7 +42,7 @@ namespace LocalNetflix.WebApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IHubContext<MediaPlayerHub> mediaPlayerHub)
         {
             if (env.IsDevelopment())
             {
@@ -59,77 +58,29 @@ namespace LocalNetflix.WebApi
             app.UseMvc();
 
             app.UseSignalR(routes => { routes.MapHub<MediaPlayerHub>("/ws/mediaPlayerHub"); });
-        }
-    }
-    
-    internal class TimedHostedService : IHostedService, IDisposable
-    {
-        private readonly ILogger _logger;
-        private readonly IHubContext<MediaPlayerHub> _mediaPlayerHub;
-        private          Timer   _timer;
-        
-        private IModel _channel;
-
-        private bool _isFirstTime = true;
-
-
-        public TimedHostedService(ILogger<TimedHostedService> logger, IHubContext<MediaPlayerHub> mediaPlayerHub)
-        {
-            _logger = logger;
-            _mediaPlayerHub = mediaPlayerHub;
-
+            
             var factory = new ConnectionFactory() {HostName = "localhost"};
             var connection = factory.CreateConnection();
-            _channel = connection.CreateModel();
-        }
-
-        public Task StartAsync(CancellationToken cancellationToken)
-        {
-            _logger.LogInformation("Timed Background Service is starting.");
-
-            _timer = new Timer(DoWork, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
-
-            return Task.CompletedTask;
-        }
-
-        private async void DoWork(object state)
-        {
-            _logger.LogInformation("Timed Background Service is working.");
-            if(!_isFirstTime) return;
-            _isFirstTime = false;
-
-
-            _channel.QueueDeclare(queue: "hello",
+            var channel = connection.CreateModel();
+            
+            channel.QueueDeclare(queue: "hello",
                 durable: false,
                 exclusive: false,
                 autoDelete: false,
                 arguments: null);
 
-            var consumer = new EventingBasicConsumer(_channel);
+            var consumer = new EventingBasicConsumer(channel);
             consumer.Received += async (model, ea) =>
             {
                 var body = ea.Body;
                 var message = Encoding.UTF8.GetString(body);
-                await _mediaPlayerHub.Clients.All.SendAsync("Receive", message);
+                await mediaPlayerHub.Clients.All.SendAsync("Receive", message);
             };
-            _channel.BasicConsume(queue: "hello",
+            channel.BasicConsume(queue: "hello",
                 autoAck: true,
                 consumer: consumer);
 
         }
-
-        public Task StopAsync(CancellationToken cancellationToken)
-        {
-            _logger.LogInformation("Timed Background Service is stopping.");
-
-            _timer?.Change(Timeout.Infinite, 0);
-
-            return Task.CompletedTask;
-        }
-
-        public void Dispose()
-        {
-            _timer?.Dispose();
-        }
     }
+    
 }
