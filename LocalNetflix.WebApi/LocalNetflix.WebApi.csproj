@@ -22,4 +22,8 @@
         </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\LocalNetflix.Grpc\LocalNetflix.Grpc.csproj" />
+    </ItemGroup>
+
 </Project>

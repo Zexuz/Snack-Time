@@ -1,5 +1,6 @@
 @page "/mediaPlayer"
 @using Blazor.Extensions
+@inject HttpClient Client
 
 <h1>Media player!</h1>
 
@@ -22,12 +23,13 @@ else
 
     List<string> data;
 
-    protected override void OnInit()
+    protected override async void OnInit()
     {
+        var res = await Client.GetAsync("http://localhost:5080/api/v1/Media/playing/current");
         data = new List<string>();
-        Console.WriteLine("asdasdasd");
+        data.Add(await res.Content.ReadAsStringAsync());
         StartWebsockets();
-        
+        StateHasChanged();
     }
 
     async void StartWebsockets()

@@ -3,15 +3,15 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
+using LocalNetflix.Grpc.Grpc;
 using LocalNetflix.WebApi.DependencyModules;
+using LocalNetflix.WebApi.Hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
@@ -59,6 +59,12 @@ namespace LocalNetflix.WebApi
 
             app.UseSignalR(routes => { routes.MapHub<MediaPlayerHub>("/ws/mediaPlayerHub"); });
             
+            SetupEventListener(mediaPlayerHub);
+
+        }
+        
+        private void SetupEventListener(IHubContext<MediaPlayerHub> mediaPlayerHub)
+        {
             var factory = new ConnectionFactory() {HostName = "localhost"};
             var connection = factory.CreateConnection();
             var channel = connection.CreateModel();
@@ -79,7 +85,6 @@ namespace LocalNetflix.WebApi
             channel.BasicConsume(queue: "hello",
                 autoAck: true,
                 consumer: consumer);
-
         }
     }
     

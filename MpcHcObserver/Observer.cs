@@ -13,7 +13,6 @@ namespace MpcHcObserver
         public event GenericPropertyChangedEventHandler<string>   NewMediaFileLoaded;
 
         public TimeSpan UpdateFrequency { get; set; }
-        public string   MpcUrl          { get; set; }
 
         private Info          _oldInfo, _newInfo;
         private MPCHomeCinema _mpchc;
@@ -22,15 +21,14 @@ namespace MpcHcObserver
         private Thread _thread;
 
 
-        public Observer()
+        public Observer(MPCHomeCinema client)
         {
+            _mpchc = client;
             UpdateFrequency = TimeSpan.FromSeconds(1);
-            MpcUrl = "http://localhost:13579";
         }
 
         public async Task Start()
         {
-            _mpchc = new MPCHomeCinema(MpcUrl);
             _oldInfo = await _mpchc.GetInfo();
             _thread = new Thread(Run);
 

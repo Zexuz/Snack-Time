@@ -3,6 +3,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MpcHcObserver;
 using MpcHcObserver.Events;
+using MPC_HC.Domain;
 using RabbitMQ.Client;
 
 namespace LocalNetflix.MediaPlayerObserver
@@ -10,6 +11,16 @@ namespace LocalNetflix.MediaPlayerObserver
     class Program
     {
         static async Task Main(string[] args)
+        {
+            var url = "http://localhost:13579";
+
+            var mpcClient = new MPCHomeCinema(url);
+
+            StartGrpcServer("localhost", 50051, mpcClient);
+            await StartAndSetupEventSystem(mpcClient);
+        }
+
+        private static async Task StartAndSetupEventSystem(MPCHomeCinema mpcClient)
         {
             var factory = new ConnectionFactory() {HostName = "localhost"};
             using (var connection = factory.CreateConnection())
@@ -21,16 +32,29 @@ namespace LocalNetflix.MediaPlayerObserver
                     autoDelete: false,
                     arguments: null);
 
-                var observer = new Observer();
-
-                observer.StateChanged += (sender, eventArgs) => PropChanged(sender,eventArgs,channel);
-                observer.PositionChanged += (sender, eventArgs) => PropChanged(sender,eventArgs,channel);
-                observer.NewMediaFileLoaded+= (sender, eventArgs) => PropChanged(sender,eventArgs,channel);
-
-                await observer.Start();
+                await StartAndSetupMpcHcObserver(mpcClient, channel);
 
                 Console.ReadLine();
             }
+        }
+
+        private static async Task StartAndSetupMpcHcObserver(MPCHomeCinema mpcClient, IModel channel)
+        {
+            var mpcHcObserver = new Observer(mpcClient);
+
+            mpcHcObserver.StateChanged += (sender, eventArgs) => PropChanged(sender, eventArgs, channel);
+            mpcHcObserver.PositionChanged += (sender, eventArgs) => PropChanged(sender, eventArgs, channel);
+            mpcHcObserver.NewMediaFileLoaded += (sender, eventArgs) => PropChanged(sender, eventArgs, channel);
+
+            await mpcHcObserver.Start();
+        }
+
+        private static void StartGrpcServer(string ip, int port, MPCHomeCinema mpcClient)
+        {
+            var server = new MediaPlayerServer(ip, port, mpcClient);
+
+            server.Start();
+            Console.WriteLine($"Started GRPC server on {ip}:{port}");
         }
 
         private static void PropChanged<T>(object sender, GenericPropertyChangedEventArgs<T> e, IModel channel)

@@ -11,6 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\LocalNetflix.Grpc\LocalNetflix.Grpc.csproj" />
       <ProjectReference Include="..\MpcHcObserver\MpcHcObserver.csproj" />
     </ItemGroup>
 

@@ -1,0 +1,20 @@
+syntax = "proto3";
+package MediaPlayerModels;
+
+
+//option csharp_namespace = "LocalNetflix.WebApi.Backend";
+
+
+message PlayingMediaInfo{
+    string FileName = 1;
+    int32 Duration = 2;
+    int32 Eplipsed = 3;
+    State State = 4;
+}
+
+enum State{
+    Unknown = 0;
+    Playing = 1;
+    Paused = 2;
+    Stoped = 3;
+}

@@ -1,5 +1,6 @@
 using System;
 using Autofac;
+using LocalNetflix.WebApi.Hubs;
 using Microsoft.Extensions.Configuration;
 
 namespace LocalNetflix.WebApi.DependencyModules
