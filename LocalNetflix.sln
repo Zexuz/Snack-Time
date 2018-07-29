@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp2", "ConsoleApp2\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MpcHcObserver", "MpcHcObserver\MpcHcObserver.csproj", "{36DEDA91-7968-4DBD-87DC-59E42E48327C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalNetflix.WebApi", "LocalNetflix.WebApi\LocalNetflix.WebApi.csproj", "{FED6DE00-9140-4E1D-90F8-0924029CFD33}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{36DEDA91-7968-4DBD-87DC-59E42E48327C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36DEDA91-7968-4DBD-87DC-59E42E48327C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36DEDA91-7968-4DBD-87DC-59E42E48327C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FED6DE00-9140-4E1D-90F8-0924029CFD33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FED6DE00-9140-4E1D-90F8-0924029CFD33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FED6DE00-9140-4E1D-90F8-0924029CFD33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FED6DE00-9140-4E1D-90F8-0924029CFD33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
