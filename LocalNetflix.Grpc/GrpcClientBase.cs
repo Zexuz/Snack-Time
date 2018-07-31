@@ -1,7 +1,7 @@
 ﻿using System;
 using Grpc.Core;
 
-namespace LocalNetflix.Grpc.Grpc
+namespace LocalNetflix.Grpc
 {
     public abstract class GrpcClientBase
     {
@@ -33,6 +33,5 @@ namespace LocalNetflix.Grpc.Grpc
         {
             _channel.ShutdownAsync().Wait();
         }
-        
     }
 }

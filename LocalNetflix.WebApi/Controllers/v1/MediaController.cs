@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using LocalNetflix.Grpc.Grpc;
+using LocalNetflix.Grpc.Impl;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LocalNetflix.WebApi.Controllers.v1
@@ -20,7 +20,13 @@ namespace LocalNetflix.WebApi.Controllers.v1
         [HttpGet("playing/current")]
         public async Task<ActionResult<string>> Index()
         {
-            var info = await _mediaPlayerClient.Info();
+            var infoResponse = await _mediaPlayerClient.Info();
+            
+            if(infoResponse.IsError)
+                return StatusCode(503,infoResponse.Error.ToString());
+
+            var info = infoResponse.Response;
+            
             var m = $"{info.State.ToString()}: {info.FileName}, [{TimeSpan.FromSeconds(info.Eplipsed)}/{TimeSpan.FromSeconds(info.Duration)}]";
             return Ok(m);
         }

@@ -1,4 +1,4 @@
-﻿using LocalNetflix.Grpc.Grpc;
+﻿using LocalNetflix.Grpc;
 using LocalNetflix.Protobuf.generated;
 using MPC_HC.Domain;
 

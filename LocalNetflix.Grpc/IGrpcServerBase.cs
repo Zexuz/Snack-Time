@@ -1,4 +1,4 @@
-﻿namespace LocalNetflix.Grpc.Grpc
+﻿namespace LocalNetflix.Grpc
 {
     public interface IGrpcServerBase
     {

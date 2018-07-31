@@ -3,7 +3,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
-using LocalNetflix.Grpc.Grpc;
 using LocalNetflix.WebApi.DependencyModules;
 using LocalNetflix.WebApi.Hubs;
 using Microsoft.AspNetCore.Builder;
