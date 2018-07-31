@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Localnetflix.Backend.Database;
 using Localnetflix.Backend.Database.Models;
+using LocalNetflix.Backend;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LocalNetflix.WebApi.Controllers.v1
@@ -10,18 +11,18 @@ namespace LocalNetflix.WebApi.Controllers.v1
     [ApiController]
     public class SeriesController:Controller
     {
-        private readonly IRepository<Series> _seriesRepo;
+        private readonly ISeriesService _seriesService;
 
-        public SeriesController(IRepository<Series> seriesRepo)
+        public SeriesController(ISeriesService seriesService)
         {
-            _seriesRepo = seriesRepo;
+            _seriesService = seriesService;
         }
         
         
         [HttpGet("")]
         public ActionResult<List<Series>> GetAll()
         {
-            return Ok(_seriesRepo.GetAll());
+            return Ok(_seriesService.GetAll());
         }
 
         

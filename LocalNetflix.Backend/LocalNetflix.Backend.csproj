@@ -6,6 +6,8 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Localnetflix.Backend.Database\Localnetflix.Backend.Database.csproj" />
+      <ProjectReference Include="..\LocalNetflix.Grpc\LocalNetflix.Grpc.csproj" />
+      <ProjectReference Include="..\LocalNetflix.Protobuf\LocalNetflix.Protobuf.csproj" />
     </ItemGroup>
 
 </Project>

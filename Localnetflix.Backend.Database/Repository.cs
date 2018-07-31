@@ -4,27 +4,27 @@ using LiteDB;
 
 namespace Localnetflix.Backend.Database
 {
-    public class Repository<TEntity> : IDisposable, IRepository<TEntity>
+    public abstract class Repository<TEntity> : IDisposable, IRepository<TEntity>
     {
         private LiteDatabase            _db;
-        private LiteCollection<TEntity> _collection;
+        protected readonly LiteCollection<TEntity> Collection;
 
-        public Repository()
+        protected Repository()
         {
             _db = new LiteDatabase(@"Local netflix");
-            _collection = _db.GetCollection<TEntity>();
+            Collection = _db.GetCollection<TEntity>();
             
             DatabaseMapper.MapEntity();
         }
 
         public void InsertOfUpdate(TEntity entity)
         {
-            _collection.Upsert(entity);
+            Collection.Upsert(entity);
         }
 
         public IEnumerable<TEntity> GetAll()
         {
-            return _collection.FindAll();
+            return Collection.FindAll();
         }
 
         public void Dispose()
