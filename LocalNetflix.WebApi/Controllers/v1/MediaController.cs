@@ -16,7 +16,6 @@ namespace LocalNetflix.WebApi.Controllers.v1
             _mediaPlayerClient = new MediaPlayerClient("localhost", 50051);
         }
         
-        // GET
         [HttpGet("playing/current")]
         public async Task<ActionResult<string>> Index()
         {

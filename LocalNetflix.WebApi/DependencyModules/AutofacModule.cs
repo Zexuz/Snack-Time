@@ -1,5 +1,7 @@
 using System;
 using Autofac;
+using Localnetflix.Backend.Database;
+using Localnetflix.Backend.Database.Models;
 using LocalNetflix.WebApi.Hubs;
 using Microsoft.Extensions.Configuration;
 
@@ -17,6 +19,7 @@ namespace LocalNetflix.WebApi.DependencyModules
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<MediaPlayerHub>().As<MediaPlayerHub>();
+            builder.RegisterType<Repository<Series>>().As<IRepository<Series>>();
         }
     }
 }

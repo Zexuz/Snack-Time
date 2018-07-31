@@ -26,6 +26,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\LocalNetflix.Backend\LocalNetflix.Backend.csproj" />
       <ProjectReference Include="..\LocalNetflix.Grpc\LocalNetflix.Grpc.csproj" />
     </ItemGroup>
 

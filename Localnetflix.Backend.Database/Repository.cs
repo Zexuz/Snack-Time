@@ -4,7 +4,7 @@ using LiteDB;
 
 namespace Localnetflix.Backend.Database
 {
-    public class Repository<TEntity> : IDisposable
+    public class Repository<TEntity> : IDisposable, IRepository<TEntity>
     {
         private LiteDatabase            _db;
         private LiteCollection<TEntity> _collection;

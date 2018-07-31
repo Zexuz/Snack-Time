@@ -4,4 +4,8 @@
         <TargetFramework>netcoreapp2.1</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Localnetflix.Backend.Database\Localnetflix.Backend.Database.csproj" />
+    </ItemGroup>
+
 </Project>
