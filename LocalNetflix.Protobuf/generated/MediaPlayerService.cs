@@ -5,9 +5,11 @@
 #pragma warning disable 1591, 0612, 3021
 #region Designer generated code
 
+using pb = global::Google.Protobuf;
+using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
-
-namespace LocalNetflix.Protobuf.generated {
+using scg = global::System.Collections.Generic;
+namespace LocalNetflix.Protobuf.MediaPlayerServices {
 
   /// <summary>Holder for reflection information generated from MediaPlayerService.proto</summary>
   public static partial class MediaPlayerServiceReflection {
@@ -26,9 +28,10 @@ namespace LocalNetflix.Protobuf.generated {
             "ZXMaF01lZGlhUGxheWVyTW9kZWxzLnByb3RvGhBNaXNjTW9kZWxzLnByb3Rv",
             "MlsKEk1lZGlhUGxheWVyU2VydmljZRJFCgRJbmZvEhguTWlzY01vZGVscy5F",
             "bXB0eU1lc3NhZ2UaIy5NZWRpYVBsYXllck1vZGVscy5QbGF5aW5nTWVkaWFJ",
-            "bmZvYgZwcm90bzM="));
+            "bmZvQiyqAilMb2NhbE5ldGZsaXguUHJvdG9idWYuTWVkaWFQbGF5ZXJTZXJ2",
+            "aWNlc2IGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::LocalNetflix.Protobuf.generated.MediaPlayerModelsReflection.Descriptor, global::LocalNetflix.Protobuf.generated.MiscModelsReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::LocalNetflix.Protobuf.MediaPlayerModels.MediaPlayerModelsReflection.Descriptor, global::LocalNetflix.Protobuf.MiscModels.MiscModelsReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null));
     }
     #endregion

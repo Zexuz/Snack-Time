@@ -1,5 +1,3 @@
-using System.ComponentModel;
-
 namespace LocalNetflix.Grpc.Models
 {
     public class GrpcResponse<TResponse> where TResponse : class

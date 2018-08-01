@@ -1,5 +1,5 @@
 ﻿using LocalNetflix.Grpc;
-using LocalNetflix.Protobuf.generated;
+using LocalNetflix.Protobuf.MediaPlayerServices;
 using MPC_HC.Domain;
 
 namespace LocalNetflix.MediaPlayerObserver

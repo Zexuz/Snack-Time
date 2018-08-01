@@ -1,4 +1,3 @@
-using System;
 using Autofac;
 using Localnetflix.Backend.Database;
 using Localnetflix.Backend.Database.Models;

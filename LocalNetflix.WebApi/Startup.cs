@@ -1,9 +1,5 @@
-﻿using System;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Text;
 using Autofac;
-using LocalNetflix.Backend;
 using LocalNetflix.WebApi.DependencyModules;
 using LocalNetflix.WebApi.Hubs;
 using Microsoft.AspNetCore.Builder;

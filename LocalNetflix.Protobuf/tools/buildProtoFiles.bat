@@ -7,3 +7,4 @@ cd ../raw
 ..\tools\protoc.exe  --csharp_out=../generated .\MediaPlayerModels.proto
 ..\tools\protoc.exe  --csharp_out=../generated .\MediaPlayerService.proto --grpc_out ../generated  --plugin=protoc-gen-grpc=%PLUGIN%
 pause
+exit

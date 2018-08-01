@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using Localnetflix.Backend.Database;
 using Localnetflix.Backend.Database.Models;
 using LocalNetflix.Backend;
 using Microsoft.AspNetCore.Mvc;

@@ -5,17 +5,18 @@
 
 using System;
 using System.Threading;
+using System.Threading.Tasks;
 using grpc = global::Grpc.Core;
 
-namespace LocalNetflix.Protobuf.generated {
+namespace LocalNetflix.Protobuf.MediaPlayerServices {
   public static partial class MediaPlayerService
   {
     static readonly string __ServiceName = "MediaPlayerServices.MediaPlayerService";
 
-    static readonly grpc::Marshaller<global::LocalNetflix.Protobuf.generated.EmptyMessage> __Marshaller_EmptyMessage = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::LocalNetflix.Protobuf.generated.EmptyMessage.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::LocalNetflix.Protobuf.generated.PlayingMediaInfo> __Marshaller_PlayingMediaInfo = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::LocalNetflix.Protobuf.generated.PlayingMediaInfo.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::LocalNetflix.Protobuf.MiscModels.EmptyMessage> __Marshaller_EmptyMessage = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::LocalNetflix.Protobuf.MiscModels.EmptyMessage.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo> __Marshaller_PlayingMediaInfo = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo.Parser.ParseFrom);
 
-    static readonly grpc::Method<global::LocalNetflix.Protobuf.generated.EmptyMessage, global::LocalNetflix.Protobuf.generated.PlayingMediaInfo> __Method_Info = new grpc::Method<global::LocalNetflix.Protobuf.generated.EmptyMessage, global::LocalNetflix.Protobuf.generated.PlayingMediaInfo>(
+    static readonly grpc::Method<global::LocalNetflix.Protobuf.MiscModels.EmptyMessage, global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo> __Method_Info = new grpc::Method<global::LocalNetflix.Protobuf.MiscModels.EmptyMessage, global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo>(
         grpc::MethodType.Unary,
         __ServiceName,
         "Info",
@@ -25,13 +26,13 @@ namespace LocalNetflix.Protobuf.generated {
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
     {
-      get { return global::LocalNetflix.Protobuf.generated.MediaPlayerServiceReflection.Descriptor.Services[0]; }
+      get { return global::LocalNetflix.Protobuf.MediaPlayerServices.MediaPlayerServiceReflection.Descriptor.Services[0]; }
     }
 
     /// <summary>Base class for server-side implementations of MediaPlayerService</summary>
     public abstract partial class MediaPlayerServiceBase
     {
-      public virtual global::System.Threading.Tasks.Task<global::LocalNetflix.Protobuf.generated.PlayingMediaInfo> Info(global::LocalNetflix.Protobuf.generated.EmptyMessage request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo> Info(global::LocalNetflix.Protobuf.MiscModels.EmptyMessage request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -61,19 +62,19 @@ namespace LocalNetflix.Protobuf.generated {
       {
       }
 
-      public virtual global::LocalNetflix.Protobuf.generated.PlayingMediaInfo Info(global::LocalNetflix.Protobuf.generated.EmptyMessage request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      public virtual global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo Info(global::LocalNetflix.Protobuf.MiscModels.EmptyMessage request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
       {
         return Info(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::LocalNetflix.Protobuf.generated.PlayingMediaInfo Info(global::LocalNetflix.Protobuf.generated.EmptyMessage request, grpc::CallOptions options)
+      public virtual global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo Info(global::LocalNetflix.Protobuf.MiscModels.EmptyMessage request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_Info, null, options, request);
       }
-      public virtual grpc::AsyncUnaryCall<global::LocalNetflix.Protobuf.generated.PlayingMediaInfo> InfoAsync(global::LocalNetflix.Protobuf.generated.EmptyMessage request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo> InfoAsync(global::LocalNetflix.Protobuf.MiscModels.EmptyMessage request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
       {
         return InfoAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual grpc::AsyncUnaryCall<global::LocalNetflix.Protobuf.generated.PlayingMediaInfo> InfoAsync(global::LocalNetflix.Protobuf.generated.EmptyMessage request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo> InfoAsync(global::LocalNetflix.Protobuf.MiscModels.EmptyMessage request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_Info, null, options, request);
       }

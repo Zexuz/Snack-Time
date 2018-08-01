@@ -2,7 +2,7 @@ syntax = "proto3";
 package MediaPlayerModels;
 
 
-//option csharp_namespace = "LocalNetflix.WebApi.Backend";
+option csharp_namespace = "LocalNetflix.Protobuf.MediaPlayerModels";
 
 
 message PlayingMediaInfo{

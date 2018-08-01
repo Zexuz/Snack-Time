@@ -1,6 +1,6 @@
 using System;
 using Localnetflix.Backend.Database.Models;
-using LocalNetflix.Protobuf.generated;
+using LocalNetflix.Protobuf.MediaPlayerModels;
 
 namespace LocalNetflix.Backend
 {

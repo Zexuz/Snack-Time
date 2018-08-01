@@ -1,9 +1,7 @@
 using System;
 using System.Threading.Tasks;
-using Localnetflix.Backend.Database.Models;
 using LocalNetflix.Backend;
 using LocalNetflix.Grpc.Impl;
-using LocalNetflix.Protobuf.generated;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LocalNetflix.WebApi.Controllers.v1

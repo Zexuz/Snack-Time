@@ -2,7 +2,9 @@
 using System.Threading.Tasks;
 using Grpc.Core;
 using LocalNetflix.Grpc.Models;
-using LocalNetflix.Protobuf.generated;
+using LocalNetflix.Protobuf.MediaPlayerModels;
+using LocalNetflix.Protobuf.MediaPlayerServices;
+using LocalNetflix.Protobuf.MiscModels;
 
 namespace LocalNetflix.Grpc.Impl
 {
