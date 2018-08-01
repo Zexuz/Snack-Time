@@ -11,13 +11,11 @@ namespace LocalNetflix.WebApi.Controllers.v1
     public class MediaController : Controller
     {
         private readonly ISeriesService    _seriesService;
-        private readonly IEpisodeFactory _episodeFactory;
         private          MediaPlayerClient _mediaPlayerClient;
 
-        public MediaController(ISeriesService seriesService, IEpisodeFactory episodeFactory)
+        public MediaController(ISeriesService seriesService)
         {
             _seriesService = seriesService;
-            _episodeFactory = episodeFactory;
             _mediaPlayerClient = new MediaPlayerClient("localhost", 50051);
         }
 
@@ -31,8 +29,7 @@ namespace LocalNetflix.WebApi.Controllers.v1
 
             var info = infoResponse.Response;
 
-            var episode = _episodeFactory.ParserEpisodeFromMediaInfo(info);
-            _seriesService.NewSeriesInMediaPlayer(episode);
+            _seriesService.NewSeriesInMediaPlayer(info);
 
             var m = $"{info.State.ToString()}: {info.FileName}, [{TimeSpan.FromSeconds(info.Eplipsed)}/{TimeSpan.FromSeconds(info.Duration)}]";
             return Ok(m);

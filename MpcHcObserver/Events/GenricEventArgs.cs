@@ -1,29 +1,21 @@
 ﻿using System;
+using LocalNetflix.Protobuf.MediaPlayerModels;
 
 namespace MpcHcObserver.Events
 {
-    public delegate void GenericPropertyChangedEventHandler<T>(object sender, GenericPropertyChangedEventArgs<T> e);
+    public delegate void PropertyChangedEventHandler<T>(object sender, PropertyChangedEventArgs e);
 
-    public class GenericPropertyChangedEventArgs<T>:EventArgs
+    public class PropertyChangedEventArgs:EventArgs
     {
-        public T OldValue { get; }
-        public T NewValue { get; }
-        public Property Property { get; }
 
-        public GenericPropertyChangedEventArgs(T oldValue, T newValue, Property property)
+        public PlayingMediaInfoChanged PlayingMediaInfoChanged { get; }
+
+        public PropertyChangedEventArgs(PlayingMediaInfoChanged playingMediaInfoChanged)
         {
-            OldValue = oldValue;
-            NewValue = newValue;
-            Property = property;
+            PlayingMediaInfoChanged = playingMediaInfoChanged;
         }
         
-    }
-
-    public enum Property
-    {
-        State,
-        Position,
-        File
+        
     }
 
 }

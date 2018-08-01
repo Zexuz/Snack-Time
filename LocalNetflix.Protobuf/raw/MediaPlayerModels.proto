@@ -5,16 +5,29 @@ package MediaPlayerModels;
 option csharp_namespace = "LocalNetflix.Protobuf.MediaPlayerModels";
 
 
-message PlayingMediaInfo{
+message PlayingMediaInfo {
     string FileName = 1;
-    int32 Duration = 2;
-    int32 Eplipsed = 3;
+    double Duration = 2;
+    double Eplipsed = 3;
     State State = 4;
 }
 
-enum State{
+enum State {
     Unknown = 0;
     Playing = 1;
     Paused = 2;
     Stoped = 3;
+}
+
+message PlayingMediaInfoChanged {
+    PlayingMediaInfo MediaInfo = 1;
+    PlayingMediaInfo OldMediaInfo = 2;
+    MediaProperty Property = 3;
+
+    enum MediaProperty {
+        State = 0;
+        Position = 1;
+        File = 2;
+    }
+
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using LocalNetflix.Protobuf.MediaPlayerModels;
 using MpcHcObserver.Events;
 using MPC_HC.Domain;
 
@@ -8,9 +9,9 @@ namespace MpcHcObserver
 {
     public class Observer
     {
-        public event GenericPropertyChangedEventHandler<State>    StateChanged;
-        public event GenericPropertyChangedEventHandler<TimeSpan> PositionChanged;
-        public event GenericPropertyChangedEventHandler<string>   NewMediaFileLoaded;
+        public event PropertyChangedEventHandler<State>    StateChanged;
+        public event PropertyChangedEventHandler<TimeSpan> PositionChanged;
+        public event PropertyChangedEventHandler<string>   NewMediaFileLoaded;
 
         public TimeSpan UpdateFrequency { get; set; }
 
@@ -50,17 +51,17 @@ namespace MpcHcObserver
 
                 if (_newInfo.State != _oldInfo.State)
                 {
-                    OnPropertyChanged(Property.State);
+                    OnPropertyChanged(PlayingMediaInfoChanged.Types.MediaProperty.State);
                 }
 
                 if (_newInfo.Position != _oldInfo.Position)
                 {
-                    OnPropertyChanged(Property.Position);
+                    OnPropertyChanged(PlayingMediaInfoChanged.Types.MediaProperty.Position);
                 }
 
                 if (_newInfo.FileName != _oldInfo.FileName)
                 {
-                    OnPropertyChanged(Property.File);
+                    OnPropertyChanged(PlayingMediaInfoChanged.Types.MediaProperty.File);
                 }
 
                 _oldInfo = _newInfo;
@@ -68,21 +69,61 @@ namespace MpcHcObserver
             }
         }
 
-        private void OnPropertyChanged(Property propertyType)
+        private void OnPropertyChanged(PlayingMediaInfoChanged.Types.MediaProperty propertyType)
         {
+            var playingMediaInfoChanged = CreatePlayingMediaInfoChanged(_oldInfo, _newInfo, propertyType);
+
             switch (propertyType)
             {
-                case Property.State:
-                    StateChanged?.Invoke(this, new GenericPropertyChangedEventArgs<State>(_oldInfo.State,_newInfo.State,propertyType));
+                case PlayingMediaInfoChanged.Types.MediaProperty.State:
+                    StateChanged?.Invoke(this, new PropertyChangedEventArgs(playingMediaInfoChanged));
                     break;
-                case Property.Position:
-                    PositionChanged?.Invoke(this, new GenericPropertyChangedEventArgs<TimeSpan>(_oldInfo.Position,_newInfo.Position,propertyType));
+                case PlayingMediaInfoChanged.Types.MediaProperty.Position:
+                    PositionChanged?.Invoke(this, new PropertyChangedEventArgs(playingMediaInfoChanged));
                     break;
-                case Property.File:
-                    NewMediaFileLoaded?.Invoke(this, new GenericPropertyChangedEventArgs<string>(_oldInfo.FileName,_newInfo.FileName,propertyType));
+                case PlayingMediaInfoChanged.Types.MediaProperty.File:
+                    NewMediaFileLoaded?.Invoke(this, new PropertyChangedEventArgs(playingMediaInfoChanged));
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private static PlayingMediaInfoChanged CreatePlayingMediaInfoChanged(Info old, Info @new, PlayingMediaInfoChanged.Types.MediaProperty prop)
+        {
+            return new PlayingMediaInfoChanged
+            {
+                Property = prop,
+                MediaInfo = FromInfo(@new),
+                OldMediaInfo = FromInfo(old)
+            };
+        }
+
+        private static PlayingMediaInfo FromInfo(Info info)
+        {
+            return new PlayingMediaInfo
+            {
+                FileName = info.FileName,
+                State = ConvertEnum(info.State),
+                Duration = info.Duration.TotalSeconds,
+                Eplipsed = info.Position.TotalSeconds
+            };
+        }
+
+        private static LocalNetflix.Protobuf.MediaPlayerModels.State ConvertEnum(State state)
+        {
+            switch (state)
+            {
+                case State.Stoped:
+                    return LocalNetflix.Protobuf.MediaPlayerModels.State.Stoped;
+                case State.Playing:
+                    return LocalNetflix.Protobuf.MediaPlayerModels.State.Playing;
+                case State.Paused:
+                    return LocalNetflix.Protobuf.MediaPlayerModels.State.Paused;
+                case State.None:
+                    return LocalNetflix.Protobuf.MediaPlayerModels.State.Unknown;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(state), state, null);
             }
         }
     }

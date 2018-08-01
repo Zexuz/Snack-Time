@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Text;
 using System.Threading.Tasks;
+using Google.Protobuf;
+using LocalNetflix.Protobuf.MediaPlayerModels;
 using MpcHcObserver;
 using MpcHcObserver.Events;
 using MPC_HC.Domain;
@@ -57,20 +59,18 @@ namespace LocalNetflix.MediaPlayerObserver
             Console.WriteLine($"Started GRPC server on {ip}:{port}");
         }
 
-        private static void PropChanged<T>(object sender, GenericPropertyChangedEventArgs<T> e, IModel channel)
+        private static void PropChanged(object sender, PropertyChangedEventArgs e, IModel channel)
         {
-            SendMessage($"Went from [{e.OldValue.ToString()}] -> [{e.NewValue.ToString()}]", channel);
+            SendMessage(e.PlayingMediaInfoChanged.ToByteArray(), channel);
         }
 
-        public static void SendMessage(string message, IModel channel)
+        public static void SendMessage(byte[] message, IModel channel)
         {
-            var body = Encoding.UTF8.GetBytes(message);
-
             channel.BasicPublish(exchange: "",
                 routingKey: "hello",
                 basicProperties: null,
-                body: body);
-            Console.WriteLine(" [x] Sent {0}", message);
+                body: message);
+            Console.WriteLine(" [x] Sent size of {0}", message.Length);
         }
     }
 }

@@ -1,5 +1,7 @@
-﻿using System.Text;
-using Autofac;
+﻿using Autofac;
+using Google.Protobuf;
+using LocalNetflix.Backend;
+using LocalNetflix.Protobuf.MediaPlayerModels;
 using LocalNetflix.WebApi.DependencyModules;
 using LocalNetflix.WebApi.Hubs;
 using Microsoft.AspNetCore.Builder;
@@ -44,7 +46,7 @@ namespace LocalNetflix.WebApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IHubContext<MediaPlayerHub> mediaPlayerHub)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ISeriesService seriesService)
         {
             if (env.IsDevelopment())
             {
@@ -70,11 +72,11 @@ namespace LocalNetflix.WebApi
 
             app.UseSignalR(routes => { routes.MapHub<MediaPlayerHub>("/ws/mediaPlayerHub"); });
             
-            SetupEventListener(mediaPlayerHub);
+            SetupEventListener(seriesService);
 
         }
         
-        private void SetupEventListener(IHubContext<MediaPlayerHub> mediaPlayerHub)
+        private void SetupEventListener(ISeriesService seriesService)
         {
             var factory = new ConnectionFactory() {HostName = "localhost"};
             var connection = factory.CreateConnection();
@@ -87,16 +89,14 @@ namespace LocalNetflix.WebApi
                 arguments: null);
 
             var consumer = new EventingBasicConsumer(channel);
-            consumer.Received += async (model, ea) =>
+            consumer.Received += (model, ea) =>
             {
-                var body = ea.Body;
-                var message = Encoding.UTF8.GetString(body);
-                await mediaPlayerHub.Clients.All.SendAsync("Receive", message);
+                var infoChanged = PlayingMediaInfoChanged.Parser.ParseFrom(ea.Body);
+                seriesService.NewSeriesInMediaPlayer(infoChanged.MediaInfo);
             };
             channel.BasicConsume(queue: "hello",
                 autoAck: true,
                 consumer: consumer);
         }
     }
-    
 }

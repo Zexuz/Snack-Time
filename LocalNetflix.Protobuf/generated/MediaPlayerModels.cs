@@ -26,14 +26,22 @@ namespace LocalNetflix.Protobuf.MediaPlayerModels {
           string.Concat(
             "ChdNZWRpYVBsYXllck1vZGVscy5wcm90bxIRTWVkaWFQbGF5ZXJNb2RlbHMi",
             "cQoQUGxheWluZ01lZGlhSW5mbxIQCghGaWxlTmFtZRgBIAEoCRIQCghEdXJh",
-            "dGlvbhgCIAEoBRIQCghFcGxpcHNlZBgDIAEoBRInCgVTdGF0ZRgEIAEoDjIY",
-            "Lk1lZGlhUGxheWVyTW9kZWxzLlN0YXRlKjkKBVN0YXRlEgsKB1Vua25vd24Q",
-            "ABILCgdQbGF5aW5nEAESCgoGUGF1c2VkEAISCgoGU3RvcGVkEANCKqoCJ0xv",
-            "Y2FsTmV0ZmxpeC5Qcm90b2J1Zi5NZWRpYVBsYXllck1vZGVsc2IGcHJvdG8z"));
+            "dGlvbhgCIAEoARIQCghFcGxpcHNlZBgDIAEoARInCgVTdGF0ZRgEIAEoDjIY",
+            "Lk1lZGlhUGxheWVyTW9kZWxzLlN0YXRlIowCChdQbGF5aW5nTWVkaWFJbmZv",
+            "Q2hhbmdlZBI2CglNZWRpYUluZm8YASABKAsyIy5NZWRpYVBsYXllck1vZGVs",
+            "cy5QbGF5aW5nTWVkaWFJbmZvEjkKDE9sZE1lZGlhSW5mbxgCIAEoCzIjLk1l",
+            "ZGlhUGxheWVyTW9kZWxzLlBsYXlpbmdNZWRpYUluZm8SSgoIUHJvcGVydHkY",
+            "AyABKA4yOC5NZWRpYVBsYXllck1vZGVscy5QbGF5aW5nTWVkaWFJbmZvQ2hh",
+            "bmdlZC5NZWRpYVByb3BlcnR5IjIKDU1lZGlhUHJvcGVydHkSCQoFU3RhdGUQ",
+            "ABIMCghQb3NpdGlvbhABEggKBEZpbGUQAio5CgVTdGF0ZRILCgdVbmtub3du",
+            "EAASCwoHUGxheWluZxABEgoKBlBhdXNlZBACEgoKBlN0b3BlZBADQiqqAidM",
+            "b2NhbE5ldGZsaXguUHJvdG9idWYuTWVkaWFQbGF5ZXJNb2RlbHNiBnByb3Rv",
+            "Mw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::LocalNetflix.Protobuf.MediaPlayerModels.State), }, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo), global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo.Parser, new[]{ "FileName", "Duration", "Eplipsed", "State" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo), global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo.Parser, new[]{ "FileName", "Duration", "Eplipsed", "State" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfoChanged), global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfoChanged.Parser, new[]{ "MediaInfo", "OldMediaInfo", "Property" }, null, new[]{ typeof(global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfoChanged.Types.MediaProperty) }, null)
           }));
     }
     #endregion
@@ -100,9 +108,9 @@ namespace LocalNetflix.Protobuf.MediaPlayerModels {
 
     /// <summary>Field number for the "Duration" field.</summary>
     public const int DurationFieldNumber = 2;
-    private int duration_;
+    private double duration_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Duration {
+    public double Duration {
       get { return duration_; }
       set {
         duration_ = value;
@@ -111,9 +119,9 @@ namespace LocalNetflix.Protobuf.MediaPlayerModels {
 
     /// <summary>Field number for the "Eplipsed" field.</summary>
     public const int EplipsedFieldNumber = 3;
-    private int eplipsed_;
+    private double eplipsed_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Eplipsed {
+    public double Eplipsed {
       get { return eplipsed_; }
       set {
         eplipsed_ = value;
@@ -145,8 +153,8 @@ namespace LocalNetflix.Protobuf.MediaPlayerModels {
         return true;
       }
       if (FileName != other.FileName) return false;
-      if (Duration != other.Duration) return false;
-      if (Eplipsed != other.Eplipsed) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Duration, other.Duration)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Eplipsed, other.Eplipsed)) return false;
       if (State != other.State) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -155,8 +163,8 @@ namespace LocalNetflix.Protobuf.MediaPlayerModels {
     public override int GetHashCode() {
       int hash = 1;
       if (FileName.Length != 0) hash ^= FileName.GetHashCode();
-      if (Duration != 0) hash ^= Duration.GetHashCode();
-      if (Eplipsed != 0) hash ^= Eplipsed.GetHashCode();
+      if (Duration != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Duration);
+      if (Eplipsed != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Eplipsed);
       if (State != 0) hash ^= State.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -175,13 +183,13 @@ namespace LocalNetflix.Protobuf.MediaPlayerModels {
         output.WriteRawTag(10);
         output.WriteString(FileName);
       }
-      if (Duration != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(Duration);
+      if (Duration != 0D) {
+        output.WriteRawTag(17);
+        output.WriteDouble(Duration);
       }
-      if (Eplipsed != 0) {
-        output.WriteRawTag(24);
-        output.WriteInt32(Eplipsed);
+      if (Eplipsed != 0D) {
+        output.WriteRawTag(25);
+        output.WriteDouble(Eplipsed);
       }
       if (State != 0) {
         output.WriteRawTag(32);
@@ -198,11 +206,11 @@ namespace LocalNetflix.Protobuf.MediaPlayerModels {
       if (FileName.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(FileName);
       }
-      if (Duration != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Duration);
+      if (Duration != 0D) {
+        size += 1 + 8;
       }
-      if (Eplipsed != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Eplipsed);
+      if (Eplipsed != 0D) {
+        size += 1 + 8;
       }
       if (State != 0) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) State);
@@ -221,10 +229,10 @@ namespace LocalNetflix.Protobuf.MediaPlayerModels {
       if (other.FileName.Length != 0) {
         FileName = other.FileName;
       }
-      if (other.Duration != 0) {
+      if (other.Duration != 0D) {
         Duration = other.Duration;
       }
-      if (other.Eplipsed != 0) {
+      if (other.Eplipsed != 0D) {
         Eplipsed = other.Eplipsed;
       }
       if (other.State != 0) {
@@ -245,12 +253,12 @@ namespace LocalNetflix.Protobuf.MediaPlayerModels {
             FileName = input.ReadString();
             break;
           }
-          case 16: {
-            Duration = input.ReadInt32();
+          case 17: {
+            Duration = input.ReadDouble();
             break;
           }
-          case 24: {
-            Eplipsed = input.ReadInt32();
+          case 25: {
+            Eplipsed = input.ReadDouble();
             break;
           }
           case 32: {
@@ -260,6 +268,216 @@ namespace LocalNetflix.Protobuf.MediaPlayerModels {
         }
       }
     }
+
+  }
+
+  public sealed partial class PlayingMediaInfoChanged : pb::IMessage<PlayingMediaInfoChanged> {
+    private static readonly pb::MessageParser<PlayingMediaInfoChanged> _parser = new pb::MessageParser<PlayingMediaInfoChanged>(() => new PlayingMediaInfoChanged());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<PlayingMediaInfoChanged> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::LocalNetflix.Protobuf.MediaPlayerModels.MediaPlayerModelsReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public PlayingMediaInfoChanged() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public PlayingMediaInfoChanged(PlayingMediaInfoChanged other) : this() {
+      mediaInfo_ = other.mediaInfo_ != null ? other.mediaInfo_.Clone() : null;
+      oldMediaInfo_ = other.oldMediaInfo_ != null ? other.oldMediaInfo_.Clone() : null;
+      property_ = other.property_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public PlayingMediaInfoChanged Clone() {
+      return new PlayingMediaInfoChanged(this);
+    }
+
+    /// <summary>Field number for the "MediaInfo" field.</summary>
+    public const int MediaInfoFieldNumber = 1;
+    private global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo mediaInfo_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo MediaInfo {
+      get { return mediaInfo_; }
+      set {
+        mediaInfo_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "OldMediaInfo" field.</summary>
+    public const int OldMediaInfoFieldNumber = 2;
+    private global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo oldMediaInfo_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo OldMediaInfo {
+      get { return oldMediaInfo_; }
+      set {
+        oldMediaInfo_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Property" field.</summary>
+    public const int PropertyFieldNumber = 3;
+    private global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfoChanged.Types.MediaProperty property_ = 0;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfoChanged.Types.MediaProperty Property {
+      get { return property_; }
+      set {
+        property_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as PlayingMediaInfoChanged);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(PlayingMediaInfoChanged other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(MediaInfo, other.MediaInfo)) return false;
+      if (!object.Equals(OldMediaInfo, other.OldMediaInfo)) return false;
+      if (Property != other.Property) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (mediaInfo_ != null) hash ^= MediaInfo.GetHashCode();
+      if (oldMediaInfo_ != null) hash ^= OldMediaInfo.GetHashCode();
+      if (Property != 0) hash ^= Property.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (mediaInfo_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(MediaInfo);
+      }
+      if (oldMediaInfo_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(OldMediaInfo);
+      }
+      if (Property != 0) {
+        output.WriteRawTag(24);
+        output.WriteEnum((int) Property);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (mediaInfo_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(MediaInfo);
+      }
+      if (oldMediaInfo_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(OldMediaInfo);
+      }
+      if (Property != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Property);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(PlayingMediaInfoChanged other) {
+      if (other == null) {
+        return;
+      }
+      if (other.mediaInfo_ != null) {
+        if (mediaInfo_ == null) {
+          mediaInfo_ = new global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo();
+        }
+        MediaInfo.MergeFrom(other.MediaInfo);
+      }
+      if (other.oldMediaInfo_ != null) {
+        if (oldMediaInfo_ == null) {
+          oldMediaInfo_ = new global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo();
+        }
+        OldMediaInfo.MergeFrom(other.OldMediaInfo);
+      }
+      if (other.Property != 0) {
+        Property = other.Property;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (mediaInfo_ == null) {
+              mediaInfo_ = new global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo();
+            }
+            input.ReadMessage(mediaInfo_);
+            break;
+          }
+          case 18: {
+            if (oldMediaInfo_ == null) {
+              oldMediaInfo_ = new global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo();
+            }
+            input.ReadMessage(oldMediaInfo_);
+            break;
+          }
+          case 24: {
+            property_ = (global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfoChanged.Types.MediaProperty) input.ReadEnum();
+            break;
+          }
+        }
+      }
+    }
+
+    #region Nested types
+    /// <summary>Container for nested types declared in the PlayingMediaInfoChanged message type.</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static partial class Types {
+      public enum MediaProperty {
+        [pbr::OriginalName("State")] State = 0,
+        [pbr::OriginalName("Position")] Position = 1,
+        [pbr::OriginalName("File")] File = 2,
+      }
+
+    }
+    #endregion
 
   }
 

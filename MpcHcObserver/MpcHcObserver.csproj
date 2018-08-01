@@ -8,4 +8,9 @@
       <PackageReference Include="MPC-HC.Domain" Version="1.0.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\LocalNetflix.Grpc\LocalNetflix.Grpc.csproj" />
+      <ProjectReference Include="..\LocalNetflix.Protobuf\LocalNetflix.Protobuf.csproj" />
+    </ItemGroup>
+
 </Project>
