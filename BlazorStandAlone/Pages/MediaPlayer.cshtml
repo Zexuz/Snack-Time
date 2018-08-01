@@ -18,7 +18,7 @@ else
     var lastWatched = seriesOrderedByLastWatched.First();
     var lastWatchedEpisode = lastWatched.Seasons.SelectMany(pair => pair.Value.Episodes).OrderByDescending(pair => pair.Value.LastWatched).First().Value;
     
-    <h3>@lastWatched.Name - Season @lastWatchedEpisode.SeasonNumber, Episode @lastWatchedEpisode.EpisodeNumber , [@lastWatchedEpisode.Watched/@lastWatchedEpisode.Length]</h3>
+    <h3>@lastWatched.Name - Season @lastWatchedEpisode.SeasonNumber, Episode @lastWatchedEpisode.EpisodeNumber , [@lastWatchedEpisode.Watched.ToString(@"hh\:mm\:ss")/@lastWatchedEpisode.Length.ToString(@"hh\:mm\:ss")]</h3>
     
     
     <table class='table'>
