@@ -54,6 +54,7 @@ else
         Series = await Client.GetJsonAsync<GetSteamPlayerInfoResource[]>("http://localhost:5080/api/v1/Series");
         data = new List<string>();
         StartWebsockets();
+        StateHasChanged();
     }
 
     async void StartWebsockets()
