@@ -1,35 +1,59 @@
 @page "/mediaPlayer"
 @using Blazor.Extensions
+@using BlazorStandAlone.Models
+@using Humanizer
 @inject HttpClient Client
 
 <h1>Media player!</h1>
 
 <p>Here will media player info go about series</p>
 
-@if (data == null || data.Count == 0)
+@if (Series == null)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
-    foreach (var str in data)
-    {
-        <p>@str</p>
-    }
+    var seriesOrderedByLastWatched = Series.OrderByDescending(resource => resource.LastWatched);
+    var lastWatched = seriesOrderedByLastWatched.First();
+    var lastWatchedEpisode = lastWatched.Seasons.SelectMany(pair => pair.Value.Episodes).OrderByDescending(pair => pair.Value.LastWatched).First().Value;
+    
+    <h3>@lastWatched.Name - Season @lastWatchedEpisode.SeasonNumber, Episode @lastWatchedEpisode.EpisodeNumber , [@lastWatchedEpisode.Watched/@lastWatchedEpisode.Length]</h3>
+    
+    
+    <table class='table'>
+        <thead>
+        <tr>
+            <th>Series</th>
+            <th>Last watched</th>
+        </tr>
+        </thead>
+        <tbody>
+        
+        @foreach (var series in seriesOrderedByLastWatched)
+        {
+            <tr>
+                <td>@series.Name</td>
+                <td>@series.LastWatched.Humanize()</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    
+  
 }
 
 @functions
 {
 
+    GetSteamPlayerInfoResource[] Series;
     List<string> data;
 
     protected override async void OnInit()
     {
-        var res = await Client.GetAsync("http://localhost:5080/api/v1/Media/playing/current");
+        Series = await Client.GetJsonAsync<GetSteamPlayerInfoResource[]>("http://localhost:5080/api/v1/Series");
         data = new List<string>();
-        data.Add(await res.Content.ReadAsStringAsync());
         StartWebsockets();
-        StateHasChanged();
     }
 
     async void StartWebsockets()
@@ -55,9 +79,14 @@ else
     private Task Handle(string str)
     {
         Console.WriteLine(str);
-        data.Add(str);
-        StateHasChanged();
+        var episode = Json.Deserialize<Episode>(str);
+
+        var series = Series.FirstOrDefault(resource => resource.Name == episode.Name);
+        if (series == null) return Task.CompletedTask;
         
+        series.Seasons[episode.SeasonNumber.ToString()].Episodes[episode.EpisodeNumber.ToString()] = episode;
+
+        StateHasChanged();
         return Task.CompletedTask;
     }
 

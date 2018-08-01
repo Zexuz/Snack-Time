@@ -6,7 +6,6 @@ using Newtonsoft.Json.Converters;
 
 namespace BlazorStandAlone.Models
 {
-    
     public partial class GetSteamPlayerInfoResource
     {
         [JsonProperty("lastDownloaded")]
@@ -36,7 +35,7 @@ namespace BlazorStandAlone.Models
 
     public partial class Episode
     {
-        [JsonProperty("fileName")]
+        [JsonProperty("FileName")]
         public string FileName { get; set; }
 
         [JsonProperty("name")]
@@ -48,11 +47,11 @@ namespace BlazorStandAlone.Models
         [JsonProperty("seasonNumber")]
         public long SeasonNumber { get; set; }
 
-        [JsonProperty("lenght")]
-        public DateTimeOffset Lenght { get; set; }
+        [JsonProperty("length")]
+        public TimeSpan Length { get; set; }
 
         [JsonProperty("watched")]
-        public DateTimeOffset Watched { get; set; }
+        public TimeSpan Watched { get; set; }
 
         [JsonProperty("lastWatched")]
         public DateTimeOffset LastWatched { get; set; }

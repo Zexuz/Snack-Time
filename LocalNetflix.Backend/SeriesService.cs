@@ -29,7 +29,6 @@ namespace LocalNetflix.Backend
 
         public void NewSeriesInMediaPlayer(Episode episode)
         {
-            episode.LastWatched = DateTimeOffset.Now;
 
             var series = _seriesRepository.FindByName(episode.Name) ?? CreateSeries(episode);
 
@@ -37,6 +36,11 @@ namespace LocalNetflix.Backend
                 series.Seasons.Add(episode.SeasonNumber, new Season {Number = episode.SeasonNumber});
 
             series.Seasons[episode.SeasonNumber].Episodes[episode.EpisodeNumber] = episode;
+
+            var currentTime = DateTimeOffset.UtcNow;
+            series.LastWatched = currentTime;
+            episode.LastWatched = currentTime;
+            
             _seriesRepository.InsertOfUpdate(series);
 
             _webSocketWrapper.SendAsync(JsonConvert.SerializeObject(episode),"Receive");

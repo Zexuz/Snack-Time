@@ -24,7 +24,7 @@ namespace LocalNetflix.Backend
                 EpisodeNumber = episodeInfo.Episode,
                 SeasonNumber = episodeInfo.Season,
                 FileName = mediaInfo.FileName,
-                Lenght = TimeSpan.FromSeconds(mediaInfo.Duration),
+                Length = TimeSpan.FromSeconds(mediaInfo.Duration),
                 Watched = TimeSpan.FromSeconds(mediaInfo.Eplipsed),
                 LastWatched = DateTimeOffset.MinValue
             };

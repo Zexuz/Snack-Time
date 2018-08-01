@@ -34,7 +34,7 @@ namespace Localnetflix.Backend.Database.Models
         public string         Name          { get; set; }
         public int            EpisodeNumber { get; set; }
         public int            SeasonNumber  { get; set; }
-        public TimeSpan       Lenght        { get; set; }
+        public TimeSpan       Length        { get; set; }
         public TimeSpan       Watched       { get; set; }
         public DateTimeOffset LastWatched   { get; set; }
     }
