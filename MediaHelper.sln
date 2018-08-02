@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaHelper.Blazor.Server", "MediaHelper.Blazor\MediaHelper.Blazor.Server\MediaHelper.Blazor.Server.csproj", "{BFA55A4B-7989-46A1-AC8F-7620AAB8C5C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaHelper.Blazor.App", "MediaHelper.Blazor\MediaHelper.Blazor.App\MediaHelper.Blazor.App.csproj", "{2D22FC33-51A5-4319-8FFF-1A6C01B73C3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaHelper.MediaPlayerObserver", "MediaHelper.MediaPlayerObserver\MediaHelper.MediaPlayerObserver.csproj", "{05D1B840-8191-43C8-B241-597E65F84334}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaHelper.Protobuf", "MediaHelper.Protobuf\MediaHelper.Protobuf.csproj", "{DDCF7AAD-FC40-4BB0-9D49-358042E811BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Infrastructure", "1. Infrastructure", "{34811AC5-CA3F-40EF-ADB0-3134EB016F74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaHelper.EventBus", "MediaHelper.EventBus\MediaHelper.EventBus.csproj", "{4EEF1F4B-FB1F-4769-A4EF-318E10CFD285}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BFA55A4B-7989-46A1-AC8F-7620AAB8C5C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFA55A4B-7989-46A1-AC8F-7620AAB8C5C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFA55A4B-7989-46A1-AC8F-7620AAB8C5C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFA55A4B-7989-46A1-AC8F-7620AAB8C5C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D22FC33-51A5-4319-8FFF-1A6C01B73C3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D22FC33-51A5-4319-8FFF-1A6C01B73C3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D22FC33-51A5-4319-8FFF-1A6C01B73C3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D22FC33-51A5-4319-8FFF-1A6C01B73C3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05D1B840-8191-43C8-B241-597E65F84334}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05D1B840-8191-43C8-B241-597E65F84334}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05D1B840-8191-43C8-B241-597E65F84334}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05D1B840-8191-43C8-B241-597E65F84334}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDCF7AAD-FC40-4BB0-9D49-358042E811BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDCF7AAD-FC40-4BB0-9D49-358042E811BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDCF7AAD-FC40-4BB0-9D49-358042E811BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDCF7AAD-FC40-4BB0-9D49-358042E811BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EEF1F4B-FB1F-4769-A4EF-318E10CFD285}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EEF1F4B-FB1F-4769-A4EF-318E10CFD285}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EEF1F4B-FB1F-4769-A4EF-318E10CFD285}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EEF1F4B-FB1F-4769-A4EF-318E10CFD285}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DDCF7AAD-FC40-4BB0-9D49-358042E811BD} = {34811AC5-CA3F-40EF-ADB0-3134EB016F74}
+		{4EEF1F4B-FB1F-4769-A4EF-318E10CFD285} = {34811AC5-CA3F-40EF-ADB0-3134EB016F74}
+	EndGlobalSection
+EndGlobal

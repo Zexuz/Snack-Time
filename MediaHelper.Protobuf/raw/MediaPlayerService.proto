@@ -1,0 +1,14 @@
+syntax = "proto3";
+package MediaPlayerServices;
+
+option csharp_namespace = "LocalNetflix.Protobuf.MediaPlayerServices";
+
+
+import "MediaPlayerModels.proto";
+import "MiscModels.proto";
+
+
+service MediaPlayerService{
+    rpc Info (MiscModels.EmptyMessage) returns (MediaPlayerModels.PlayingMediaInfo);
+}
+
