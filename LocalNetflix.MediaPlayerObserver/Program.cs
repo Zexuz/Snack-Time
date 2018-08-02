@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Google.Protobuf;
 using LocalNetflix.Protobuf.MediaPlayerModels;
-using MpcHcObserver;
-using MpcHcObserver.Events;
 using MPC_HC.Domain;
 using RabbitMQ.Client;
 
@@ -42,11 +42,9 @@ namespace LocalNetflix.MediaPlayerObserver
 
         private static async Task StartAndSetupMpcHcObserver(MPCHomeCinema mpcClient, IModel channel)
         {
-            var mpcHcObserver = new Observer(mpcClient);
+            var mpcHcObserver = new MPCHomeCinemaObserver(mpcClient);
 
-            mpcHcObserver.StateChanged += (sender, eventArgs) => PropChanged(sender, eventArgs, channel);
-            mpcHcObserver.PositionChanged += (sender, eventArgs) => PropChanged(sender, eventArgs, channel);
-            mpcHcObserver.NewMediaFileLoaded += (sender, eventArgs) => PropChanged(sender, eventArgs, channel);
+            mpcHcObserver.PropertyChanged += (sender, args) => PropChanged(args, channel);
 
             await mpcHcObserver.Start();
         }
@@ -59,9 +57,10 @@ namespace LocalNetflix.MediaPlayerObserver
             Console.WriteLine($"Started GRPC server on {ip}:{port}");
         }
 
-        private static void PropChanged(object sender, PropertyChangedEventArgs e, IModel channel)
+        private static void PropChanged(PropertyChangedEventArgs e, IModel channel)
         {
-            SendMessage(e.PlayingMediaInfoChanged.ToByteArray(), channel);
+            var playingMediaInfoChanged = CreatePlayingMediaInfoChanged(e.OldInfo,e.NewInfo,e.Property.Convert());
+            SendMessage(playingMediaInfoChanged .ToByteArray(), channel);
         }
 
         public static void SendMessage(byte[] message, IModel channel)
@@ -71,6 +70,27 @@ namespace LocalNetflix.MediaPlayerObserver
                 basicProperties: null,
                 body: message);
             Console.WriteLine(" [x] Sent size of {0}", message.Length);
+        }
+        
+        private static PlayingMediaInfoChanged CreatePlayingMediaInfoChanged(Info old, Info @new, PlayingMediaInfoChanged.Types.MediaProperty prop)
+        {
+            return new PlayingMediaInfoChanged
+            {
+                Property = prop,
+                MediaInfo = FromInfo(@new),
+                OldMediaInfo = FromInfo(old)
+            };
+        }
+
+        private static PlayingMediaInfo FromInfo(Info info)
+        {
+            return new PlayingMediaInfo
+            {
+                FileName = info.FileName,
+                State = info.State.Convert(),
+                Duration = info.Duration.TotalSeconds,
+                Eplipsed = info.Position.TotalSeconds
+            };
         }
     }
 }
