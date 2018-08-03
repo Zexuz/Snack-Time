@@ -1,4 +1,5 @@
 using Autofac;
+using MediaHelper.EventBus;
 using Microsoft.Extensions.Configuration;
 
 namespace MediaHelper.Blazor.Server.DependencyModules
@@ -14,12 +15,11 @@ namespace MediaHelper.Blazor.Server.DependencyModules
 
         protected override void Load(ContainerBuilder builder)
         {
-//            builder.RegisterType<MediaPlayerHub>().As<MediaPlayerHub>();
-//            builder.RegisterType<Repository<Series>>().As<IRepository<Series>>();
-//            builder.RegisterType<SeriesRepository>().As<ISeriesRepository>();
-//            builder.RegisterType<EpisodeFileParserService>().As<IEpisodeFileParserService>();
-//            builder.RegisterType<SeriesService>().As<ISeriesService>();
-//            builder.RegisterType<EpisodeFactory>().As<IEpisodeFactory>();
+
+            builder.RegisterType<RabbitMqEventBus>().As<IEventBus>();
+            
+            
+            builder.Register(context => new RabbitMqConnection("localhost")).As<IEventBusConnection>().SingleInstance();
 
 
 //            builder.Register(context =>
