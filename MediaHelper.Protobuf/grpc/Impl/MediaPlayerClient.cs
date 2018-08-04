@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Grpc.Core;
-using MediaHelper.Protobuf.generated;
+using LocalNetflix.Protobuf.MediaPlayerModels;
+using LocalNetflix.Protobuf.MediaPlayerServices;
+using LocalNetflix.Protobuf.MiscModels;
 using MediaHelper.Protobuf.grpc.Models;
 
 namespace MediaHelper.Protobuf.grpc.Impl
@@ -15,7 +17,45 @@ namespace MediaHelper.Protobuf.grpc.Impl
             Start();
             _client = new MediaPlayerService.MediaPlayerServiceClient(GetChannel());
         }
+        
+        
+        public async Task<GrpcResponse<EmptyMessage>> OpenFile(string filePath)
+        {
+            try
+            {
+                return new GrpcResponse<EmptyMessage>(await _client.OpenAsync(new OpenFile {FileName = filePath}, deadline: GetDeadline()), GrpcError.None);
+            }
+            catch (RpcException e)
+            {
+                switch (e.StatusCode)
+                {
+                    case StatusCode.Cancelled:
+                    case StatusCode.Unknown:
+                    case StatusCode.InvalidArgument:
+                    case StatusCode.NotFound:
+                    case StatusCode.AlreadyExists:
+                    case StatusCode.PermissionDenied:
+                    case StatusCode.Unauthenticated:
+                    case StatusCode.ResourceExhausted:
+                    case StatusCode.FailedPrecondition:
+                    case StatusCode.Aborted:
+                    case StatusCode.OutOfRange:
+                    case StatusCode.Internal:
+                    case StatusCode.Unimplemented:
+                    case StatusCode.DataLoss:
+                        return new GrpcResponse<EmptyMessage>(GrpcError.Unknown);
+                    case StatusCode.DeadlineExceeded:
+                        return new GrpcResponse<EmptyMessage>(GrpcError.DeadlineExceededOrOffline);
+                    case StatusCode.Unavailable:
+                        return new GrpcResponse<EmptyMessage>(GrpcError.Offline);
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
+        
 
+        
         public async Task<GrpcResponse<PlayingMediaInfo>> Info()
         {
             try

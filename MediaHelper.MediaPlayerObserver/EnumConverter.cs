@@ -1,5 +1,5 @@
 ﻿using System;
-using MediaHelper.Protobuf.generated;
+using LocalNetflix.Protobuf.MediaPlayerModels;
 
 namespace MediaHelper.MediaPlayerObserver
 {
@@ -21,18 +21,18 @@ namespace MediaHelper.MediaPlayerObserver
             }
         }
         
-        public static Protobuf.generated.State Convert(this State state)
+        public static LocalNetflix.Protobuf.MediaPlayerModels.State Convert(this State state)
         {
             switch (state)
             {
                 case State.Stoped:
-                    return Protobuf.generated.State.Stoped;
+                    return LocalNetflix.Protobuf.MediaPlayerModels.State.Stoped;
                 case State.Playing:
-                    return Protobuf.generated.State.Playing;
+                    return LocalNetflix.Protobuf.MediaPlayerModels.State.Playing;
                 case State.Paused:
-                    return Protobuf.generated.State.Paused;
+                    return LocalNetflix.Protobuf.MediaPlayerModels.State.Paused;
                 case State.None:
-                    return Protobuf.generated.State.Unknown;
+                    return LocalNetflix.Protobuf.MediaPlayerModels.State.Unknown;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(state), state, null);
             }

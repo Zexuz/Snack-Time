@@ -7,12 +7,11 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using System.Net.Mime;
 using Autofac;
-using Google.Protobuf;
+using LocalNetflix.Protobuf.MediaPlayerModels;
+using MediaHelper.Blazor.Server.DependencyModules;
 using MediaHelper.EventBus;
-using MediaHelper.Protobuf.generated;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using RabbitMQ.Client;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace MediaHelper.Blazor.Server
@@ -56,7 +55,7 @@ namespace MediaHelper.Blazor.Server
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-//            builder.RegisterModule(new AutofacModule(Configuration));
+            builder.RegisterModule(new AutofacModule(Configuration));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

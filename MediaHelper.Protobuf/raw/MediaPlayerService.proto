@@ -10,5 +10,6 @@ import "MiscModels.proto";
 
 service MediaPlayerService{
     rpc Info (MiscModels.EmptyMessage) returns (MediaPlayerModels.PlayingMediaInfo);
+    rpc Open (MediaPlayerModels.OpenFile) returns (MiscModels.EmptyMessage);
 }
 

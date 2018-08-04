@@ -1,5 +1,5 @@
 
-set PLUGIN=%UserProfile%\.nuget\packages\Grpc.Tools\1.8.3\tools\windows_x64\grpc_csharp_plugin.exe
+set PLUGIN=%UserProfile%\.nuget\packages\Grpc.Tools\1.13.1\tools\windows_x64\grpc_csharp_plugin.exe
 
 
 cd ../raw

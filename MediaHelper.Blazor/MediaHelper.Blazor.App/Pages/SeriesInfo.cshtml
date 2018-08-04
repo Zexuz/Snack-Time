@@ -1,0 +1,81 @@
+﻿@page "/series/{SeriesId}"
+@using MediaHelper.Blazor.App.Services
+@using SonarrSharp.Models
+@inject ApiClient Client
+
+<h1></h1>
+
+<p>Welcome to your new app.</p>
+
+@if (Episodes == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Airdate</th>
+            <th>Download date</th>
+            <th>Link</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        @foreach (var episode in Episodes)
+        {
+            <tr>
+                <td>@episode.Title - @($"Season {episode.SeasonNumber} Episode{episode.EpisodeNumber}")</td>
+                <td>@episode.AirDateUtc.LocalDateTime.ToString("HH:mm:ss")</td>
+                <td>TODO</td>
+                @if (episode.HasFile)
+                {
+                    <td>
+                        <a onclick="@(() => OpenFile(episode.EpisodeFileId))" class="btn">@episode.Title</a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <span class="tooltipped" data-position="bottom" data-tooltip="Missing from disk">
+                            <a class="btn disabled">@episode.Title</a>
+                        </span>
+                    </td>
+                }
+
+            </tr>
+        }
+
+        </tbody>
+    </table>
+}
+
+
+
+@functions
+{
+
+    [Parameter]
+    public string SeriesId { get; set; }
+
+    private Episode[] Episodes { get; set; }
+
+    protected override async Task OnInitAsync()
+    {
+        Episodes = await Client.Series.GetSeasons(int.Parse(SeriesId));
+    }
+
+    protected override void OnAfterRender()
+    {
+        JSRuntime.Current.InvokeAsync<object>("addTooltip");
+        base.OnAfterRender();
+    }
+
+    private async Task OpenFile(long episodeFileId)
+    {
+        await Client.System.OpenFile((int) episodeFileId);
+    }
+
+}

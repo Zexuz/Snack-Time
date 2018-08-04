@@ -6,9 +6,10 @@
 #region Designer generated code
 
 using pb = global::Google.Protobuf;
+using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
-
-namespace MediaHelper.Protobuf.generated {
+using scg = global::System.Collections.Generic;
+namespace LocalNetflix.Protobuf.MiscModels {
 
   /// <summary>Holder for reflection information generated from MiscModels.proto</summary>
   public static partial class MiscModelsReflection {
@@ -29,7 +30,7 @@ namespace MediaHelper.Protobuf.generated {
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::MediaHelper.Protobuf.generated.EmptyMessage), global::MediaHelper.Protobuf.generated.EmptyMessage.Parser, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::LocalNetflix.Protobuf.MiscModels.EmptyMessage), global::LocalNetflix.Protobuf.MiscModels.EmptyMessage.Parser, null, null, null, null)
           }));
     }
     #endregion
@@ -44,7 +45,7 @@ namespace MediaHelper.Protobuf.generated {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::MediaHelper.Protobuf.generated.MiscModelsReflection.Descriptor.MessageTypes[0]; }
+      get { return global::LocalNetflix.Protobuf.MiscModels.MiscModelsReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

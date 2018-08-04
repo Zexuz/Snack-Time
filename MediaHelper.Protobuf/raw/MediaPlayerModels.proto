@@ -12,6 +12,10 @@ message PlayingMediaInfo {
     State State = 4;
 }
 
+message OpenFile {
+    string FileName = 1;
+}
+
 enum State {
     Unknown = 0;
     Playing = 1;

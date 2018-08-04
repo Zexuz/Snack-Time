@@ -17,8 +17,6 @@ namespace MediaHelper.Blazor.Server.DependencyModules
         {
 
             builder.RegisterType<RabbitMqEventBus>().As<IEventBus>();
-            
-            
             builder.Register(context => new RabbitMqConnection("localhost")).As<IEventBusConnection>().SingleInstance();
 
 

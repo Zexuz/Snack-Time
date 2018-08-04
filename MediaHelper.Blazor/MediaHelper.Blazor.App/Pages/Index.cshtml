@@ -1,7 +1,37 @@
 ﻿@page "/"
+@using MediaHelper.Blazor.App.Services
+@using Series = SonarrSharp.Models.Series
+@inject ApiClient Client
 
-<h1>Hello, world!</h1>
+<h1>Index</h1>
 
-Welcome to your new app.
+<p>Welcome to your new app.</p>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+@if (Series == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    foreach (var series in Series)
+     {
+         <a href="series/@series.Id">
+             <img src="@("http://localhost:8989" + series.Images[2].Url)" height="250" alt=""/>
+         </a>
+     }
+}
+
+
+
+@functions
+{
+
+    private Series[] Series { get; set; }
+
+    protected override async Task OnInitAsync()
+    {
+        Series = await Client.Series.GetAll();
+    }
+
+}
+

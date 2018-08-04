@@ -5,9 +5,11 @@
 #pragma warning disable 1591, 0612, 3021
 #region Designer generated code
 
+using pb = global::Google.Protobuf;
+using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
-
-namespace MediaHelper.Protobuf.generated {
+using scg = global::System.Collections.Generic;
+namespace LocalNetflix.Protobuf.MediaPlayerServices {
 
   /// <summary>Holder for reflection information generated from MediaPlayerService.proto</summary>
   public static partial class MediaPlayerServiceReflection {
@@ -24,12 +26,13 @@ namespace MediaHelper.Protobuf.generated {
           string.Concat(
             "ChhNZWRpYVBsYXllclNlcnZpY2UucHJvdG8SE01lZGlhUGxheWVyU2Vydmlj",
             "ZXMaF01lZGlhUGxheWVyTW9kZWxzLnByb3RvGhBNaXNjTW9kZWxzLnByb3Rv",
-            "MlsKEk1lZGlhUGxheWVyU2VydmljZRJFCgRJbmZvEhguTWlzY01vZGVscy5F",
-            "bXB0eU1lc3NhZ2UaIy5NZWRpYVBsYXllck1vZGVscy5QbGF5aW5nTWVkaWFJ",
-            "bmZvQiyqAilMb2NhbE5ldGZsaXguUHJvdG9idWYuTWVkaWFQbGF5ZXJTZXJ2",
-            "aWNlc2IGcHJvdG8z"));
+            "MpoBChJNZWRpYVBsYXllclNlcnZpY2USRQoESW5mbxIYLk1pc2NNb2RlbHMu",
+            "RW1wdHlNZXNzYWdlGiMuTWVkaWFQbGF5ZXJNb2RlbHMuUGxheWluZ01lZGlh",
+            "SW5mbxI9CgRPcGVuEhsuTWVkaWFQbGF5ZXJNb2RlbHMuT3BlbkZpbGUaGC5N",
+            "aXNjTW9kZWxzLkVtcHR5TWVzc2FnZUIsqgIpTG9jYWxOZXRmbGl4LlByb3Rv",
+            "YnVmLk1lZGlhUGxheWVyU2VydmljZXNiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::MediaHelper.Protobuf.generated.MediaPlayerModelsReflection.Descriptor, global::MediaHelper.Protobuf.generated.MiscModelsReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::LocalNetflix.Protobuf.MediaPlayerModels.MediaPlayerModelsReflection.Descriptor, global::LocalNetflix.Protobuf.MiscModels.MiscModelsReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null));
     }
     #endregion

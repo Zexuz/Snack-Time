@@ -8,8 +8,8 @@
 using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
-
-namespace MediaHelper.Protobuf.generated {
+using scg = global::System.Collections.Generic;
+namespace LocalNetflix.Protobuf.MediaPlayerModels {
 
   /// <summary>Holder for reflection information generated from MediaPlayerModels.proto</summary>
   public static partial class MediaPlayerModelsReflection {
@@ -27,21 +27,22 @@ namespace MediaHelper.Protobuf.generated {
             "ChdNZWRpYVBsYXllck1vZGVscy5wcm90bxIRTWVkaWFQbGF5ZXJNb2RlbHMi",
             "cQoQUGxheWluZ01lZGlhSW5mbxIQCghGaWxlTmFtZRgBIAEoCRIQCghEdXJh",
             "dGlvbhgCIAEoARIQCghFcGxpcHNlZBgDIAEoARInCgVTdGF0ZRgEIAEoDjIY",
-            "Lk1lZGlhUGxheWVyTW9kZWxzLlN0YXRlIowCChdQbGF5aW5nTWVkaWFJbmZv",
-            "Q2hhbmdlZBI2CglNZWRpYUluZm8YASABKAsyIy5NZWRpYVBsYXllck1vZGVs",
-            "cy5QbGF5aW5nTWVkaWFJbmZvEjkKDE9sZE1lZGlhSW5mbxgCIAEoCzIjLk1l",
-            "ZGlhUGxheWVyTW9kZWxzLlBsYXlpbmdNZWRpYUluZm8SSgoIUHJvcGVydHkY",
-            "AyABKA4yOC5NZWRpYVBsYXllck1vZGVscy5QbGF5aW5nTWVkaWFJbmZvQ2hh",
-            "bmdlZC5NZWRpYVByb3BlcnR5IjIKDU1lZGlhUHJvcGVydHkSCQoFU3RhdGUQ",
-            "ABIMCghQb3NpdGlvbhABEggKBEZpbGUQAio5CgVTdGF0ZRILCgdVbmtub3du",
-            "EAASCwoHUGxheWluZxABEgoKBlBhdXNlZBACEgoKBlN0b3BlZBADQiqqAidM",
-            "b2NhbE5ldGZsaXguUHJvdG9idWYuTWVkaWFQbGF5ZXJNb2RlbHNiBnByb3Rv",
-            "Mw=="));
+            "Lk1lZGlhUGxheWVyTW9kZWxzLlN0YXRlIhwKCE9wZW5GaWxlEhAKCEZpbGVO",
+            "YW1lGAEgASgJIowCChdQbGF5aW5nTWVkaWFJbmZvQ2hhbmdlZBI2CglNZWRp",
+            "YUluZm8YASABKAsyIy5NZWRpYVBsYXllck1vZGVscy5QbGF5aW5nTWVkaWFJ",
+            "bmZvEjkKDE9sZE1lZGlhSW5mbxgCIAEoCzIjLk1lZGlhUGxheWVyTW9kZWxz",
+            "LlBsYXlpbmdNZWRpYUluZm8SSgoIUHJvcGVydHkYAyABKA4yOC5NZWRpYVBs",
+            "YXllck1vZGVscy5QbGF5aW5nTWVkaWFJbmZvQ2hhbmdlZC5NZWRpYVByb3Bl",
+            "cnR5IjIKDU1lZGlhUHJvcGVydHkSCQoFU3RhdGUQABIMCghQb3NpdGlvbhAB",
+            "EggKBEZpbGUQAio5CgVTdGF0ZRILCgdVbmtub3duEAASCwoHUGxheWluZxAB",
+            "EgoKBlBhdXNlZBACEgoKBlN0b3BlZBADQiqqAidMb2NhbE5ldGZsaXguUHJv",
+            "dG9idWYuTWVkaWFQbGF5ZXJNb2RlbHNiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::MediaHelper.Protobuf.generated.State), }, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::MediaHelper.Protobuf.generated.PlayingMediaInfo), global::MediaHelper.Protobuf.generated.PlayingMediaInfo.Parser, new[]{ "FileName", "Duration", "Eplipsed", "State" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::MediaHelper.Protobuf.generated.PlayingMediaInfoChanged), global::MediaHelper.Protobuf.generated.PlayingMediaInfoChanged.Parser, new[]{ "MediaInfo", "OldMediaInfo", "Property" }, null, new[]{ typeof(global::MediaHelper.Protobuf.generated.PlayingMediaInfoChanged.Types.MediaProperty) }, null)
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::LocalNetflix.Protobuf.MediaPlayerModels.State), }, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo), global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo.Parser, new[]{ "FileName", "Duration", "Eplipsed", "State" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::LocalNetflix.Protobuf.MediaPlayerModels.OpenFile), global::LocalNetflix.Protobuf.MediaPlayerModels.OpenFile.Parser, new[]{ "FileName" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfoChanged), global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfoChanged.Parser, new[]{ "MediaInfo", "OldMediaInfo", "Property" }, null, new[]{ typeof(global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfoChanged.Types.MediaProperty) }, null)
           }));
     }
     #endregion
@@ -66,7 +67,7 @@ namespace MediaHelper.Protobuf.generated {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::MediaHelper.Protobuf.generated.MediaPlayerModelsReflection.Descriptor.MessageTypes[0]; }
+      get { return global::LocalNetflix.Protobuf.MediaPlayerModels.MediaPlayerModelsReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -130,9 +131,9 @@ namespace MediaHelper.Protobuf.generated {
 
     /// <summary>Field number for the "State" field.</summary>
     public const int StateFieldNumber = 4;
-    private global::MediaHelper.Protobuf.generated.State state_ = 0;
+    private global::LocalNetflix.Protobuf.MediaPlayerModels.State state_ = 0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::MediaHelper.Protobuf.generated.State State {
+    public global::LocalNetflix.Protobuf.MediaPlayerModels.State State {
       get { return state_; }
       set {
         state_ = value;
@@ -262,7 +263,136 @@ namespace MediaHelper.Protobuf.generated {
             break;
           }
           case 32: {
-            state_ = (global::MediaHelper.Protobuf.generated.State) input.ReadEnum();
+            state_ = (global::LocalNetflix.Protobuf.MediaPlayerModels.State) input.ReadEnum();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class OpenFile : pb::IMessage<OpenFile> {
+    private static readonly pb::MessageParser<OpenFile> _parser = new pb::MessageParser<OpenFile>(() => new OpenFile());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<OpenFile> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::LocalNetflix.Protobuf.MediaPlayerModels.MediaPlayerModelsReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public OpenFile() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public OpenFile(OpenFile other) : this() {
+      fileName_ = other.fileName_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public OpenFile Clone() {
+      return new OpenFile(this);
+    }
+
+    /// <summary>Field number for the "FileName" field.</summary>
+    public const int FileNameFieldNumber = 1;
+    private string fileName_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string FileName {
+      get { return fileName_; }
+      set {
+        fileName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as OpenFile);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(OpenFile other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (FileName != other.FileName) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (FileName.Length != 0) hash ^= FileName.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (FileName.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(FileName);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (FileName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(FileName);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(OpenFile other) {
+      if (other == null) {
+        return;
+      }
+      if (other.FileName.Length != 0) {
+        FileName = other.FileName;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            FileName = input.ReadString();
             break;
           }
         }
@@ -279,7 +409,7 @@ namespace MediaHelper.Protobuf.generated {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::MediaHelper.Protobuf.generated.MediaPlayerModelsReflection.Descriptor.MessageTypes[1]; }
+      get { return global::LocalNetflix.Protobuf.MediaPlayerModels.MediaPlayerModelsReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -309,9 +439,9 @@ namespace MediaHelper.Protobuf.generated {
 
     /// <summary>Field number for the "MediaInfo" field.</summary>
     public const int MediaInfoFieldNumber = 1;
-    private global::MediaHelper.Protobuf.generated.PlayingMediaInfo mediaInfo_;
+    private global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo mediaInfo_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::MediaHelper.Protobuf.generated.PlayingMediaInfo MediaInfo {
+    public global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo MediaInfo {
       get { return mediaInfo_; }
       set {
         mediaInfo_ = value;
@@ -320,9 +450,9 @@ namespace MediaHelper.Protobuf.generated {
 
     /// <summary>Field number for the "OldMediaInfo" field.</summary>
     public const int OldMediaInfoFieldNumber = 2;
-    private global::MediaHelper.Protobuf.generated.PlayingMediaInfo oldMediaInfo_;
+    private global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo oldMediaInfo_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::MediaHelper.Protobuf.generated.PlayingMediaInfo OldMediaInfo {
+    public global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo OldMediaInfo {
       get { return oldMediaInfo_; }
       set {
         oldMediaInfo_ = value;
@@ -331,9 +461,9 @@ namespace MediaHelper.Protobuf.generated {
 
     /// <summary>Field number for the "Property" field.</summary>
     public const int PropertyFieldNumber = 3;
-    private global::MediaHelper.Protobuf.generated.PlayingMediaInfoChanged.Types.MediaProperty property_ = 0;
+    private global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfoChanged.Types.MediaProperty property_ = 0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::MediaHelper.Protobuf.generated.PlayingMediaInfoChanged.Types.MediaProperty Property {
+    public global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfoChanged.Types.MediaProperty Property {
       get { return property_; }
       set {
         property_ = value;
@@ -420,13 +550,13 @@ namespace MediaHelper.Protobuf.generated {
       }
       if (other.mediaInfo_ != null) {
         if (mediaInfo_ == null) {
-          mediaInfo_ = new global::MediaHelper.Protobuf.generated.PlayingMediaInfo();
+          mediaInfo_ = new global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo();
         }
         MediaInfo.MergeFrom(other.MediaInfo);
       }
       if (other.oldMediaInfo_ != null) {
         if (oldMediaInfo_ == null) {
-          oldMediaInfo_ = new global::MediaHelper.Protobuf.generated.PlayingMediaInfo();
+          oldMediaInfo_ = new global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo();
         }
         OldMediaInfo.MergeFrom(other.OldMediaInfo);
       }
@@ -446,20 +576,20 @@ namespace MediaHelper.Protobuf.generated {
             break;
           case 10: {
             if (mediaInfo_ == null) {
-              mediaInfo_ = new global::MediaHelper.Protobuf.generated.PlayingMediaInfo();
+              mediaInfo_ = new global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo();
             }
             input.ReadMessage(mediaInfo_);
             break;
           }
           case 18: {
             if (oldMediaInfo_ == null) {
-              oldMediaInfo_ = new global::MediaHelper.Protobuf.generated.PlayingMediaInfo();
+              oldMediaInfo_ = new global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo();
             }
             input.ReadMessage(oldMediaInfo_);
             break;
           }
           case 24: {
-            property_ = (global::MediaHelper.Protobuf.generated.PlayingMediaInfoChanged.Types.MediaProperty) input.ReadEnum();
+            property_ = (global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfoChanged.Types.MediaProperty) input.ReadEnum();
             break;
           }
         }
