@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Google.Protobuf;
-using LocalNetflix.Protobuf.MediaPlayerModels;
+using MediaHelper.Protobuf.generated;
 using MPC_HC.Domain;
 using RabbitMQ.Client;
 

@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaHelper.EventBus", "Med
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaHelper.Backend", "MediaHelper.Backend\MediaHelper.Backend.csproj", "{4D04CD68-6EAF-47BB-93A1-CD1BEB82CFF5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaHelper.Model", "MediaHelper.Model\MediaHelper.Model.csproj", "{A450B1D7-3601-43DC-8186-5D878B82E1D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,9 +46,14 @@ Global
 		{4D04CD68-6EAF-47BB-93A1-CD1BEB82CFF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D04CD68-6EAF-47BB-93A1-CD1BEB82CFF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D04CD68-6EAF-47BB-93A1-CD1BEB82CFF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A450B1D7-3601-43DC-8186-5D878B82E1D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A450B1D7-3601-43DC-8186-5D878B82E1D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A450B1D7-3601-43DC-8186-5D878B82E1D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A450B1D7-3601-43DC-8186-5D878B82E1D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{DDCF7AAD-FC40-4BB0-9D49-358042E811BD} = {34811AC5-CA3F-40EF-ADB0-3134EB016F74}
 		{4EEF1F4B-FB1F-4769-A4EF-318E10CFD285} = {34811AC5-CA3F-40EF-ADB0-3134EB016F74}
+		{A450B1D7-3601-43DC-8186-5D878B82E1D1} = {34811AC5-CA3F-40EF-ADB0-3134EB016F74}
 	EndGlobalSection
 EndGlobal

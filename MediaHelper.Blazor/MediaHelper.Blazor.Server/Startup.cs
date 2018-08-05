@@ -7,11 +7,15 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using System.Net.Mime;
 using Autofac;
-using LocalNetflix.Protobuf.MediaPlayerModels;
+using MediaHelper.Backend;
+using MediaHelper.Blazor.Server.Controllers.v1;
 using MediaHelper.Blazor.Server.DependencyModules;
 using MediaHelper.EventBus;
+using MediaHelper.Model;
+using MediaHelper.Protobuf.generated;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using SonarrSharp;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace MediaHelper.Blazor.Server
@@ -92,7 +96,20 @@ namespace MediaHelper.Blazor.Server
 
         private void SetupEventListener(IEventBus eventBus)
         {
-            eventBus.Subscribe("hello", (sender, data) => { Console.WriteLine(PlayingMediaInfoChanged.Parser.ParseFrom(data).Property.ToString()); });
+            eventBus.Subscribe("hello", (sender, data) =>
+            {
+                var playingInfo = PlayingMediaInfoChanged.Parser.ParseFrom(data).MediaInfo;
+
+                var mediaFile = new SeriesFile()
+                {
+                    SeriesId = CurrentlyPlayingManager.EpisodeFile.SeriesId,
+                    LastWatched = DateTimeOffset.Now,
+                    IdFromProvider = CurrentlyPlayingManager.EpisodeFile.Id,
+                    Length = TimeSpan.FromSeconds(playingInfo.Duration),
+                    Watched = TimeSpan.FromSeconds(playingInfo.Eplipsed),
+                };
+                new MedieFileService().AddOrUpdate(mediaFile);
+            });
         }
     }
 }

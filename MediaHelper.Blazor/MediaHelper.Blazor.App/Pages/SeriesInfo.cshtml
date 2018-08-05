@@ -1,6 +1,6 @@
 ﻿@page "/series/{SeriesId}"
 @using MediaHelper.Blazor.App.Services
-@using SonarrSharp.Models
+@using Episode = SonarrSharp.Models.Episode
 @inject ApiClient Client
 
 <h1></h1>
@@ -24,28 +24,33 @@ else
         </thead>
         <tbody>
 
-        @foreach (var episode in Episodes)
+        @foreach (var season in Episodes.GroupBy(episode => episode.SeasonNumber))
         {
-            <tr>
-                <td>@episode.Title - @($"Season {episode.SeasonNumber} Episode{episode.EpisodeNumber}")</td>
-                <td>@episode.AirDateUtc.LocalDateTime.ToString("HH:mm:ss")</td>
-                <td>TODO</td>
-                @if (episode.HasFile)
-                {
-                    <td>
-                        <a onclick="@(() => OpenFile(episode.EpisodeFileId))" class="btn">@episode.Title</a>
-                    </td>
-                }
-                else
-                {
-                    <td>
-                        <span class="tooltipped" data-position="bottom" data-tooltip="Missing from disk">
-                            <a class="btn disabled">@episode.Title</a>
-                        </span>
-                    </td>
-                }
+            <h3>Season @season.Key</h3>
+            foreach (var episode in season)
+            {
+                <tr>
+                    <td>@episode.Title - @($"Season {episode.SeasonNumber} Episode{episode.EpisodeNumber}")</td>
+                    <td>@episode.AirDateUtc.LocalDateTime.ToString("HH:mm:ss")</td>
+                    <td>TODO</td>
+                    @if (episode.HasFile)
+                    {
+                        <td>
+                            <a onclick="@(() => OpenFile(episode.EpisodeFileId))" class="btn">@episode.Title</a>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <span class="tooltipped" data-position="bottom" data-tooltip="Missing from disk">
+                                <a class="btn disabled">@episode.Title</a>
+                            </span>
+                        </td>
+                    }
 
-            </tr>
+                </tr>
+            }
+            <hr/>
         }
 
         </tbody>
@@ -64,7 +69,7 @@ else
 
     protected override async Task OnInitAsync()
     {
-        Episodes = await Client.Series.GetSeasons(int.Parse(SeriesId));
+        Episodes = await Client.Episode.GetSeasons(int.Parse(SeriesId));
     }
 
     protected override void OnAfterRender()
@@ -75,7 +80,7 @@ else
 
     private async Task OpenFile(long episodeFileId)
     {
-        await Client.System.OpenFile((int) episodeFileId);
+        await Client.System.OpenFile((int) episodeFileId,TimeSpan.Zero);
     }
 
 }

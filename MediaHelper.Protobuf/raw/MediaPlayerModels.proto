@@ -14,6 +14,8 @@ message PlayingMediaInfo {
 
 message OpenFile {
     string FileName = 1;
+    double FromSeconds = 2;
+    bool StartInFullscreen = 3;
 }
 
 enum State {

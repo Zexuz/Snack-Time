@@ -1,4 +1,4 @@
-﻿using LocalNetflix.Protobuf.MediaPlayerServices;
+﻿using MediaHelper.Protobuf.generated;
 using MediaHelper.Protobuf.grpc;
 using MPC_HC.Domain;
 

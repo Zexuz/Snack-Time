@@ -16,6 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\..\MediaHelper.Backend\MediaHelper.Backend.csproj" />
         <ProjectReference Include="..\..\MediaHelper.EventBus\MediaHelper.EventBus.csproj" />
         <ProjectReference Include="..\..\MediaHelper.Protobuf\MediaHelper.Protobuf.csproj" />
         <ProjectReference Include="..\MediaHelper.Blazor.App\MediaHelper.Blazor.App.csproj" />

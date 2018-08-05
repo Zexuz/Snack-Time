@@ -15,4 +15,8 @@
         <PackageReference Include="SonarrSharp" Version="1.1.4" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\MediaHelper.Model\MediaHelper.Model.csproj" />
+    </ItemGroup>
+
 </Project>

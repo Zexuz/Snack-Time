@@ -8,8 +8,8 @@
 using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
-using scg = global::System.Collections.Generic;
-namespace LocalNetflix.Protobuf.MediaPlayerModels {
+
+namespace MediaHelper.Protobuf.generated {
 
   /// <summary>Holder for reflection information generated from MediaPlayerModels.proto</summary>
   public static partial class MediaPlayerModelsReflection {
@@ -27,22 +27,23 @@ namespace LocalNetflix.Protobuf.MediaPlayerModels {
             "ChdNZWRpYVBsYXllck1vZGVscy5wcm90bxIRTWVkaWFQbGF5ZXJNb2RlbHMi",
             "cQoQUGxheWluZ01lZGlhSW5mbxIQCghGaWxlTmFtZRgBIAEoCRIQCghEdXJh",
             "dGlvbhgCIAEoARIQCghFcGxpcHNlZBgDIAEoARInCgVTdGF0ZRgEIAEoDjIY",
-            "Lk1lZGlhUGxheWVyTW9kZWxzLlN0YXRlIhwKCE9wZW5GaWxlEhAKCEZpbGVO",
-            "YW1lGAEgASgJIowCChdQbGF5aW5nTWVkaWFJbmZvQ2hhbmdlZBI2CglNZWRp",
-            "YUluZm8YASABKAsyIy5NZWRpYVBsYXllck1vZGVscy5QbGF5aW5nTWVkaWFJ",
-            "bmZvEjkKDE9sZE1lZGlhSW5mbxgCIAEoCzIjLk1lZGlhUGxheWVyTW9kZWxz",
-            "LlBsYXlpbmdNZWRpYUluZm8SSgoIUHJvcGVydHkYAyABKA4yOC5NZWRpYVBs",
-            "YXllck1vZGVscy5QbGF5aW5nTWVkaWFJbmZvQ2hhbmdlZC5NZWRpYVByb3Bl",
-            "cnR5IjIKDU1lZGlhUHJvcGVydHkSCQoFU3RhdGUQABIMCghQb3NpdGlvbhAB",
-            "EggKBEZpbGUQAio5CgVTdGF0ZRILCgdVbmtub3duEAASCwoHUGxheWluZxAB",
-            "EgoKBlBhdXNlZBACEgoKBlN0b3BlZBADQiqqAidMb2NhbE5ldGZsaXguUHJv",
-            "dG9idWYuTWVkaWFQbGF5ZXJNb2RlbHNiBnByb3RvMw=="));
+            "Lk1lZGlhUGxheWVyTW9kZWxzLlN0YXRlIkwKCE9wZW5GaWxlEhAKCEZpbGVO",
+            "YW1lGAEgASgJEhMKC0Zyb21TZWNvbmRzGAIgASgBEhkKEVN0YXJ0SW5GdWxs",
+            "c2NyZWVuGAMgASgIIowCChdQbGF5aW5nTWVkaWFJbmZvQ2hhbmdlZBI2CglN",
+            "ZWRpYUluZm8YASABKAsyIy5NZWRpYVBsYXllck1vZGVscy5QbGF5aW5nTWVk",
+            "aWFJbmZvEjkKDE9sZE1lZGlhSW5mbxgCIAEoCzIjLk1lZGlhUGxheWVyTW9k",
+            "ZWxzLlBsYXlpbmdNZWRpYUluZm8SSgoIUHJvcGVydHkYAyABKA4yOC5NZWRp",
+            "YVBsYXllck1vZGVscy5QbGF5aW5nTWVkaWFJbmZvQ2hhbmdlZC5NZWRpYVBy",
+            "b3BlcnR5IjIKDU1lZGlhUHJvcGVydHkSCQoFU3RhdGUQABIMCghQb3NpdGlv",
+            "bhABEggKBEZpbGUQAio5CgVTdGF0ZRILCgdVbmtub3duEAASCwoHUGxheWlu",
+            "ZxABEgoKBlBhdXNlZBACEgoKBlN0b3BlZBADQiqqAidMb2NhbE5ldGZsaXgu",
+            "UHJvdG9idWYuTWVkaWFQbGF5ZXJNb2RlbHNiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::LocalNetflix.Protobuf.MediaPlayerModels.State), }, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo), global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo.Parser, new[]{ "FileName", "Duration", "Eplipsed", "State" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::LocalNetflix.Protobuf.MediaPlayerModels.OpenFile), global::LocalNetflix.Protobuf.MediaPlayerModels.OpenFile.Parser, new[]{ "FileName" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfoChanged), global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfoChanged.Parser, new[]{ "MediaInfo", "OldMediaInfo", "Property" }, null, new[]{ typeof(global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfoChanged.Types.MediaProperty) }, null)
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::MediaHelper.Protobuf.generated.State), }, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::MediaHelper.Protobuf.generated.PlayingMediaInfo), global::MediaHelper.Protobuf.generated.PlayingMediaInfo.Parser, new[]{ "FileName", "Duration", "Eplipsed", "State" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MediaHelper.Protobuf.generated.OpenFile), global::MediaHelper.Protobuf.generated.OpenFile.Parser, new[]{ "FileName", "FromSeconds", "StartInFullscreen" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MediaHelper.Protobuf.generated.PlayingMediaInfoChanged), global::MediaHelper.Protobuf.generated.PlayingMediaInfoChanged.Parser, new[]{ "MediaInfo", "OldMediaInfo", "Property" }, null, new[]{ typeof(global::MediaHelper.Protobuf.generated.PlayingMediaInfoChanged.Types.MediaProperty) }, null)
           }));
     }
     #endregion
@@ -67,7 +68,7 @@ namespace LocalNetflix.Protobuf.MediaPlayerModels {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::LocalNetflix.Protobuf.MediaPlayerModels.MediaPlayerModelsReflection.Descriptor.MessageTypes[0]; }
+      get { return global::MediaHelper.Protobuf.generated.MediaPlayerModelsReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -131,9 +132,9 @@ namespace LocalNetflix.Protobuf.MediaPlayerModels {
 
     /// <summary>Field number for the "State" field.</summary>
     public const int StateFieldNumber = 4;
-    private global::LocalNetflix.Protobuf.MediaPlayerModels.State state_ = 0;
+    private global::MediaHelper.Protobuf.generated.State state_ = 0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::LocalNetflix.Protobuf.MediaPlayerModels.State State {
+    public global::MediaHelper.Protobuf.generated.State State {
       get { return state_; }
       set {
         state_ = value;
@@ -263,7 +264,7 @@ namespace LocalNetflix.Protobuf.MediaPlayerModels {
             break;
           }
           case 32: {
-            state_ = (global::LocalNetflix.Protobuf.MediaPlayerModels.State) input.ReadEnum();
+            state_ = (global::MediaHelper.Protobuf.generated.State) input.ReadEnum();
             break;
           }
         }
@@ -280,7 +281,7 @@ namespace LocalNetflix.Protobuf.MediaPlayerModels {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::LocalNetflix.Protobuf.MediaPlayerModels.MediaPlayerModelsReflection.Descriptor.MessageTypes[1]; }
+      get { return global::MediaHelper.Protobuf.generated.MediaPlayerModelsReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -298,6 +299,8 @@ namespace LocalNetflix.Protobuf.MediaPlayerModels {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public OpenFile(OpenFile other) : this() {
       fileName_ = other.fileName_;
+      fromSeconds_ = other.fromSeconds_;
+      startInFullscreen_ = other.startInFullscreen_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -317,6 +320,28 @@ namespace LocalNetflix.Protobuf.MediaPlayerModels {
       }
     }
 
+    /// <summary>Field number for the "FromSeconds" field.</summary>
+    public const int FromSecondsFieldNumber = 2;
+    private double fromSeconds_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public double FromSeconds {
+      get { return fromSeconds_; }
+      set {
+        fromSeconds_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "StartInFullscreen" field.</summary>
+    public const int StartInFullscreenFieldNumber = 3;
+    private bool startInFullscreen_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool StartInFullscreen {
+      get { return startInFullscreen_; }
+      set {
+        startInFullscreen_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as OpenFile);
@@ -331,6 +356,8 @@ namespace LocalNetflix.Protobuf.MediaPlayerModels {
         return true;
       }
       if (FileName != other.FileName) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(FromSeconds, other.FromSeconds)) return false;
+      if (StartInFullscreen != other.StartInFullscreen) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -338,6 +365,8 @@ namespace LocalNetflix.Protobuf.MediaPlayerModels {
     public override int GetHashCode() {
       int hash = 1;
       if (FileName.Length != 0) hash ^= FileName.GetHashCode();
+      if (FromSeconds != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(FromSeconds);
+      if (StartInFullscreen != false) hash ^= StartInFullscreen.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -355,6 +384,14 @@ namespace LocalNetflix.Protobuf.MediaPlayerModels {
         output.WriteRawTag(10);
         output.WriteString(FileName);
       }
+      if (FromSeconds != 0D) {
+        output.WriteRawTag(17);
+        output.WriteDouble(FromSeconds);
+      }
+      if (StartInFullscreen != false) {
+        output.WriteRawTag(24);
+        output.WriteBool(StartInFullscreen);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -365,6 +402,12 @@ namespace LocalNetflix.Protobuf.MediaPlayerModels {
       int size = 0;
       if (FileName.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(FileName);
+      }
+      if (FromSeconds != 0D) {
+        size += 1 + 8;
+      }
+      if (StartInFullscreen != false) {
+        size += 1 + 1;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -379,6 +422,12 @@ namespace LocalNetflix.Protobuf.MediaPlayerModels {
       }
       if (other.FileName.Length != 0) {
         FileName = other.FileName;
+      }
+      if (other.FromSeconds != 0D) {
+        FromSeconds = other.FromSeconds;
+      }
+      if (other.StartInFullscreen != false) {
+        StartInFullscreen = other.StartInFullscreen;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -395,6 +444,14 @@ namespace LocalNetflix.Protobuf.MediaPlayerModels {
             FileName = input.ReadString();
             break;
           }
+          case 17: {
+            FromSeconds = input.ReadDouble();
+            break;
+          }
+          case 24: {
+            StartInFullscreen = input.ReadBool();
+            break;
+          }
         }
       }
     }
@@ -409,7 +466,7 @@ namespace LocalNetflix.Protobuf.MediaPlayerModels {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::LocalNetflix.Protobuf.MediaPlayerModels.MediaPlayerModelsReflection.Descriptor.MessageTypes[2]; }
+      get { return global::MediaHelper.Protobuf.generated.MediaPlayerModelsReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -439,9 +496,9 @@ namespace LocalNetflix.Protobuf.MediaPlayerModels {
 
     /// <summary>Field number for the "MediaInfo" field.</summary>
     public const int MediaInfoFieldNumber = 1;
-    private global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo mediaInfo_;
+    private global::MediaHelper.Protobuf.generated.PlayingMediaInfo mediaInfo_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo MediaInfo {
+    public global::MediaHelper.Protobuf.generated.PlayingMediaInfo MediaInfo {
       get { return mediaInfo_; }
       set {
         mediaInfo_ = value;
@@ -450,9 +507,9 @@ namespace LocalNetflix.Protobuf.MediaPlayerModels {
 
     /// <summary>Field number for the "OldMediaInfo" field.</summary>
     public const int OldMediaInfoFieldNumber = 2;
-    private global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo oldMediaInfo_;
+    private global::MediaHelper.Protobuf.generated.PlayingMediaInfo oldMediaInfo_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo OldMediaInfo {
+    public global::MediaHelper.Protobuf.generated.PlayingMediaInfo OldMediaInfo {
       get { return oldMediaInfo_; }
       set {
         oldMediaInfo_ = value;
@@ -461,9 +518,9 @@ namespace LocalNetflix.Protobuf.MediaPlayerModels {
 
     /// <summary>Field number for the "Property" field.</summary>
     public const int PropertyFieldNumber = 3;
-    private global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfoChanged.Types.MediaProperty property_ = 0;
+    private global::MediaHelper.Protobuf.generated.PlayingMediaInfoChanged.Types.MediaProperty property_ = 0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfoChanged.Types.MediaProperty Property {
+    public global::MediaHelper.Protobuf.generated.PlayingMediaInfoChanged.Types.MediaProperty Property {
       get { return property_; }
       set {
         property_ = value;
@@ -550,13 +607,13 @@ namespace LocalNetflix.Protobuf.MediaPlayerModels {
       }
       if (other.mediaInfo_ != null) {
         if (mediaInfo_ == null) {
-          mediaInfo_ = new global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo();
+          mediaInfo_ = new global::MediaHelper.Protobuf.generated.PlayingMediaInfo();
         }
         MediaInfo.MergeFrom(other.MediaInfo);
       }
       if (other.oldMediaInfo_ != null) {
         if (oldMediaInfo_ == null) {
-          oldMediaInfo_ = new global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo();
+          oldMediaInfo_ = new global::MediaHelper.Protobuf.generated.PlayingMediaInfo();
         }
         OldMediaInfo.MergeFrom(other.OldMediaInfo);
       }
@@ -576,20 +633,20 @@ namespace LocalNetflix.Protobuf.MediaPlayerModels {
             break;
           case 10: {
             if (mediaInfo_ == null) {
-              mediaInfo_ = new global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo();
+              mediaInfo_ = new global::MediaHelper.Protobuf.generated.PlayingMediaInfo();
             }
             input.ReadMessage(mediaInfo_);
             break;
           }
           case 18: {
             if (oldMediaInfo_ == null) {
-              oldMediaInfo_ = new global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfo();
+              oldMediaInfo_ = new global::MediaHelper.Protobuf.generated.PlayingMediaInfo();
             }
             input.ReadMessage(oldMediaInfo_);
             break;
           }
           case 24: {
-            property_ = (global::LocalNetflix.Protobuf.MediaPlayerModels.PlayingMediaInfoChanged.Types.MediaProperty) input.ReadEnum();
+            property_ = (global::MediaHelper.Protobuf.generated.PlayingMediaInfoChanged.Types.MediaProperty) input.ReadEnum();
             break;
           }
         }

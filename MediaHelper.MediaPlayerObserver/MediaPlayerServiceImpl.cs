@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Xml;
 using Grpc.Core;
-using LocalNetflix.Protobuf.MediaPlayerModels;
-using LocalNetflix.Protobuf.MediaPlayerServices;
-using LocalNetflix.Protobuf.MiscModels;
+using MediaHelper.Protobuf.generated;
 using MPC_HC.Domain;
 
 namespace MediaHelper.MediaPlayerObserver
@@ -20,6 +19,11 @@ namespace MediaHelper.MediaPlayerObserver
         public override async Task<EmptyMessage> Open(OpenFile request, ServerCallContext context)
         {
             await _mpcHomeCinemaClient.OpenFileAsync(request.FileName);
+            await Task.Delay(1000);
+            await _mpcHomeCinemaClient.SetPosition(TimeSpan.FromSeconds(request.FromSeconds));
+
+            //todo here we need to close MPCHC and then reOpen it to ensure the fullscreen has not changed.
+//            await _mpcHomeCinemaClient.
             return new EmptyMessage();
         }
 

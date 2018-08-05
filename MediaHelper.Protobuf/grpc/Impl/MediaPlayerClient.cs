@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Grpc.Core;
-using LocalNetflix.Protobuf.MediaPlayerModels;
-using LocalNetflix.Protobuf.MediaPlayerServices;
-using LocalNetflix.Protobuf.MiscModels;
+using MediaHelper.Protobuf.generated;
 using MediaHelper.Protobuf.grpc.Models;
 
 namespace MediaHelper.Protobuf.grpc.Impl
@@ -17,13 +15,14 @@ namespace MediaHelper.Protobuf.grpc.Impl
             Start();
             _client = new MediaPlayerService.MediaPlayerServiceClient(GetChannel());
         }
-        
-        
-        public async Task<GrpcResponse<EmptyMessage>> OpenFile(string filePath)
+
+
+        public async Task<GrpcResponse<EmptyMessage>> OpenFile(string filePath, TimeSpan? startPosition = null, bool startInFullscreen = false)
         {
             try
             {
-                return new GrpcResponse<EmptyMessage>(await _client.OpenAsync(new OpenFile {FileName = filePath}, deadline: GetDeadline()), GrpcError.None);
+                var reg = new OpenFile {FileName = filePath, FromSeconds = startPosition?.TotalSeconds ?? 0, StartInFullscreen = startInFullscreen};
+                return new GrpcResponse<EmptyMessage>(await _client.OpenAsync(reg, deadline: GetDeadline()), GrpcError.None);
             }
             catch (RpcException e)
             {
@@ -53,9 +52,8 @@ namespace MediaHelper.Protobuf.grpc.Impl
                 }
             }
         }
-        
 
-        
+
         public async Task<GrpcResponse<PlayingMediaInfo>> Info()
         {
             try
