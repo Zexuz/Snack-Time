@@ -62,8 +62,11 @@ namespace MediaHelper.Blazor.App.Services
                     Dirs = await _system.GetSystemDrives()
                 };
 
+            if(currentFilePath.Last() == '\\')
+                currentFilePath = currentFilePath.Remove(currentFilePath.Length - 1);
+            
             var index = currentFilePath.LastIndexOf("\\", StringComparison.Ordinal);
-            var path = currentFilePath.Remove(index);
+            var path = currentFilePath.Substring(0, index + 1);
             
             return new BackResponse
             {

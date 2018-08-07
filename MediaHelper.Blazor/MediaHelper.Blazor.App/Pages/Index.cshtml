@@ -19,24 +19,21 @@
     }
     else
     {
-        if (!FileNavigationService.IsCurrentDrivePath(_currentFilePath))
+        if (FileNavigationService.CanGoBack(CurrentFilePath))
         {
-            if (FileNavigationService.CanGoBack(_currentFilePath))
-            {
-                <a href="javascript:void(0)" onclick="@(() => GoBack(_currentFilePath))">
-                    <p>@("Back")</p>
-                </a>
-            }
-            else
-            {
-                <a href="javascript:void(0)" onclick="@(async () => await DisplaySystemDrives())">
-                    <p>@($"Drives")</p>
-                </a>
-            }
+            <a href="javascript:void(0)" onclick="@(() => GoBack(CurrentFilePath))">
+                <p>@("Back")</p>
+            </a>
+        }
+        else
+        {
+            <a href="javascript:void(0)" onclick="@(async () => await DisplaySystemDrives())">
+                <p>@($"Drives")</p>
+            </a>
         }
         foreach (var dir in Dirs)
         {
-            <a href="javascript:void(0)" onclick="@(async() => await GotoFilePath(dir))">
+            <a href="javascript:void(0)" onclick="@(async () => await GotoFilePath(dir))">
                 <p>@dir</p>
             </a>
         }
@@ -48,9 +45,9 @@
 {
 
     private string[] Dirs { get; set; }
-    private string _currentFilePath { get; set; }
+    private string CurrentFilePath { get; set; }
 
-    
+
     protected override async Task OnInitAsync()
     {
         await DisplaySystemDrives();
@@ -59,20 +56,21 @@
     async Task DisplaySystemDrives()
     {
         Dirs = await Client.System.GetSystemDrives();
-        _currentFilePath = Dirs[0];
+        CurrentFilePath = Dirs[0];
     }
 
     async Task GotoFilePath(string filePath)
     {
-        _currentFilePath = filePath;
+        CurrentFilePath = filePath;
         Dirs = await Client.System.GetFoldersAndDirectorys(filePath);
+//        Other change.
     }
 
 
     private async Task GoBack(string currentFilePath)
     {
         var res = await FileNavigationService.Back(currentFilePath);
-        _currentFilePath = res.NewPath;
+        CurrentFilePath = res.NewPath;
         Dirs = res.Dirs;
         StateHasChanged();
     }
