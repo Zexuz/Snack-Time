@@ -1,4 +1,7 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using MediaHelper.Backend;
 using MediaHelper.Protobuf.grpc.Impl;
@@ -19,14 +22,13 @@ namespace MediaHelper.Blazor.Server.Controllers.v1
             var series = await client.Series.GetSeries(true);
             return Ok(series);
         }
-        
+
         [HttpGet("lastWatched")]
         public async Task<OkObjectResult> LastWatched()
         {
             var medieFileService = new MedieFileService();
             return Ok(medieFileService.GetLastWatched());
         }
-        
     }
 
     [Route("api/v1/[controller]")]
@@ -61,10 +63,30 @@ namespace MediaHelper.Blazor.Server.Controllers.v1
 
             return Ok();
         }
+
+        [HttpGet("filesystem/{path}")]
+        public ActionResult GetDirectoryAndFiles(string path)
+        {
+            if (path.EndsWith(".."))
+                path = path.Remove(path.Length - 2, 2);
+
+            var decodedPath = WebUtility.UrlDecode(path);
+            var directories = Directory.GetDirectories(decodedPath);
+            var files = Directory.GetFiles(decodedPath);
+
+            var combined = directories.Concat(files);
+            return Ok(combined);
+        }
+
+        [HttpGet("filesystem/drives")]
+        public ActionResult GetLogicalDrive()
+        {
+            return Ok(Directory.GetLogicalDrives());
+        }
     }
 
     public static class CurrentlyPlayingManager
     {
-        public static EpisodeFile EpisodeFile{ get; set; }
+        public static EpisodeFile EpisodeFile { get; set; }
     }
 }

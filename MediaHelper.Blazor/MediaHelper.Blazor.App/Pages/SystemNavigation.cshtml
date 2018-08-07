@@ -1,0 +1,56 @@
+﻿@page "/"
+@using MediaHelper.Blazor.App.Services
+@using MediaHelper.Model
+@using Series = SonarrSharp.Models.Series
+@inject ApiClient Client
+
+
+<h1>Index</h1>
+
+<p>Welcome to your new app.</p>
+
+@if (Series == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <h3>Continue watching @LastWatched.Title?</h3>
+    <a href="#" onclick="@Onclick">
+    <img src="@("http://localhost:8989" + LastWatched.Images[2].Url)" height="250" alt=""/>
+    </a>
+
+    <br/>
+    <a href="series/@LastWatched.Id"> Go to series</a>
+    <hr/>
+
+    foreach (var series in Series)
+    {
+        <a href="series/@series.Id">
+            <img src="@("http://localhost:8989" + series.Images[2].Url)" height="250" alt=""/>
+        </a>
+    }
+}
+
+
+
+@functions
+{
+
+    private Series[] Series { get; set; }
+    private Series LastWatched { get; set; }
+    private SeriesFile SeriesFile { get; set; }
+
+    async void Onclick()
+    {
+        await Client.System.OpenFile( (int) SeriesFile.IdFromProvider, SeriesFile.Watched);
+    }
+
+    protected override async Task OnInitAsync()
+    {
+        Series = await Client.Series.GetAll();
+        SeriesFile = await Client.Series.LastWatched();
+        LastWatched = Series.FirstOrDefault(series => series.Id == SeriesFile.SeriesId);
+    }
+
+}

@@ -11,6 +11,7 @@ namespace MediaHelper.Blazor.App
             // Since Blazor is running on the server, we can use an application service
             // to read the forecast data.
             services.AddSingleton<ApiClient>(new ApiClient("http://localhost:5080/api/v1/"));
+            services.AddSingleton<FileNavigationService>();
         }
 
         public void Configure(IBlazorApplicationBuilder app)
