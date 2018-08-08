@@ -1,4 +1,5 @@
 using Autofac;
+using MediaHelper.Backend;
 using MediaHelper.EventBus;
 using Microsoft.Extensions.Configuration;
 
@@ -15,8 +16,9 @@ namespace MediaHelper.Blazor.Server.DependencyModules
 
         protected override void Load(ContainerBuilder builder)
         {
-
             builder.RegisterType<RabbitMqEventBus>().As<IEventBus>();
+            
+//            builder.RegisterType<ProcessManager>().As<ProcessManager>().SingleInstance();
             builder.Register(context => new RabbitMqConnection("localhost")).As<IEventBusConnection>().SingleInstance();
 
 

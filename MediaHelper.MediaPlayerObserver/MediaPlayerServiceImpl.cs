@@ -9,14 +9,21 @@ namespace MediaHelper.MediaPlayerObserver
     public class MediaPlayerServiceImpl : MediaPlayerService.MediaPlayerServiceBase
     {
         private readonly IMPCHomeCinema _mpcHomeCinemaClient;
+        private          ProcessManager _processManager;
+        private          string         _mpchcPath;
 
         public MediaPlayerServiceImpl(IMPCHomeCinema mpcHomeCinemaClient)
         {
             _mpcHomeCinemaClient = mpcHomeCinemaClient;
+            _mpchcPath = @"C:\Program Files (x86)\MPC-HC\mpc-hc.exe";
+            _processManager = ProcessManager.Instance;
         }
 
         public override async Task<EmptyMessage> Open(OpenFile request, ServerCallContext context)
         {
+            if (!_processManager.IsProcessRunning(_mpchcPath))
+                _processManager.StartProcess(_mpchcPath);
+            
             await _mpcHomeCinemaClient.OpenFileAsync(request.FileName);
             await Task.Delay(1000);
             await _mpcHomeCinemaClient.SetPosition(TimeSpan.FromSeconds(request.FromSeconds));
