@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using System.Xml;
 using Grpc.Core;
 using MediaHelper.Protobuf.generated;
 using MPC_HC.Domain;

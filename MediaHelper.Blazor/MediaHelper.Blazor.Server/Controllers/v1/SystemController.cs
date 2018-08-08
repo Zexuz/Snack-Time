@@ -1,49 +1,16 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using MediaHelper.Backend;
+using MediaHelper.Model;
 using MediaHelper.Protobuf.grpc.Impl;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using SonarrSharp;
-using SonarrSharp.Models;
 
 namespace MediaHelper.Blazor.Server.Controllers.v1
 {
-    [Route("api/v1/[controller]")]
-    [ApiController]
-    public class SeriesController : ControllerBase
-    {
-        [HttpGet]
-        public async Task<OkObjectResult> Get()
-        {
-            var client = new SonarrClient("localhost", 8989, "2e8fcac32bf147608239cab343617485");
-            var series = await client.Series.GetSeries(true);
-            return Ok(series);
-        }
-
-        [HttpGet("lastWatched")]
-        public async Task<OkObjectResult> LastWatched()
-        {
-            var medieFileService = new MedieFileService();
-            return Ok(medieFileService.GetLastWatched());
-        }
-    }
-
-    [Route("api/v1/[controller]")]
-    [ApiController]
-    public class EpisodeController : ControllerBase
-    {
-        [HttpGet("{seriesId}")]
-        public async Task<OkObjectResult> Get(int seriesId)
-        {
-            var client = new SonarrClient("localhost", 8989, "2e8fcac32bf147608239cab343617485");
-            var episodes = await client.Episode.GetEpisodes(seriesId);
-            return Ok(episodes);
-        }
-    }
-
     [Route("api/v1/[controller]")]
     [ApiController]
     public class SystemController : ControllerBase
@@ -71,11 +38,14 @@ namespace MediaHelper.Blazor.Server.Controllers.v1
                 path = path.Remove(path.Length - 2, 2);
 
             var decodedPath = WebUtility.UrlDecode(path);
-            var directories = Directory.GetDirectories(decodedPath);
-            var files = Directory.GetFiles(decodedPath);
 
-            var combined = directories.Concat(files);
-            return Ok(combined);
+            var explorer = new FileExploror
+            {
+                Dirs = Directory.GetDirectories(decodedPath),
+                Files = Directory.GetFiles(decodedPath)
+            };
+
+            return Ok(explorer);
         }
 
         [HttpGet("filesystem/drives")]
@@ -83,10 +53,31 @@ namespace MediaHelper.Blazor.Server.Controllers.v1
         {
             return Ok(Directory.GetLogicalDrives());
         }
-    }
 
-    public static class CurrentlyPlayingManager
-    {
-        public static EpisodeFile EpisodeFile { get; set; }
+        [HttpPut("mpchc/{path}")]
+        public ActionResult UpdateMpcHcLocation(string path)
+        {
+            var decodedPath = WebUtility.UrlDecode(path);
+            SettingsHelper.Save(new Settings {MpcHc = decodedPath});
+            return Ok();
+        }
+
+        public static class SettingsHelper
+        {
+            public static void Save(Settings settings)
+            {
+                System.IO.File.WriteAllText(Directory.GetCurrentDirectory() + "\\.settings", JsonConvert.SerializeObject(settings));
+            }
+
+            public static Settings Load()
+            {
+                return JsonConvert.DeserializeObject<Settings>(System.IO.File.ReadAllText(Directory.GetCurrentDirectory() + "\\.settings"));
+            }
+        }
+
+        public class Settings
+        {
+            public string MpcHc { get; set; }
+        }
     }
 }

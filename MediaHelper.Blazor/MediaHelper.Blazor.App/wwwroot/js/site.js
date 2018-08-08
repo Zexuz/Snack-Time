@@ -1,5 +1,4 @@
 function addTooltip() {
-    var elems = document.querySelectorAll('.tooltipped');
-    var instances = M.Tooltip.init(elems);
-    console.log("asd");
+    M.Tooltip.init(document.querySelectorAll('.tooltipped'));
+    M.Modal.init(document.querySelectorAll('.modal'));
 }

@@ -1,80 +1,56 @@
-﻿@page "/system"
+﻿@page "/"
 @using MediaHelper.Blazor.App.Services
 @using MediaHelper.Model
 @using Series = SonarrSharp.Models.Series
 @inject ApiClient Client
-@inject FileNavigationService FileNavigationService
 
 
-<div class="container">
-    <h1>System</h1>
+<h1>Index</h1>
 
+<p>Welcome to your new app.</p>
 
-    <h3>Navigation</h3>
+@if (Series == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <h3>Continue watching @LastWatched.Title?</h3>
+    <a href="#" onclick="@Onclick">
+        <img src="@("http://localhost:8989" + LastWatched.Images[2].Url)" height="250" alt=""/>
+    </a>
 
+    <br/>
+    <a href="series/@LastWatched.Id"> Go to series</a>
+    <hr/>
 
-    @if (Dirs == null)
+    foreach (var series in Series)
     {
-        <p>Loading...</p>
+        <a href="series/@series.Id">
+            <img src="@("http://localhost:8989" + series.Images[2].Url)" height="250" alt=""/>
+        </a>
     }
-    else
-    {
-        if (FileNavigationService.CanGoBack(CurrentFilePath))
-        {
-            <a href="javascript:void(0)" onclick="@(() => GoBack(CurrentFilePath))">
-                <p>@("Back")</p>
-            </a>
-        }
-        else
-        {
-            <a href="javascript:void(0)" onclick="@(async () => await DisplaySystemDrives())">
-                <p>@($"Drives")</p>
-            </a>
-        }
-        foreach (var dir in Dirs)
-        {
-            <a href="javascript:void(0)" onclick="@(async () => await GotoFilePath(dir))">
-                <p>@dir</p>
-            </a>
-        }
-    }
-</div>
+}
+
 
 
 @functions
 {
 
-    private string[] Dirs { get; set; }
-    private string CurrentFilePath { get; set; }
+    private Series[] Series { get; set; }
+    private Series LastWatched { get; set; }
+    private SeriesFile SeriesFile { get; set; }
 
+    async void Onclick()
+    {
+        await Client.System.OpenFile( (int) SeriesFile.IdFromProvider, SeriesFile.Watched);
+    }
 
     protected override async Task OnInitAsync()
     {
-        await DisplaySystemDrives();
-    }
-
-    async Task DisplaySystemDrives()
-    {
-        Dirs = await Client.System.GetSystemDrives();
-        CurrentFilePath = Dirs[0];
-    }
-
-    async Task GotoFilePath(string filePath)
-    {
-        CurrentFilePath = filePath;
-        Dirs = await Client.System.GetFoldersAndDirectorys(filePath);
-//        Other change.
-        //change
-        //Another change.
-    }
-
-
-    private async Task GoBack(string currentFilePath)
-    {
-        var res = await FileNavigationService.Back(currentFilePath);
-        CurrentFilePath = res.NewPath;
-        Dirs = res.Dirs;
-        StateHasChanged();
+        Series = await Client.Series.GetAll();
+        SeriesFile = await Client.Series.LastWatched();
+        LastWatched = Series.FirstOrDefault(series => series.Id == SeriesFile.SeriesId);
     }
 
 }

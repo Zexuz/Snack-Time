@@ -1,56 +1,121 @@
-﻿@page "/"
+﻿@page "/system"
 @using MediaHelper.Blazor.App.Services
 @using MediaHelper.Model
-@using Series = SonarrSharp.Models.Series
+@inject FileNavigationService FileNavigationService
 @inject ApiClient Client
 
 
-<h1>Index</h1>
+<div class="container">
+    <h1>System</h1>
 
-<p>Welcome to your new app.</p>
+    <form>
+        <i class="fas fa-file"></i>
+        <label for="selectedFile">MPC-HC location</label>
+        <input id="selectedFile" type="text" bind="@CurrentSelectedFile"/>
+    </form>
 
-@if (Series == null)
-{
-    <p>Loading...</p>
-}
-else
-{
-    <h3>Continue watching @LastWatched.Title?</h3>
-    <a href="#" onclick="@Onclick">
-    <img src="@("http://localhost:8989" + LastWatched.Images[2].Url)" height="250" alt=""/>
-    </a>
-
+    <btn class="waves-effect waves-light btn modal-trigger" data-target="modal1">Browse files</btn>
     <br/>
-    <a href="series/@LastWatched.Id"> Go to series</a>
-    <hr/>
+    <btn class="waves-effect waves-light btn" onclick="@(async () => await SaveMpcHcLocation())">Save MPC-HC location</btn>
 
-    foreach (var series in Series)
-    {
-        <a href="series/@series.Id">
-            <img src="@("http://localhost:8989" + series.Images[2].Url)" height="250" alt=""/>
-        </a>
-    }
-}
-
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>Navigation</h4>
+            <span>File selected: <h5>@CurrentSelectedFile</h5></span>
+            @if (FileExploror == null)
+            {
+                <p>Loading...</p>
+            }
+            else
+            {
+                if (FileNavigationService.CanGoBack(CurrentFilePath))
+                {
+                    <a href="javascript:void(0)" onclick="@(() => GoBack(CurrentFilePath))">
+                        <p>
+                            <i class="fas fa-level-up-alt"></i> @("Back")
+                        </p>
+                    </a>
+                }
+                else
+                {
+                    <a href="javascript:void(0)" onclick="@(async () => await DisplaySystemDrives())">
+                        <p>
+                            <i class="fas fa-hdd"></i> @($"Drives")
+                        </p>
+                    </a>
+                }
+                foreach (var dir in FileExploror.Dirs)
+                {
+                    <a href="javascript:void(0)" onclick="@(async () => await GotoFilePath(dir))">
+                        <p>
+                            <i class="fas fa-folder-open"></i> @dir</p>
+                    </a>
+                }
+                foreach (var fileName in FileExploror.Files)
+                {
+                    <a href="javascript:void(0)" onclick="@(() => SelectFile(fileName))">
+                        <p>
+                            <i class="fas fa-file"></i> @fileName</p>
+                    </a>
+                }
+            }
+        </div>
+        <div class="modal-footer">
+            <btn class="modal-close waves-effect waves-green btn-flat">Ok</btn>
+        </div>
+    </div>
+</div>
 
 
 @functions
 {
 
-    private Series[] Series { get; set; }
-    private Series LastWatched { get; set; }
-    private SeriesFile SeriesFile { get; set; }
+    private FileExploror FileExploror { get; set; }
+    private string CurrentFilePath { get; set; }
+    private string CurrentSelectedFile { get; set; }
 
-    async void Onclick()
-    {
-        await Client.System.OpenFile( (int) SeriesFile.IdFromProvider, SeriesFile.Watched);
-    }
 
     protected override async Task OnInitAsync()
     {
-        Series = await Client.Series.GetAll();
-        SeriesFile = await Client.Series.LastWatched();
-        LastWatched = Series.FirstOrDefault(series => series.Id == SeriesFile.SeriesId);
+        await DisplaySystemDrives();
+        await JSRuntime.Current.InvokeAsync<object>("addTooltip");
+    }
+
+    async Task DisplaySystemDrives()
+    {
+        FileExploror = new FileExploror
+        {
+            Dirs = await FileNavigationService.GetSystemDrives(),
+            Files = new string[0]
+        };
+        CurrentFilePath = FileExploror.Dirs[0];
+        StateHasChanged();
+    }
+
+    async Task GotoFilePath(string filePath)
+    {
+        CurrentFilePath = filePath;
+        FileExploror = await FileNavigationService.GotoPath(filePath);
+    }
+
+
+    private async Task GoBack(string currentFilePath)
+    {
+        var res = await FileNavigationService.Back(currentFilePath);
+        CurrentFilePath = res.NewPath;
+        FileExploror = res.FileExploror;
+        StateHasChanged();
+    }
+
+    private async Task SaveMpcHcLocation()
+    {
+        await Client.System.UpdateMpcHcLocation(CurrentSelectedFile);
+    }
+
+    private void SelectFile(string fileName)
+    {
+        CurrentSelectedFile = fileName;
+        StateHasChanged();
     }
 
 }

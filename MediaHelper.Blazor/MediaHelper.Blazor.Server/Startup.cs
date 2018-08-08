@@ -15,7 +15,6 @@ using MediaHelper.Model;
 using MediaHelper.Protobuf.generated;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using SonarrSharp;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace MediaHelper.Blazor.Server
