@@ -1,8 +1,16 @@
-# MediaHelper
-Think Netflix but local. Uses files from Sonarr and Radarr 
+# What is Snack-Time?
+Snack-Time is a media player that tracks what has been watched, for how long, and what's next.
+It uses files already on the PC.
+
+* Think Netflix but with local (downloaded) files.
+* Or popcorn-time but with local (downloaded) files.
+* Or Kodi (Formaly known as XBMC)
+
+Uses files from Sonarr and Radarr.
 
 # Requierment
 
+* Sonarr or/and Radarr
 * RabbitMQ
 * MpcHc
 * Dotnet core 2.1
