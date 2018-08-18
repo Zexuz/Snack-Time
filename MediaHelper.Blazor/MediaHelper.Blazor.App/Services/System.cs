@@ -8,11 +8,11 @@ using Newtonsoft.Json;
 
 namespace MediaHelper.Blazor.App.Services
 {
-    public class System
+    public class SystemEndpoint
     {
         private readonly HttpClient _client;
 
-        public System(HttpClient client)
+        public SystemEndpoint(HttpClient client)
         {
             _client = client;
         }
@@ -34,10 +34,37 @@ namespace MediaHelper.Blazor.App.Services
             return await _client.GetJsonAsync<FileExploror>($"System/filesystem/{encodedPath}");
         }
 
-        public async Task  UpdateMpcHcLocation(string path)
+        public async Task UpdateMpcHcLocation(string path)
         {
             var encodedPath = WebUtility.UrlEncode(path);
-            await _client.PutAsync($"System/mpchc/{encodedPath}",null);
+            await _client.PutAsync($"System/mpchc/{encodedPath}", null);
+        }
+
+        public async Task<string> GetMpcHcLocation()
+        {
+            return await _client.GetStringAsync($"System/mpchc/");
+        }
+
+        public async Task UpdateSonarrLocation(string path)
+        {
+            var encodedPath = WebUtility.UrlEncode(path);
+            await _client.PutAsync($"System/sonarr/{encodedPath}", null);
+        }
+
+        public async Task UpdateRadarrLocation(string path)
+        {
+            var encodedPath = WebUtility.UrlEncode(path);
+            await _client.PutAsync($"System/radarr/{encodedPath}", null);
+        }
+
+        public async Task<string> GetRadarrLocation()
+        {
+            return await _client.GetStringAsync($"System/radarr/");
+        }
+
+        public async Task<string> GetSonarrLocation()
+        {
+            return await _client.GetStringAsync($"System/sonarr/");
         }
     }
 }

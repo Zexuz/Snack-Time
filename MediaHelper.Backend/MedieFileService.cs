@@ -34,5 +34,10 @@ namespace MediaHelper.Backend
         {
             return _repo.GetAll().Where(file => file.Provider == Provider.Sonarr && ((SeriesFile) file).SeriesId == seriesId);
         }
+
+        public MediaFile GetLastWatched(int seriesId)
+        {
+            return _repo.GetAll().OrderByDescending(file => file.LastWatched).FirstOrDefault(file => file.SeriesId == seriesId);
+        }
     }
 }

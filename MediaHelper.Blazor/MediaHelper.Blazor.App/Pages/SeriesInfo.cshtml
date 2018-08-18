@@ -1,63 +1,93 @@
 ﻿@page "/series/{SeriesId}"
 @using MediaHelper.Blazor.App.Services
+@using MediaHelper.Model
+@using Series = SonarrSharp.Models.Series
 @using Episode = SonarrSharp.Models.Episode
 @inject ApiClient Client
 
-<h1></h1>
+<div class="container">
 
-<p>Welcome to your new app.</p>
+    @if (Episodes == null)
+    {
+        <p>Loading...</p>
+    }
+    else
+    {
+        <img class="bg" src=@($"http://localhost:8989{CurrentSeries.Images[0].Url}") alt="">
 
-@if (Episodes == null)
-{
-    <p>Loading...</p>
-}
-else
-{
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Airdate</th>
-            <th>Download date</th>
-            <th>Link</th>
-        </tr>
-        </thead>
-        <tbody>
+                                
+        <div class="row">
+            <div class="col s12">
+                <div class="card blue-grey darken-1">
+                    <div class="card-content white-text">
+                        <span class="card-title">@CurrentSeries.Title</span>
+                        <img class="left" height="200px" src="@($"{SonarrBaseUrl}{CurrentSeries.Images[2].Url}")"/>
+                        <p>@(CurrentSeries.Overview ?? "No overview")</p>
+                        
+                        <h5>@ContinueWatchingString @ContinueWatchingEpisodeTitle</h5>
+                        <p>@(ContinueWatching.Episode?.Overview ?? "No overview")</p>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn" onclick="@(() => OpenFile())">Play</button>
+                        <a class="right" target="_blank" href="@SonarrBaseUrl/series/@CurrentSeries.TitleSlug">Go to Sonarr</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        @foreach (var season in Episodes.GroupBy(episode => episode.SeasonNumber))
-        {
-            <h3>Season @season.Key</h3>
-            foreach (var episode in season)
-            {
-                <tr>
-                    <td>@episode.Title - @($"Season {episode.SeasonNumber} Episode{episode.EpisodeNumber}")</td>
-                    <td>@episode.AirDateUtc.LocalDateTime.ToString("HH:mm:ss")</td>
-                    <td>TODO</td>
-                    @if (episode.HasFile)
-                    {
-                        <td>
-                            <a onclick="@(() => OpenFile(episode.EpisodeFileId))" class="btn">@episode.Title</a>
-                        </td>
-                    }
-                    else
-                    {
-                        <td>
-                            <span class="tooltipped" data-position="bottom" data-tooltip="Missing from disk">
-                                <a class="btn disabled">@episode.Title</a>
-                            </span>
-                        </td>
-                    }
+        <ul class="collapsible popout">
+            @{
+                var order = Episodes.GroupBy(episode => episode.SeasonNumber).ToList();
+                for (int i = order.Count() - 1; i >= 0; i--)
+                {
+                    var season = order[i];
+                    <li class=@(IsCurrentSeries(season.Key)? "active" : null)>
+                        <div class="collapsible-header">Season: @season.Key</div>
+                        <div class="collapsible-body">
+                            <table class="series-table">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th></th>
+                                    <th>Name</th>
+                                    <th>Airdate</th>
+                                    <th>Download date</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach (var episode in season.OrderByDescending(episode => episode.EpisodeNumber))
+                                {
+                                    <tr>
+                                        <td class="episode-nr-cell">@episode.EpisodeNumber</td>
+                                        <td class="episode-nr-cell">
 
-                </tr>
+                                            @if (episode.HasFile)
+                                            {
+                                                <i class="far fa-play-circle link-active" onclick="@(() => OpenFile(episode.EpisodeFileId))"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="far fa-play-circle link-disable"></i>
+                                            }
+                                        </td>
+                                        <td class="episode-title-cell">
+                                            <a href="javascript:void(0)">@episode.Title</a>
+                                        </td>
+                                        <td class="episode-airdate-cell">@episode.AirDateUtc.LocalDateTime.ToString("HH:mm:ss")</td>
+                                        <td class="episode--cell">TODO</td>
+                                    </tr>
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+                    </li>
+                }
             }
-            <hr/>
-        }
 
-        </tbody>
-    </table>
-}
+        </ul>
+    }
 
-
+</div>
 
 @functions
 {
@@ -65,22 +95,67 @@ else
     [Parameter]
     public string SeriesId { get; set; }
 
+    public Series CurrentSeries { get; set; }
+
+
     private Episode[] Episodes { get; set; }
+    private ContinueWatchingResponse ContinueWatching { get; set; }
+    private string ContinueWatchingString { get; set; }
+    private string ContinueWatchingEpisodeTitle { get; set; }
+    private string SonarrBaseUrl { get; set; }
+
 
     protected override async Task OnInitAsync()
     {
-        Episodes = await Client.Episode.GetSeasons(int.Parse(SeriesId));
+        var seriesId = int.Parse(SeriesId);
+        Episodes = await Client.Episode.GetSeasons(seriesId);
+        CurrentSeries = await Client.Series.GetById(seriesId);
+        ContinueWatching = await Client.Episode.GetContinueWatching(seriesId);
+
+        SonarrBaseUrl = await Client.SystemEndpoint.GetSonarrLocation();
+
+        
+        switch (ContinueWatching.Status)
+        {
+            case ContinueWatchingStatus.InProgress:
+                ContinueWatchingString = "Continue watching:";
+                break;
+            case ContinueWatchingStatus.NextEpisode:
+                ContinueWatchingString = "Next episode:";
+                break;
+            case ContinueWatchingStatus.NewSeries:
+                ContinueWatchingString = "Start watching:";
+                break;
+            case ContinueWatchingStatus.NoNewEpisodes:
+                ContinueWatchingString = "There are no new episodes.";
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+
+        if (ContinueWatching.Episode != null)
+            ContinueWatchingEpisodeTitle += $"S{ContinueWatching.Episode.SeasonNumber}E{ContinueWatching.Episode.EpisodeNumber} {ContinueWatching.Episode.Title}";
+
+        StateHasChanged();
+        await JSRuntime.Current.InvokeAsync<object>("addTooltip");
     }
 
-    protected override void OnAfterRender()
+
+    private async Task OpenFile()
     {
-        JSRuntime.Current.InvokeAsync<object>("addTooltip");
-        base.OnAfterRender();
+        await Client.SystemEndpoint.OpenFile((int) ContinueWatching.Episode.EpisodeFileId, ContinueWatching.WhereToStart);
     }
 
     private async Task OpenFile(long episodeFileId)
     {
-        await Client.System.OpenFile((int) episodeFileId,TimeSpan.Zero);
+        await Client.SystemEndpoint.OpenFile((int) episodeFileId, TimeSpan.Zero);
     }
 
+    private bool IsCurrentSeries(long seasonNr)
+    {
+        if (ContinueWatching.Episode == null)
+            return false;
+        
+        return seasonNr == ContinueWatching.Episode.SeasonNumber;
+    }
 }

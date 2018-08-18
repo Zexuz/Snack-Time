@@ -1,0 +1,34 @@
+﻿@using SonarrSharp.Models
+
+@if (UseFlexContainer)
+{
+    <div class="flexcontainer">
+        @foreach (var series in Series)
+        {
+            <div class="series">
+                <SeriesThumbnail BaseUrl="@(BaseUrl)" ImageSrc="@(series.Images[2].Url)" SeriesId="@(series.Id)"></SeriesThumbnail>
+            </div>
+        }
+    </div>
+}
+else
+{
+    foreach (var series in Series)
+    {
+        <SeriesThumbnail  BaseUrl="@(BaseUrl)" ImageSrc="@(series.Images[2].Url)" SeriesId="@(series.Id)"></SeriesThumbnail>
+    }
+}
+
+@functions
+{
+    
+    [Parameter]
+    string BaseUrl{ get; set; }
+    
+    [Parameter]
+    Series[] Series { get; set; }
+
+    [Parameter]
+    bool UseFlexContainer { get; set; }
+
+}

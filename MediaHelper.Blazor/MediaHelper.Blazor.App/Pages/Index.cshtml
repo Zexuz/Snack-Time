@@ -4,32 +4,30 @@
 @using Series = SonarrSharp.Models.Series
 @inject ApiClient Client
 
-
-<h1>Index</h1>
-
-<p>Welcome to your new app.</p>
-
 @if (Series == null)
 {
     <p>Loading...</p>
 }
 else
 {
-    <h3>Continue watching @LastWatched.Title?</h3>
-    <a href="#" onclick="@Onclick">
-        <img src="@("http://localhost:8989" + LastWatched.Images[2].Url)" height="250" alt=""/>
-    </a>
+    <SeriesNavigation ClassName="new-downloaded" Text="Recently downloaded"></SeriesNavigation>
+    
+    <div class="new-downloaded-carousel ">
+        <ListSeriesThumbnail BaseUrl="@SonarrBaseUrl" Series="@(RecentlyDownloaded)" UseFlexContainer="@(false)"></ListSeriesThumbnail>
+    </div>
 
-    <br/>
-    <a href="series/@LastWatched.Id"> Go to series</a>
-    <hr/>
+    <SeriesNavigation ClassName="last-seen" Text="Last seen"></SeriesNavigation>
 
-    foreach (var series in Series)
-    {
-        <a href="series/@series.Id">
-            <img src="@("http://localhost:8989" + series.Images[2].Url)" height="250" alt=""/>
-        </a>
-    }
+    <div class="last-seen-carousel ">
+        <ListSeriesThumbnail BaseUrl="@SonarrBaseUrl" Series="@(LastSeen)" UseFlexContainer="@(false)"></ListSeriesThumbnail>
+    </div>
+
+    <h3 class="center-align">Browse</h3>
+    <ListSeriesThumbnail BaseUrl="@SonarrBaseUrl" Series="@(Series)" UseFlexContainer="@(true)"></ListSeriesThumbnail>
+    
+    
+    <div class="bottom">
+    </div>
 }
 
 
@@ -38,19 +36,20 @@ else
 {
 
     private Series[] Series { get; set; }
-    private Series LastWatched { get; set; }
-    private SeriesFile SeriesFile { get; set; }
+    private Series[] LastSeen { get; set; }
+    private Series[] RecentlyDownloaded { get; set; }
+    private string SonarrBaseUrl { get; set; }
 
-    async void Onclick()
-    {
-        await Client.System.OpenFile( (int) SeriesFile.IdFromProvider, SeriesFile.Watched);
-    }
 
     protected override async Task OnInitAsync()
     {
         Series = await Client.Series.GetAll();
-        SeriesFile = await Client.Series.LastWatched();
-        LastWatched = Series.FirstOrDefault(series => series.Id == SeriesFile.SeriesId);
-    }
+        RecentlyDownloaded = await Client.History.GetDownloadHistory();
+        LastSeen = await Client.History.LatestWatchedSeries();
+        SonarrBaseUrl = await Client.SystemEndpoint.GetSonarrLocation();
 
+        StateHasChanged();
+        await JSRuntime.Current.InvokeAsync<object>("initBrowser");
+    }
 }
+

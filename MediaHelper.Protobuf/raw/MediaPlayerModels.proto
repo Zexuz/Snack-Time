@@ -37,3 +37,11 @@ message PlayingMediaInfoChanged {
     }
 
 }
+
+message IsRunning {
+    bool value = 1;
+}
+
+message Init {
+    string MediaPlayerPath = 1;
+}

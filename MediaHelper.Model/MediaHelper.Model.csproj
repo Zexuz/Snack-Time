@@ -4,4 +4,10 @@
         <TargetFramework>netstandard2.0</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Reference Include="SonarrSharp, Version=1.1.4.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>C:\Users\desktop\.nuget\packages\sonarrsharp\1.1.4\lib\netstandard2.0\SonarrSharp.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>

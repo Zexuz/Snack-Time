@@ -1,6 +1,6 @@
 using MediaHelper.Model;
 
-namespace MediaHelper.Blazor.App.Services
+namespace MediaHelper.Blazor.App.Models
 {
     public struct BackResponse
     {

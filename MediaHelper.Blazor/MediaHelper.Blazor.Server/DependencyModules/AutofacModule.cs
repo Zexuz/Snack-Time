@@ -1,5 +1,4 @@
 using Autofac;
-using MediaHelper.Backend;
 using MediaHelper.EventBus;
 using Microsoft.Extensions.Configuration;
 

@@ -1,7 +1,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
-using MediaHelper.Model;
 using Microsoft.AspNetCore.Blazor;
+using NotImplementedException = System.NotImplementedException;
 
 namespace MediaHelper.Blazor.App.Services
 {
@@ -19,9 +19,9 @@ namespace MediaHelper.Blazor.App.Services
             return await _client.GetJsonAsync<SonarrSharp.Models.Series[]>("Series");
         }
 
-        public async Task<SeriesFile> LastWatched()
+        public async Task<SonarrSharp.Models.Series> GetById(int seriesId)
         {
-            return await _client.GetJsonAsync<SeriesFile>($"Series/lastWatched");
+            return await _client.GetJsonAsync<SonarrSharp.Models.Series>($"Series/{seriesId}");
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using SonarrSharp.Models;
 
-namespace MediaHelper.Blazor.Server.Controllers.v1
+namespace MediaHelper.Blazor.Server
 {
     public static class CurrentlyPlayingManager
     {

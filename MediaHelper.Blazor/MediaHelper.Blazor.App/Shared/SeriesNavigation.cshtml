@@ -1,0 +1,20 @@
+﻿<h3 class="center-align @ClassName">
+    <button id="@ClassName-prev" type="button" class="btn">
+        <i class="fas fa-arrow-left"></i>
+    </button>
+    @Text
+    <button id="@ClassName-next" type="button" class="btn">
+        <i class="fas fa-arrow-right"></i>
+    </button>
+</h3>
+
+@functions
+{
+
+    [Parameter]
+    string ClassName { get; set; }
+
+    [Parameter]
+    string Text { get; set; }
+
+}

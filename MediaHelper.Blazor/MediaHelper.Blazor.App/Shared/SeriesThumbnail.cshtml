@@ -1,6 +1,6 @@
 ﻿
 <a href="series/@SeriesId">
-    <img src="@ImageSrc" height="250" alt=""/>
+    <img src="@($"{BaseUrl}/{ImageSrc}")" height="250" alt=""/>
 </a>
 
 @functions
@@ -9,8 +9,8 @@
      string ImageSrc { get; set; }
     
     [Parameter]
-     string SeriesId{ get; set; }
+     string BaseUrl{ get; set; }
     
-    
-
+    [Parameter]
+     long SeriesId{ get; set; }
 }

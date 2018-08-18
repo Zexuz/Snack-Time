@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Grpc.Core;
 using MediaHelper.Protobuf.generated;
 using MediaHelper.Protobuf.grpc.Models;
 
@@ -16,82 +15,43 @@ namespace MediaHelper.Protobuf.grpc.Impl
             _client = new MediaPlayerService.MediaPlayerServiceClient(GetChannel());
         }
 
-
         public async Task<GrpcResponse<EmptyMessage>> OpenFile(string filePath, TimeSpan? startPosition = null, bool startInFullscreen = false)
         {
-            try
+            var reg = new OpenFile
             {
-                var reg = new OpenFile {FileName = filePath, FromSeconds = startPosition?.TotalSeconds ?? 0, StartInFullscreen = startInFullscreen};
-                return new GrpcResponse<EmptyMessage>(await _client.OpenAsync(reg, deadline: GetDeadline()), GrpcError.None);
-            }
-            catch (RpcException e)
-            {
-                switch (e.StatusCode)
-                {
-                    case StatusCode.Cancelled:
-                    case StatusCode.Unknown:
-                    case StatusCode.InvalidArgument:
-                    case StatusCode.NotFound:
-                    case StatusCode.AlreadyExists:
-                    case StatusCode.PermissionDenied:
-                    case StatusCode.Unauthenticated:
-                    case StatusCode.ResourceExhausted:
-                    case StatusCode.FailedPrecondition:
-                    case StatusCode.Aborted:
-                    case StatusCode.OutOfRange:
-                    case StatusCode.Internal:
-                    case StatusCode.Unimplemented:
-                    case StatusCode.DataLoss:
-                        return new GrpcResponse<EmptyMessage>(GrpcError.Unknown);
-                    case StatusCode.DeadlineExceeded:
-                        return new GrpcResponse<EmptyMessage>(GrpcError.DeadlineExceededOrOffline);
-                    case StatusCode.Unavailable:
-                        return new GrpcResponse<EmptyMessage>(GrpcError.Offline);
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
+                FileName = filePath,
+                FromSeconds = startPosition?.TotalSeconds ?? 0,
+                StartInFullscreen = startInFullscreen
+            };
+            return await ExecuteAsync(_client.OpenAsync(reg, deadline: GetDeadline()));
         }
-
 
         public async Task<GrpcResponse<PlayingMediaInfo>> Info()
         {
-            try
-            {
-                return new GrpcResponse<PlayingMediaInfo>(await _client.InfoAsync(new EmptyMessage(), deadline: GetDeadline()), GrpcError.None);
-            }
-            catch (RpcException e)
-            {
-                switch (e.StatusCode)
-                {
-                    case StatusCode.Cancelled:
-                    case StatusCode.Unknown:
-                    case StatusCode.InvalidArgument:
-                    case StatusCode.NotFound:
-                    case StatusCode.AlreadyExists:
-                    case StatusCode.PermissionDenied:
-                    case StatusCode.Unauthenticated:
-                    case StatusCode.ResourceExhausted:
-                    case StatusCode.FailedPrecondition:
-                    case StatusCode.Aborted:
-                    case StatusCode.OutOfRange:
-                    case StatusCode.Internal:
-                    case StatusCode.Unimplemented:
-                    case StatusCode.DataLoss:
-                        return new GrpcResponse<PlayingMediaInfo>(GrpcError.Unknown);
-                    case StatusCode.DeadlineExceeded:
-                        return new GrpcResponse<PlayingMediaInfo>(GrpcError.DeadlineExceededOrOffline);
-                    case StatusCode.Unavailable:
-                        return new GrpcResponse<PlayingMediaInfo>(GrpcError.Offline);
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
+            return await ExecuteAsync(_client.InfoAsync(new EmptyMessage(), deadline: GetDeadline()));
         }
 
-        private static DateTime GetDeadline()
+        public async Task<GrpcResponse<EmptyMessage>> OpenMediaPlayer()
         {
-            return DateTime.UtcNow.AddMilliseconds(500);
+            return await ExecuteAsync(_client.StartAsync(new EmptyMessage(), deadline: GetDeadline()));
+        }
+
+        public async Task<GrpcResponse<EmptyMessage>> CloseMediaPlayer()
+        {
+            return await ExecuteAsync(_client.StopAsync(new EmptyMessage(), deadline: GetDeadline()));
+        }
+
+        public async Task<GrpcResponse<IsRunning>> CheckIfMediaPlayerIsRunning()
+        {
+            return await ExecuteAsync(_client.IsRunningAsync(new EmptyMessage(), deadline: GetDeadline()));
+        }
+
+        public async Task<GrpcResponse<EmptyMessage>> Init(string mediaPlayerPath)
+        {
+            return await ExecuteAsync(_client.InitAsync(new Init
+            {
+                MediaPlayerPath = mediaPlayerPath
+            }, deadline: GetDeadline()));
         }
     }
 }

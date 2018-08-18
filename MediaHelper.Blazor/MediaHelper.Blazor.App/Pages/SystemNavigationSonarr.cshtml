@@ -1,0 +1,35 @@
+@page "/systemdata/sonarr"
+@using MediaHelper.Blazor.App.Services
+@inject ApiClient Client
+
+<div class="container">
+
+    <h1>Sonarr</h1>
+
+    <form>
+        <i class="fas fa-file"></i>
+        <label for="selectedFile">Sonarr URL</label>
+        <input id="selectedFile" type="text" bind="@SonarrUrl"/>
+    </form>
+
+    <btn class="waves-effect waves-light btn" onclick="@(async () => await Save())">Save</btn>
+</div>
+
+@functions
+{
+    
+    public string SonarrUrl { get; set; }
+    
+    protected override async Task OnInitAsync()
+    {
+        await JSRuntime.Current.InvokeAsync<object>("addTooltip");
+        SonarrUrl = await Client.SystemEndpoint.GetSonarrLocation();
+
+    }
+    
+    private async Task Save()
+    {
+        await Client.SystemEndpoint.UpdateSonarrLocation(SonarrUrl);
+    }
+
+}

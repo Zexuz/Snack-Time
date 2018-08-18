@@ -8,28 +8,75 @@ namespace MediaHelper.MediaPlayerObserver
 {
     public class MediaPlayerServiceImpl : MediaPlayerService.MediaPlayerServiceBase
     {
+        public static event EventHandler InitEvent;
+        
+        
         private readonly IMPCHomeCinema _mpcHomeCinemaClient;
-        private          ProcessManager _processManager;
+        private readonly Func<Task> _init;
+        private readonly Func<Task> _stop;
+        private readonly Func<Task> _start;
+        private readonly ProcessManager _processManager;
         private          string         _mpchcPath;
 
-        public MediaPlayerServiceImpl(IMPCHomeCinema mpcHomeCinemaClient)
+        public MediaPlayerServiceImpl(IMPCHomeCinema mpcHomeCinemaClient,Func<Task> init, Func<Task> stop, Func<Task> start)
         {
             _mpcHomeCinemaClient = mpcHomeCinemaClient;
-            _mpchcPath = @"C:\Program Files (x86)\MPC-HC\mpc-hc.exe";
+            _init = init;
+            _stop = stop;
+            _start = start;
             _processManager = ProcessManager.Instance;
+        }
+
+        public override async Task<EmptyMessage> Init(Init request, ServerCallContext context)
+        {
+            _mpchcPath = request.MediaPlayerPath;
+            await _init();
+            return new EmptyMessage();
+        }
+
+        public override async Task<EmptyMessage> Start(EmptyMessage request, ServerCallContext context)
+        {
+            _processManager.StartProcess(_mpchcPath);
+
+            while (_processManager.IsProcessRunning(_mpchcPath))
+            {
+                try
+                {
+                    await Task.Delay(500);
+                    await _start();
+                    break;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("MPC-HC not stared yet");
+                }
+            }
+
+            return new EmptyMessage();
+        }
+
+        public override Task<IsRunning> IsRunning(EmptyMessage request, ServerCallContext context)
+        {
+            return Task.FromResult(new IsRunning
+            {
+                Value = _processManager.IsProcessRunning(_mpchcPath)
+            });
+        }
+
+        public override async Task<EmptyMessage> Stop(EmptyMessage request, ServerCallContext context)
+        {
+            _processManager.StopProcess(_mpchcPath);
+            await _stop();
+            return new EmptyMessage();
         }
 
         public override async Task<EmptyMessage> Open(OpenFile request, ServerCallContext context)
         {
-            if (!_processManager.IsProcessRunning(_mpchcPath))
-                _processManager.StartProcess(_mpchcPath);
-            
             await _mpcHomeCinemaClient.OpenFileAsync(request.FileName);
             await Task.Delay(1000);
-            await _mpcHomeCinemaClient.SetPosition(TimeSpan.FromSeconds(request.FromSeconds));
+            await _mpcHomeCinemaClient.SetPosition(TimeSpan.FromSeconds(request.FromSeconds)); //todo does not work!!?!?!
+            await _mpcHomeCinemaClient.ToggleFullscreen();
 
-            //todo here we need to close MPCHC and then reOpen it to ensure the fullscreen has not changed.
-//            await _mpcHomeCinemaClient.
             return new EmptyMessage();
         }
 
