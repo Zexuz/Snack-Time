@@ -1,8 +1,0 @@
-syntax = "proto3";
-package MiscModels;
-
-option csharp_namespace = "LocalNetflix.Protobuf.MiscModels";
-
-
-message EmptyMessage{
-}
