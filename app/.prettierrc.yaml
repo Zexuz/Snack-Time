@@ -1,0 +1,5 @@
+printWidth: 120
+overrides:
+  - files: "*.vue"
+    options:
+      printWidth: 80
