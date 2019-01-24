@@ -1,24 +1,22 @@
-
 export enum Verb {
-  GET = 'GET',
-  PUT = 'PUT',
-  POST = 'POST',
-  DELETE = 'DELETE',
+  GET = "GET",
+  PUT = "PUT",
+  POST = "POST",
+  DELETE = "DELETE"
 }
 
 class Request {
   body!: string;
-  constructor(a: any) {
 
-  }
+  constructor(a: any) {}
 }
-class ApiResult<T>{
+
+class ApiResult<T> {
   success: any;
   error: any;
 }
 
 export class HttpClient {
-
   public static async get<T>(url: string): Promise<ApiResult<T>> {
     return this.api<T>(Verb.GET, url);
   }
@@ -43,10 +41,11 @@ export class HttpClient {
       throw new Error(response.statusText);
     }
 
+    console.log("asd");
     const json = await response.json();
     let parsedResult: ApiResult<T>;
     try {
-      parsedResult = json as unknown as ApiResult<T>;
+      parsedResult = (json as unknown) as ApiResult<T>;
     } catch (e) {
       throw new Error(`Can't convert type for request ${verb}: ${url}, json: ${JSON.stringify(json)}`);
     }
@@ -55,7 +54,6 @@ export class HttpClient {
     }
     return parsedResult;
   }
-
 
   private static createRequest(verb: Verb, data?: object): any {
     const request = new Request(verb);
