@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mpv.JsonIpc", "Mpv.JsonIpc\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mpv.JsonIpc.Runner", "Mpv.JsonIpc.Runner\Mpv.JsonIpc.Runner.csproj", "{2278C8D1-895D-4A23-9C81-D923EF228810}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mpv.WebApi", "Mpv.WebApi\Mpv.WebApi.csproj", "{601FBF93-D8EE-4D3D-93CB-3D9799D1DE32}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{2278C8D1-895D-4A23-9C81-D923EF228810}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2278C8D1-895D-4A23-9C81-D923EF228810}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2278C8D1-895D-4A23-9C81-D923EF228810}.Release|Any CPU.Build.0 = Release|Any CPU
+		{601FBF93-D8EE-4D3D-93CB-3D9799D1DE32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{601FBF93-D8EE-4D3D-93CB-3D9799D1DE32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{601FBF93-D8EE-4D3D-93CB-3D9799D1DE32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{601FBF93-D8EE-4D3D-93CB-3D9799D1DE32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

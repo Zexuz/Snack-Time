@@ -5,7 +5,7 @@ namespace Mpv.JsonIpc
     public class Request
     {
         [JsonProperty("command")]
-        public string[] Command { get; set; }
+        public object[] Command { get; set; }
 
         [JsonProperty("request_id")]
         public int RequestId { get; set; }
