@@ -1,10 +1,11 @@
 <template>
   <div class="parent">
-    <img
-      src="http://192.168.10.240:8989//MediaCover/45/poster.jpg?lastWrite=636827353357997910"
-      alt="MOVUE NAME"
-      width="200px"
-    />
+    <button>
+      <img
+        src="http://192.168.10.240:8989//MediaCover/45/poster.jpg?lastWrite=636827353357997910"
+        alt="MOVUE NAME"
+      />
+    </button>
   </div>
 </template>
 
@@ -31,9 +32,31 @@ export default class MediaThumbnail extends Vue {
 }
 </script>
 
-<style>
+<style scoped lang="less">
 .parent {
+  display: inline-block;
   border: black solid thin;
   margin: 2px;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: scale(1.5);
+  }
+}
+
+button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  display: flex;
+}
+
+img {
+  height: auto;
+  width: 200px;
 }
 </style>

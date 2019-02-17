@@ -8,6 +8,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import "materialize-css/dist/css/materialize.min.css";
+import "tiny-slider/dist/tiny-slider.css";
 import NavBar from "./components/NavBar.vue";
 import M from "materialize-css";
 

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <media-list text="New" />
-    <media-list text="Downloaded" />
-    <media-list text="Watch again" />
+    <media-list Text="New" />
+    <media-list Text="Downloaded" />
+    <media-list Text="Watch again" />
 
     <h2 class="center">Browse</h2>
 
