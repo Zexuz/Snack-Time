@@ -1,5 +1,8 @@
 # SnackTime
 
+### Inspiration for next slider version
+https://codepen.io/anon/pen/LqMEpG
+
 ## Prettier
 
 See https://prettier.io/docs/en/editors.html how to config prettier

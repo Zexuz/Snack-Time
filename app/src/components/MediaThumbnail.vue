@@ -36,7 +36,6 @@ export default class MediaThumbnail extends Vue {
 .parent {
   display: inline-block;
   border: black solid thin;
-  margin: 2px;
   transition: transform 0.2s;
 
   &:hover {

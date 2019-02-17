@@ -1,19 +1,20 @@
 <template>
-  <div>
+  <div class="media-list">
     <h2 class="center">
       {{ Text }}
     </h2>
     <div class="parent-media">
       <div :class="customClassName">
-        <media-thumbnail />
-        <media-thumbnail />
-        <media-thumbnail />
-        <media-thumbnail />
-        <media-thumbnail />
-        <media-thumbnail />
-        <media-thumbnail />
-        <media-thumbnail />
-        <media-thumbnail />
+        <media-thumbnail style="margin: 5rem 0 5rem 0;" />
+        <media-thumbnail style="margin: 5rem 0 5rem 0;" />
+        <media-thumbnail style="margin: 5rem 0 5rem 0;" />
+        <media-thumbnail style="margin: 5rem 0 5rem 0;" />
+        <media-thumbnail style="margin: 5rem 0 5rem 0;" />
+        <media-thumbnail style="margin: 5rem 0 5rem 0;" />
+        <media-thumbnail style="margin: 5rem 0 5rem 0;" />
+        <media-thumbnail style="margin: 5rem 0 5rem 0;" />
+        <media-thumbnail style="margin: 5rem 0 5rem 0;" />
+        <media-thumbnail style="margin: 5rem 0 5rem 0;" />
       </div>
       <div :id="customClassName" class="media-container">
         <span data-controls="prev" class="media-left">
@@ -60,11 +61,11 @@ export default class MediaList extends Vue {
 }
 </script>
 
-<style></style>
-
 <style scoped lang="less">
 .parent-media {
   position: relative;
+  margin-top: -5rem;
+  margin-bottom: -5rem;
 
   .media-left {
     position: absolute;
