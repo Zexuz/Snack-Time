@@ -33,6 +33,13 @@ namespace Mpv.WebApi
         {
             if (env.IsDevelopment())
             {
+                app.UseCors(builder => builder
+                    .AllowCredentials()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowAnyOrigin()
+                    .Build()
+                );
                 app.UseDeveloperExceptionPage();
             }
             else
@@ -40,7 +47,6 @@ namespace Mpv.WebApi
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

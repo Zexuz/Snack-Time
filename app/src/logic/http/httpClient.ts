@@ -1,19 +1,14 @@
+import { Request } from "./request";
+
+import { ApiResult } from "./apiResponse";
+
+import { UrlHelper } from "./urlHelper";
+
 export enum Verb {
   GET = "GET",
   PUT = "PUT",
   POST = "POST",
   DELETE = "DELETE"
-}
-
-class Request {
-  body!: string;
-
-  constructor(a: any) {}
-}
-
-class ApiResult<T> {
-  success: any;
-  error: any;
 }
 
 export class HttpClient {
@@ -34,14 +29,15 @@ export class HttpClient {
   }
 
   public static async api<T>(verb: Verb, url: string, data?: object): Promise<ApiResult<T>> {
-    const request = this.createRequest(verb, data);
+    url = UrlHelper.getUrl(url);
 
+    const request = this.createRequest(verb, data);
     const response = await fetch(url, request);
+
     if (!response.ok) {
       throw new Error(response.statusText);
     }
 
-    console.log("asd");
     const json = await response.json();
     let parsedResult: ApiResult<T>;
     try {
@@ -57,6 +53,7 @@ export class HttpClient {
 
   private static createRequest(verb: Verb, data?: object): any {
     const request = new Request(verb);
+
     if (verb !== Verb.GET && !!data) {
       request.body = JSON.stringify(data);
     }
