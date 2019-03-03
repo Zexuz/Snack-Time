@@ -20,14 +20,22 @@ namespace SnackTime.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            
+
             AddSwagger(services);
         }
-        
+
         public void ConfigureContainer(ContainerBuilder builder)
         {
             builder.RegisterModule(new DependencyModule());
             builder.RegisterModule(new Mpv.JsonIpc.DependencyModule());
+            builder.RegisterModule(new Core.DependencyModule(
+                new Core.DependencyModule.SonarrConfig
+                {
+                    Host = "localhost",
+                    Port = 8989,
+                    ApiKey = "2e8fcac32bf147608239cab343617485"
+                })
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,7 +51,7 @@ namespace SnackTime.WebApi
                     .Build()
                 );
                 app.UseDeveloperExceptionPage();
-                
+
                 app.UseSwagger().UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "HTTP API V1"); });
             }
             else
@@ -53,7 +61,7 @@ namespace SnackTime.WebApi
 
             app.UseMvc();
         }
-        
+
         private static void AddSwagger(IServiceCollection services)
         {
             services.AddSwaggerGen(options =>

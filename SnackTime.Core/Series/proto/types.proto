@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option csharp_namespace = "SnackTime.Series.ProtoGenerated";
+
+
+message Series {
+    int32 id = 1;
+    string title = 2;
+    ImagesUrl imagesUrl = 3;
+
+}
+
+message ImagesUrl {
+    string banner = 1;
+    string fanart = 2;
+    string poster = 3;
+}
+

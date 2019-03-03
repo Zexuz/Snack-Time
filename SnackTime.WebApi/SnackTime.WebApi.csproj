@@ -19,6 +19,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Mpv.JsonIpc\Mpv.JsonIpc.csproj" />
+      <ProjectReference Include="..\SnackTime.Core\SnackTime.Core.csproj" />
     </ItemGroup>
 
 </Project>

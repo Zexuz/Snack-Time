@@ -34,10 +34,6 @@ export class HttpClient {
     const request = this.createRequest(verb, data);
     const response = await fetch(url, request);
 
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-
     const json = await response.json();
     let parsedResult: ApiResult<T>;
     try {
