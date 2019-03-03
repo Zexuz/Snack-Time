@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Mpv.WebApi
+namespace SnackTime.WebApi
 {
     public class Startup
     {
@@ -27,7 +27,7 @@ namespace Mpv.WebApi
         public void ConfigureContainer(ContainerBuilder builder)
         {
             builder.RegisterModule(new DependencyModule());
-            builder.RegisterModule(new JsonIpc.DependencyModule());
+            builder.RegisterModule(new Mpv.JsonIpc.DependencyModule());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

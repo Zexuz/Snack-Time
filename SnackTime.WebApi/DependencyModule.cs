@@ -1,6 +1,6 @@
 using Autofac;
 
-namespace Mpv.WebApi
+namespace SnackTime.WebApi
 {
     public class DependencyModule : Module
     {

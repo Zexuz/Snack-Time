@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Mpv.JsonIpc;
 
-namespace Mpv.WebApi.Controllers
+namespace SnackTime.WebApi.Controllers
 {
     [Route("api/[controller]/v1")]
     [ApiController]

@@ -3,7 +3,7 @@ using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Mpv.WebApi
+namespace SnackTime.WebApi
 {
     public class Program
     {
