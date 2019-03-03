@@ -10,6 +10,12 @@ export interface ISeries {
 
     /** Series imagesUrl */
     imagesUrl?: (IImagesUrl|null);
+
+    /** Series overview */
+    overview?: (string|null);
+
+    /** Series monitored */
+    monitored?: (boolean|null);
 }
 
 /** Represents a Series. */
@@ -29,6 +35,12 @@ export class Series implements ISeries {
 
     /** Series imagesUrl. */
     public imagesUrl?: (IImagesUrl|null);
+
+    /** Series overview. */
+    public overview: string;
+
+    /** Series monitored. */
+    public monitored: boolean;
 }
 
 /** Properties of an ImagesUrl. */

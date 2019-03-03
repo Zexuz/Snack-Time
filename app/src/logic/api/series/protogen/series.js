@@ -16,6 +16,8 @@ export const Series = $root.Series = (() => {
      * @property {number|null} [id] Series id
      * @property {string|null} [title] Series title
      * @property {IImagesUrl|null} [imagesUrl] Series imagesUrl
+     * @property {string|null} [overview] Series overview
+     * @property {boolean|null} [monitored] Series monitored
      */
 
     /**
@@ -56,6 +58,22 @@ export const Series = $root.Series = (() => {
      * @instance
      */
     Series.prototype.imagesUrl = null;
+
+    /**
+     * Series overview.
+     * @member {string} overview
+     * @memberof Series
+     * @instance
+     */
+    Series.prototype.overview = "";
+
+    /**
+     * Series monitored.
+     * @member {boolean} monitored
+     * @memberof Series
+     * @instance
+     */
+    Series.prototype.monitored = false;
 
     return Series;
 })();

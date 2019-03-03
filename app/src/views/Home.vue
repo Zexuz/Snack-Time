@@ -8,7 +8,7 @@
 
     <div class="media-container">
       <media-thumbnail
-        v-for="series in response"
+        v-for="series in seriesState.series"
         :series="series"
         class="media-item"
       />
@@ -20,9 +20,9 @@
 import { Component, Vue } from "vue-property-decorator";
 import MediaThumbnail from "../components/MediaThumbnail";
 import MediaList from "../components/MediaList";
-import { HttpClient } from "@/logic/http/httpClient";
-import { Endpoints } from "@/logic/api/series/endpoints";
-import { Series } from "@/logic/api/series/protogen/series";
+import { State } from "vuex-class";
+import { SeriesState } from "@/store/modules/series/types";
+import { Module } from "@/store/store";
 
 @Component({
   components: {
@@ -31,12 +31,8 @@ import { Series } from "@/logic/api/series/protogen/series";
   }
 })
 export default class Home extends Vue {
-  private response: Series[] = [];
-
-  async mounted() {
-    let res = await HttpClient.get<Series[]>(Endpoints.GetSeries());
-    this.response = res.payload;
-  }
+  @State(Module.SERIES)
+  private seriesState!: SeriesState;
 }
 </script>
 
