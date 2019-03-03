@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option csharp_namespace = "SnackTime.Episodes.ProtoGenerated";
+
+
+message Episode{
+        int32 seriesId = 1;
+        int32 episodeFileId = 2;
+        int32 seasonNumber = 3;
+        int32 episideNumber = 4;
+        string title = 5;
+        string overview = 6;
+}

@@ -19,7 +19,15 @@ async function main() {
     seriesV1Files.protoPath = `./SnackTime.Core/Series/proto`;
     seriesV1Files.proto = `${seriesV1Files.protoPath}/${PROTO_FILE_NAME}.proto`;
 
+    const episodesV1Files = {};
+    episodesV1Files.js = `./app/src/logic/api/episodes/protogen/episodes`;
+    episodesV1Files.csharpPath = `./SnackTime.Core/Episodes/proto/gen`;
+    episodesV1Files.protoPath = `./SnackTime.Core/Episodes/proto`;
+    episodesV1Files.proto = `${episodesV1Files.protoPath}/${PROTO_FILE_NAME}.proto`;
+
     await generateProtoFiles(seriesV1Files);
+    await generateProtoFiles(episodesV1Files);
+
 }
 
 

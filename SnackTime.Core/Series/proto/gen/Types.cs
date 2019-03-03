@@ -24,15 +24,15 @@ namespace SnackTime.Series.ProtoGenerated {
     static TypesReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Cgt0eXBlcy5wcm90byJCCgZTZXJpZXMSCgoCaWQYASABKAUSDQoFdGl0bGUY",
-            "AiABKAkSHQoJaW1hZ2VzVXJsGAMgASgLMgouSW1hZ2VzVXJsIjsKCUltYWdl",
-            "c1VybBIOCgZiYW5uZXIYASABKAkSDgoGZmFuYXJ0GAIgASgJEg4KBnBvc3Rl",
-            "chgDIAEoCUIiqgIfU25hY2tUaW1lLlNlcmllcy5Qcm90b0dlbmVyYXRlZGIG",
-            "cHJvdG8z"));
+            "Cgt0eXBlcy5wcm90byJnCgZTZXJpZXMSCgoCaWQYASABKAUSDQoFdGl0bGUY",
+            "AiABKAkSHQoJaW1hZ2VzVXJsGAMgASgLMgouSW1hZ2VzVXJsEhAKCG92ZXJ2",
+            "aWV3GAQgASgJEhEKCW1vbml0b3JlZBgFIAEoCCI7CglJbWFnZXNVcmwSDgoG",
+            "YmFubmVyGAEgASgJEg4KBmZhbmFydBgCIAEoCRIOCgZwb3N0ZXIYAyABKAlC",
+            "IqoCH1NuYWNrVGltZS5TZXJpZXMuUHJvdG9HZW5lcmF0ZWRiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.Series.ProtoGenerated.Series), global::SnackTime.Series.ProtoGenerated.Series.Parser, new[]{ "Id", "Title", "ImagesUrl" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.Series.ProtoGenerated.Series), global::SnackTime.Series.ProtoGenerated.Series.Parser, new[]{ "Id", "Title", "ImagesUrl", "Overview", "Monitored" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.Series.ProtoGenerated.ImagesUrl), global::SnackTime.Series.ProtoGenerated.ImagesUrl.Parser, new[]{ "Banner", "Fanart", "Poster" }, null, null, null)
           }));
     }
@@ -68,6 +68,8 @@ namespace SnackTime.Series.ProtoGenerated {
       id_ = other.id_;
       title_ = other.title_;
       imagesUrl_ = other.imagesUrl_ != null ? other.imagesUrl_.Clone() : null;
+      overview_ = other.overview_;
+      monitored_ = other.monitored_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -109,6 +111,28 @@ namespace SnackTime.Series.ProtoGenerated {
       }
     }
 
+    /// <summary>Field number for the "overview" field.</summary>
+    public const int OverviewFieldNumber = 4;
+    private string overview_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Overview {
+      get { return overview_; }
+      set {
+        overview_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "monitored" field.</summary>
+    public const int MonitoredFieldNumber = 5;
+    private bool monitored_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Monitored {
+      get { return monitored_; }
+      set {
+        monitored_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as Series);
@@ -125,6 +149,8 @@ namespace SnackTime.Series.ProtoGenerated {
       if (Id != other.Id) return false;
       if (Title != other.Title) return false;
       if (!object.Equals(ImagesUrl, other.ImagesUrl)) return false;
+      if (Overview != other.Overview) return false;
+      if (Monitored != other.Monitored) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -134,6 +160,8 @@ namespace SnackTime.Series.ProtoGenerated {
       if (Id != 0) hash ^= Id.GetHashCode();
       if (Title.Length != 0) hash ^= Title.GetHashCode();
       if (imagesUrl_ != null) hash ^= ImagesUrl.GetHashCode();
+      if (Overview.Length != 0) hash ^= Overview.GetHashCode();
+      if (Monitored != false) hash ^= Monitored.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -159,6 +187,14 @@ namespace SnackTime.Series.ProtoGenerated {
         output.WriteRawTag(26);
         output.WriteMessage(ImagesUrl);
       }
+      if (Overview.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(Overview);
+      }
+      if (Monitored != false) {
+        output.WriteRawTag(40);
+        output.WriteBool(Monitored);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -175,6 +211,12 @@ namespace SnackTime.Series.ProtoGenerated {
       }
       if (imagesUrl_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(ImagesUrl);
+      }
+      if (Overview.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Overview);
+      }
+      if (Monitored != false) {
+        size += 1 + 1;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -198,6 +240,12 @@ namespace SnackTime.Series.ProtoGenerated {
           imagesUrl_ = new global::SnackTime.Series.ProtoGenerated.ImagesUrl();
         }
         ImagesUrl.MergeFrom(other.ImagesUrl);
+      }
+      if (other.Overview.Length != 0) {
+        Overview = other.Overview;
+      }
+      if (other.Monitored != false) {
+        Monitored = other.Monitored;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -223,6 +271,14 @@ namespace SnackTime.Series.ProtoGenerated {
               imagesUrl_ = new global::SnackTime.Series.ProtoGenerated.ImagesUrl();
             }
             input.ReadMessage(imagesUrl_);
+            break;
+          }
+          case 34: {
+            Overview = input.ReadString();
+            break;
+          }
+          case 40: {
+            Monitored = input.ReadBool();
             break;
           }
         }

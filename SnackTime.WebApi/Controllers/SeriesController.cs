@@ -10,7 +10,6 @@ namespace SnackTime.WebApi.Controllers
     [ApiController]
     public class Series : ControllerBase
     {
-        private readonly SonarrClient   _client;
         private readonly SeriesProvider _seriesProvider;
 
         public Series(SonarrClient client)

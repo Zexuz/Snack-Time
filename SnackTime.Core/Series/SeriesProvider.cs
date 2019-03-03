@@ -49,7 +49,9 @@ namespace SnackTime.Core.Series
                     Banner = series.Images.SingleOrDefault(image => image.CoverType == CoverType.Banner)?.Url,
                     Poster = series.Images.SingleOrDefault(image => image.CoverType == CoverType.Poster)?.Url,
                     Fanart = series.Images.SingleOrDefault(image => image.CoverType == CoverType.FanArt)?.Url,
-                }
+                },
+                Overview = series.Overview,
+                Monitored = series.Monitored,
             };
         }
     }
