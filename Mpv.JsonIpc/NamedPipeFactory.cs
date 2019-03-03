@@ -4,9 +4,9 @@ using System.Security.Principal;
 
 namespace Mpv.JsonIpc
 {
-    public class NamedPipeFactory
+    public class NamedPipeFactory : INamedPipeFactory
     {
-        public NamedPipeClientStream CrateNamedPipe()
+        public NamedPipeClientStream CreateNamedPipe()
         {
             var pipeName = GetPipeNameForCurrentOs();
             return new NamedPipeClientStream(".", pipeName, PipeDirection.InOut, PipeOptions.Asynchronous, TokenImpersonationLevel.Anonymous);

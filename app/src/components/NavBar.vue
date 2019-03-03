@@ -3,7 +3,9 @@
     <div class="nav-wrapper container">
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li v-for="route in Routes" :key="route.path">
-          <router-link :to="route.path">{{ route.displayName }}</router-link>
+          <router-link v-if="!route.hide" :to="route.path">{{
+            route.displayName
+          }}</router-link>
         </li>
       </ul>
     </div>

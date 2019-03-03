@@ -16,6 +16,19 @@ export const Routes = [
     path: "/remote",
     name: "remote",
     component: () => import("./views/Remote.vue")
+  },
+  {
+    displayName: "Calendar",
+    path: "/calendar",
+    name: "calender",
+    component: () => import("./views/Calendar.vue")
+  },
+  {
+    hide:true,
+    displayName: "Series",
+    path: "/series/:id",
+    name: "series",
+    component: () => import("./views/Series.vue")
   }
 ];
 

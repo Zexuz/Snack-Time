@@ -7,16 +7,16 @@ using Newtonsoft.Json;
 
 namespace Mpv.JsonIpc
 {
-    public sealed class Manager : IDisposable
+    public sealed class Manager : IDisposable, IManager
     {
         private readonly NamedPipeClientStream _pipe;
         private readonly StreamReader          _pipeIn;
 
         private readonly StreamWriter _pipeOut;
 
-        public Manager(NamedPipeFactory pipeFactory)
+        public Manager(INamedPipeFactory pipeFactory)
         {
-            _pipe = pipeFactory.CrateNamedPipe();
+            _pipe = pipeFactory.CreateNamedPipe();
             _pipe.Connect();
 
             _pipeIn = new StreamReader(_pipe);
