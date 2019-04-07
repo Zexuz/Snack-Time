@@ -10,21 +10,24 @@ namespace Mpv.JsonIpc
     public sealed class Manager : IDisposable, IManager
     {
         private readonly NamedPipeClientStream _pipe;
-        private readonly StreamReader          _pipeIn;
 
-        private readonly StreamWriter _pipeOut;
+        private StreamReader _pipeIn;
+        private StreamWriter _pipeOut;
 
         public Manager(INamedPipeFactory pipeFactory)
         {
             _pipe = pipeFactory.CreateNamedPipe();
-            _pipe.Connect();
-
-            _pipeIn = new StreamReader(_pipe);
-            _pipeOut = new StreamWriter(_pipe) {AutoFlush = true};
         }
 
         public async Task<Response<T>> Execute<T>(Request message)
         {
+            if (!_pipe.IsConnected)
+            {
+                _pipe.Connect();
+                _pipeIn = new StreamReader(_pipe);
+                _pipeOut = new StreamWriter(_pipe) {AutoFlush = true};
+            }
+
             var messageToSend = JsonConvert.SerializeObject(message);
             Console.WriteLine(messageToSend);
             _pipeOut.WriteLine(messageToSend);

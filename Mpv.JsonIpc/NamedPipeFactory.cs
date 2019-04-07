@@ -12,7 +12,7 @@ namespace Mpv.JsonIpc
             return new NamedPipeClientStream(".", pipeName, PipeDirection.InOut, PipeOptions.Asynchronous, TokenImpersonationLevel.Anonymous);
         }
 
-        private static string GetPipeNameForCurrentOs()
+        public static string GetPipeNameForCurrentOs()
         {
             const string linuxOrMacPipeName = "/tmp/mpvsocket";
             const string windowsPipeName = "mpvpipe";

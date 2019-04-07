@@ -135,6 +135,11 @@ img.bg {
   z-index: -100000;
 }
 
+td {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
 img.left {
   margin-right: 25px;
 }

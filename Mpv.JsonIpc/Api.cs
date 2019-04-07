@@ -24,5 +24,11 @@ namespace Mpv.JsonIpc
             var result = await _ipc.GetProperty<float>(Property.Volume);
             return result.Data;
         }
+
+        public async Task PlayMedia(string path)
+        {
+            var request = _ipc.CreateCommand(new[] {"loadfile", path});
+            await _ipc.ExecuteCommand<string>(request);
+        }
     }
 }

@@ -11,6 +11,7 @@
         <PackageReference Include="Autofac">
             <Version>4.9.1</Version>
         </PackageReference>
+        <PackageReference Include="LiteDB" Version="4.1.4" />
         <PackageReference Include="SonarrSharp">
             <Version>1.2.1</Version>
         </PackageReference>

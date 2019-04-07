@@ -18,8 +18,8 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import MediaThumbnail from "../components/MediaThumbnail";
-import MediaList from "../components/MediaList";
+import MediaThumbnail from "../components/MediaThumbnail.vue";
+import MediaList from "../components/MediaList.vue";
 import { State } from "vuex-class";
 import { SeriesState } from "@/store/modules/series/types";
 import { Module } from "@/store/store";

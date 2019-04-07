@@ -29,6 +29,12 @@ export const Routes = [
     path: "/series/:id",
     name: "series",
     component: () => import("./views/Series.vue")
+  },
+  {
+    displayName: "playground",
+    path: "/playground",
+    name: "playground",
+    component: () => import("./views/Playground.vue")
   }
 ];
 
