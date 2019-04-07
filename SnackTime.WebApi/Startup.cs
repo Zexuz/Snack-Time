@@ -4,6 +4,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Serialization;
+using SnackTime.WebApi.Middlewares;
 
 namespace SnackTime.WebApi
 {
@@ -17,12 +21,6 @@ namespace SnackTime.WebApi
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
-            AddSwagger(services);
-        }
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
@@ -38,13 +36,23 @@ namespace SnackTime.WebApi
             );
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
+                .AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
+
+            AddSwagger(services);
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            app.UseLoggingMiddleware();
+            
             if (env.IsDevelopment())
             {
                 app.UseCors(builder => builder
-                    .AllowCredentials()
                     .AllowAnyHeader()
                     .AllowAnyMethod()
                     .AllowAnyOrigin()
@@ -68,7 +76,7 @@ namespace SnackTime.WebApi
             {
                 options.DescribeAllEnumsAsStrings();
                 options.DescribeStringEnumsInCamelCase();
-                options.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info
+                options.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "HTTP API",
                     Version = "v1",

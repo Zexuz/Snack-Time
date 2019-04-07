@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Autofac.Extensions.DependencyInjection;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Events;
 
@@ -15,20 +15,23 @@ namespace SnackTime.WebApi
                 .MinimumLevel.Verbose()
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
                 .Enrich.FromLogContext()
-                .WriteTo.Console()
+                .WriteTo.Console(outputTemplate:"[{Timestamp:HH:mm:ss} {Level:u3} {CustomRequestId} {Method} {Endpoint}] {Message:lj}{NewLine}{Exception}")
                 .CreateLogger();
 
             CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .UseKestrel(options => { })
-                .UseSerilog()
-                .ConfigureServices(services => services.AddAutofac())
-                .UseContentRoot(Directory.GetCurrentDirectory());
-        
+        public static IHostBuilder CreateWebHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .UseServiceProviderFactory(new AutofacServiceProviderFactory())
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder
+                        .UseStartup<Startup>()
+                        .UseKestrel(options => { })
+                        .UseSerilog()
+                        .ConfigureServices(services => services.AddAutofac())
+                        .UseContentRoot(Directory.GetCurrentDirectory());
+                });
     }
-    
 }
