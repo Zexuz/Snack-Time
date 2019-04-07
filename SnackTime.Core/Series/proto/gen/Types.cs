@@ -6,10 +6,9 @@
 #region Designer generated code
 
 using pb = global::Google.Protobuf;
-using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
-using scg = global::System.Collections.Generic;
-namespace SnackTime.Series.ProtoGenerated {
+
+namespace SnackTime.Core.Series.proto.gen {
 
   /// <summary>Holder for reflection information generated from types.proto</summary>
   public static partial class TypesReflection {
@@ -32,8 +31,8 @@ namespace SnackTime.Series.ProtoGenerated {
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.Series.ProtoGenerated.Series), global::SnackTime.Series.ProtoGenerated.Series.Parser, new[]{ "Id", "Title", "ImagesUrl", "Overview", "Monitored" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.Series.ProtoGenerated.ImagesUrl), global::SnackTime.Series.ProtoGenerated.ImagesUrl.Parser, new[]{ "Banner", "Fanart", "Poster" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.Core.Series.proto.gen.Series), global::SnackTime.Core.Series.proto.gen.Series.Parser, new[]{ "Id", "Title", "ImagesUrl", "Overview", "Monitored" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.Core.Series.proto.gen.ImagesUrl), global::SnackTime.Core.Series.proto.gen.ImagesUrl.Parser, new[]{ "Banner", "Fanart", "Poster" }, null, null, null)
           }));
     }
     #endregion
@@ -48,7 +47,7 @@ namespace SnackTime.Series.ProtoGenerated {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SnackTime.Series.ProtoGenerated.TypesReflection.Descriptor.MessageTypes[0]; }
+      get { return global::SnackTime.Core.Series.proto.gen.TypesReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -102,9 +101,9 @@ namespace SnackTime.Series.ProtoGenerated {
 
     /// <summary>Field number for the "imagesUrl" field.</summary>
     public const int ImagesUrlFieldNumber = 3;
-    private global::SnackTime.Series.ProtoGenerated.ImagesUrl imagesUrl_;
+    private global::SnackTime.Core.Series.proto.gen.ImagesUrl imagesUrl_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::SnackTime.Series.ProtoGenerated.ImagesUrl ImagesUrl {
+    public global::SnackTime.Core.Series.proto.gen.ImagesUrl ImagesUrl {
       get { return imagesUrl_; }
       set {
         imagesUrl_ = value;
@@ -237,7 +236,7 @@ namespace SnackTime.Series.ProtoGenerated {
       }
       if (other.imagesUrl_ != null) {
         if (imagesUrl_ == null) {
-          imagesUrl_ = new global::SnackTime.Series.ProtoGenerated.ImagesUrl();
+          imagesUrl_ = new global::SnackTime.Core.Series.proto.gen.ImagesUrl();
         }
         ImagesUrl.MergeFrom(other.ImagesUrl);
       }
@@ -268,7 +267,7 @@ namespace SnackTime.Series.ProtoGenerated {
           }
           case 26: {
             if (imagesUrl_ == null) {
-              imagesUrl_ = new global::SnackTime.Series.ProtoGenerated.ImagesUrl();
+              imagesUrl_ = new global::SnackTime.Core.Series.proto.gen.ImagesUrl();
             }
             input.ReadMessage(imagesUrl_);
             break;
@@ -295,7 +294,7 @@ namespace SnackTime.Series.ProtoGenerated {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SnackTime.Series.ProtoGenerated.TypesReflection.Descriptor.MessageTypes[1]; }
+      get { return global::SnackTime.Core.Series.proto.gen.TypesReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using SnackTime.Series.ProtoGenerated;
+using SnackTime.Core.Episodes.proto.gen;
 using SonarrSharp;
 using SonarrSharp.Enum;
 
@@ -18,13 +18,13 @@ namespace SnackTime.Core.Episodes
             _seriesBuilder = new EpisodeBuilder();
         }
 
-        public async Task<List<SnackTime.Episodes.ProtoGenerated.Episode>> GetEpisodesForSeriesById(int seriesId)
+        public async Task<List<Episode>> GetEpisodesForSeriesById(int seriesId)
         {
             var episodes = await _client.Episode.GetEpisodes(seriesId);
             return _seriesBuilder.Build(episodes);
         }
 
-        public async Task<SnackTime.Episodes.ProtoGenerated.Episode> GetEpisodeById(int id)
+        public async Task<Episode> GetEpisodeById(int id)
         {
             var episodes = await _client.Episode.GetEpisode(id);
             return _seriesBuilder.Build(episodes);
@@ -33,16 +33,16 @@ namespace SnackTime.Core.Episodes
 
     public class EpisodeBuilder
     {
-        public List<SnackTime.Episodes.ProtoGenerated.Episode> Build(IEnumerable<SonarrSharp.Models.Episode> episodes)
+        public List<Episode> Build(IEnumerable<SonarrSharp.Models.Episode> episodes)
         {
             return episodes.Select(Build)
                 .OrderByDescending(episode => episode.SeasonNumber)
                 .ToList();
         }
 
-        public SnackTime.Episodes.ProtoGenerated.Episode Build(SonarrSharp.Models.Episode episode)
+        public Episode Build(SonarrSharp.Models.Episode episode)
         {
-            return new SnackTime.Episodes.ProtoGenerated.Episode
+            return new Episode
             {
                 Title = GrpcStringParser.Parse(episode.Title),
                 Overview = GrpcStringParser.Parse(episode.Overview),

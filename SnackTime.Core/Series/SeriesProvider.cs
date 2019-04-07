@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using SnackTime.Series.ProtoGenerated;
+using SnackTime.Core.Series.proto.gen;
 using SonarrSharp;
 using SonarrSharp.Enum;
 
@@ -18,13 +18,13 @@ namespace SnackTime.Core.Series
             _seriesBuilder = new SeriesBuilder();
         }
 
-        public async Task<List<SnackTime.Series.ProtoGenerated.Series>> GetSeries()
+        public async Task<List<proto.gen.Series>> GetSeries()
         {
             var series = await _client.Series.GetSeries(true);
             return _seriesBuilder.Build(series);
         }
 
-        public async Task<SnackTime.Series.ProtoGenerated.Series> GetSeriesById(int id)
+        public async Task<proto.gen.Series> GetSeriesById(int id)
         {
             var series = await _client.Series.GetSeries(id);
             return _seriesBuilder.Build(series);
@@ -33,14 +33,14 @@ namespace SnackTime.Core.Series
 
     public class SeriesBuilder
     {
-        public List<SnackTime.Series.ProtoGenerated.Series> Build(IEnumerable<SonarrSharp.Models.Series> series)
+        public List<proto.gen.Series> Build(IEnumerable<SonarrSharp.Models.Series> series)
         {
             return series.Select(Build).ToList();
         }
 
-        public SnackTime.Series.ProtoGenerated.Series Build(SonarrSharp.Models.Series series)
+        public proto.gen.Series Build(SonarrSharp.Models.Series series)
         {
-            return new SnackTime.Series.ProtoGenerated.Series
+            return new proto.gen.Series
             {
                 Id = series.Id,
                 Title = series.Title,
