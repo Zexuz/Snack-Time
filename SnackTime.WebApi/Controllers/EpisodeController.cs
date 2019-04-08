@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using SnackTime.Core.Episodes;
+using SnackTime.Core.Media.Episodes;
 using SnackTime.WebApi.Helpers;
 using SonarrSharp;
 

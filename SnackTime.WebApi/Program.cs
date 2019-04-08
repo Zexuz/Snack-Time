@@ -15,7 +15,8 @@ namespace SnackTime.WebApi
                 .MinimumLevel.Verbose()
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
                 .Enrich.FromLogContext()
-                .WriteTo.Console(outputTemplate:"[{Timestamp:HH:mm:ss} {Level:u3} {CustomRequestId} {Method} {Endpoint}] {Message:lj}{NewLine}{Exception}")
+                .WriteTo.Console(
+                    outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3} {CustomRequestId} {Method} {Endpoint}] {Message:lj}{NewLine}{Exception}")
                 .CreateLogger();
 
             CreateWebHostBuilder(args).Build().Run();

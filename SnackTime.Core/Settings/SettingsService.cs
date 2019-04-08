@@ -1,4 +1,3 @@
-using System.Threading;
 using Microsoft.Extensions.Logging;
 
 namespace SnackTime.Core.Settings

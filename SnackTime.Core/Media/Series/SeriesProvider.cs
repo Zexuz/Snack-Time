@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using SnackTime.Core.Series.proto.gen;
+using SnackTime.Core.Media.Series.proto.gen;
 using SonarrSharp;
 using SonarrSharp.Enum;
 
-namespace SnackTime.Core.Series
+namespace SnackTime.Core.Media.Series
 {
     public class SeriesProvider
     {

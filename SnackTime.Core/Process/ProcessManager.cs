@@ -1,40 +1,40 @@
-using System.Collections.Generic;
+using System.Linq;
 
 namespace SnackTime.Core.Process
 {
     public class ProcessManager : IProcessManager
     {
-        private readonly Dictionary<string, System.Diagnostics.Process> _process;
-
-        public ProcessManager()
-        {
-            _process = new Dictionary<string, System.Diagnostics.Process>();
-        }
-
-
         public void StartProcess(string path, string[] args = null)
         {
             if (IsProcessRunning(path)) return;
 
-            var process = System.Diagnostics.Process.Start(path, string.Join(" ", args));
-            _process.Add(path, process);
+            System.Diagnostics.Process.Start(path, string.Join(" ", args));
         }
 
         public bool IsProcessRunning(string path)
         {
-            if (!_process.ContainsKey(path))
-                return false;
-
-            if (!_process[path].HasExited) return true;
-
-            _process.Remove(path);
-            return false;
+            return GetProcessFromPath(path) == null;
         }
 
-        public void StopProcess(string path)
+        public System.Diagnostics.Process GetProcessFromPath(string path)
         {
-            if (IsProcessRunning(path))
-                _process[path].Kill();
+            var processes = System.Diagnostics.Process.GetProcesses();
+            return processes.Where(process =>
+            {
+                try
+                {
+                    if (process.MainModule.FileName == path)
+                    {
+                        return true;
+                    }
+                }
+                catch
+                {
+                    // ignored
+                }
+
+                return false;
+            }).SingleOrDefault();
         }
     }
 }

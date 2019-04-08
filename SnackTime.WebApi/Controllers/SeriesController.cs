@@ -1,8 +1,7 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using SnackTime.Core.Series;
+using SnackTime.Core.Media.Series;
 using SnackTime.WebApi.Helpers;
 using SonarrSharp;
 
