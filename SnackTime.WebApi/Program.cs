@@ -29,7 +29,7 @@ namespace SnackTime.WebApi
                 {
                     webBuilder
                         .UseStartup<Startup>()
-                        .UseKestrel(options => { })
+                        .UseKestrel(options => { options.AllowSynchronousIO = true; })
                         .UseSerilog()
                         .ConfigureServices(services => services.AddAutofac())
                         .UseContentRoot(Directory.GetCurrentDirectory());
