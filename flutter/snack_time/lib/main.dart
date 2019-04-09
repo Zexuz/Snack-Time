@@ -1,4 +1,5 @@
-import 'package:english_words/english_words.dart';
+import 'package:snack_time/fadeAnimation.dart';
+import 'package:video_player/video_player.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -6,53 +7,83 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Name generator',
-      home: RandomWords()
-    );
+    return MaterialApp(title: 'Name generator', home: VideoApp());
   }
 }
 
-class RandomWordsState extends State<RandomWords> {
-  final _suggestions = <WordPair>[];
-  final _biggerFont = const TextStyle(fontSize: 18.0);
+class VideoApp extends StatefulWidget {
+  @override
+  _VideoAppState createState() => _VideoAppState();
+}
 
+class _VideoAppState extends State<VideoApp> {
+  VideoPlayerController _controller;
 
-  Widget _buildSuggestions() {
-    return ListView.builder(
-        padding: const EdgeInsets.all(16.0),
-        itemBuilder:  (context, i) {
-          if (i.isOdd) return Divider();
-
-          final index = i ~/ 2;
-          if (index >= _suggestions.length) {
-            _suggestions.addAll(generateWordPairs().take(10));
-          }
-          return _buildRow(_suggestions[index], i);
-        });
+  _VideoAppState() {
+    listener = () {
+      setState(() {});
+    };
   }
 
-  Widget _buildRow(WordPair pair, int i) {
-    return ListTile(
-      title: Text(
-        pair.asPascalCase + i.toString(),
-        style: _biggerFont,
-      ),
-    );
+  VoidCallback listener;
+  FadeAnimation imageFadeAnim = FadeAnimation(child: const Icon(Icons.play_arrow, size: 100.0));
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = VideoPlayerController.network('https://www.sample-videos.com/video123/mp4/720/big_buck_bunny_720p_20mb.mp4')
+      ..initialize().then((_) {
+        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+        setState(() {});
+      });
+    _controller.setVolume(1.0);
+    _controller.addListener(listener);
   }
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> children = <Widget>[
+      Center(
+        child: GestureDetector(
+          child: _controller.value.initialized
+              ? AspectRatio(
+                  aspectRatio: _controller.value.aspectRatio,
+                  child: VideoPlayer(_controller),
+                )
+              : Container(),
+          onTap: () {
+            if (_controller.value.isPlaying) {
+              imageFadeAnim = FadeAnimation(child: const Icon(Icons.pause, size: 100.0));
+              _controller.pause();
+            } else {
+              imageFadeAnim = FadeAnimation(child: const Icon(Icons.play_arrow, size: 100.0));
+              _controller.play();
+            }
+          },
+          onVerticalDragStart: (DragStartDetails details) {
+            print("Drag stated");
+          },
+        ),
+      ),
+      Center(
+        child: imageFadeAnim,
+      )
+    ];
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Startup Name Generator'),
+        title: Text("SomeTitle"),
       ),
-      body: _buildSuggestions(),
+      body: Stack(
+        fit: StackFit.passthrough,
+        children: children,
+      ),
     );
   }
-}
 
-class RandomWords extends StatefulWidget {
   @override
-  RandomWordsState createState() => new RandomWordsState();
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
 }
