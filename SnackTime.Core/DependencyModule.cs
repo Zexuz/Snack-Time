@@ -1,5 +1,6 @@
 using Autofac;
 using SnackTime.Core.Database;
+using SnackTime.Core.Media.Episodes;
 using SnackTime.Core.Process;
 using SnackTime.Core.Settings;
 using SonarrSharp;
@@ -24,8 +25,11 @@ namespace SnackTime.Core
 
             builder.RegisterType<SettingsService>().AsSelf();
             builder.RegisterType<SettingsRepo>().AsSelf();
+            
+            builder.RegisterType<EpisodeFileLookupProvider>().AsSelf();
+            builder.RegisterType<EpisodeProvider>().AsSelf();
 
-            builder.RegisterType<ProcessManager>().As<IProcessManager>().SingleInstance();
+            builder.RegisterType<ProcessManager>().AsSelf();
         }
 
         public class SonarrConfig

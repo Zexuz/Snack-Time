@@ -49,7 +49,11 @@
                 <tr v-for="episode in season.episodes">
                   <td>{{ episode.episideNumber }}</td>
                   <td>
-                    <button class="btn" :disabled="episode.episodeFileId === 0">
+                    <button
+                      @click="play(episode.episodeFileId)"
+                      class="btn"
+                      :disabled="episode.episodeFileId === 0"
+                    >
                       play
                     </button>
                   </td>
@@ -77,6 +81,8 @@ import { ImagesUrl, Series } from "@/logic/api/series/protogen/series";
 import { ActionTypes } from "@/store/modules/episodes/actions";
 import { Methods, Season } from "@/store/modules/episodes/getters";
 import M from "materialize-css";
+import { HttpClient } from "@/logic/http/httpClient";
+import { Endpoints } from "@/logic/api/remote/endpoints";
 
 @Component({
   components: {}
@@ -94,6 +100,10 @@ export default class SeriesInfo extends Vue {
   async mounted() {
     await this.fetchEpisodes(this.currentId());
     M.AutoInit();
+  }
+
+  private async play(fileId: number) {
+    let res = await HttpClient.get<object>(Endpoints.PlayFile(fileId));
   }
 
   get imageUrl(): string {

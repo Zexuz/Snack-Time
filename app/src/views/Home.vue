@@ -1,8 +1,8 @@
 <template>
   <div>
     <!--<media-list Text="New" />-->
-    <!--<media-list Text="Downloaded" />-->
-    <!--<media-list Text="Watch again" />-->
+    <media-list :series="seriesState.latestDownloaded" Text="Downloaded" />
+    <!--    <media-list Text="Watch again" />-->
 
     <h2 class="center">Browse</h2>
 

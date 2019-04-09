@@ -22,7 +22,11 @@ export default class App extends Vue {
   @Action(ActionTypes.FETCH_SERIES, { namespace: Module.SERIES })
   private fetchSeries!: () => Promise<void>;
 
+  @Action(ActionTypes.FETCH_LATEST_DOWNLOADED, { namespace: Module.SERIES })
+  private fetchLatestDownloadedSeries!: () => Promise<void>;
+
   async mounted() {
+    await this.fetchLatestDownloadedSeries();
     await this.fetchSeries();
     M.AutoInit();
   }

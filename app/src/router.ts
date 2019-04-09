@@ -24,7 +24,7 @@ export const Routes = [
     component: () => import("./views/Calendar.vue")
   },
   {
-    hide:true,
+    hide: true,
     displayName: "Series",
     path: "/series/:id",
     name: "series",

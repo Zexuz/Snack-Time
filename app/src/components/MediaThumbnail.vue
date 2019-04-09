@@ -17,6 +17,10 @@ export default class MediaThumbnail extends Vue {
   @Prop() public series!: Series;
 
   get imageUrl(): string {
+    if (!this.series.imagesUrl || !this.series.imagesUrl.poster) {
+      return "SomePathToStandarBanner";
+    }
+
     return `http://192.168.10.240:8989${this.series.imagesUrl.poster}`; //todo change this to banner?
   }
   get altImageTitle(): string {

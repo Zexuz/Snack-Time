@@ -5,16 +5,11 @@
     </h2>
     <div class="parent-media">
       <div :class="customClassName">
-        <media-thumbnail style="margin: 5rem 0 5rem 0;" />
-        <media-thumbnail style="margin: 5rem 0 5rem 0;" />
-        <media-thumbnail style="margin: 5rem 0 5rem 0;" />
-        <media-thumbnail style="margin: 5rem 0 5rem 0;" />
-        <media-thumbnail style="margin: 5rem 0 5rem 0;" />
-        <media-thumbnail style="margin: 5rem 0 5rem 0;" />
-        <media-thumbnail style="margin: 5rem 0 5rem 0;" />
-        <media-thumbnail style="margin: 5rem 0 5rem 0;" />
-        <media-thumbnail style="margin: 5rem 0 5rem 0;" />
-        <media-thumbnail style="margin: 5rem 0 5rem 0;" />
+        <media-thumbnail
+          v-for="series in series"
+          :series="series"
+          style="margin: 5rem 0 5rem 0;"
+        />
       </div>
       <div :id="customClassName" class="media-container">
         <span data-controls="prev" class="media-left">
@@ -29,9 +24,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import MediaThumbnail from "../components/MediaThumbnail";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import MediaThumbnail from "../components/MediaThumbnail.vue";
 import { tns } from "tiny-slider/src/tiny-slider";
+import { Series } from "@/logic/api/series/protogen/series";
 
 @Component({
   components: {
@@ -39,10 +35,20 @@ import { tns } from "tiny-slider/src/tiny-slider";
   }
 })
 export default class MediaList extends Vue {
-  @Prop()
-  Text!: string;
+  @Prop() Text!: string;
+
+  @Prop() series!: Series;
 
   mounted() {
+    this.initSlider();
+  }
+
+  @Watch("series")
+  onChildChanged(val: string, oldVal: string) {
+    setTimeout(this.initSlider, 0);
+  }
+
+  private initSlider() {
     tns({
       slideBy: "page",
       controls: true,

@@ -1,5 +1,4 @@
 export class Endpoints {
-
   private static readonly prefix: string = "/api/series/v1";
 
   public static GetSeries() {
@@ -10,4 +9,7 @@ export class Endpoints {
     return `${this.prefix}/${id}`;
   }
 
+  public static GetLatest() {
+    return `${this.prefix}/last-downloaded`;
+  }
 }

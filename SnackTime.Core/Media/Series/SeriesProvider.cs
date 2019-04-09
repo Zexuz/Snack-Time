@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using SonarrSharp;
 
@@ -13,6 +14,16 @@ namespace SnackTime.Core.Media.Series
         {
             _client = client;
             _seriesBuilder = new SeriesBuilder();
+        }
+
+        public async Task<List<proto.gen.Series>> GetLatest()
+        {
+            var history = await _client.History.GetHistory("date", pageSize: 50);
+            
+            var downloaded = history.Records.Where(r => r.EventType == "downloadFolderImported");
+            var distinct = downloaded.GroupBy(record => record.Series.Id).SelectMany(records => records.Take(1));
+            
+            return _seriesBuilder.Build(distinct);
         }
 
         public async Task<List<proto.gen.Series>> GetSeries()

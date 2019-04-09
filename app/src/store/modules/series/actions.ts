@@ -7,7 +7,8 @@ import { Endpoints } from "@/logic/api/series/endpoints";
 import { MutationTypes } from "@/store/modules/series/mutations";
 
 export const enum ActionTypes {
-  FETCH_SERIES = "fetchPools"
+  FETCH_SERIES = "fetchSeries",
+  FETCH_LATEST_DOWNLOADED = "fetchLatest"
 }
 
 export const actions: ActionTree<SeriesState, RootState> = {
@@ -15,9 +16,18 @@ export const actions: ActionTree<SeriesState, RootState> = {
     let res = await HttpClient.get<Series[]>(Endpoints.GetSeries());
 
     if (!res.success || res.error) {
-      throw new Error(res.error)
+      throw new Error(res.error);
     }
 
     commit(MutationTypes.SET_SERIES, res.payload);
+  },
+  async [ActionTypes.FETCH_LATEST_DOWNLOADED]({ commit }) {
+    let res = await HttpClient.get<Series[]>(Endpoints.GetLatest());
+
+    if (!res.success || res.error) {
+      throw new Error(res.error);
+    }
+
+    commit(MutationTypes.SET_LATEST_DOWNLOADED, res.payload);
   }
 };

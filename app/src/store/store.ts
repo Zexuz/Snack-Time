@@ -10,7 +10,7 @@ Vue.use(Vuex);
 
 export const enum Module {
   SERIES = "series",
-  EPISODES = "episodes",
+  EPISODES = "episodes"
 }
 
 const storage: StoreOptions<RootState> = {
@@ -21,7 +21,7 @@ const storage: StoreOptions<RootState> = {
   mutations,
   modules: {
     [Module.SERIES]: series,
-    [Module.EPISODES]: episodes,
+    [Module.EPISODES]: episodes
   }
 };
 

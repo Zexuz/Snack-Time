@@ -6,7 +6,8 @@ import { SeriesState } from "./types";
 import { RootState } from "../../types";
 
 export const state: SeriesState = {
-  series: []
+  series: [],
+  latestDownloaded: []
 };
 
 const namespaced: boolean = true;

@@ -1,8 +1,7 @@
-using System.Linq;
 
 namespace SnackTime.Core.Process
 {
-    public class ProcessManager : IProcessManager
+    public class ProcessManager
     {
         public void StartProcess(string path, string[] args = null)
         {
@@ -11,30 +10,19 @@ namespace SnackTime.Core.Process
             System.Diagnostics.Process.Start(path, string.Join(" ", args));
         }
 
-        public bool IsProcessRunning(string path)
+        public bool IsSvpRunning()
         {
-            return GetProcessFromPath(path) == null;
+            return IsProcessRunning("SVPManager");
         }
-
-        public System.Diagnostics.Process GetProcessFromPath(string path)
+        
+        public bool IsMpvRunning()
         {
-            var processes = System.Diagnostics.Process.GetProcesses();
-            return processes.Where(process =>
-            {
-                try
-                {
-                    if (process.MainModule.FileName == path)
-                    {
-                        return true;
-                    }
-                }
-                catch
-                {
-                    // ignored
-                }
-
-                return false;
-            }).SingleOrDefault();
+            return IsProcessRunning("MPV");
+        }
+        
+        private bool IsProcessRunning(string name)
+        {
+            return System.Diagnostics.Process.GetProcessesByName(name).Length == 1;
         }
     }
 }

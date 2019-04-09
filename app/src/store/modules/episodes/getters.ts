@@ -26,11 +26,11 @@ export const getters: GetterTree<EpisodeState, RootState> = {
           seasonsMap[episode.seasonNumber] = [];
         }
 
-        seasonsMap[episode.seasonNumber].push(episode)
+        seasonsMap[episode.seasonNumber].push(episode);
       }
 
       for (let seasonNr in seasonsMap) {
-        seasons.push(new Season(Number(seasonNr), seasonsMap[seasonNr]))
+        seasons.push(new Season(Number(seasonNr), seasonsMap[seasonNr].reverse()));
       }
 
       return seasons.reverse();
