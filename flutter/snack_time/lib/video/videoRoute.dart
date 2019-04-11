@@ -31,6 +31,7 @@ class _VideoRouteState extends State<VideoRoute> {
     SystemChrome.setEnabledSystemUIOverlays([]);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
     ]);
 
     _player = VideoPlayerController.asset('media/big_buck_bunny_720p_20mb.mp4')
@@ -44,6 +45,21 @@ class _VideoRouteState extends State<VideoRoute> {
 
   bool _visible = true;
 
+  double _getScreenRatio([bool fitToScreen = true]){
+    MediaQueryData queryData;
+    queryData = MediaQuery.of(context);
+
+//    print('screen aspect: ' + screenAspect.toString());
+//    print('media aspect: ' + _player.value.aspectRatio.toString());
+
+    if(fitToScreen) {
+      var screenAspect = queryData.size.width / queryData.size.height;
+      return screenAspect;
+    }
+
+    return     _player.value.aspectRatio;
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<Widget> playAndPause = <Widget>[
@@ -51,12 +67,11 @@ class _VideoRouteState extends State<VideoRoute> {
         child: GestureDetector(
           child: _player.value.initialized
               ? AspectRatio(
-                  aspectRatio: _player.value.aspectRatio * 1.1565,
+                  aspectRatio: _getScreenRatio(),
                   child: VideoPlayer(_player),
                 )
               : Container(),
           onTap: () {
-            print(_player.value.aspectRatio.toString());
             if (_player.value.isPlaying) {
               imageFadeAnim = FadeAnimation(child: const Icon(Icons.pause, size: 100.0));
               _player.pause();
