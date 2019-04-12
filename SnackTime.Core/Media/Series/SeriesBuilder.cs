@@ -1,35 +1,34 @@
 using System.Collections.Generic;
 using System.Linq;
-using SnackTime.Core.Media.Series.proto.gen;
-using SonarrSharp.Enum;
+using SnackTime.MediaServer.ProtoGenerated;
 
 namespace SnackTime.Core.Media.Series
 {
     public class SeriesBuilder
     {
-        public List<proto.gen.Series> Build(IEnumerable<SonarrSharp.Models.Series> series)
+        public List<MediaServer.ProtoGenerated.Series> Build(IEnumerable<SonarrSharp.Models.Series> series)
         {
             return series.Select(Build).ToList();
         }
 
-        public proto.gen.Series Build(SonarrSharp.Models.Series series)
+        public MediaServer.ProtoGenerated.Series Build(SonarrSharp.Models.Series series)
         {
             return BuildInternal(series);
         }
 
-        public List<proto.gen.Series> Build(IEnumerable<SonarrSharp.Models.Record> records)
+        public List<MediaServer.ProtoGenerated.Series> Build(IEnumerable<SonarrSharp.Models.Record> records)
         {
             return records.Select(Build).ToList();
         }
 
-        public proto.gen.Series Build(SonarrSharp.Models.Record record)
+        public MediaServer.ProtoGenerated.Series Build(SonarrSharp.Models.Record record)
         {
             return BuildInternal(record.Series);
         }
 
-        private proto.gen.Series BuildInternal(SonarrSharp.Models.Series series)
+        private MediaServer.ProtoGenerated.Series BuildInternal(SonarrSharp.Models.Series series)
         {
-            return new proto.gen.Series
+            return new MediaServer.ProtoGenerated.Series
             {
                 Id = series.Id,
                 Title = series.Title,

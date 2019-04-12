@@ -1,48 +1,50 @@
 import * as $protobuf from "protobufjs";
 /** Properties of an Episode. */
 export interface IEpisode {
-  /** Episode seriesId */
-  seriesId?: number | null;
 
-  /** Episode episodeFileId */
-  episodeFileId?: number | null;
+    /** Episode seriesId */
+    seriesId?: (number|null);
 
-  /** Episode seasonNumber */
-  seasonNumber?: number | null;
+    /** Episode episodeFileId */
+    episodeFileId?: (number|null);
 
-  /** Episode episideNumber */
-  episideNumber?: number | null;
+    /** Episode seasonNumber */
+    seasonNumber?: (number|null);
 
-  /** Episode title */
-  title?: string | null;
+    /** Episode episideNumber */
+    episideNumber?: (number|null);
 
-  /** Episode overview */
-  overview?: string | null;
+    /** Episode title */
+    title?: (string|null);
+
+    /** Episode overview */
+    overview?: (string|null);
 }
 
 /** Represents an Episode. */
 export class Episode implements IEpisode {
-  /**
-   * Constructs a new Episode.
-   * @param [properties] Properties to set
-   */
-  constructor(properties?: IEpisode);
 
-  /** Episode seriesId. */
-  public seriesId: number;
+    /**
+     * Constructs a new Episode.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: IEpisode);
 
-  /** Episode episodeFileId. */
-  public episodeFileId: number;
+    /** Episode seriesId. */
+    public seriesId: number;
 
-  /** Episode seasonNumber. */
-  public seasonNumber: number;
+    /** Episode episodeFileId. */
+    public episodeFileId: number;
 
-  /** Episode episideNumber. */
-  public episideNumber: number;
+    /** Episode seasonNumber. */
+    public seasonNumber: number;
 
-  /** Episode title. */
-  public title: string;
+    /** Episode episideNumber. */
+    public episideNumber: number;
 
-  /** Episode overview. */
-  public overview: string;
+    /** Episode title. */
+    public title: string;
+
+    /** Episode overview. */
+    public overview: string;
 }

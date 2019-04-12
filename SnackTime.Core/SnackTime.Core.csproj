@@ -17,4 +17,8 @@
         </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\SnackTime.MediaServer.Proto\SnackTime.MediaServer.Proto.csproj" />
+    </ItemGroup>
+
 </Project>

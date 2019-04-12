@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+option csharp_namespace = "SnackTime.MediaServer.ProtoGenerated";
+
+service Greeter {
+    rpc Greet (GreetRequest) returns (GreetResponse) {
+    }
+}
+
+message GreetRequest {
+    string name = 1;
+}
+message GreetResponse {
+    string phrase = 1;
+}
+
+message Episode{
+    int32 seriesId = 1;
+    int32 episodeFileId = 2;
+    int32 seasonNumber = 3;
+    int32 episideNumber = 4;
+    string title = 5;
+    string overview = 6;
+}
+
+
+message Series {
+    int32 id = 1;
+    string title = 2;
+    ImagesUrl imagesUrl = 3;
+    string overview = 4;
+    bool monitored = 5;
+
+}
+
+message ImagesUrl {
+    string banner = 1;
+    string fanart = 2;
+    string poster = 3;
+}

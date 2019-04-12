@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using SnackTime.Core.Media.Episodes.proto.gen;
+using SnackTime.MediaServer.ProtoGenerated;
 using SonarrSharp;
 
 namespace SnackTime.Core.Media.Episodes
