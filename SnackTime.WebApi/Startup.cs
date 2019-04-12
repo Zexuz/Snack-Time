@@ -50,16 +50,16 @@ namespace SnackTime.WebApi
         {
             app.UseLoggingMiddleware();
             
+            app.UseCors(builder => builder
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowAnyOrigin()
+                .Build()
+            );
+            
             if (env.IsDevelopment())
             {
-                app.UseCors(builder => builder
-                    .AllowAnyHeader()
-                    .AllowAnyMethod()
-                    .AllowAnyOrigin()
-                    .Build()
-                );
                 app.UseDeveloperExceptionPage();
-
                 app.UseSwagger().UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "HTTP API V1"); });
             }
             else
