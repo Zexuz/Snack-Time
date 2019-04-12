@@ -10,6 +10,7 @@ namespace SnackTime.MediaServer
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<Impl>().As<Greeter.GreeterBase>();
+            builder.RegisterType<SeriesController>().As<Service.Series.Series.SeriesBase>();
         }
     }
 

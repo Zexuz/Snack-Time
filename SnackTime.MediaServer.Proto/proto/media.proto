@@ -2,6 +2,8 @@ syntax = "proto3";
 
 option csharp_namespace = "SnackTime.MediaServer.ProtoGenerated";
 
+package snacktime.media;
+
 service Greeter {
     rpc Greet (GreetRequest) returns (GreetResponse) {
     }
@@ -14,7 +16,7 @@ message GreetResponse {
     string phrase = 1;
 }
 
-message Episode{
+message Episode {
     int32 seriesId = 1;
     int32 episodeFileId = 2;
     int32 seasonNumber = 3;

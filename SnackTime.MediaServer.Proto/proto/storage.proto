@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option csharp_namespace = "SnackTime.MediaServer.Storage.ProtoGenerated";
+
+package snacktime.storage;
+
+message MediaFile {
+    string fileName = 1;
+    string mediaName = 2;
+    string downloadedUTC = 3;
+    string lastWatchedUTC = 4;
+
+}

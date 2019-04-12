@@ -11,4 +11,9 @@
         <PackageReference Include="Grpc.Tools" Version="1.18.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="csharp" />
+      <Folder Include="csharp-grpc" />
+    </ItemGroup>
+
 </Project>

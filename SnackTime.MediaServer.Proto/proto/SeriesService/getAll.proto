@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option csharp_namespace = "SnackTime.MediaServer.ProtoGenerated";
+
+package snacktime.series.service;
+
+import "proto/media.proto";
+
+message GetAllRequest {
+}
+message GetAllResponse {
+    repeated snacktime.media.Series series = 1;
+}

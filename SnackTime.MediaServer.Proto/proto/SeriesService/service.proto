@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option csharp_namespace = "SnackTime.MediaServer.Service.Series";
+
+package snacktime.series.service;
+
+import "proto/SeriesService/getLastDownloaded.proto";
+import "proto/SeriesService/getById.proto";
+import "proto/SeriesService/getAll.proto";
+
+service Series {
+    rpc GetLastDownloaded (GetLastDownloadedRequest) returns (GetLastDownloadedResponse) {
+    }
+    rpc GetAll (GetAllRequest) returns (GetAllResponse) {
+    }
+    rpc GetById (GetByIdRequest) returns (GetByIdResponse) {
+    }
+}
+
+
+
+

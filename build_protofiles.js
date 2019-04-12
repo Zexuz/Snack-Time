@@ -39,6 +39,7 @@ async function main() {
     // await generateProtoFiles(episodesV1Files);
 
     await generateCSharpGrpc("./SnackTime.MediaServer.Proto/","Media.proto")
+    await generateCSharpGrpc("./SnackTime.MediaServer.Proto/SeriesService","service.proto")
 }
 
 

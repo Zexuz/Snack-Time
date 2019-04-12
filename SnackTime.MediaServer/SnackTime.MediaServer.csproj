@@ -9,6 +9,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\SnackTime.Core\SnackTime.Core.csproj" />
       <ProjectReference Include="..\SnackTime.MediaServer.Proto\SnackTime.MediaServer.Proto.csproj" />
     </ItemGroup>
 

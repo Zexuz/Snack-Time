@@ -30,6 +30,12 @@ namespace SnackTime.MediaServer.Runner
                 {
                     builder.RegisterModule(new Grpc.DependencyModule(context.Configuration));
                     builder.RegisterModule(new MediaServer.DependencyModule());
+                    builder.RegisterModule(new Core.DependencyModule(new Core.DependencyModule.SonarrConfig
+                    {
+                        Host = "localhost",
+                        Port = 8989,
+                        ApiKey = "2e8fcac32bf147608239cab343617485"
+                    }));
                 })
                 .UseSerilog();
 
