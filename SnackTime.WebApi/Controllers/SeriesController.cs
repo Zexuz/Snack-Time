@@ -1,9 +1,8 @@
 ﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using SnackTime.Core.Media.Series;
+using SnackTime.MediaServer.Service.Series;
 using SnackTime.WebApi.Helpers;
-using SonarrSharp;
 
 namespace SnackTime.WebApi.Controllers
 {
@@ -11,17 +10,17 @@ namespace SnackTime.WebApi.Controllers
     [ApiController]
     public class Series : ControllerBase
     {
-        private readonly SeriesProvider _seriesProvider;
+        private readonly MediaServer.Service.Series.Series.SeriesClient _seriesProvider;
 
-        public Series(SonarrClient client)
+        public Series(MediaServer.Service.Series.Series.SeriesClient seriesProvider)
         {
-            _seriesProvider = new SeriesProvider(client);
+            _seriesProvider = seriesProvider;
         }
-        
+
         [HttpGet("last-downloaded")]
         public async Task<ActionResult> GetLastDownloaded()
         {
-            var series = await _seriesProvider.GetLatest();
+            var series = await _seriesProvider.GetLastDownloadedAsync(new GetLastDownloadedRequest());
             return Ok(ApiResponseFactory.CreateSuccess(series));
         }
         
@@ -29,14 +28,14 @@ namespace SnackTime.WebApi.Controllers
         [HttpGet("")]
         public async Task<ActionResult> GetSeries()
         {
-            var series = await _seriesProvider.GetSeries();
+            var series = await _seriesProvider.GetAllAsync(new GetAllRequest());
             return Ok(ApiResponseFactory.CreateSuccess(series));
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult> GetSeriesById(int id)
         {
-            var series = await _seriesProvider.GetSeriesById(id);
+            var series = await _seriesProvider.GetByIdAsync(new GetByIdRequest {Id = id});
             return Ok(ApiResponseFactory.CreateSuccess(series));
         }
 

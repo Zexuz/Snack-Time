@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using SnackTime.Core.Settings;
 
 namespace SnackTime.WebApi.Controllers
 {

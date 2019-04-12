@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using SnackTime.MediaServer.Models.ProtoGenerated;
-using SnackTime.MediaServer.ProtoGenerated;
 
 namespace SnackTime.Core.Media.Series
 {
