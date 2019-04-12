@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option csharp_namespace = "SnackTime.MediaServer.ProtoGenerated";
+option csharp_namespace = "SnackTime.MediaServer.Service.Series";
 
 package snacktime.series.service;
 

@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option csharp_namespace = "SnackTime.MediaServer.Service.Episode";
+
+package snacktime.episode.service;
+
+import "proto/episode-service/episode-getById.proto";
+import "proto/episode-service/episode-getBySeriesId.proto";
+
+service Episode {
+    rpc GetBySeriesId (GetBySeriesIdRequest) returns (GetBySeriesIdResponse) {
+    }
+    rpc GetById (GetByIdRequest) returns (GetByIdResponse) {
+    }
+}
+
+
+
+
+
+
+

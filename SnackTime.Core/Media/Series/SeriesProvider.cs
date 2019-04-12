@@ -16,7 +16,7 @@ namespace SnackTime.Core.Media.Series
             _seriesBuilder = new SeriesBuilder();
         }
 
-        public async Task<List<MediaServer.ProtoGenerated.Series>> GetLatest()
+        public async Task<List<MediaServer.Models.ProtoGenerated.Series>> GetLatest()
         {
             var history = await _client.History.GetHistory("date", pageSize: 50);
 
@@ -26,13 +26,13 @@ namespace SnackTime.Core.Media.Series
             return _seriesBuilder.Build(distinct);
         }
 
-        public async Task<List<MediaServer.ProtoGenerated.Series>> GetSeries()
+        public async Task<List<MediaServer.Models.ProtoGenerated.Series>> GetSeries()
         {
             var series = await _client.Series.GetSeries(true);
             return _seriesBuilder.Build(series);
         }
 
-        public async Task<MediaServer.ProtoGenerated.Series> GetSeriesById(int id)
+        public async Task<MediaServer.Models.ProtoGenerated.Series> GetSeriesById(int id)
         {
             var series = await _client.Series.GetSeries(id);
             return _seriesBuilder.Build(series);

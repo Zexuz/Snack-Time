@@ -11,6 +11,7 @@ namespace SnackTime.MediaServer
         {
             builder.RegisterType<Impl>().As<Greeter.GreeterBase>();
             builder.RegisterType<SeriesController>().As<Service.Series.Series.SeriesBase>();
+            builder.RegisterType<EpisodeController>().As<Service.Episode.Episode.EpisodeBase>();
         }
     }
 

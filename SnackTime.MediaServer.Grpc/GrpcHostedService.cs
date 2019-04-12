@@ -14,7 +14,8 @@ namespace SnackTime.MediaServer.Grpc
         public GrpcHostedService(
             ServerPort serverPort,
             Greeter.GreeterBase greeterImpl,
-            Service.Series.Series.SeriesBase seriesImpl
+            Service.Series.Series.SeriesBase seriesImpl,
+            Service.Episode.Episode.EpisodeBase episodeImpl
         )
         {
             var server = new Server
@@ -22,7 +23,8 @@ namespace SnackTime.MediaServer.Grpc
                 Services =
                 {
                     Greeter.BindService(greeterImpl),
-                    Service.Series.Series.BindService(seriesImpl)
+                    Service.Series.Series.BindService(seriesImpl),
+                    Service.Episode.Episode.BindService(episodeImpl)
                 },
                 Ports = {serverPort}
             };
