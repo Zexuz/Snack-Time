@@ -20,23 +20,23 @@ namespace SnackTime.WebApi.Controllers
         [HttpGet("last-downloaded")]
         public async Task<ActionResult> GetLastDownloaded()
         {
-            var series = await _seriesProvider.GetLastDownloadedAsync(new GetLastDownloadedRequest());
-            return Ok(ApiResponseFactory.CreateSuccess(series));
+            var res = await _seriesProvider.GetLastDownloadedAsync(new GetLastDownloadedRequest());
+            return Ok(ApiResponseFactory.CreateSuccess(res.Series));
         }
-        
+
 
         [HttpGet("")]
         public async Task<ActionResult> GetSeries()
         {
-            var series = await _seriesProvider.GetAllAsync(new GetAllRequest());
-            return Ok(ApiResponseFactory.CreateSuccess(series));
+            var res = await _seriesProvider.GetAllAsync(new GetAllRequest());
+            return Ok(ApiResponseFactory.CreateSuccess(res.Series));
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult> GetSeriesById(int id)
         {
-            var series = await _seriesProvider.GetByIdAsync(new GetByIdRequest {Id = id});
-            return Ok(ApiResponseFactory.CreateSuccess(series));
+            var res = await _seriesProvider.GetByIdAsync(new GetByIdRequest {Id = id});
+            return Ok(ApiResponseFactory.CreateSuccess(res.Series));
         }
 
         [HttpGet("url")]
@@ -44,10 +44,10 @@ namespace SnackTime.WebApi.Controllers
         {
             var basePath = @"C:\Users\desktop\Desktop\ffmpeg-4.1.1-win64-static\bin";
             var outputPath = basePath + @"\output.mp4";
-            var inputPath = basePath + @"\test.mkv";
+            var inputPath = basePath  + @"\test.mkv";
             var ffmpegPath = basePath + @"\ffmpeg.exe";
 
-            var cmd =  $"-i {inputPath} -ss 00:00:07.000 -t 00:00:12.0 -vf scale=320:-1 -c:v libx264 -preset fast -c:a aac {outputPath} -hide_banner";
+            var cmd = $"-i {inputPath} -ss 00:00:07.000 -t 00:00:12.0 -vf scale=320:-1 -c:v libx264 -preset fast -c:a aac {outputPath} -hide_banner";
 
             var process = new Process();
             var startInfo = new ProcessStartInfo();
@@ -62,5 +62,4 @@ namespace SnackTime.WebApi.Controllers
             return File(bytes, "video/mp4");
         }
     }
-
 }

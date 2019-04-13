@@ -1,7 +1,7 @@
 <template>
   <div>
     <!--<media-list Text="New" />-->
-    <media-list :series="seriesState.latestDownloaded" Text="Downloaded" />
+    <media-list :series="lastDownloaded" Text="Downloaded" />
     <!--    <media-list Text="Watch again" />-->
 
     <h2 class="center">Browse</h2>
@@ -33,6 +33,10 @@ import { Module } from "@/store/store";
 export default class Home extends Vue {
   @State(Module.SERIES)
   private seriesState!: SeriesState;
+
+  get lastDownloaded() {
+    return this.seriesState.latestDownloaded;
+  }
 }
 </script>
 

@@ -1,7 +1,7 @@
 import { GetterTree } from "vuex";
 import { EpisodeState } from "./types";
 import { RootState } from "@/store/types";
-import { Episode } from "@/logic/api/episodes/protogen/episodes";
+import { Episode } from "@/logic/api/types";
 
 export const enum Methods {
   GET_SEASONS = "getSeason"

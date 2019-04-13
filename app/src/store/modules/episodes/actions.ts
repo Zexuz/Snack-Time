@@ -4,7 +4,7 @@ import { RootState } from "@/store/types";
 import { HttpClient } from "@/logic/http/httpClient";
 import { Endpoints } from "@/logic/api/episodes/endpoints";
 import { MutationTypes } from "@/store/modules/episodes/mutations";
-import { Episode } from "@/logic/api/episodes/protogen/episodes";
+import { Episode } from "@/logic/api/types";
 
 export const enum ActionTypes {
   FETCH_EPISODES = "fetchEpisodes",

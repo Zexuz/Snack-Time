@@ -27,7 +27,7 @@
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import MediaThumbnail from "../components/MediaThumbnail.vue";
 import { tns } from "tiny-slider/src/tiny-slider";
-import { Series } from "@/logic/api/series/protogen/series";
+import { Series } from "@/logic/api/types";
 
 @Component({
   components: {

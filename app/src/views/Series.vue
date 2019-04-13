@@ -50,9 +50,9 @@
                   <td>{{ episode.episideNumber }}</td>
                   <td>
                     <button
+                      :disabled="episode.episodeFileId === 0"
                       @click="play(episode.episodeFileId)"
                       class="btn"
-                      :disabled="episode.episodeFileId === 0"
                     >
                       play
                     </button>
@@ -77,7 +77,7 @@ import { Component, Vue } from "vue-property-decorator";
 import { Action, Getter, State } from "vuex-class";
 import { Module } from "@/store/store";
 import { SeriesState } from "@/store/modules/series/types";
-import { ImagesUrl, Series } from "@/logic/api/series/protogen/series";
+import { ImageUrl, Series } from "@/logic/api/types";
 import { ActionTypes } from "@/store/modules/episodes/actions";
 import { Methods, Season } from "@/store/modules/episodes/getters";
 import M from "materialize-css";
@@ -118,7 +118,7 @@ export default class SeriesInfo extends Vue {
     let id = this.currentId();
     let matches = this.seriesState.series.filter(value => value.id === id);
     if (matches.length == 0) {
-      return new Series({ imagesUrl: new ImagesUrl() });
+      return new Series({ imagesUrl: new ImageUrl() });
     }
     return matches[0];
   }

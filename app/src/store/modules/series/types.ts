@@ -1,4 +1,4 @@
-import { Series } from "@/logic/api/series/protogen/series";
+import { Series } from "@/logic/api/types";
 
 export interface SeriesState {
   series: Series[];

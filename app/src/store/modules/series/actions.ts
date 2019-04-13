@@ -2,7 +2,7 @@ import { ActionTree } from "vuex";
 import { SeriesState } from "./types";
 import { RootState } from "@/store/types";
 import { HttpClient } from "@/logic/http/httpClient";
-import { Series } from "@/logic/api/series/protogen/series";
+import { Series } from "@/logic/api/types";
 import { Endpoints } from "@/logic/api/series/endpoints";
 import { MutationTypes } from "@/store/modules/series/mutations";
 

@@ -19,15 +19,15 @@ namespace SnackTime.WebApi.Controllers
         [HttpGet("series/{seriesId}")]
         public async Task<ActionResult> GetEpisodesBySeriesId(int seriesId)
         {
-            var episodes = await _episodeProvider.GetBySeriesIdAsync(new GetBySeriesIdRequest {SeriesId = seriesId});
-            return Ok(ApiResponseFactory.CreateSuccess(episodes));
+            var res = await _episodeProvider.GetBySeriesIdAsync(new GetBySeriesIdRequest {SeriesId = seriesId});
+            return Ok(ApiResponseFactory.CreateSuccess(res.Episodes));
         }
 
         [HttpGet("{episodeId}")]
         public async Task<ActionResult> GetEpisodeById(int episodeId)
         {
-            var episode = await _episodeProvider.GetByIdAsync(new GetByIdRequest {Id = episodeId});
-            return Ok(ApiResponseFactory.CreateSuccess(episode));
+            var res = await _episodeProvider.GetByIdAsync(new GetByIdRequest {Id = episodeId});
+            return Ok(ApiResponseFactory.CreateSuccess(res.Episode));
         }
     }
 }

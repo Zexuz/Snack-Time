@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Mpv.JsonIpc;
+using SnackTime.Core.Media.Episodes;
+using SnackTime.Core.Process;
 
 namespace SnackTime.WebApi.Controllers
 {

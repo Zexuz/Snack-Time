@@ -1,6 +1,6 @@
 import { MutationTree } from "vuex";
 import { SeriesState } from "./types";
-import { Series } from "@/logic/api/series/protogen/series";
+import { snacktime } from "@/logic/api/types";
 
 export const enum MutationTypes {
   SET_SERIES = "setSeries",
@@ -8,10 +8,10 @@ export const enum MutationTypes {
 }
 
 export const mutations: MutationTree<SeriesState> = {
-  [MutationTypes.SET_SERIES](state, series: Series[]) {
+  [MutationTypes.SET_SERIES](state, series: snacktime.media.Series[]) {
     state.series = series;
   },
-  [MutationTypes.SET_LATEST_DOWNLOADED](state, series: Series[]) {
+  [MutationTypes.SET_LATEST_DOWNLOADED](state, series: snacktime.media.Series[]) {
     state.latestDownloaded = series;
   }
 };

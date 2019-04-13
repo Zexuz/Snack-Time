@@ -1,4 +1,4 @@
-import { Episode } from "@/logic/api/episodes/protogen/episodes";
+import { Episode } from "@/logic/api/types";
 
 export interface EpisodeState {
   episodes: { [seriesId: number]: Episode[] };

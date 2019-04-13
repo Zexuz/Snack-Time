@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { Series } from "@/logic/api/series/protogen/series";
+import { Series } from "@/logic/api/types";
 
 @Component({
   components: {}
