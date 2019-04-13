@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Mpv.JsonIpc;
 using SnackTime.Core.Media.Episodes;
 using SnackTime.Core.Process;
+using SnackTime.Core.Session;
 
 namespace SnackTime.WebApi.Controllers
 {
@@ -14,22 +15,13 @@ namespace SnackTime.WebApi.Controllers
         private readonly IApi            _api;
         private readonly ProcessManager _processManager;
         private readonly EpisodeFileLookupProvider _fileLookupProvider;
-        private readonly EpisodeProvider _episodeProvider;
+        private readonly SessionQueue _sessionQueue;
 
-        public Remote(IApi api, ProcessManager processManager, EpisodeFileLookupProvider fileLookupProvider, EpisodeProvider episodeProvider)
+        public Remote(ProcessManager processManager, EpisodeFileLookupProvider fileLookupProvider, SessionQueue sessionQueue)
         {
-            _api = api;
             _processManager = processManager;
             _fileLookupProvider = fileLookupProvider;
-            _episodeProvider = episodeProvider;
-        }
-
-        [HttpPost("toggle")]
-        public ActionResult Post()
-        {
-            _api.ShowText("asdasd", TimeSpan.FromSeconds(3));
-
-            return Ok();
+            _sessionQueue = sessionQueue;
         }
         
         [HttpGet("play/{fileId}")]
@@ -48,11 +40,14 @@ namespace SnackTime.WebApi.Controllers
             }
 
             var fileInfo = await _fileLookupProvider.GetFileInfoForId(fileId);
+            
+            _sessionQueue.AddToQueue(new SessionQueue.Item
+            {
+                Path = fileInfo.Path,
+                MediaId = fileInfo.SeriesId.ToString()
+            });
 
-            await _api.ShowText($"Now playing {fileInfo.Path.Substring(fileInfo.Path.LastIndexOf('\\') + 1)}", TimeSpan.FromSeconds(5));
-            await _api.PlayMedia(fileInfo.Path);
-
-            return Ok();
+            return StatusCode(202);
         }
     }
 }

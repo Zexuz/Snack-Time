@@ -2,6 +2,7 @@ using Autofac;
 using SnackTime.Core.Database;
 using SnackTime.Core.Media.Episodes;
 using SnackTime.Core.Process;
+using SnackTime.Core.Session;
 using SnackTime.Core.Settings;
 using SonarrSharp;
 
@@ -25,7 +26,11 @@ namespace SnackTime.Core
 
             builder.RegisterType<SettingsService>().AsSelf();
             builder.RegisterType<SettingsRepo>().AsSelf();
-            
+
+            builder.RegisterType<TimeService>().AsSelf();
+            builder.RegisterType<SessionService>().AsSelf();
+            builder.RegisterType<SessionQueue>().AsSelf().SingleInstance();
+
             builder.RegisterType<EpisodeFileLookupProvider>().AsSelf();
             builder.RegisterType<EpisodeProvider>().AsSelf();
 

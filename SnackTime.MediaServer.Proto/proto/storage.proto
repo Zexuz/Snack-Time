@@ -11,3 +11,18 @@ message MediaFile {
     string lastWatchedUTC = 4;
 
 }
+
+
+message Session{
+    string id = 1;
+    // TODO add device id / name?
+    string startUTC = 2;
+    string endUTC = 3;
+    string mediaId = 4;
+    Duration duration = 5;
+}
+
+message Duration {
+    double startPostionInSec = 1;
+    double endPostionInSec = 2;
+}

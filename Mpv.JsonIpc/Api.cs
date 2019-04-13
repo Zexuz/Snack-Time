@@ -30,5 +30,11 @@ namespace Mpv.JsonIpc
             var request = _ipc.CreateCommand(new[] {"loadfile", path});
             await _ipc.ExecuteCommand<string>(request);
         }
+
+        public async Task<TimeSpan> GetCurrentPosition()
+        {
+            var result = await _ipc.GetProperty<string>(Property.Position);
+            return TimeSpan.Zero;
+        }
     }
 }

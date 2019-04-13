@@ -17,7 +17,7 @@ namespace SnackTime.Core.Settings
         public void Save(Settings settings)
         {
             settings.Id = 1;
-            using (var db = _databaseFactory.CreateDatabase())
+            using (var db = _databaseFactory.GetDatabase())
             {
                 var collection = db.GetCollection<Settings>(CollectionName);
                 collection.Upsert(settings);
@@ -26,7 +26,7 @@ namespace SnackTime.Core.Settings
 
         public Settings Get()
         {
-            using (var db = _databaseFactory.CreateDatabase())
+            using (var db = _databaseFactory.GetDatabase())
             {
                 var collection = db.GetCollection<Settings>(CollectionName);
                 return collection.FindAll().FirstOrDefault();

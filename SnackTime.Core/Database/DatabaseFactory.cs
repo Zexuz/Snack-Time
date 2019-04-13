@@ -6,7 +6,7 @@ namespace SnackTime.Core.Database
     {
         private const string ConnectionString = "MediaDb";
 
-        public LiteDatabase CreateDatabase()
+        public LiteDatabase GetDatabase()
         {
             return new LiteDatabase(ConnectionString);
         }

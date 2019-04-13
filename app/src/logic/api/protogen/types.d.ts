@@ -591,5 +591,75 @@ export namespace snacktime {
             /** MediaFile lastWatchedUTC. */
             public lastWatchedUTC: string;
         }
+
+        /** Properties of a Session. */
+        interface ISession {
+
+            /** Session id */
+            id?: (string|null);
+
+            /** Session startUTC */
+            startUTC?: (string|null);
+
+            /** Session endUTC */
+            endUTC?: (string|null);
+
+            /** Session mediaId */
+            mediaId?: (string|null);
+
+            /** Session duration */
+            duration?: (snacktime.storage.IDuration|null);
+        }
+
+        /** Represents a Session. */
+        class Session implements ISession {
+
+            /**
+             * Constructs a new Session.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: snacktime.storage.ISession);
+
+            /** Session id. */
+            public id: string;
+
+            /** Session startUTC. */
+            public startUTC: string;
+
+            /** Session endUTC. */
+            public endUTC: string;
+
+            /** Session mediaId. */
+            public mediaId: string;
+
+            /** Session duration. */
+            public duration?: (snacktime.storage.IDuration|null);
+        }
+
+        /** Properties of a Duration. */
+        interface IDuration {
+
+            /** Duration startPostionInSec */
+            startPostionInSec?: (number|null);
+
+            /** Duration endPostionInSec */
+            endPostionInSec?: (number|null);
+        }
+
+        /** Represents a Duration. */
+        class Duration implements IDuration {
+
+            /**
+             * Constructs a new Duration.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: snacktime.storage.IDuration);
+
+            /** Duration startPostionInSec. */
+            public startPostionInSec: number;
+
+            /** Duration endPostionInSec. */
+            public endPostionInSec: number;
+        }
     }
 }

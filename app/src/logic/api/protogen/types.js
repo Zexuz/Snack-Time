@@ -1029,6 +1029,121 @@ export const snacktime = $root.snacktime = (() => {
             return MediaFile;
         })();
 
+        storage.Session = (function() {
+
+            /**
+             * Properties of a Session.
+             * @memberof snacktime.storage
+             * @interface ISession
+             * @property {string|null} [id] Session id
+             * @property {string|null} [startUTC] Session startUTC
+             * @property {string|null} [endUTC] Session endUTC
+             * @property {string|null} [mediaId] Session mediaId
+             * @property {snacktime.storage.IDuration|null} [duration] Session duration
+             */
+
+            /**
+             * Constructs a new Session.
+             * @memberof snacktime.storage
+             * @classdesc Represents a Session.
+             * @implements ISession
+             * @constructor
+             * @param {snacktime.storage.ISession=} [properties] Properties to set
+             */
+            function Session(properties) {
+                if (properties)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * Session id.
+             * @member {string} id
+             * @memberof snacktime.storage.Session
+             * @instance
+             */
+            Session.prototype.id = "";
+
+            /**
+             * Session startUTC.
+             * @member {string} startUTC
+             * @memberof snacktime.storage.Session
+             * @instance
+             */
+            Session.prototype.startUTC = "";
+
+            /**
+             * Session endUTC.
+             * @member {string} endUTC
+             * @memberof snacktime.storage.Session
+             * @instance
+             */
+            Session.prototype.endUTC = "";
+
+            /**
+             * Session mediaId.
+             * @member {string} mediaId
+             * @memberof snacktime.storage.Session
+             * @instance
+             */
+            Session.prototype.mediaId = "";
+
+            /**
+             * Session duration.
+             * @member {snacktime.storage.IDuration|null|undefined} duration
+             * @memberof snacktime.storage.Session
+             * @instance
+             */
+            Session.prototype.duration = null;
+
+            return Session;
+        })();
+
+        storage.Duration = (function() {
+
+            /**
+             * Properties of a Duration.
+             * @memberof snacktime.storage
+             * @interface IDuration
+             * @property {number|null} [startPostionInSec] Duration startPostionInSec
+             * @property {number|null} [endPostionInSec] Duration endPostionInSec
+             */
+
+            /**
+             * Constructs a new Duration.
+             * @memberof snacktime.storage
+             * @classdesc Represents a Duration.
+             * @implements IDuration
+             * @constructor
+             * @param {snacktime.storage.IDuration=} [properties] Properties to set
+             */
+            function Duration(properties) {
+                if (properties)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * Duration startPostionInSec.
+             * @member {number} startPostionInSec
+             * @memberof snacktime.storage.Duration
+             * @instance
+             */
+            Duration.prototype.startPostionInSec = 0;
+
+            /**
+             * Duration endPostionInSec.
+             * @member {number} endPostionInSec
+             * @memberof snacktime.storage.Duration
+             * @instance
+             */
+            Duration.prototype.endPostionInSec = 0;
+
+            return Duration;
+        })();
+
         return storage;
     })();
 

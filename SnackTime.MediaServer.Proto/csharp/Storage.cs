@@ -27,12 +27,18 @@ namespace SnackTime.MediaServer.Storage.ProtoGenerated {
             "ChNwcm90by9zdG9yYWdlLnByb3RvEhFzbmFja3RpbWUuc3RvcmFnZSJfCglN",
             "ZWRpYUZpbGUSEAoIZmlsZU5hbWUYASABKAkSEQoJbWVkaWFOYW1lGAIgASgJ",
             "EhUKDWRvd25sb2FkZWRVVEMYAyABKAkSFgoObGFzdFdhdGNoZWRVVEMYBCAB",
-            "KAlCL6oCLFNuYWNrVGltZS5NZWRpYVNlcnZlci5TdG9yYWdlLlByb3RvR2Vu",
-            "ZXJhdGVkYgZwcm90bzM="));
+            "KAkidwoHU2Vzc2lvbhIKCgJpZBgBIAEoCRIQCghzdGFydFVUQxgCIAEoCRIO",
+            "CgZlbmRVVEMYAyABKAkSDwoHbWVkaWFJZBgEIAEoCRItCghkdXJhdGlvbhgF",
+            "IAEoCzIbLnNuYWNrdGltZS5zdG9yYWdlLkR1cmF0aW9uIj4KCER1cmF0aW9u",
+            "EhkKEXN0YXJ0UG9zdGlvbkluU2VjGAEgASgBEhcKD2VuZFBvc3Rpb25JblNl",
+            "YxgCIAEoAUIvqgIsU25hY2tUaW1lLk1lZGlhU2VydmVyLlN0b3JhZ2UuUHJv",
+            "dG9HZW5lcmF0ZWRiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Storage.ProtoGenerated.MediaFile), global::SnackTime.MediaServer.Storage.ProtoGenerated.MediaFile.Parser, new[]{ "FileName", "MediaName", "DownloadedUTC", "LastWatchedUTC" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Storage.ProtoGenerated.MediaFile), global::SnackTime.MediaServer.Storage.ProtoGenerated.MediaFile.Parser, new[]{ "FileName", "MediaName", "DownloadedUTC", "LastWatchedUTC" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Storage.ProtoGenerated.Session), global::SnackTime.MediaServer.Storage.ProtoGenerated.Session.Parser, new[]{ "Id", "StartUTC", "EndUTC", "MediaId", "Duration" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Storage.ProtoGenerated.Duration), global::SnackTime.MediaServer.Storage.ProtoGenerated.Duration.Parser, new[]{ "StartPostionInSec", "EndPostionInSec" }, null, null, null)
           }));
     }
     #endregion
@@ -244,6 +250,413 @@ namespace SnackTime.MediaServer.Storage.ProtoGenerated {
           }
           case 34: {
             LastWatchedUTC = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class Session : pb::IMessage<Session> {
+    private static readonly pb::MessageParser<Session> _parser = new pb::MessageParser<Session>(() => new Session());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<Session> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SnackTime.MediaServer.Storage.ProtoGenerated.StorageReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Session() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Session(Session other) : this() {
+      id_ = other.id_;
+      startUTC_ = other.startUTC_;
+      endUTC_ = other.endUTC_;
+      mediaId_ = other.mediaId_;
+      duration_ = other.duration_ != null ? other.duration_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Session Clone() {
+      return new Session(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private string id_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Id {
+      get { return id_; }
+      set {
+        id_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "startUTC" field.</summary>
+    public const int StartUTCFieldNumber = 2;
+    private string startUTC_ = "";
+    /// <summary>
+    /// TODO add device id / name?
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string StartUTC {
+      get { return startUTC_; }
+      set {
+        startUTC_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "endUTC" field.</summary>
+    public const int EndUTCFieldNumber = 3;
+    private string endUTC_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string EndUTC {
+      get { return endUTC_; }
+      set {
+        endUTC_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "mediaId" field.</summary>
+    public const int MediaIdFieldNumber = 4;
+    private string mediaId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string MediaId {
+      get { return mediaId_; }
+      set {
+        mediaId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "duration" field.</summary>
+    public const int DurationFieldNumber = 5;
+    private global::SnackTime.MediaServer.Storage.ProtoGenerated.Duration duration_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::SnackTime.MediaServer.Storage.ProtoGenerated.Duration Duration {
+      get { return duration_; }
+      set {
+        duration_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as Session);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(Session other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Id != other.Id) return false;
+      if (StartUTC != other.StartUTC) return false;
+      if (EndUTC != other.EndUTC) return false;
+      if (MediaId != other.MediaId) return false;
+      if (!object.Equals(Duration, other.Duration)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Id.Length != 0) hash ^= Id.GetHashCode();
+      if (StartUTC.Length != 0) hash ^= StartUTC.GetHashCode();
+      if (EndUTC.Length != 0) hash ^= EndUTC.GetHashCode();
+      if (MediaId.Length != 0) hash ^= MediaId.GetHashCode();
+      if (duration_ != null) hash ^= Duration.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Id.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Id);
+      }
+      if (StartUTC.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(StartUTC);
+      }
+      if (EndUTC.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(EndUTC);
+      }
+      if (MediaId.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(MediaId);
+      }
+      if (duration_ != null) {
+        output.WriteRawTag(42);
+        output.WriteMessage(Duration);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Id.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
+      }
+      if (StartUTC.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(StartUTC);
+      }
+      if (EndUTC.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(EndUTC);
+      }
+      if (MediaId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(MediaId);
+      }
+      if (duration_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Duration);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(Session other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Id.Length != 0) {
+        Id = other.Id;
+      }
+      if (other.StartUTC.Length != 0) {
+        StartUTC = other.StartUTC;
+      }
+      if (other.EndUTC.Length != 0) {
+        EndUTC = other.EndUTC;
+      }
+      if (other.MediaId.Length != 0) {
+        MediaId = other.MediaId;
+      }
+      if (other.duration_ != null) {
+        if (duration_ == null) {
+          duration_ = new global::SnackTime.MediaServer.Storage.ProtoGenerated.Duration();
+        }
+        Duration.MergeFrom(other.Duration);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Id = input.ReadString();
+            break;
+          }
+          case 18: {
+            StartUTC = input.ReadString();
+            break;
+          }
+          case 26: {
+            EndUTC = input.ReadString();
+            break;
+          }
+          case 34: {
+            MediaId = input.ReadString();
+            break;
+          }
+          case 42: {
+            if (duration_ == null) {
+              duration_ = new global::SnackTime.MediaServer.Storage.ProtoGenerated.Duration();
+            }
+            input.ReadMessage(duration_);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class Duration : pb::IMessage<Duration> {
+    private static readonly pb::MessageParser<Duration> _parser = new pb::MessageParser<Duration>(() => new Duration());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<Duration> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SnackTime.MediaServer.Storage.ProtoGenerated.StorageReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Duration() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Duration(Duration other) : this() {
+      startPostionInSec_ = other.startPostionInSec_;
+      endPostionInSec_ = other.endPostionInSec_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Duration Clone() {
+      return new Duration(this);
+    }
+
+    /// <summary>Field number for the "startPostionInSec" field.</summary>
+    public const int StartPostionInSecFieldNumber = 1;
+    private double startPostionInSec_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public double StartPostionInSec {
+      get { return startPostionInSec_; }
+      set {
+        startPostionInSec_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "endPostionInSec" field.</summary>
+    public const int EndPostionInSecFieldNumber = 2;
+    private double endPostionInSec_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public double EndPostionInSec {
+      get { return endPostionInSec_; }
+      set {
+        endPostionInSec_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as Duration);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(Duration other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(StartPostionInSec, other.StartPostionInSec)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(EndPostionInSec, other.EndPostionInSec)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (StartPostionInSec != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(StartPostionInSec);
+      if (EndPostionInSec != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(EndPostionInSec);
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (StartPostionInSec != 0D) {
+        output.WriteRawTag(9);
+        output.WriteDouble(StartPostionInSec);
+      }
+      if (EndPostionInSec != 0D) {
+        output.WriteRawTag(17);
+        output.WriteDouble(EndPostionInSec);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (StartPostionInSec != 0D) {
+        size += 1 + 8;
+      }
+      if (EndPostionInSec != 0D) {
+        size += 1 + 8;
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(Duration other) {
+      if (other == null) {
+        return;
+      }
+      if (other.StartPostionInSec != 0D) {
+        StartPostionInSec = other.StartPostionInSec;
+      }
+      if (other.EndPostionInSec != 0D) {
+        EndPostionInSec = other.EndPostionInSec;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 9: {
+            StartPostionInSec = input.ReadDouble();
+            break;
+          }
+          case 17: {
+            EndPostionInSec = input.ReadDouble();
             break;
           }
         }
