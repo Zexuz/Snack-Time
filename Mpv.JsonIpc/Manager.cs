@@ -10,44 +10,57 @@ namespace Mpv.JsonIpc
     {
         private readonly NamedPipeClientStream _pipe;
 
-        private StreamReader _pipeIn;
-        private StreamWriter _pipeOut;
+        private StreamReader _pipeReader;
+        private StreamWriter _pipeWriter;
 
         public Manager(INamedPipeFactory pipeFactory)
         {
             _pipe = pipeFactory.CreateNamedPipe();
         }
 
-        public async Task<Response<T>> Execute<T>(Request message)
+        //If we ever want to listen to random MPV actions, we can always just create a sepperate pipe for that.
+        //So one pipe for sending/receiving RPC call, and one just to read/oberser events from properties 
+        public async Task<Response<T>> Execute<T>(Request request)
         {
             if (!_pipe.IsConnected)
             {
                 _pipe.Connect();
-                _pipeIn = new StreamReader(_pipe);
-                _pipeOut = new StreamWriter(_pipe) {AutoFlush = true};
+
+                _pipeReader = new StreamReader(_pipe);
+                _pipeWriter = new StreamWriter(_pipe);
             }
 
-            var messageToSend = JsonConvert.SerializeObject(message);
-            Console.WriteLine(messageToSend);
-            _pipeOut.WriteLine(messageToSend);
+            var messageToSend = JsonConvert.SerializeObject(request);
+            await _pipeWriter.WriteLineAsync(messageToSend);
+            await _pipeWriter.FlushAsync();
 
-            var readLineTask = _pipeIn.ReadLineAsync();
-
-
-            const int timeout = 1000;
-            if (await Task.WhenAny(readLineTask, Task.Delay(timeout)) != readLineTask)
+            var counter = 0;
+            while (true)
             {
-                return new Response<T>
-                {
-                    Data = default(T),
-                    Error = $"Got a timeout after {timeout}ms",
-                    RequestId = -1
-                };
-            }
+                await Task.Delay(25);
+                counter++;
 
-            var messageReceived = readLineTask.Result;
-            Console.WriteLine(messageReceived);
-            return JsonConvert.DeserializeObject<Response<T>>(messageReceived);
+                if (counter > 1000)
+                {
+                    throw new Exception("Retries maxed out");
+                }
+
+
+                var messageReceived = await _pipeReader.ReadLineAsync();
+                if (string.IsNullOrWhiteSpace(messageReceived))
+                {
+                    continue;
+                }
+
+                var response = JsonConvert.DeserializeObject<Response<T>>(messageReceived);
+
+                if (response.RequestId != request.RequestId)
+                {
+                    continue;
+                }
+
+                return response;
+            }
         }
 
         public void Dispose()

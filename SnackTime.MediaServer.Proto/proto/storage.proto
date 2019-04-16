@@ -16,8 +16,8 @@ message MediaFile {
 message Session{
     string id = 1;
     // TODO add device id / name?
-    string startUTC = 2;
-    string endUTC = 3;
+    int64 startUTC = 2;
+    int64 endUTC = 3;
     string mediaId = 4;
     Duration duration = 5;
 }

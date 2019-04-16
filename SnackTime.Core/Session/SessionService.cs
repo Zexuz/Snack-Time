@@ -31,14 +31,14 @@ namespace SnackTime.Core.Session
                 Id = sessionId,
                 MediaId = mediaId,
                 Duration = duration,
-                StartUTC = _timeService.GetCurrentTimeAsString(),
-                EndUTC = _timeService.GetCurrentTimeAsString(),
+                StartUTC = _timeService.GetCurrentTimeAsUnixSeconds(),
+                EndUTC = _timeService.GetCurrentTimeAsUnixSeconds(),
             };
         }
 
         public void UpsertSession(MediaServer.Storage.ProtoGenerated.Session session)
         {
-            using (var db = new LiteRepository(_databaseFactory.GetDatabase()))
+            using (var db = _databaseFactory.GetRepository())
             {
                 db.Upsert(session);
             }
@@ -46,7 +46,7 @@ namespace SnackTime.Core.Session
 
         public object GetAll()
         {
-            using (var db = new LiteRepository(_databaseFactory.GetDatabase()))
+            using (var db = _databaseFactory.GetRepository())
             {
                 return db.Fetch<MediaServer.Storage.ProtoGenerated.Session>();
             }

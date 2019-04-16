@@ -599,10 +599,10 @@ export namespace snacktime {
             id?: (string|null);
 
             /** Session startUTC */
-            startUTC?: (string|null);
+            startUTC?: (number|Long|null);
 
             /** Session endUTC */
-            endUTC?: (string|null);
+            endUTC?: (number|Long|null);
 
             /** Session mediaId */
             mediaId?: (string|null);
@@ -624,10 +624,10 @@ export namespace snacktime {
             public id: string;
 
             /** Session startUTC. */
-            public startUTC: string;
+            public startUTC: (number|Long);
 
             /** Session endUTC. */
-            public endUTC: string;
+            public endUTC: (number|Long);
 
             /** Session mediaId. */
             public mediaId: string;

@@ -1036,8 +1036,8 @@ export const snacktime = $root.snacktime = (() => {
              * @memberof snacktime.storage
              * @interface ISession
              * @property {string|null} [id] Session id
-             * @property {string|null} [startUTC] Session startUTC
-             * @property {string|null} [endUTC] Session endUTC
+             * @property {number|Long|null} [startUTC] Session startUTC
+             * @property {number|Long|null} [endUTC] Session endUTC
              * @property {string|null} [mediaId] Session mediaId
              * @property {snacktime.storage.IDuration|null} [duration] Session duration
              */
@@ -1067,19 +1067,19 @@ export const snacktime = $root.snacktime = (() => {
 
             /**
              * Session startUTC.
-             * @member {string} startUTC
+             * @member {number|Long} startUTC
              * @memberof snacktime.storage.Session
              * @instance
              */
-            Session.prototype.startUTC = "";
+            Session.prototype.startUTC = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
 
             /**
              * Session endUTC.
-             * @member {string} endUTC
+             * @member {number|Long} endUTC
              * @memberof snacktime.storage.Session
              * @instance
              */
-            Session.prototype.endUTC = "";
+            Session.prototype.endUTC = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
 
             /**
              * Session mediaId.

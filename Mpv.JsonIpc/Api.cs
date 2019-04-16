@@ -33,8 +33,8 @@ namespace Mpv.JsonIpc
 
         public async Task<TimeSpan> GetCurrentPosition()
         {
-            var result = await _ipc.GetProperty<string>(Property.Position);
-            return TimeSpan.Zero;
+            var result = await _ipc.GetProperty<double>(Property.Position);
+            return TimeSpan.FromSeconds(result.Data);
         }
     }
 }

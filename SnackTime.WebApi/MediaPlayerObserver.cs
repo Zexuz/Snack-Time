@@ -10,16 +10,16 @@ namespace SnackTime.WebApi
 {
     public class MediaPlayerObserver : IHostedService
     {
-        private readonly SessionQueue   _sessionQueue;
+        private readonly Queue<Item> _queue;
         private readonly SessionService _sessionService;
         private readonly IApi           _api;
 
         private CancellationToken _token;
         private Task              _task;
 
-        public MediaPlayerObserver(SessionQueue sessionQueue, SessionService sessionService, IApi api)
+        public MediaPlayerObserver(Queue<Item> queue, SessionService sessionService, IApi api)
         {
-            _sessionQueue = sessionQueue;
+            _queue = queue;
             _sessionService = sessionService;
             _api = api;
         }
@@ -37,14 +37,14 @@ namespace SnackTime.WebApi
             {
                 await Task.Delay(500 * 1, _token);
 
-                if (_sessionQueue.HasItems())
+                if (_queue.HasItems())
                 {
                     if (currentSession != null)
                     {
                         //update the current session before overiing it
                     }
 
-                    var item = _sessionQueue.Pop();
+                    var item = _queue.Pop();
                     currentSession = _sessionService.CreateNewSession(item.MediaId);
                     await _api.ShowText($"Now playing {item.Path.Substring(item.Path.LastIndexOf('\\') + 1)}", TimeSpan.FromSeconds(5));
                     await _api.PlayMedia(item.Path);
@@ -53,6 +53,7 @@ namespace SnackTime.WebApi
                 if (currentSession != null)
                 {
                     currentSession.Duration.EndPostionInSec = (await _api.GetCurrentPosition()).TotalSeconds;
+                    Console.WriteLine(currentSession.Duration.EndPostionInSec);
                     _sessionService.UpsertSession(currentSession);
                 }
 
@@ -63,8 +64,6 @@ namespace SnackTime.WebApi
 
                 // And if we are already playing a video, and receive a new item in out queue,
                 // We replaces the media playing and add a new watch session
-
-                Console.WriteLine("Watch MPV for duration!");
             }
         }
 

@@ -2,18 +2,18 @@ using System.Collections.Generic;
 
 namespace SnackTime.Core.Session
 {
-    public class SessionQueue
+    public class Queue<T>
     {
-        private readonly object      _lock;
-        private readonly IList<Item> _queue;
+        private readonly object   _lock;
+        private readonly IList<T> _queue;
 
-        public SessionQueue()
+        public Queue()
         {
             _lock = new object();
-            _queue = new List<Item>();
+            _queue = new List<T>();
         }
 
-        public void AddToQueue(Item request)
+        public void AddToQueue(T request)
         {
             lock (_lock)
             {
@@ -29,7 +29,7 @@ namespace SnackTime.Core.Session
             }
         }
 
-        public Item Pop()
+        public T Pop()
         {
             lock (_lock)
             {
@@ -37,12 +37,6 @@ namespace SnackTime.Core.Session
                 _queue.RemoveAt(0);
                 return item;
             }
-        }
-
-        public class Item
-        {
-            public string MediaId { get; set; }
-            public string Path { get; set; }
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Mpv.JsonIpc;
 using SnackTime.Core.Media.Episodes;
@@ -12,18 +11,18 @@ namespace SnackTime.WebApi.Controllers
     [ApiController]
     public class Remote : ControllerBase
     {
-        private readonly IApi            _api;
-        private readonly ProcessManager _processManager;
+        private readonly IApi                      _api;
+        private readonly ProcessManager            _processManager;
         private readonly EpisodeFileLookupProvider _fileLookupProvider;
-        private readonly SessionQueue _sessionQueue;
+        private readonly Queue<Item>               _queue;
 
-        public Remote(ProcessManager processManager, EpisodeFileLookupProvider fileLookupProvider, SessionQueue sessionQueue)
+        public Remote(ProcessManager processManager, EpisodeFileLookupProvider fileLookupProvider, Queue<Item> queue)
         {
             _processManager = processManager;
             _fileLookupProvider = fileLookupProvider;
-            _sessionQueue = sessionQueue;
+            _queue = queue;
         }
-        
+
         [HttpGet("play/{fileId}")]
         public async Task<ActionResult> PlayMedia(int fileId)
         {
@@ -33,6 +32,7 @@ namespace SnackTime.WebApi.Controllers
                 var arguments = new[] {$"--input-ipc-server={NamedPipeFactory.GetPipeNameForCurrentOs()}"};
                 _processManager.StartProcess(path, arguments);
             }
+
             if (!_processManager.IsSvpRunning())
             {
                 var path = "C:\\Program Files (x86)\\SVP 4\\SVPManager.exe";
@@ -40,8 +40,8 @@ namespace SnackTime.WebApi.Controllers
             }
 
             var fileInfo = await _fileLookupProvider.GetFileInfoForId(fileId);
-            
-            _sessionQueue.AddToQueue(new SessionQueue.Item
+
+            _queue.AddToQueue(new Item
             {
                 Path = fileInfo.Path,
                 MediaId = fileInfo.SeriesId.ToString()

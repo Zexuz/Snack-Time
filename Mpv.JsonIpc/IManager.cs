@@ -4,7 +4,7 @@ namespace Mpv.JsonIpc
 {
     public interface IManager
     {
-        Task<Response<T>> Execute<T>(Request message);
+        Task<Response<T>> Execute<T>(Request request);
         void              Dispose();
     }
 }

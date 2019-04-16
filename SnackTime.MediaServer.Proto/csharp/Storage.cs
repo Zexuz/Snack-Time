@@ -27,8 +27,8 @@ namespace SnackTime.MediaServer.Storage.ProtoGenerated {
             "ChNwcm90by9zdG9yYWdlLnByb3RvEhFzbmFja3RpbWUuc3RvcmFnZSJfCglN",
             "ZWRpYUZpbGUSEAoIZmlsZU5hbWUYASABKAkSEQoJbWVkaWFOYW1lGAIgASgJ",
             "EhUKDWRvd25sb2FkZWRVVEMYAyABKAkSFgoObGFzdFdhdGNoZWRVVEMYBCAB",
-            "KAkidwoHU2Vzc2lvbhIKCgJpZBgBIAEoCRIQCghzdGFydFVUQxgCIAEoCRIO",
-            "CgZlbmRVVEMYAyABKAkSDwoHbWVkaWFJZBgEIAEoCRItCghkdXJhdGlvbhgF",
+            "KAkidwoHU2Vzc2lvbhIKCgJpZBgBIAEoCRIQCghzdGFydFVUQxgCIAEoAxIO",
+            "CgZlbmRVVEMYAyABKAMSDwoHbWVkaWFJZBgEIAEoCRItCghkdXJhdGlvbhgF",
             "IAEoCzIbLnNuYWNrdGltZS5zdG9yYWdlLkR1cmF0aW9uIj4KCER1cmF0aW9u",
             "EhkKEXN0YXJ0UG9zdGlvbkluU2VjGAEgASgBEhcKD2VuZFBvc3Rpb25JblNl",
             "YxgCIAEoAUIvqgIsU25hY2tUaW1lLk1lZGlhU2VydmVyLlN0b3JhZ2UuUHJv",
@@ -309,26 +309,26 @@ namespace SnackTime.MediaServer.Storage.ProtoGenerated {
 
     /// <summary>Field number for the "startUTC" field.</summary>
     public const int StartUTCFieldNumber = 2;
-    private string startUTC_ = "";
+    private long startUTC_;
     /// <summary>
     /// TODO add device id / name?
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string StartUTC {
+    public long StartUTC {
       get { return startUTC_; }
       set {
-        startUTC_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        startUTC_ = value;
       }
     }
 
     /// <summary>Field number for the "endUTC" field.</summary>
     public const int EndUTCFieldNumber = 3;
-    private string endUTC_ = "";
+    private long endUTC_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string EndUTC {
+    public long EndUTC {
       get { return endUTC_; }
       set {
-        endUTC_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        endUTC_ = value;
       }
     }
 
@@ -379,8 +379,8 @@ namespace SnackTime.MediaServer.Storage.ProtoGenerated {
     public override int GetHashCode() {
       int hash = 1;
       if (Id.Length != 0) hash ^= Id.GetHashCode();
-      if (StartUTC.Length != 0) hash ^= StartUTC.GetHashCode();
-      if (EndUTC.Length != 0) hash ^= EndUTC.GetHashCode();
+      if (StartUTC != 0L) hash ^= StartUTC.GetHashCode();
+      if (EndUTC != 0L) hash ^= EndUTC.GetHashCode();
       if (MediaId.Length != 0) hash ^= MediaId.GetHashCode();
       if (duration_ != null) hash ^= Duration.GetHashCode();
       if (_unknownFields != null) {
@@ -400,13 +400,13 @@ namespace SnackTime.MediaServer.Storage.ProtoGenerated {
         output.WriteRawTag(10);
         output.WriteString(Id);
       }
-      if (StartUTC.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(StartUTC);
+      if (StartUTC != 0L) {
+        output.WriteRawTag(16);
+        output.WriteInt64(StartUTC);
       }
-      if (EndUTC.Length != 0) {
-        output.WriteRawTag(26);
-        output.WriteString(EndUTC);
+      if (EndUTC != 0L) {
+        output.WriteRawTag(24);
+        output.WriteInt64(EndUTC);
       }
       if (MediaId.Length != 0) {
         output.WriteRawTag(34);
@@ -427,11 +427,11 @@ namespace SnackTime.MediaServer.Storage.ProtoGenerated {
       if (Id.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
       }
-      if (StartUTC.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(StartUTC);
+      if (StartUTC != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(StartUTC);
       }
-      if (EndUTC.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(EndUTC);
+      if (EndUTC != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(EndUTC);
       }
       if (MediaId.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(MediaId);
@@ -453,10 +453,10 @@ namespace SnackTime.MediaServer.Storage.ProtoGenerated {
       if (other.Id.Length != 0) {
         Id = other.Id;
       }
-      if (other.StartUTC.Length != 0) {
+      if (other.StartUTC != 0L) {
         StartUTC = other.StartUTC;
       }
-      if (other.EndUTC.Length != 0) {
+      if (other.EndUTC != 0L) {
         EndUTC = other.EndUTC;
       }
       if (other.MediaId.Length != 0) {
@@ -483,12 +483,12 @@ namespace SnackTime.MediaServer.Storage.ProtoGenerated {
             Id = input.ReadString();
             break;
           }
-          case 18: {
-            StartUTC = input.ReadString();
+          case 16: {
+            StartUTC = input.ReadInt64();
             break;
           }
-          case 26: {
-            EndUTC = input.ReadString();
+          case 24: {
+            EndUTC = input.ReadInt64();
             break;
           }
           case 34: {

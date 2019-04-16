@@ -10,5 +10,10 @@ namespace SnackTime.Core.Database
         {
             return new LiteDatabase(ConnectionString);
         }
+        
+        public LiteRepository GetRepository()
+        {
+            return new LiteRepository(GetDatabase());
+        }
     }
 }

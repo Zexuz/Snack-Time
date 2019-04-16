@@ -13,7 +13,7 @@ namespace SnackTime.WebApi
         {
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
-                .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+                .MinimumLevel.Override("Microsoft", LogEventLevel.Verbose)
                 .Enrich.FromLogContext()
                 .WriteTo.Console(
                     outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3} {CustomRequestId} {Method} {Endpoint}] {Message:lj}{NewLine}{Exception}")
