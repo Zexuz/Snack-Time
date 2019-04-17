@@ -1,10 +1,16 @@
 steps:
+  - checkout: self
+    persistCredentials: true
+    clean: true
   - script: |
-      . build_dockerfile.sh
-    displayName: 'Build docker image'
+      . build_dotnet.sh
+    displayName: 'Build dotnet'
   - script: |
-      . build_nuget.sh
-    displayName: 'Build NuGet package'
+      . build_frontend.sh
+    displayName: 'Build frontend'
+  - script: |
+      . build_release_to_github.sh
+    displayName: 'Push release to github'
 variables:
   - name: RELEASE_BRANCH
     value: $(Build.SourceBranchName)
