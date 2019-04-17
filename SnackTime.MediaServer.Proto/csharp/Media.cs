@@ -31,11 +31,12 @@ namespace SnackTime.MediaServer.Models.ProtoGenerated {
             "GAEgASgJEg4KBmZhbmFydBgCIAEoCRIOCgZwb3N0ZXIYAyABKAkigAEKB0Vw",
             "aXNvZGUSEAoIc2VyaWVzSWQYASABKAUSFQoNZXBpc29kZUZpbGVJZBgCIAEo",
             "BRIUCgxzZWFzb25OdW1iZXIYAyABKAUSFQoNZXBpc2lkZU51bWJlchgEIAEo",
-            "BRINCgV0aXRsZRgFIAEoCRIQCghvdmVydmlldxgGIAEoCUIuqgIrU25hY2tU",
-            "aW1lLk1lZGlhU2VydmVyLk1vZGVscy5Qcm90b0dlbmVyYXRlZGIGcHJvdG8z"));
+            "BRINCgV0aXRsZRgFIAEoCRIQCghvdmVydmlldxgGIAEoCSojCglQcm92aWRl",
+            "cnMSCgoGU29uYXJyEAASCgoGUmFkYXJyEAFCLqoCK1NuYWNrVGltZS5NZWRp",
+            "YVNlcnZlci5Nb2RlbHMuUHJvdG9HZW5lcmF0ZWRiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::SnackTime.MediaServer.Models.ProtoGenerated.Providers), }, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Models.ProtoGenerated.Series), global::SnackTime.MediaServer.Models.ProtoGenerated.Series.Parser, new[]{ "Id", "Title", "ImagesUrl", "Overview", "Monitored" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Models.ProtoGenerated.ImagesUrl), global::SnackTime.MediaServer.Models.ProtoGenerated.ImagesUrl.Parser, new[]{ "Banner", "Fanart", "Poster" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Models.ProtoGenerated.Episode), global::SnackTime.MediaServer.Models.ProtoGenerated.Episode.Parser, new[]{ "SeriesId", "EpisodeFileId", "SeasonNumber", "EpisideNumber", "Title", "Overview" }, null, null, null)
@@ -44,6 +45,14 @@ namespace SnackTime.MediaServer.Models.ProtoGenerated {
     #endregion
 
   }
+  #region Enums
+  public enum Providers {
+    [pbr::OriginalName("Sonarr")] Sonarr = 0,
+    [pbr::OriginalName("Radarr")] Radarr = 1,
+  }
+
+  #endregion
+
   #region Messages
   public sealed partial class Series : pb::IMessage<Series> {
     private static readonly pb::MessageParser<Series> _parser = new pb::MessageParser<Series>(() => new Series());

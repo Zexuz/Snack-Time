@@ -1,9 +1,9 @@
-
 namespace SnackTime.Core.Session
 {
     public class Item
     {
-        public string MediaId { get; set; }
-        public string Path    { get; set; }
+        public int                                         FileId   { get; set; }
+        public MediaServer.Models.ProtoGenerated.Providers Provider { get; set; }
+        public string                                      Path     { get; set; }
     }
 }

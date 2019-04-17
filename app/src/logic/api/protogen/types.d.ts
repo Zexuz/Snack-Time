@@ -355,6 +355,12 @@ export namespace snacktime {
             /** Episode overview. */
             public overview: string;
         }
+
+        /** Providers enum. */
+        enum Providers {
+            Sonarr = 0,
+            Radarr = 1
+        }
     }
 
     /** Namespace series. */

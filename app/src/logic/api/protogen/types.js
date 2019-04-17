@@ -617,6 +617,20 @@ export const snacktime = $root.snacktime = (() => {
             return Episode;
         })();
 
+        /**
+         * Providers enum.
+         * @name snacktime.media.Providers
+         * @enum {string}
+         * @property {number} Sonarr=0 Sonarr value
+         * @property {number} Radarr=1 Radarr value
+         */
+        media.Providers = (function() {
+            const valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "Sonarr"] = 0;
+            values[valuesById[1] = "Radarr"] = 1;
+            return values;
+        })();
+
         return media;
     })();
 

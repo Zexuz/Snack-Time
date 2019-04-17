@@ -4,13 +4,14 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using Mpv.JsonIpc;
 using SnackTime.Core.Session;
+using SnackTime.MediaServer.Models.ProtoGenerated;
 using SnackTime.MediaServer.Storage.ProtoGenerated;
 
 namespace SnackTime.WebApi
 {
     public class MediaPlayerObserver : IHostedService
     {
-        private readonly Queue<Item> _queue;
+        private readonly Queue<Item>    _queue;
         private readonly SessionService _sessionService;
         private readonly IApi           _api;
 
@@ -45,7 +46,7 @@ namespace SnackTime.WebApi
                     }
 
                     var item = _queue.Pop();
-                    currentSession = _sessionService.CreateNewSession(item.MediaId);
+                    currentSession = _sessionService.CreateNewSession(item.FileId, item.Provider);
                     await _api.ShowText($"Now playing {item.Path.Substring(item.Path.LastIndexOf('\\') + 1)}", TimeSpan.FromSeconds(5));
                     await _api.PlayMedia(item.Path);
                 }

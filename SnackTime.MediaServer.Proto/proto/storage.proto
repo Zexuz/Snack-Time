@@ -12,10 +12,8 @@ message MediaFile {
 
 }
 
-
-message Session{
+message Session {
     string id = 1;
-    // TODO add device id / name?
     int64 startUTC = 2;
     int64 endUTC = 3;
     string mediaId = 4;

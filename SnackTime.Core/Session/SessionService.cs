@@ -7,16 +7,22 @@ namespace SnackTime.Core.Session
 {
     public class SessionService
     {
-        private readonly DatabaseFactory _databaseFactory;
-        private readonly TimeService     _timeService;
+        private readonly DatabaseFactory    _databaseFactory;
+        private readonly TimeService        _timeService;
+        private readonly MediaFileIdService _idService;
 
-        public SessionService(DatabaseFactory databaseFactory, TimeService timeService)
+        public SessionService(DatabaseFactory databaseFactory, TimeService timeService, MediaFileIdService idService)
         {
             _databaseFactory = databaseFactory;
             _timeService = timeService;
+            _idService = idService;
         }
 
-        public MediaServer.Storage.ProtoGenerated.Session CreateNewSession(string mediaId, TimeSpan? startPosition = null)
+        public MediaServer.Storage.ProtoGenerated.Session CreateNewSession(
+            int fileId,
+            MediaServer.Models.ProtoGenerated.Providers provider,
+            TimeSpan? startPosition = null
+        )
         {
             var duration = new Duration {EndPostionInSec = 0, StartPostionInSec = 0};
             if (startPosition.HasValue)
@@ -29,7 +35,7 @@ namespace SnackTime.Core.Session
             return new MediaServer.Storage.ProtoGenerated.Session
             {
                 Id = sessionId,
-                MediaId = mediaId,
+                MediaId = _idService.GenerateId(fileId, provider),
                 Duration = duration,
                 StartUTC = _timeService.GetCurrentTimeAsUnixSeconds(),
                 EndUTC = _timeService.GetCurrentTimeAsUnixSeconds(),

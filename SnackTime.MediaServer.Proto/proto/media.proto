@@ -27,3 +27,8 @@ message Episode {
     string title = 5;
     string overview = 6;
 }
+
+enum Providers{
+    Sonarr = 0;
+    Radarr = 1;
+}

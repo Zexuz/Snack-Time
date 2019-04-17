@@ -310,9 +310,6 @@ namespace SnackTime.MediaServer.Storage.ProtoGenerated {
     /// <summary>Field number for the "startUTC" field.</summary>
     public const int StartUTCFieldNumber = 2;
     private long startUTC_;
-    /// <summary>
-    /// TODO add device id / name?
-    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public long StartUTC {
       get { return startUTC_; }

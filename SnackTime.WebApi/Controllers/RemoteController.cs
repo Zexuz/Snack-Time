@@ -4,6 +4,7 @@ using Mpv.JsonIpc;
 using SnackTime.Core.Media.Episodes;
 using SnackTime.Core.Process;
 using SnackTime.Core.Session;
+using SnackTime.MediaServer.Models.ProtoGenerated;
 
 namespace SnackTime.WebApi.Controllers
 {
@@ -44,7 +45,8 @@ namespace SnackTime.WebApi.Controllers
             _queue.AddToQueue(new Item
             {
                 Path = fileInfo.Path,
-                MediaId = fileInfo.SeriesId.ToString()
+                FileId = fileInfo.SeriesId,
+                Provider = Providers.Sonarr,
             });
 
             return StatusCode(202);
