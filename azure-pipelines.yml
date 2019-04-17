@@ -18,6 +18,7 @@ variables:
     value: $(Build.SourceBranch)
   - name: GIT_COMMIT_SHA
     value: $(Build.SourceVersion)
+  - group: "Github-Token"
 trigger:
   - master
 pool:
