@@ -3,7 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Grpc.Core;
 using Microsoft.Extensions.Hosting;
-using SnackTime.MediaServer.ProtoGenerated;
 
 namespace SnackTime.MediaServer.Grpc
 {
@@ -13,18 +12,18 @@ namespace SnackTime.MediaServer.Grpc
 
         public GrpcHostedService(
             ServerPort serverPort,
-            Greeter.GreeterBase greeterImpl,
             Service.Series.Series.SeriesBase seriesImpl,
-            Service.Episode.Episode.EpisodeBase episodeImpl
+            Service.Episode.Episode.EpisodeBase episodeImpl,
+            Service.File.File.FileBase fileImpl
         )
         {
             var server = new Server
             {
                 Services =
                 {
-                    Greeter.BindService(greeterImpl),
                     Service.Series.Series.BindService(seriesImpl),
-                    Service.Episode.Episode.BindService(episodeImpl)
+                    Service.Episode.Episode.BindService(episodeImpl),
+                    Service.File.File.BindService(fileImpl)
                 },
                 Ports = {serverPort}
             };

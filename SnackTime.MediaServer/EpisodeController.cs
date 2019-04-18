@@ -2,7 +2,6 @@ using System.Threading.Tasks;
 using Grpc.Core;
 using SnackTime.Core.Media.Episodes;
 using SnackTime.MediaServer.Service.Episode;
-using SonarrSharp;
 
 namespace SnackTime.MediaServer
 {

@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option csharp_namespace = "SnackTime.MediaServer.Service.File";
+
+package snacktime.series.file;
+
+
+message DownloadFileRequest {
+
+}
+
+message ResponseDownloadFile {
+    oneof type {
+        Started started = 1;
+        Chunk progress = 2;
+        Done done = 3;
+    }
+}
+
+message Started {
+    double lenght = 1;
+    int32 sizePerChunk = 2;
+    string FileName = 3;
+}
+
+message Chunk {
+    bytes Content = 1;
+}
+
+message Done {
+    string Hash = 1;
+}

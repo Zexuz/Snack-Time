@@ -1,5 +1,4 @@
 using System;
-using SnackTime.Core.Database;
 using SnackTime.MediaServer.Models.ProtoGenerated;
 
 namespace SnackTime.Core

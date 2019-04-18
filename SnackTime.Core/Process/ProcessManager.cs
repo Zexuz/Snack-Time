@@ -1,5 +1,3 @@
-using System;
-
 namespace SnackTime.Core.Process
 {
     public class ProcessManager

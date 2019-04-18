@@ -2,7 +2,9 @@ using Autofac;
 using Grpc.Core;
 using Microsoft.Extensions.Hosting;
 using SnackTime.MediaServer.Service.Episode;
+using SnackTime.MediaServer.Service.File;
 using SnackTime.MediaServer.Service.Series;
+using SnackTime.WebApi.Services;
 
 namespace SnackTime.WebApi
 {
@@ -15,8 +17,12 @@ namespace SnackTime.WebApi
             
             builder.RegisterInstance(new Series.SeriesClient(channel)).AsSelf();
             builder.RegisterInstance(new Episode.EpisodeClient(channel)).AsSelf();
-            
+            builder.RegisterInstance(new File.FileClient(channel)).AsSelf();
+
             builder.RegisterType<MediaPlayerObserver>().As<IHostedService>().SingleInstance();
+
+            builder.RegisterType<FileService>().AsSelf();
+            builder.RegisterType<FileDownloadService>().AsSelf();
         }
     }
 }

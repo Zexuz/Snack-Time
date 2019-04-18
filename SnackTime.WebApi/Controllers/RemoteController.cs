@@ -5,7 +5,6 @@ using SnackTime.Core;
 using SnackTime.Core.Media.Episodes;
 using SnackTime.Core.Process;
 using SnackTime.Core.Session;
-using SnackTime.MediaServer.Models.ProtoGenerated;
 
 namespace SnackTime.WebApi.Controllers
 {

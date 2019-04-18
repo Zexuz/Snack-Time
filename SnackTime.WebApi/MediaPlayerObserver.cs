@@ -5,7 +5,6 @@ using Microsoft.Extensions.Hosting;
 using Mpv.JsonIpc;
 using SnackTime.Core;
 using SnackTime.Core.Session;
-using SnackTime.MediaServer.Models.ProtoGenerated;
 using SnackTime.MediaServer.Storage.ProtoGenerated;
 
 namespace SnackTime.WebApi

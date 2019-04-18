@@ -147,156 +147,169 @@ export namespace snacktime {
         }
     }
 
-    /** Namespace media. */
-    namespace media {
-
-        /** Properties of a Series. */
-        interface ISeries {
-
-            /** Series id */
-            id?: (number|null);
-
-            /** Series title */
-            title?: (string|null);
-
-            /** Series imagesUrl */
-            imagesUrl?: (snacktime.media.IImagesUrl|null);
-
-            /** Series overview */
-            overview?: (string|null);
-
-            /** Series monitored */
-            monitored?: (boolean|null);
-        }
-
-        /** Represents a Series. */
-        class Series implements ISeries {
-
-            /**
-             * Constructs a new Series.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: snacktime.media.ISeries);
-
-            /** Series id. */
-            public id: number;
-
-            /** Series title. */
-            public title: string;
-
-            /** Series imagesUrl. */
-            public imagesUrl?: (snacktime.media.IImagesUrl|null);
-
-            /** Series overview. */
-            public overview: string;
-
-            /** Series monitored. */
-            public monitored: boolean;
-        }
-
-        /** Properties of an ImagesUrl. */
-        interface IImagesUrl {
-
-            /** ImagesUrl banner */
-            banner?: (string|null);
-
-            /** ImagesUrl fanart */
-            fanart?: (string|null);
-
-            /** ImagesUrl poster */
-            poster?: (string|null);
-        }
-
-        /** Represents an ImagesUrl. */
-        class ImagesUrl implements IImagesUrl {
-
-            /**
-             * Constructs a new ImagesUrl.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: snacktime.media.IImagesUrl);
-
-            /** ImagesUrl banner. */
-            public banner: string;
-
-            /** ImagesUrl fanart. */
-            public fanart: string;
-
-            /** ImagesUrl poster. */
-            public poster: string;
-        }
-
-        /** Properties of an Episode. */
-        interface IEpisode {
-
-            /** Episode seriesId */
-            seriesId?: (number|null);
-
-            /** Episode episodeFileId */
-            episodeFileId?: (number|null);
-
-            /** Episode seasonNumber */
-            seasonNumber?: (number|null);
-
-            /** Episode episideNumber */
-            episideNumber?: (number|null);
-
-            /** Episode title */
-            title?: (string|null);
-
-            /** Episode overview */
-            overview?: (string|null);
-
-            /** Episode playableId */
-            playableId?: (string|null);
-
-            /** Episode progress */
-            progress?: (snacktime.storage.IProgress|null);
-        }
-
-        /** Represents an Episode. */
-        class Episode implements IEpisode {
-
-            /**
-             * Constructs a new Episode.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: snacktime.media.IEpisode);
-
-            /** Episode seriesId. */
-            public seriesId: number;
-
-            /** Episode episodeFileId. */
-            public episodeFileId: number;
-
-            /** Episode seasonNumber. */
-            public seasonNumber: number;
-
-            /** Episode episideNumber. */
-            public episideNumber: number;
-
-            /** Episode title. */
-            public title: string;
-
-            /** Episode overview. */
-            public overview: string;
-
-            /** Episode playableId. */
-            public playableId: string;
-
-            /** Episode progress. */
-            public progress?: (snacktime.storage.IProgress|null);
-        }
-
-        /** Providers enum. */
-        enum Providers {
-            Sonarr = 0,
-            Radarr = 1
-        }
-    }
-
     /** Namespace series. */
     namespace series {
+
+        /** Namespace file. */
+        namespace file {
+
+            /** Properties of a DownloadFileRequest. */
+            interface IDownloadFileRequest {
+            }
+
+            /** Represents a DownloadFileRequest. */
+            class DownloadFileRequest implements IDownloadFileRequest {
+
+                /**
+                 * Constructs a new DownloadFileRequest.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: snacktime.series.file.IDownloadFileRequest);
+            }
+
+            /** Properties of a ResponseDownloadFile. */
+            interface IResponseDownloadFile {
+
+                /** ResponseDownloadFile started */
+                started?: (snacktime.series.file.IStarted|null);
+
+                /** ResponseDownloadFile progress */
+                progress?: (snacktime.series.file.IChunk|null);
+
+                /** ResponseDownloadFile done */
+                done?: (snacktime.series.file.IDone|null);
+            }
+
+            /** Represents a ResponseDownloadFile. */
+            class ResponseDownloadFile implements IResponseDownloadFile {
+
+                /**
+                 * Constructs a new ResponseDownloadFile.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: snacktime.series.file.IResponseDownloadFile);
+
+                /** ResponseDownloadFile started. */
+                public started?: (snacktime.series.file.IStarted|null);
+
+                /** ResponseDownloadFile progress. */
+                public progress?: (snacktime.series.file.IChunk|null);
+
+                /** ResponseDownloadFile done. */
+                public done?: (snacktime.series.file.IDone|null);
+
+                /** ResponseDownloadFile type. */
+                public type?: ("started"|"progress"|"done");
+            }
+
+            /** Properties of a Started. */
+            interface IStarted {
+
+                /** Started lenght */
+                lenght?: (number|null);
+
+                /** Started sizePerChunk */
+                sizePerChunk?: (number|null);
+
+                /** Started FileName */
+                FileName?: (string|null);
+            }
+
+            /** Represents a Started. */
+            class Started implements IStarted {
+
+                /**
+                 * Constructs a new Started.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: snacktime.series.file.IStarted);
+
+                /** Started lenght. */
+                public lenght: number;
+
+                /** Started sizePerChunk. */
+                public sizePerChunk: number;
+
+                /** Started FileName. */
+                public FileName: string;
+            }
+
+            /** Properties of a Chunk. */
+            interface IChunk {
+
+                /** Chunk Content */
+                Content?: (Uint8Array|null);
+            }
+
+            /** Represents a Chunk. */
+            class Chunk implements IChunk {
+
+                /**
+                 * Constructs a new Chunk.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: snacktime.series.file.IChunk);
+
+                /** Chunk Content. */
+                public Content: Uint8Array;
+            }
+
+            /** Properties of a Done. */
+            interface IDone {
+
+                /** Done Hash */
+                Hash?: (string|null);
+            }
+
+            /** Represents a Done. */
+            class Done implements IDone {
+
+                /**
+                 * Constructs a new Done.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: snacktime.series.file.IDone);
+
+                /** Done Hash. */
+                public Hash: string;
+            }
+
+            /** Represents a File */
+            class File extends $protobuf.rpc.Service {
+
+                /**
+                 * Constructs a new File service.
+                 * @param rpcImpl RPC implementation
+                 * @param [requestDelimited=false] Whether requests are length-delimited
+                 * @param [responseDelimited=false] Whether responses are length-delimited
+                 */
+                constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean);
+
+                /**
+                 * Calls Download.
+                 * @param request DownloadFileRequest message or plain object
+                 * @param callback Node-style callback called with the error, if any, and ResponseDownloadFile
+                 */
+                public download(request: snacktime.series.file.IDownloadFileRequest, callback: snacktime.series.file.File.DownloadCallback): void;
+
+                /**
+                 * Calls Download.
+                 * @param request DownloadFileRequest message or plain object
+                 * @returns Promise
+                 */
+                public download(request: snacktime.series.file.IDownloadFileRequest): Promise<snacktime.series.file.ResponseDownloadFile>;
+            }
+
+            namespace File {
+
+                /**
+                 * Callback as used by {@link snacktime.series.file.File#download}.
+                 * @param error Error, if any
+                 * @param [response] ResponseDownloadFile
+                 */
+                type DownloadCallback = (error: (Error|null), response?: snacktime.series.file.ResponseDownloadFile) => void;
+            }
+        }
 
         /** Namespace service. */
         namespace service {
@@ -486,6 +499,154 @@ export namespace snacktime {
                  */
                 type GetByIdCallback = (error: (Error|null), response?: snacktime.series.service.GetByIdResponse) => void;
             }
+        }
+    }
+
+    /** Namespace media. */
+    namespace media {
+
+        /** Properties of a Series. */
+        interface ISeries {
+
+            /** Series id */
+            id?: (number|null);
+
+            /** Series title */
+            title?: (string|null);
+
+            /** Series imagesUrl */
+            imagesUrl?: (snacktime.media.IImagesUrl|null);
+
+            /** Series overview */
+            overview?: (string|null);
+
+            /** Series monitored */
+            monitored?: (boolean|null);
+        }
+
+        /** Represents a Series. */
+        class Series implements ISeries {
+
+            /**
+             * Constructs a new Series.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: snacktime.media.ISeries);
+
+            /** Series id. */
+            public id: number;
+
+            /** Series title. */
+            public title: string;
+
+            /** Series imagesUrl. */
+            public imagesUrl?: (snacktime.media.IImagesUrl|null);
+
+            /** Series overview. */
+            public overview: string;
+
+            /** Series monitored. */
+            public monitored: boolean;
+        }
+
+        /** Properties of an ImagesUrl. */
+        interface IImagesUrl {
+
+            /** ImagesUrl banner */
+            banner?: (string|null);
+
+            /** ImagesUrl fanart */
+            fanart?: (string|null);
+
+            /** ImagesUrl poster */
+            poster?: (string|null);
+        }
+
+        /** Represents an ImagesUrl. */
+        class ImagesUrl implements IImagesUrl {
+
+            /**
+             * Constructs a new ImagesUrl.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: snacktime.media.IImagesUrl);
+
+            /** ImagesUrl banner. */
+            public banner: string;
+
+            /** ImagesUrl fanart. */
+            public fanart: string;
+
+            /** ImagesUrl poster. */
+            public poster: string;
+        }
+
+        /** Properties of an Episode. */
+        interface IEpisode {
+
+            /** Episode seriesId */
+            seriesId?: (number|null);
+
+            /** Episode episodeFileId */
+            episodeFileId?: (number|null);
+
+            /** Episode seasonNumber */
+            seasonNumber?: (number|null);
+
+            /** Episode episideNumber */
+            episideNumber?: (number|null);
+
+            /** Episode title */
+            title?: (string|null);
+
+            /** Episode overview */
+            overview?: (string|null);
+
+            /** Episode playableId */
+            playableId?: (string|null);
+
+            /** Episode progress */
+            progress?: (snacktime.storage.IProgress|null);
+        }
+
+        /** Represents an Episode. */
+        class Episode implements IEpisode {
+
+            /**
+             * Constructs a new Episode.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: snacktime.media.IEpisode);
+
+            /** Episode seriesId. */
+            public seriesId: number;
+
+            /** Episode episodeFileId. */
+            public episodeFileId: number;
+
+            /** Episode seasonNumber. */
+            public seasonNumber: number;
+
+            /** Episode episideNumber. */
+            public episideNumber: number;
+
+            /** Episode title. */
+            public title: string;
+
+            /** Episode overview. */
+            public overview: string;
+
+            /** Episode playableId. */
+            public playableId: string;
+
+            /** Episode progress. */
+            public progress?: (snacktime.storage.IProgress|null);
+        }
+
+        /** Providers enum. */
+        enum Providers {
+            Sonarr = 0,
+            Radarr = 1
         }
     }
 
