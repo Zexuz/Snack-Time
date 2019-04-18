@@ -26,6 +26,7 @@ message Episode {
     int32 episideNumber = 4;
     string title = 5;
     string overview = 6;
+    string playableId = 7;
 }
 
 enum Providers{

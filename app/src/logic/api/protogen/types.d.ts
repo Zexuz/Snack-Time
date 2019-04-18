@@ -147,86 +147,6 @@ export namespace snacktime {
         }
     }
 
-    /** Namespace greet. */
-    namespace greet {
-
-        /** Represents a Greeter */
-        class Greeter extends $protobuf.rpc.Service {
-
-            /**
-             * Constructs a new Greeter service.
-             * @param rpcImpl RPC implementation
-             * @param [requestDelimited=false] Whether requests are length-delimited
-             * @param [responseDelimited=false] Whether responses are length-delimited
-             */
-            constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean);
-
-            /**
-             * Calls Greet.
-             * @param request GreetRequest message or plain object
-             * @param callback Node-style callback called with the error, if any, and GreetResponse
-             */
-            public greet(request: snacktime.greet.IGreetRequest, callback: snacktime.greet.Greeter.GreetCallback): void;
-
-            /**
-             * Calls Greet.
-             * @param request GreetRequest message or plain object
-             * @returns Promise
-             */
-            public greet(request: snacktime.greet.IGreetRequest): Promise<snacktime.greet.GreetResponse>;
-        }
-
-        namespace Greeter {
-
-            /**
-             * Callback as used by {@link snacktime.greet.Greeter#greet}.
-             * @param error Error, if any
-             * @param [response] GreetResponse
-             */
-            type GreetCallback = (error: (Error|null), response?: snacktime.greet.GreetResponse) => void;
-        }
-
-        /** Properties of a GreetRequest. */
-        interface IGreetRequest {
-
-            /** GreetRequest name */
-            name?: (string|null);
-        }
-
-        /** Represents a GreetRequest. */
-        class GreetRequest implements IGreetRequest {
-
-            /**
-             * Constructs a new GreetRequest.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: snacktime.greet.IGreetRequest);
-
-            /** GreetRequest name. */
-            public name: string;
-        }
-
-        /** Properties of a GreetResponse. */
-        interface IGreetResponse {
-
-            /** GreetResponse phrase */
-            phrase?: (string|null);
-        }
-
-        /** Represents a GreetResponse. */
-        class GreetResponse implements IGreetResponse {
-
-            /**
-             * Constructs a new GreetResponse.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: snacktime.greet.IGreetResponse);
-
-            /** GreetResponse phrase. */
-            public phrase: string;
-        }
-    }
-
     /** Namespace media. */
     namespace media {
 
@@ -326,6 +246,9 @@ export namespace snacktime {
 
             /** Episode overview */
             overview?: (string|null);
+
+            /** Episode playableId */
+            playableId?: (string|null);
         }
 
         /** Represents an Episode. */
@@ -354,6 +277,9 @@ export namespace snacktime {
 
             /** Episode overview. */
             public overview: string;
+
+            /** Episode playableId. */
+            public playableId: string;
         }
 
         /** Providers enum. */

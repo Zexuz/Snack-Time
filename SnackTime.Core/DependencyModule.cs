@@ -29,7 +29,6 @@ namespace SnackTime.Core
 
             builder.RegisterType<TimeService>().AsSelf();
             builder.RegisterType<SessionService>().AsSelf();
-            builder.RegisterType<MediaFileIdService>().AsSelf();
             builder.RegisterType<Queue<Item>>().AsSelf().SingleInstance();
 
             builder.RegisterType<EpisodeFileLookupProvider>().AsSelf();

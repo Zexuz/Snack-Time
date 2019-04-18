@@ -28,18 +28,19 @@ namespace SnackTime.MediaServer.Models.ProtoGenerated {
             "cxIKCgJpZBgBIAEoBRINCgV0aXRsZRgCIAEoCRItCglpbWFnZXNVcmwYAyAB",
             "KAsyGi5zbmFja3RpbWUubWVkaWEuSW1hZ2VzVXJsEhAKCG92ZXJ2aWV3GAQg",
             "ASgJEhEKCW1vbml0b3JlZBgFIAEoCCI7CglJbWFnZXNVcmwSDgoGYmFubmVy",
-            "GAEgASgJEg4KBmZhbmFydBgCIAEoCRIOCgZwb3N0ZXIYAyABKAkigAEKB0Vw",
+            "GAEgASgJEg4KBmZhbmFydBgCIAEoCRIOCgZwb3N0ZXIYAyABKAkilAEKB0Vw",
             "aXNvZGUSEAoIc2VyaWVzSWQYASABKAUSFQoNZXBpc29kZUZpbGVJZBgCIAEo",
             "BRIUCgxzZWFzb25OdW1iZXIYAyABKAUSFQoNZXBpc2lkZU51bWJlchgEIAEo",
-            "BRINCgV0aXRsZRgFIAEoCRIQCghvdmVydmlldxgGIAEoCSojCglQcm92aWRl",
-            "cnMSCgoGU29uYXJyEAASCgoGUmFkYXJyEAFCLqoCK1NuYWNrVGltZS5NZWRp",
-            "YVNlcnZlci5Nb2RlbHMuUHJvdG9HZW5lcmF0ZWRiBnByb3RvMw=="));
+            "BRINCgV0aXRsZRgFIAEoCRIQCghvdmVydmlldxgGIAEoCRISCgpwbGF5YWJs",
+            "ZUlkGAcgASgJKiMKCVByb3ZpZGVycxIKCgZTb25hcnIQABIKCgZSYWRhcnIQ",
+            "AUIuqgIrU25hY2tUaW1lLk1lZGlhU2VydmVyLk1vZGVscy5Qcm90b0dlbmVy",
+            "YXRlZGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::SnackTime.MediaServer.Models.ProtoGenerated.Providers), }, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Models.ProtoGenerated.Series), global::SnackTime.MediaServer.Models.ProtoGenerated.Series.Parser, new[]{ "Id", "Title", "ImagesUrl", "Overview", "Monitored" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Models.ProtoGenerated.ImagesUrl), global::SnackTime.MediaServer.Models.ProtoGenerated.ImagesUrl.Parser, new[]{ "Banner", "Fanart", "Poster" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Models.ProtoGenerated.Episode), global::SnackTime.MediaServer.Models.ProtoGenerated.Episode.Parser, new[]{ "SeriesId", "EpisodeFileId", "SeasonNumber", "EpisideNumber", "Title", "Overview" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Models.ProtoGenerated.Episode), global::SnackTime.MediaServer.Models.ProtoGenerated.Episode.Parser, new[]{ "SeriesId", "EpisodeFileId", "SeasonNumber", "EpisideNumber", "Title", "Overview", "PlayableId" }, null, null, null)
           }));
     }
     #endregion
@@ -517,6 +518,7 @@ namespace SnackTime.MediaServer.Models.ProtoGenerated {
       episideNumber_ = other.episideNumber_;
       title_ = other.title_;
       overview_ = other.overview_;
+      playableId_ = other.playableId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -591,6 +593,17 @@ namespace SnackTime.MediaServer.Models.ProtoGenerated {
       }
     }
 
+    /// <summary>Field number for the "playableId" field.</summary>
+    public const int PlayableIdFieldNumber = 7;
+    private string playableId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string PlayableId {
+      get { return playableId_; }
+      set {
+        playableId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as Episode);
@@ -610,6 +623,7 @@ namespace SnackTime.MediaServer.Models.ProtoGenerated {
       if (EpisideNumber != other.EpisideNumber) return false;
       if (Title != other.Title) return false;
       if (Overview != other.Overview) return false;
+      if (PlayableId != other.PlayableId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -622,6 +636,7 @@ namespace SnackTime.MediaServer.Models.ProtoGenerated {
       if (EpisideNumber != 0) hash ^= EpisideNumber.GetHashCode();
       if (Title.Length != 0) hash ^= Title.GetHashCode();
       if (Overview.Length != 0) hash ^= Overview.GetHashCode();
+      if (PlayableId.Length != 0) hash ^= PlayableId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -659,6 +674,10 @@ namespace SnackTime.MediaServer.Models.ProtoGenerated {
         output.WriteRawTag(50);
         output.WriteString(Overview);
       }
+      if (PlayableId.Length != 0) {
+        output.WriteRawTag(58);
+        output.WriteString(PlayableId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -684,6 +703,9 @@ namespace SnackTime.MediaServer.Models.ProtoGenerated {
       }
       if (Overview.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Overview);
+      }
+      if (PlayableId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(PlayableId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -713,6 +735,9 @@ namespace SnackTime.MediaServer.Models.ProtoGenerated {
       }
       if (other.Overview.Length != 0) {
         Overview = other.Overview;
+      }
+      if (other.PlayableId.Length != 0) {
+        PlayableId = other.PlayableId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -747,6 +772,10 @@ namespace SnackTime.MediaServer.Models.ProtoGenerated {
           }
           case 50: {
             Overview = input.ReadString();
+            break;
+          }
+          case 58: {
+            PlayableId = input.ReadString();
             break;
           }
         }

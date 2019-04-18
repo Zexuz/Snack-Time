@@ -50,8 +50,8 @@
                   <td>{{ episode.episideNumber }}</td>
                   <td>
                     <button
-                      :disabled="episode.episodeFileId === 0"
-                      @click="play(episode.episodeFileId)"
+                      :disabled="episode.playableId === ''"
+                      @click="play(episode.playableId)"
                       class="btn"
                     >
                       play
@@ -102,15 +102,23 @@ export default class SeriesInfo extends Vue {
     M.AutoInit();
   }
 
-  private async play(fileId: number) {
+  private async play(fileId: string) {
     let res = await HttpClient.get<object>(Endpoints.PlayFile(fileId));
   }
 
   get imageUrl(): string {
+    if (!this.currentSeries.imagesUrl || !this.currentSeries.imagesUrl.poster) {
+      return "SomePathToStandarBanner";
+    }
+
     return `http://192.168.10.240:8989${this.currentSeries.imagesUrl.poster}`; //todo change this to banner?
   }
 
   get backgroundImage(): string {
+    if (!this.currentSeries.imagesUrl || !this.currentSeries.imagesUrl.poster) {
+      return "SomePathToStandarBanner";
+    }
+
     return `http://192.168.10.240:8989${this.currentSeries.imagesUrl.fanart}`; //todo change this to banner?
   }
 

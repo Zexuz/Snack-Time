@@ -268,142 +268,6 @@ export const snacktime = $root.snacktime = (() => {
         return episode;
     })();
 
-    snacktime.greet = (function() {
-
-        /**
-         * Namespace greet.
-         * @memberof snacktime
-         * @namespace
-         */
-        const greet = {};
-
-        greet.Greeter = (function() {
-
-            /**
-             * Constructs a new Greeter service.
-             * @memberof snacktime.greet
-             * @classdesc Represents a Greeter
-             * @extends $protobuf.rpc.Service
-             * @constructor
-             * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-             * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-             * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-             */
-            function Greeter(rpcImpl, requestDelimited, responseDelimited) {
-                $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
-            }
-
-            (Greeter.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Greeter;
-
-            /**
-             * Callback as used by {@link snacktime.greet.Greeter#greet}.
-             * @memberof snacktime.greet.Greeter
-             * @typedef GreetCallback
-             * @type {function}
-             * @param {Error|null} error Error, if any
-             * @param {snacktime.greet.GreetResponse} [response] GreetResponse
-             */
-
-            /**
-             * Calls Greet.
-             * @function greet
-             * @memberof snacktime.greet.Greeter
-             * @instance
-             * @param {snacktime.greet.IGreetRequest} request GreetRequest message or plain object
-             * @param {snacktime.greet.Greeter.GreetCallback} callback Node-style callback called with the error, if any, and GreetResponse
-             * @returns {undefined}
-             * @variation 1
-             */
-            Object.defineProperty(Greeter.prototype.greet = function greet(request, callback) {
-                return this.rpcCall(greet, $root.snacktime.greet.GreetRequest, $root.snacktime.greet.GreetResponse, request, callback);
-            }, "name", { value: "Greet" });
-
-            /**
-             * Calls Greet.
-             * @function greet
-             * @memberof snacktime.greet.Greeter
-             * @instance
-             * @param {snacktime.greet.IGreetRequest} request GreetRequest message or plain object
-             * @returns {Promise<snacktime.greet.GreetResponse>} Promise
-             * @variation 2
-             */
-
-            return Greeter;
-        })();
-
-        greet.GreetRequest = (function() {
-
-            /**
-             * Properties of a GreetRequest.
-             * @memberof snacktime.greet
-             * @interface IGreetRequest
-             * @property {string|null} [name] GreetRequest name
-             */
-
-            /**
-             * Constructs a new GreetRequest.
-             * @memberof snacktime.greet
-             * @classdesc Represents a GreetRequest.
-             * @implements IGreetRequest
-             * @constructor
-             * @param {snacktime.greet.IGreetRequest=} [properties] Properties to set
-             */
-            function GreetRequest(properties) {
-                if (properties)
-                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
-                            this[keys[i]] = properties[keys[i]];
-            }
-
-            /**
-             * GreetRequest name.
-             * @member {string} name
-             * @memberof snacktime.greet.GreetRequest
-             * @instance
-             */
-            GreetRequest.prototype.name = "";
-
-            return GreetRequest;
-        })();
-
-        greet.GreetResponse = (function() {
-
-            /**
-             * Properties of a GreetResponse.
-             * @memberof snacktime.greet
-             * @interface IGreetResponse
-             * @property {string|null} [phrase] GreetResponse phrase
-             */
-
-            /**
-             * Constructs a new GreetResponse.
-             * @memberof snacktime.greet
-             * @classdesc Represents a GreetResponse.
-             * @implements IGreetResponse
-             * @constructor
-             * @param {snacktime.greet.IGreetResponse=} [properties] Properties to set
-             */
-            function GreetResponse(properties) {
-                if (properties)
-                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
-                            this[keys[i]] = properties[keys[i]];
-            }
-
-            /**
-             * GreetResponse phrase.
-             * @member {string} phrase
-             * @memberof snacktime.greet.GreetResponse
-             * @instance
-             */
-            GreetResponse.prototype.phrase = "";
-
-            return GreetResponse;
-        })();
-
-        return greet;
-    })();
-
     snacktime.media = (function() {
 
         /**
@@ -549,6 +413,7 @@ export const snacktime = $root.snacktime = (() => {
              * @property {number|null} [episideNumber] Episode episideNumber
              * @property {string|null} [title] Episode title
              * @property {string|null} [overview] Episode overview
+             * @property {string|null} [playableId] Episode playableId
              */
 
             /**
@@ -613,6 +478,14 @@ export const snacktime = $root.snacktime = (() => {
              * @instance
              */
             Episode.prototype.overview = "";
+
+            /**
+             * Episode playableId.
+             * @member {string} playableId
+             * @memberof snacktime.media.Episode
+             * @instance
+             */
+            Episode.prototype.playableId = "";
 
             return Episode;
         })();

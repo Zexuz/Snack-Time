@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using LiteDB;
 using SnackTime.Core.Database;
 using SnackTime.MediaServer.Storage.ProtoGenerated;
@@ -7,22 +9,16 @@ namespace SnackTime.Core.Session
 {
     public class SessionService
     {
-        private readonly DatabaseFactory    _databaseFactory;
-        private readonly TimeService        _timeService;
-        private readonly MediaFileIdService _idService;
+        private readonly DatabaseFactory _databaseFactory;
+        private readonly TimeService     _timeService;
 
-        public SessionService(DatabaseFactory databaseFactory, TimeService timeService, MediaFileIdService idService)
+        public SessionService(DatabaseFactory databaseFactory, TimeService timeService)
         {
             _databaseFactory = databaseFactory;
             _timeService = timeService;
-            _idService = idService;
         }
 
-        public MediaServer.Storage.ProtoGenerated.Session CreateNewSession(
-            int fileId,
-            MediaServer.Models.ProtoGenerated.Providers provider,
-            TimeSpan? startPosition = null
-        )
+        public MediaServer.Storage.ProtoGenerated.Session CreateNewSession(MediaFileId mediaFileId, TimeSpan? startPosition = null)
         {
             var duration = new Duration {EndPostionInSec = 0, StartPostionInSec = 0};
             if (startPosition.HasValue)
@@ -35,7 +31,7 @@ namespace SnackTime.Core.Session
             return new MediaServer.Storage.ProtoGenerated.Session
             {
                 Id = sessionId,
-                MediaId = _idService.GenerateId(fileId, provider),
+                MediaId = mediaFileId.ToString(),
                 Duration = duration,
                 StartUTC = _timeService.GetCurrentTimeAsUnixSeconds(),
                 EndUTC = _timeService.GetCurrentTimeAsUnixSeconds(),
@@ -50,7 +46,7 @@ namespace SnackTime.Core.Session
             }
         }
 
-        public object GetAll()
+        public IList<MediaServer.Storage.ProtoGenerated.Session> GetAll()
         {
             using (var db = _databaseFactory.GetRepository())
             {

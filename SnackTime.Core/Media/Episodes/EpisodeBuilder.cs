@@ -15,6 +15,13 @@ namespace SnackTime.Core.Media.Episodes
 
         public Episode Build(SonarrSharp.Models.Episode episode)
         {
+            var mediaFileId = new MediaFileId
+            {
+                Provider = Providers.Sonarr,
+                MediaId = episode.SeriesId,
+                FileId = episode.EpisodeFileId,
+            };
+
             return new Episode
             {
                 Title = GrpcStringParser.Parse(episode.Title),
@@ -23,6 +30,7 @@ namespace SnackTime.Core.Media.Episodes
                 SeasonNumber = episode.SeasonNumber,
                 EpisideNumber = episode.EpisodeNumber,
                 EpisodeFileId = episode.EpisodeFileId,
+                PlayableId = mediaFileId.ToString(),
             };
         }
     }
