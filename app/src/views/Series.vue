@@ -41,7 +41,7 @@
                   <th>#</th>
                   <th></th>
                   <th>Name</th>
-                  <th>Airdate</th>
+                  <th>Progress</th>
                   <th>Download date</th>
                 </tr>
               </thead>
@@ -60,7 +60,14 @@
                   <td>
                     {{ episode.title }}
                   </td>
-                  <td>TODO</td>
+                  <td>
+                    <div class="progress">
+                      <div
+                        class="determinate"
+                        :style="`width: ${getTotalDuration(episode)}%`"
+                      ></div>
+                    </div>
+                  </td>
                   <td>TODO</td>
                 </tr>
               </tbody>
@@ -77,7 +84,7 @@ import { Component, Vue } from "vue-property-decorator";
 import { Action, Getter, State } from "vuex-class";
 import { Module } from "@/store/store";
 import { SeriesState } from "@/store/modules/series/types";
-import { ImageUrl, Series } from "@/logic/api/types";
+import { Episode, ImageUrl, Series } from "@/logic/api/types";
 import { ActionTypes } from "@/store/modules/episodes/actions";
 import { Methods, Season } from "@/store/modules/episodes/getters";
 import M from "materialize-css";
@@ -137,6 +144,18 @@ export default class SeriesInfo extends Vue {
 
   private currentId(): number {
     return Number(this.$route.params["id"]);
+  }
+
+  private getTotalDuration(episode: Episode): number {
+    console.log("episode");
+    if (
+      !episode.progress ||
+      !episode.progress.watchedInSec ||
+      !episode.progress.lenght
+    )
+      return 0;
+
+    return (episode.progress.watchedInSec / episode.progress.lenght) * 100;
   }
 }
 </script>

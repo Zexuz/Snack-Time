@@ -4,6 +4,7 @@ namespace Mpv.JsonIpc
     {
         Volume,
         Pause,
-        Position
+        Position,
+        Duration
     }
 }

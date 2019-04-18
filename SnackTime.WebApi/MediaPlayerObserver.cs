@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using Mpv.JsonIpc;
+using SnackTime.Core;
 using SnackTime.Core.Session;
 using SnackTime.MediaServer.Models.ProtoGenerated;
 using SnackTime.MediaServer.Storage.ProtoGenerated;
@@ -14,15 +15,17 @@ namespace SnackTime.WebApi
         private readonly Queue<Item>    _queue;
         private readonly SessionService _sessionService;
         private readonly IApi           _api;
+        private readonly TimeService _timeService;
 
         private CancellationToken _token;
         private Task              _task;
 
-        public MediaPlayerObserver(Queue<Item> queue, SessionService sessionService, IApi api)
+        public MediaPlayerObserver(Queue<Item> queue, SessionService sessionService, IApi api, TimeService timeService)
         {
             _queue = queue;
             _sessionService = sessionService;
             _api = api;
+            _timeService = timeService;
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
@@ -46,14 +49,16 @@ namespace SnackTime.WebApi
                     }
 
                     var item = _queue.Pop();
-                    currentSession = _sessionService.CreateNewSession(item.MediaFileId);
                     await _api.ShowText($"Now playing {item.Path.Substring(item.Path.LastIndexOf('\\') + 1)}", TimeSpan.FromSeconds(5));
                     await _api.PlayMedia(item.Path);
+                    var duration = await _api.GetDuration();
+                    currentSession = _sessionService.CreateNewSession(item.MediaFileId, duration);
                 }
 
                 if (currentSession != null)
                 {
                     currentSession.Duration.EndPostionInSec = (await _api.GetCurrentPosition()).TotalSeconds;
+                    currentSession.EndUTC = _timeService.GetCurrentTimeAsUnixSeconds();
                     Console.WriteLine(currentSession.Duration.EndPostionInSec);
                     _sessionService.UpsertSession(currentSession);
                 }

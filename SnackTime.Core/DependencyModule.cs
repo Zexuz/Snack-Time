@@ -35,6 +35,7 @@ namespace SnackTime.Core
             builder.RegisterType<EpisodeProvider>().AsSelf();
 
             builder.RegisterType<ProcessManager>().AsSelf();
+            builder.RegisterType<EpisodeBuilder>().AsSelf();
         }
 
         public class SonarrConfig

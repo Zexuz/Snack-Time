@@ -36,5 +36,11 @@ namespace Mpv.JsonIpc
             var result = await _ipc.GetProperty<double>(Property.Position);
             return TimeSpan.FromSeconds(result.Data);
         }
+
+        public async Task<TimeSpan> GetDuration()
+        {
+            var result = await _ipc.GetProperty<double>(Property.Duration);
+            return TimeSpan.FromSeconds(result.Data);
+        }
     }
 }

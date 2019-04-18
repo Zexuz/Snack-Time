@@ -18,9 +18,16 @@ message Session {
     int64 endUTC = 3;
     string mediaId = 4;
     Duration duration = 5;
+    double mediaLenghtInSec = 6;
 }
 
 message Duration {
     double startPostionInSec = 1;
     double endPostionInSec = 2;
+}
+
+message Progress {
+    double watchedInSec = 1;
+    double lenght = 2;
+    double lastWatchedUtc = 3;
 }

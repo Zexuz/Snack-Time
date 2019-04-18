@@ -10,10 +10,10 @@ namespace SnackTime.Core.Media.Episodes
         private readonly SonarrClient   _client;
         private readonly EpisodeBuilder _seriesBuilder;
 
-        public EpisodeProvider(SonarrClient client)
+        public EpisodeProvider(SonarrClient client, EpisodeBuilder episodeBuilder)
         {
             _client = client;
-            _seriesBuilder = new EpisodeBuilder();
+            _seriesBuilder = episodeBuilder;
         }
 
         public async Task<List<Episode>> GetEpisodesForSeriesById(int seriesId)

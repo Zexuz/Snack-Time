@@ -9,6 +9,7 @@ namespace Mpv.JsonIpc
             {Property.Volume, "volume"},
             {Property.Pause, "pause"},
             {Property.Position, "time-pos"},
+            {Property.Duration, "duration"},
         };
 
         public static string GetStringValue(this Property property)

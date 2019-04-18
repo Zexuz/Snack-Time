@@ -2,6 +2,8 @@ syntax = "proto3";
 
 option csharp_namespace = "SnackTime.MediaServer.Models.ProtoGenerated";
 
+import "proto/storage.proto";
+
 package snacktime.media;
 
 message Series {
@@ -10,7 +12,6 @@ message Series {
     ImagesUrl imagesUrl = 3;
     string overview = 4;
     bool monitored = 5;
-
 }
 
 message ImagesUrl {
@@ -27,9 +28,10 @@ message Episode {
     string title = 5;
     string overview = 6;
     string playableId = 7;
+    snacktime.storage.Progress progress = 8;
 }
 
-enum Providers{
+enum Providers {
     Sonarr = 0;
     Radarr = 1;
 }

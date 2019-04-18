@@ -4,7 +4,7 @@ namespace SnackTime.Core.Database
 {
     public class DatabaseFactory
     {
-        private const string ConnectionString = "MediaDb";
+        private const string ConnectionString = "../Media.db";
 
         public LiteDatabase GetDatabase()
         {

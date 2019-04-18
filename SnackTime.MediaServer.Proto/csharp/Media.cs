@@ -24,23 +24,24 @@ namespace SnackTime.MediaServer.Models.ProtoGenerated {
     static MediaReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChFwcm90by9tZWRpYS5wcm90bxIPc25hY2t0aW1lLm1lZGlhIncKBlNlcmll",
-            "cxIKCgJpZBgBIAEoBRINCgV0aXRsZRgCIAEoCRItCglpbWFnZXNVcmwYAyAB",
-            "KAsyGi5zbmFja3RpbWUubWVkaWEuSW1hZ2VzVXJsEhAKCG92ZXJ2aWV3GAQg",
-            "ASgJEhEKCW1vbml0b3JlZBgFIAEoCCI7CglJbWFnZXNVcmwSDgoGYmFubmVy",
-            "GAEgASgJEg4KBmZhbmFydBgCIAEoCRIOCgZwb3N0ZXIYAyABKAkilAEKB0Vw",
-            "aXNvZGUSEAoIc2VyaWVzSWQYASABKAUSFQoNZXBpc29kZUZpbGVJZBgCIAEo",
-            "BRIUCgxzZWFzb25OdW1iZXIYAyABKAUSFQoNZXBpc2lkZU51bWJlchgEIAEo",
-            "BRINCgV0aXRsZRgFIAEoCRIQCghvdmVydmlldxgGIAEoCRISCgpwbGF5YWJs",
-            "ZUlkGAcgASgJKiMKCVByb3ZpZGVycxIKCgZTb25hcnIQABIKCgZSYWRhcnIQ",
-            "AUIuqgIrU25hY2tUaW1lLk1lZGlhU2VydmVyLk1vZGVscy5Qcm90b0dlbmVy",
-            "YXRlZGIGcHJvdG8z"));
+            "ChFwcm90by9tZWRpYS5wcm90bxIPc25hY2t0aW1lLm1lZGlhGhNwcm90by9z",
+            "dG9yYWdlLnByb3RvIncKBlNlcmllcxIKCgJpZBgBIAEoBRINCgV0aXRsZRgC",
+            "IAEoCRItCglpbWFnZXNVcmwYAyABKAsyGi5zbmFja3RpbWUubWVkaWEuSW1h",
+            "Z2VzVXJsEhAKCG92ZXJ2aWV3GAQgASgJEhEKCW1vbml0b3JlZBgFIAEoCCI7",
+            "CglJbWFnZXNVcmwSDgoGYmFubmVyGAEgASgJEg4KBmZhbmFydBgCIAEoCRIO",
+            "CgZwb3N0ZXIYAyABKAkiwwEKB0VwaXNvZGUSEAoIc2VyaWVzSWQYASABKAUS",
+            "FQoNZXBpc29kZUZpbGVJZBgCIAEoBRIUCgxzZWFzb25OdW1iZXIYAyABKAUS",
+            "FQoNZXBpc2lkZU51bWJlchgEIAEoBRINCgV0aXRsZRgFIAEoCRIQCghvdmVy",
+            "dmlldxgGIAEoCRISCgpwbGF5YWJsZUlkGAcgASgJEi0KCHByb2dyZXNzGAgg",
+            "ASgLMhsuc25hY2t0aW1lLnN0b3JhZ2UuUHJvZ3Jlc3MqIwoJUHJvdmlkZXJz",
+            "EgoKBlNvbmFychAAEgoKBlJhZGFychABQi6qAitTbmFja1RpbWUuTWVkaWFT",
+            "ZXJ2ZXIuTW9kZWxzLlByb3RvR2VuZXJhdGVkYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { },
+          new pbr::FileDescriptor[] { global::SnackTime.MediaServer.Storage.ProtoGenerated.StorageReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::SnackTime.MediaServer.Models.ProtoGenerated.Providers), }, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Models.ProtoGenerated.Series), global::SnackTime.MediaServer.Models.ProtoGenerated.Series.Parser, new[]{ "Id", "Title", "ImagesUrl", "Overview", "Monitored" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Models.ProtoGenerated.ImagesUrl), global::SnackTime.MediaServer.Models.ProtoGenerated.ImagesUrl.Parser, new[]{ "Banner", "Fanart", "Poster" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Models.ProtoGenerated.Episode), global::SnackTime.MediaServer.Models.ProtoGenerated.Episode.Parser, new[]{ "SeriesId", "EpisodeFileId", "SeasonNumber", "EpisideNumber", "Title", "Overview", "PlayableId" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Models.ProtoGenerated.Episode), global::SnackTime.MediaServer.Models.ProtoGenerated.Episode.Parser, new[]{ "SeriesId", "EpisodeFileId", "SeasonNumber", "EpisideNumber", "Title", "Overview", "PlayableId", "Progress" }, null, null, null)
           }));
     }
     #endregion
@@ -519,6 +520,7 @@ namespace SnackTime.MediaServer.Models.ProtoGenerated {
       title_ = other.title_;
       overview_ = other.overview_;
       playableId_ = other.playableId_;
+      progress_ = other.progress_ != null ? other.progress_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -604,6 +606,17 @@ namespace SnackTime.MediaServer.Models.ProtoGenerated {
       }
     }
 
+    /// <summary>Field number for the "progress" field.</summary>
+    public const int ProgressFieldNumber = 8;
+    private global::SnackTime.MediaServer.Storage.ProtoGenerated.Progress progress_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::SnackTime.MediaServer.Storage.ProtoGenerated.Progress Progress {
+      get { return progress_; }
+      set {
+        progress_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as Episode);
@@ -624,6 +637,7 @@ namespace SnackTime.MediaServer.Models.ProtoGenerated {
       if (Title != other.Title) return false;
       if (Overview != other.Overview) return false;
       if (PlayableId != other.PlayableId) return false;
+      if (!object.Equals(Progress, other.Progress)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -637,6 +651,7 @@ namespace SnackTime.MediaServer.Models.ProtoGenerated {
       if (Title.Length != 0) hash ^= Title.GetHashCode();
       if (Overview.Length != 0) hash ^= Overview.GetHashCode();
       if (PlayableId.Length != 0) hash ^= PlayableId.GetHashCode();
+      if (progress_ != null) hash ^= Progress.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -678,6 +693,10 @@ namespace SnackTime.MediaServer.Models.ProtoGenerated {
         output.WriteRawTag(58);
         output.WriteString(PlayableId);
       }
+      if (progress_ != null) {
+        output.WriteRawTag(66);
+        output.WriteMessage(Progress);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -706,6 +725,9 @@ namespace SnackTime.MediaServer.Models.ProtoGenerated {
       }
       if (PlayableId.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(PlayableId);
+      }
+      if (progress_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Progress);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -738,6 +760,12 @@ namespace SnackTime.MediaServer.Models.ProtoGenerated {
       }
       if (other.PlayableId.Length != 0) {
         PlayableId = other.PlayableId;
+      }
+      if (other.progress_ != null) {
+        if (progress_ == null) {
+          progress_ = new global::SnackTime.MediaServer.Storage.ProtoGenerated.Progress();
+        }
+        Progress.MergeFrom(other.Progress);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -776,6 +804,13 @@ namespace SnackTime.MediaServer.Models.ProtoGenerated {
           }
           case 58: {
             PlayableId = input.ReadString();
+            break;
+          }
+          case 66: {
+            if (progress_ == null) {
+              progress_ = new global::SnackTime.MediaServer.Storage.ProtoGenerated.Progress();
+            }
+            input.ReadMessage(progress_);
             break;
           }
         }

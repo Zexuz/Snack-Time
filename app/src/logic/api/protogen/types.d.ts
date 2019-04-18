@@ -249,6 +249,9 @@ export namespace snacktime {
 
             /** Episode playableId */
             playableId?: (string|null);
+
+            /** Episode progress */
+            progress?: (snacktime.storage.IProgress|null);
         }
 
         /** Represents an Episode. */
@@ -280,6 +283,9 @@ export namespace snacktime {
 
             /** Episode playableId. */
             public playableId: string;
+
+            /** Episode progress. */
+            public progress?: (snacktime.storage.IProgress|null);
         }
 
         /** Providers enum. */
@@ -541,6 +547,9 @@ export namespace snacktime {
 
             /** Session duration */
             duration?: (snacktime.storage.IDuration|null);
+
+            /** Session mediaLenghtInSec */
+            mediaLenghtInSec?: (number|null);
         }
 
         /** Represents a Session. */
@@ -566,6 +575,9 @@ export namespace snacktime {
 
             /** Session duration. */
             public duration?: (snacktime.storage.IDuration|null);
+
+            /** Session mediaLenghtInSec. */
+            public mediaLenghtInSec: number;
         }
 
         /** Properties of a Duration. */
@@ -592,6 +604,38 @@ export namespace snacktime {
 
             /** Duration endPostionInSec. */
             public endPostionInSec: number;
+        }
+
+        /** Properties of a Progress. */
+        interface IProgress {
+
+            /** Progress watchedInSec */
+            watchedInSec?: (number|null);
+
+            /** Progress lenght */
+            lenght?: (number|null);
+
+            /** Progress lastWatchedUtc */
+            lastWatchedUtc?: (number|null);
+        }
+
+        /** Represents a Progress. */
+        class Progress implements IProgress {
+
+            /**
+             * Constructs a new Progress.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: snacktime.storage.IProgress);
+
+            /** Progress watchedInSec. */
+            public watchedInSec: number;
+
+            /** Progress lenght. */
+            public lenght: number;
+
+            /** Progress lastWatchedUtc. */
+            public lastWatchedUtc: number;
         }
     }
 }

@@ -18,13 +18,18 @@ namespace SnackTime.Core.Session
             _timeService = timeService;
         }
 
-        public MediaServer.Storage.ProtoGenerated.Session CreateNewSession(MediaFileId mediaFileId, TimeSpan? startPosition = null)
+        public MediaServer.Storage.ProtoGenerated.Session CreateNewSession
+        (
+            MediaFileId mediaFileId,
+            TimeSpan mediaDuration,
+            TimeSpan? startPosition = null
+        )
         {
-            var duration = new Duration {EndPostionInSec = 0, StartPostionInSec = 0};
+            var timeWatched = new Duration {EndPostionInSec = 0, StartPostionInSec = 0};
             if (startPosition.HasValue)
             {
-                duration.StartPostionInSec = startPosition.Value.TotalSeconds;
-                duration.EndPostionInSec = startPosition.Value.TotalSeconds;
+                timeWatched.StartPostionInSec = startPosition.Value.TotalSeconds;
+                timeWatched.EndPostionInSec = startPosition.Value.TotalSeconds;
             }
 
             var sessionId = Guid.NewGuid().ToString("N");
@@ -32,9 +37,10 @@ namespace SnackTime.Core.Session
             {
                 Id = sessionId,
                 MediaId = mediaFileId.ToString(),
-                Duration = duration,
+                Duration = timeWatched,
                 StartUTC = _timeService.GetCurrentTimeAsUnixSeconds(),
                 EndUTC = _timeService.GetCurrentTimeAsUnixSeconds(),
+                MediaLenghtInSec = mediaDuration.TotalSeconds,
             };
         }
 

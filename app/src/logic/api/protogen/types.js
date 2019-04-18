@@ -414,6 +414,7 @@ export const snacktime = $root.snacktime = (() => {
              * @property {string|null} [title] Episode title
              * @property {string|null} [overview] Episode overview
              * @property {string|null} [playableId] Episode playableId
+             * @property {snacktime.storage.IProgress|null} [progress] Episode progress
              */
 
             /**
@@ -486,6 +487,14 @@ export const snacktime = $root.snacktime = (() => {
              * @instance
              */
             Episode.prototype.playableId = "";
+
+            /**
+             * Episode progress.
+             * @member {snacktime.storage.IProgress|null|undefined} progress
+             * @memberof snacktime.media.Episode
+             * @instance
+             */
+            Episode.prototype.progress = null;
 
             return Episode;
         })();
@@ -927,6 +936,7 @@ export const snacktime = $root.snacktime = (() => {
              * @property {number|Long|null} [endUTC] Session endUTC
              * @property {string|null} [mediaId] Session mediaId
              * @property {snacktime.storage.IDuration|null} [duration] Session duration
+             * @property {number|null} [mediaLenghtInSec] Session mediaLenghtInSec
              */
 
             /**
@@ -984,6 +994,14 @@ export const snacktime = $root.snacktime = (() => {
              */
             Session.prototype.duration = null;
 
+            /**
+             * Session mediaLenghtInSec.
+             * @member {number} mediaLenghtInSec
+             * @memberof snacktime.storage.Session
+             * @instance
+             */
+            Session.prototype.mediaLenghtInSec = 0;
+
             return Session;
         })();
 
@@ -1029,6 +1047,59 @@ export const snacktime = $root.snacktime = (() => {
             Duration.prototype.endPostionInSec = 0;
 
             return Duration;
+        })();
+
+        storage.Progress = (function() {
+
+            /**
+             * Properties of a Progress.
+             * @memberof snacktime.storage
+             * @interface IProgress
+             * @property {number|null} [watchedInSec] Progress watchedInSec
+             * @property {number|null} [lenght] Progress lenght
+             * @property {number|null} [lastWatchedUtc] Progress lastWatchedUtc
+             */
+
+            /**
+             * Constructs a new Progress.
+             * @memberof snacktime.storage
+             * @classdesc Represents a Progress.
+             * @implements IProgress
+             * @constructor
+             * @param {snacktime.storage.IProgress=} [properties] Properties to set
+             */
+            function Progress(properties) {
+                if (properties)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * Progress watchedInSec.
+             * @member {number} watchedInSec
+             * @memberof snacktime.storage.Progress
+             * @instance
+             */
+            Progress.prototype.watchedInSec = 0;
+
+            /**
+             * Progress lenght.
+             * @member {number} lenght
+             * @memberof snacktime.storage.Progress
+             * @instance
+             */
+            Progress.prototype.lenght = 0;
+
+            /**
+             * Progress lastWatchedUtc.
+             * @member {number} lastWatchedUtc
+             * @memberof snacktime.storage.Progress
+             * @instance
+             */
+            Progress.prototype.lastWatchedUtc = 0;
+
+            return Progress;
         })();
 
         return storage;

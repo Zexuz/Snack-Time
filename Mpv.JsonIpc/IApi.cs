@@ -10,5 +10,6 @@ namespace Mpv.JsonIpc
         Task<float> GetVolume();
         Task PlayMedia(string path);
         Task<TimeSpan> GetCurrentPosition();
+        Task<TimeSpan> GetDuration();
     }
 }
