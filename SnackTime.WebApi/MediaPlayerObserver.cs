@@ -59,7 +59,6 @@ namespace SnackTime.WebApi
                 {
                     currentSession.Duration.EndPostionInSec = (await _api.GetCurrentPosition()).TotalSeconds;
                     currentSession.EndUTC = _timeService.GetCurrentTimeAsUnixSeconds();
-                    Console.WriteLine(currentSession.Duration.EndPostionInSec);
                     _sessionService.UpsertSession(currentSession);
                 }
 

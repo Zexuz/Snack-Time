@@ -35,8 +35,7 @@ namespace SnackTime.Core.Media.Episodes
                 .Where(session => session.MediaId == mediaFileId.ToString())
                 .ToList();
 
-            var end = allSessionsForCurrentEpisode.Max(session => (long?) session.Duration.EndPostionInSec) ?? 0;
-            var lastWatchedSession = allSessionsForCurrentEpisode.OrderBy(session => session.EndUTC).FirstOrDefault();
+            var lastSession = allSessionsForCurrentEpisode.OrderBy(session => session.EndUTC).FirstOrDefault();
 
             return new Episode
             {
@@ -49,9 +48,9 @@ namespace SnackTime.Core.Media.Episodes
                 PlayableId = mediaFileId.ToString(),
                 Progress = new Progress
                 {
-                    LastWatchedUtc = lastWatchedSession?.EndUTC ?? 0,
-                    WatchedInSec = end,
-                    Lenght = lastWatchedSession?.MediaLenghtInSec ?? 0
+                    LastWatchedUtc = lastSession?.EndUTC                 ?? 0,
+                    WatchedInSec = lastSession?.Duration.EndPostionInSec ?? 0,
+                    Lenght = lastSession?.MediaLenghtInSec               ?? 0
                 },
             };
         }
