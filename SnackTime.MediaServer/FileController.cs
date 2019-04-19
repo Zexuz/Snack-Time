@@ -48,6 +48,8 @@ namespace SnackTime.MediaServer
                     });
                 }
 
+                source.Seek(0, SeekOrigin.Begin);
+
                 string hash;
                 using (var md5 = MD5.Create())
                 {

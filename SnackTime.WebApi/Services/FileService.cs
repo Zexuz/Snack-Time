@@ -21,7 +21,7 @@ namespace SnackTime.WebApi.Services
         )
         {
             var filePaths = Directory.GetFiles(inputDirectoryPath, filePattern);
-            _logger.LogInformation("Number of files: {0}.", filePaths.Length);
+            _logger.LogDebug("Number of files: {0}.", filePaths.Length);
             using (var outputStream = File.Create(outputFilePath))
             {
                 foreach (var filePath in filePaths)
@@ -31,15 +31,16 @@ namespace SnackTime.WebApi.Services
                         await inputStream.CopyToAsync(outputStream);
                     }
 
-                    _logger.LogInformation("The file {0} has been processed.", filePath);
+                    _logger.LogDebug("The file {0} has been processed.", filePath);
                 }
             }
-            if(removeWhenComplete)
+
+            if (removeWhenComplete)
             {
                 foreach (var filePath in filePaths)
                 {
                     File.Delete(filePath);
-                    _logger.LogInformation("Removed {0} ", filePath);
+                    _logger.LogDebug("Removed {0} ", filePath);
                 }
             }
         }
