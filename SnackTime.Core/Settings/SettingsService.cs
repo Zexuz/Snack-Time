@@ -13,15 +13,19 @@ namespace SnackTime.Core.Settings
             _settingsRepo = settingsRepo;
         }
 
-        public void Save(Settings settings)
+        public void Save(App.Settings.ProtoGenerated.Settings settings)
         {
             _logger.LogTrace($"Saving settings {settings}");
-            _settingsRepo.Save(settings);
+            _settingsRepo.Save(new Settings
+            {
+                Id = 1,
+                Value = settings,
+            });
         }
 
-        public Settings Get()
+        public App.Settings.ProtoGenerated.Settings Get()
         {
-            return _settingsRepo.Get() ?? new Settings();
+            return _settingsRepo.Get()?.Value ?? new App.Settings.ProtoGenerated.Settings();
         }
     }
 }

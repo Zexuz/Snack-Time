@@ -31,6 +31,12 @@ export const Routes = [
     component: () => import("./views/Series.vue")
   },
   {
+    displayName: "Settings",
+    path: "/settings",
+    name: "settings",
+    component: () => import("./views/Settings.vue")
+  },
+  {
     displayName: "playground",
     path: "/playground",
     name: "playground",

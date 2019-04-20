@@ -1136,6 +1136,101 @@ export const snacktime = $root.snacktime = (() => {
         return media;
     })();
 
+    snacktime.app = (function() {
+
+        /**
+         * Namespace app.
+         * @memberof snacktime
+         * @namespace
+         */
+        const app = {};
+
+        app.settings = (function() {
+
+            /**
+             * Namespace settings.
+             * @memberof snacktime.app
+             * @namespace
+             */
+            const settings = {};
+
+            settings.Settings = (function() {
+
+                /**
+                 * Properties of a Settings.
+                 * @memberof snacktime.app.settings
+                 * @interface ISettings
+                 * @property {string|null} [fileDir] Settings fileDir
+                 * @property {string|null} [tempFileDir] Settings tempFileDir
+                 * @property {string|null} [mpvPath] Settings mpvPath
+                 * @property {string|null} [svpPath] Settings svpPath
+                 * @property {string|null} [mediaServerAddress] Settings mediaServerAddress
+                 */
+
+                /**
+                 * Constructs a new Settings.
+                 * @memberof snacktime.app.settings
+                 * @classdesc Represents a Settings.
+                 * @implements ISettings
+                 * @constructor
+                 * @param {snacktime.app.settings.ISettings=} [properties] Properties to set
+                 */
+                function Settings(properties) {
+                    if (properties)
+                        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * Settings fileDir.
+                 * @member {string} fileDir
+                 * @memberof snacktime.app.settings.Settings
+                 * @instance
+                 */
+                Settings.prototype.fileDir = "";
+
+                /**
+                 * Settings tempFileDir.
+                 * @member {string} tempFileDir
+                 * @memberof snacktime.app.settings.Settings
+                 * @instance
+                 */
+                Settings.prototype.tempFileDir = "";
+
+                /**
+                 * Settings mpvPath.
+                 * @member {string} mpvPath
+                 * @memberof snacktime.app.settings.Settings
+                 * @instance
+                 */
+                Settings.prototype.mpvPath = "";
+
+                /**
+                 * Settings svpPath.
+                 * @member {string} svpPath
+                 * @memberof snacktime.app.settings.Settings
+                 * @instance
+                 */
+                Settings.prototype.svpPath = "";
+
+                /**
+                 * Settings mediaServerAddress.
+                 * @member {string} mediaServerAddress
+                 * @memberof snacktime.app.settings.Settings
+                 * @instance
+                 */
+                Settings.prototype.mediaServerAddress = "";
+
+                return Settings;
+            })();
+
+            return settings;
+        })();
+
+        return app;
+    })();
+
     snacktime.storage = (function() {
 
         /**

@@ -650,6 +650,58 @@ export namespace snacktime {
         }
     }
 
+    /** Namespace app. */
+    namespace app {
+
+        /** Namespace settings. */
+        namespace settings {
+
+            /** Properties of a Settings. */
+            interface ISettings {
+
+                /** Settings fileDir */
+                fileDir?: (string|null);
+
+                /** Settings tempFileDir */
+                tempFileDir?: (string|null);
+
+                /** Settings mpvPath */
+                mpvPath?: (string|null);
+
+                /** Settings svpPath */
+                svpPath?: (string|null);
+
+                /** Settings mediaServerAddress */
+                mediaServerAddress?: (string|null);
+            }
+
+            /** Represents a Settings. */
+            class Settings implements ISettings {
+
+                /**
+                 * Constructs a new Settings.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: snacktime.app.settings.ISettings);
+
+                /** Settings fileDir. */
+                public fileDir: string;
+
+                /** Settings tempFileDir. */
+                public tempFileDir: string;
+
+                /** Settings mpvPath. */
+                public mpvPath: string;
+
+                /** Settings svpPath. */
+                public svpPath: string;
+
+                /** Settings mediaServerAddress. */
+                public mediaServerAddress: string;
+            }
+        }
+    }
+
     /** Namespace storage. */
     namespace storage {
 

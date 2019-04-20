@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SnackTime.Core.Settings;
+using SnackTime.WebApi.Helpers;
 
 namespace SnackTime.WebApi.Controllers
 {
@@ -9,7 +10,7 @@ namespace SnackTime.WebApi.Controllers
     public class SettingsController : ControllerBase
     {
         private readonly ILogger<SettingsController> _logger;
-        private readonly SettingsService _settingsService;
+        private readonly SettingsService             _settingsService;
 
         public SettingsController(ILogger<SettingsController> logger, SettingsService settingsService)
         {
@@ -20,14 +21,15 @@ namespace SnackTime.WebApi.Controllers
         [HttpGet("")]
         public ActionResult GetSettings()
         {
-            return Ok(_settingsService.Get());
+            var settings = _settingsService.Get();
+            return Ok(ApiResponseFactory.CreateSuccess(settings));
         }
 
         [HttpPost("")]
-        public ActionResult SaveSettings([FromBody] Settings settings)
+        public ActionResult SaveSettings([FromBody] App.Settings.ProtoGenerated.Settings settings)
         {
             _settingsService.Save(settings);
-            return Ok();
+            return Ok(ApiResponseFactory.CreateSuccess(new { }));
         }
     }
 }
