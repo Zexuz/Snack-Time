@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option csharp_namespace = "SnackTime.App.Settings.ProtoGenerated";
+
+package snacktime.app.settings;
+
+message Settings {
+    string fileDir = 1;
+    string tempFileDir = 2;
+    string mpvPath = 3;
+    string svpPath = 4;
+    string mediaServerAddress = 5;
+}

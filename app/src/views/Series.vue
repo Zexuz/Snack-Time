@@ -38,11 +38,12 @@
             <table class="series-table">
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th></th>
+                  <th class="episode-nr">#</th>
+                  <th class="play"></th>
                   <th>Name</th>
                   <th>Progress</th>
                   <th>Download date</th>
+                  <th class="option"></th>
                 </tr>
               </thead>
               <tbody>
@@ -69,6 +70,18 @@
                     </div>
                   </td>
                   <td>TODO</td>
+                  <td>
+                    <button
+                      class="dropdown-trigger btn-floating btn btn-flat"
+                      :data-target="episode.title"
+                    >
+                      <i class="material-icons dp48 black-text">more_vert</i>
+                    </button>
+                    <ul :id="episode.title" class="dropdown-content">
+                      <li><a href="JavaScript:void(0);">Mark as seen</a></li>
+                      <li><a href="JavaScript:void(0);">Download</a></li>
+                    </ul>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -161,6 +174,18 @@ export default class SeriesInfo extends Vue {
 </script>
 
 <style scoped>
+.option {
+  width: 2rem;
+}
+
+.play {
+  width: 6rem;
+}
+
+.episode-nr {
+  width: 4rem;
+}
+
 img.bg {
   min-height: 100%;
   min-width: 1080px;
