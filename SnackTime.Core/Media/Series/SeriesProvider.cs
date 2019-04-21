@@ -18,12 +18,28 @@ namespace SnackTime.Core.Media.Series
 
         public async Task<List<MediaServer.Models.ProtoGenerated.Series>> GetLatest()
         {
-            var history = await _client.History.GetHistory("date", pageSize: 50);
+            var records = new Dictionary<int, SonarrSharp.Models.Record>();
+            int page = 1;
+            while (records.Count < 18)
+            {
+                var history = await _client.History.GetHistory("date", pageSize: 10, page: page);
 
-            var downloaded = history.Records.Where(r => r.EventType == "downloadFolderImported");
-            var distinct = downloaded.GroupBy(record => record.Series.Id).SelectMany(records => records.Take(1));
+                var downloaded = history.Records.Where(r => r.EventType == "downloadFolderImported");
+                var distinct = downloaded.GroupBy(r => r.Series.Id).SelectMany(r => r.Take(1));
 
-            return _seriesBuilder.Build(distinct);
+                foreach (var record in distinct)
+                {
+                    if (records.ContainsKey(record.Series.Id)) continue;
+                    records[record.Series.Id] = record;
+                }
+
+                page++;
+
+                if (history.Page * history.PageSize >= history.TotalRecords)
+                    break;
+            }
+
+            return _seriesBuilder.Build(records.Select(pair => pair.Value));
         }
 
         public async Task<List<MediaServer.Models.ProtoGenerated.Series>> GetSeries()

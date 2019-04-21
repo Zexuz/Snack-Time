@@ -67,6 +67,7 @@ namespace SnackTime.WebApi
                 app.UseHsts();
             }
 
+            app.UseStaticFiles();
             app.UseMvc();
         }
 

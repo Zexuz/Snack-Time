@@ -9,17 +9,6 @@ async function generateProtoFiles(outputFile, fileList) {
     console.log("Updated file successfully!");
 }
 
-// async function generateCSharpGrpc(protoPath, protoName) {
-//     let GRPC_TOOLS_VERSION = '1.19.0';
-//     let NUGET_PATH = `${process.env.USERPROFILE}\\.nuget\\packages`;
-//     let GRPC_PATH = `${NUGET_PATH}\\Grpc.Tools\\${GRPC_TOOLS_VERSION}`;
-//     let TOOLS_PATH = `${GRPC_PATH}\\tools\\windows_x64`;
-//     let INCLUDE_PATH = `${GRPC_PATH}\\build\\native\\include`;
-//
-//     let cmd = `${TOOLS_PATH}\\protoc.exe -I ${protoPath} -I ${INCLUDE_PATH} ${protoPath}\\${protoName} --csharp_out ${protoPath} --grpc_out=${protoPath} --plugin=protoc-gen-grpc=${TOOLS_PATH}\\grpc_csharp_plugin.exe`;
-//     await exec(cmd);
-// }
-
 async function main() {
     let outputPath = `./app/src/logic/api/protogen/types`;
     let basePath = `./SnackTime.MediaServer.Proto/proto`;
