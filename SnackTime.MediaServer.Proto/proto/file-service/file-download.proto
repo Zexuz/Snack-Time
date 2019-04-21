@@ -6,7 +6,7 @@ package snacktime.series.file;
 
 
 message DownloadFileRequest {
-
+    string mediaFileId = 1;
 }
 
 message ResponseDownloadFile {

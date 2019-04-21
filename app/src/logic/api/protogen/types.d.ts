@@ -155,6 +155,9 @@ export namespace snacktime {
 
             /** Properties of a DownloadFileRequest. */
             interface IDownloadFileRequest {
+
+                /** DownloadFileRequest mediaFileId */
+                mediaFileId?: (string|null);
             }
 
             /** Represents a DownloadFileRequest. */
@@ -165,6 +168,9 @@ export namespace snacktime {
                  * @param [properties] Properties to set
                  */
                 constructor(properties?: snacktime.series.file.IDownloadFileRequest);
+
+                /** DownloadFileRequest mediaFileId. */
+                public mediaFileId: string;
             }
 
             /** Properties of a ResponseDownloadFile. */
@@ -763,6 +769,9 @@ export namespace snacktime {
 
             /** Session mediaLenghtInSec */
             mediaLenghtInSec?: (number|null);
+
+            /** Session fromDevice */
+            fromDevice?: (string|null);
         }
 
         /** Represents a Session. */
@@ -791,6 +800,9 @@ export namespace snacktime {
 
             /** Session mediaLenghtInSec. */
             public mediaLenghtInSec: number;
+
+            /** Session fromDevice. */
+            public fromDevice: string;
         }
 
         /** Properties of a Duration. */

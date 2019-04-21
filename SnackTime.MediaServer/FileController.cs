@@ -1,9 +1,12 @@
 using System;
 using System.IO;
 using System.Security.Cryptography;
+using System.Threading;
 using System.Threading.Tasks;
 using Google.Protobuf;
 using Grpc.Core;
+using SnackTime.Core;
+using SnackTime.Core.Media.Episodes;
 using SnackTime.MediaServer.Service.File;
 using File = System.IO.File;
 
@@ -11,6 +14,13 @@ namespace SnackTime.MediaServer
 {
     class FileController : SnackTime.MediaServer.Service.File.File.FileBase
     {
+        private readonly EpisodeFileLookupProvider _episodeFileLookupProvider;
+
+        public FileController(EpisodeFileLookupProvider episodeFileLookupProvider)
+        {
+            _episodeFileLookupProvider = episodeFileLookupProvider;
+        }
+
         public override async Task Download
         (
             DownloadFileRequest request,
@@ -18,10 +28,21 @@ namespace SnackTime.MediaServer
             ServerCallContext context
         )
         {
-            var fileName = "Superstore.S04E15.1080p.WEB.H264-METCON.mkv";
-            var path = @"D:\Downloads\Torrents\Superstore.S04E15.1080p.WEB.H264-METCON\";
+            if (!MediaFileId.TryParse(request.MediaFileId, out var mediaFileId))
+            {
+                throw new Exception("Invalid mediaFileId");
+            }
+
+            var info = await _episodeFileLookupProvider.GetFileInfoForId(mediaFileId.FileId);
+
+
+            var backSlashIndex = info.Path.LastIndexOf("\\", StringComparison.CurrentCultureIgnoreCase);
+            var index = backSlashIndex > -1 ? backSlashIndex : info.Path.LastIndexOf("/", StringComparison.CurrentCultureIgnoreCase);
+
+            var fileName = info.Path.Substring(index + 1);
+
             var chunkSize = 2048;
-            using (Stream source = File.OpenRead(path + fileName))
+            using (Stream source = File.OpenRead(info.Path))
             {
                 byte[] buffer = new byte[chunkSize];
                 int bytesRead;

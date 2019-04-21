@@ -27,19 +27,20 @@ namespace SnackTime.MediaServer.Storage.ProtoGenerated {
             "ChNwcm90by9zdG9yYWdlLnByb3RvEhFzbmFja3RpbWUuc3RvcmFnZSJfCglN",
             "ZWRpYUZpbGUSEAoIZmlsZU5hbWUYASABKAkSEQoJbWVkaWFOYW1lGAIgASgJ",
             "EhUKDWRvd25sb2FkZWRVVEMYAyABKAkSFgoObGFzdFdhdGNoZWRVVEMYBCAB",
-            "KAkikQEKB1Nlc3Npb24SCgoCaWQYASABKAkSEAoIc3RhcnRVVEMYAiABKAMS",
+            "KAkipQEKB1Nlc3Npb24SCgoCaWQYASABKAkSEAoIc3RhcnRVVEMYAiABKAMS",
             "DgoGZW5kVVRDGAMgASgDEg8KB21lZGlhSWQYBCABKAkSLQoIZHVyYXRpb24Y",
             "BSABKAsyGy5zbmFja3RpbWUuc3RvcmFnZS5EdXJhdGlvbhIYChBtZWRpYUxl",
-            "bmdodEluU2VjGAYgASgBIj4KCER1cmF0aW9uEhkKEXN0YXJ0UG9zdGlvbklu",
-            "U2VjGAEgASgBEhcKD2VuZFBvc3Rpb25JblNlYxgCIAEoASJICghQcm9ncmVz",
-            "cxIUCgx3YXRjaGVkSW5TZWMYASABKAESDgoGbGVuZ2h0GAIgASgBEhYKDmxh",
-            "c3RXYXRjaGVkVXRjGAMgASgBQi+qAixTbmFja1RpbWUuTWVkaWFTZXJ2ZXIu",
-            "U3RvcmFnZS5Qcm90b0dlbmVyYXRlZGIGcHJvdG8z"));
+            "bmdodEluU2VjGAYgASgBEhIKCmZyb21EZXZpY2UYByABKAkiPgoIRHVyYXRp",
+            "b24SGQoRc3RhcnRQb3N0aW9uSW5TZWMYASABKAESFwoPZW5kUG9zdGlvbklu",
+            "U2VjGAIgASgBIkgKCFByb2dyZXNzEhQKDHdhdGNoZWRJblNlYxgBIAEoARIO",
+            "CgZsZW5naHQYAiABKAESFgoObGFzdFdhdGNoZWRVdGMYAyABKAFCL6oCLFNu",
+            "YWNrVGltZS5NZWRpYVNlcnZlci5TdG9yYWdlLlByb3RvR2VuZXJhdGVkYgZw",
+            "cm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Storage.ProtoGenerated.MediaFile), global::SnackTime.MediaServer.Storage.ProtoGenerated.MediaFile.Parser, new[]{ "FileName", "MediaName", "DownloadedUTC", "LastWatchedUTC" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Storage.ProtoGenerated.Session), global::SnackTime.MediaServer.Storage.ProtoGenerated.Session.Parser, new[]{ "Id", "StartUTC", "EndUTC", "MediaId", "Duration", "MediaLenghtInSec" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Storage.ProtoGenerated.Session), global::SnackTime.MediaServer.Storage.ProtoGenerated.Session.Parser, new[]{ "Id", "StartUTC", "EndUTC", "MediaId", "Duration", "MediaLenghtInSec", "FromDevice" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Storage.ProtoGenerated.Duration), global::SnackTime.MediaServer.Storage.ProtoGenerated.Duration.Parser, new[]{ "StartPostionInSec", "EndPostionInSec" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Storage.ProtoGenerated.Progress), global::SnackTime.MediaServer.Storage.ProtoGenerated.Progress.Parser, new[]{ "WatchedInSec", "Lenght", "LastWatchedUtc" }, null, null, null)
           }));
@@ -292,6 +293,7 @@ namespace SnackTime.MediaServer.Storage.ProtoGenerated {
       mediaId_ = other.mediaId_;
       duration_ = other.duration_ != null ? other.duration_.Clone() : null;
       mediaLenghtInSec_ = other.mediaLenghtInSec_;
+      fromDevice_ = other.fromDevice_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -366,6 +368,17 @@ namespace SnackTime.MediaServer.Storage.ProtoGenerated {
       }
     }
 
+    /// <summary>Field number for the "fromDevice" field.</summary>
+    public const int FromDeviceFieldNumber = 7;
+    private string fromDevice_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string FromDevice {
+      get { return fromDevice_; }
+      set {
+        fromDevice_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as Session);
@@ -385,6 +398,7 @@ namespace SnackTime.MediaServer.Storage.ProtoGenerated {
       if (MediaId != other.MediaId) return false;
       if (!object.Equals(Duration, other.Duration)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(MediaLenghtInSec, other.MediaLenghtInSec)) return false;
+      if (FromDevice != other.FromDevice) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -397,6 +411,7 @@ namespace SnackTime.MediaServer.Storage.ProtoGenerated {
       if (MediaId.Length != 0) hash ^= MediaId.GetHashCode();
       if (duration_ != null) hash ^= Duration.GetHashCode();
       if (MediaLenghtInSec != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(MediaLenghtInSec);
+      if (FromDevice.Length != 0) hash ^= FromDevice.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -434,6 +449,10 @@ namespace SnackTime.MediaServer.Storage.ProtoGenerated {
         output.WriteRawTag(49);
         output.WriteDouble(MediaLenghtInSec);
       }
+      if (FromDevice.Length != 0) {
+        output.WriteRawTag(58);
+        output.WriteString(FromDevice);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -459,6 +478,9 @@ namespace SnackTime.MediaServer.Storage.ProtoGenerated {
       }
       if (MediaLenghtInSec != 0D) {
         size += 1 + 8;
+      }
+      if (FromDevice.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(FromDevice);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -491,6 +513,9 @@ namespace SnackTime.MediaServer.Storage.ProtoGenerated {
       }
       if (other.MediaLenghtInSec != 0D) {
         MediaLenghtInSec = other.MediaLenghtInSec;
+      }
+      if (other.FromDevice.Length != 0) {
+        FromDevice = other.FromDevice;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -528,6 +553,10 @@ namespace SnackTime.MediaServer.Storage.ProtoGenerated {
           }
           case 49: {
             MediaLenghtInSec = input.ReadDouble();
+            break;
+          }
+          case 58: {
+            FromDevice = input.ReadString();
             break;
           }
         }

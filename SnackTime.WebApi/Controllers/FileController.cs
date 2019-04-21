@@ -20,10 +20,13 @@ namespace SnackTime.WebApi.Controllers
             _fileDownloadService = fileDownloadService;
         }
 
-        [HttpGet("download")]
-        public async Task<ActionResult> DownloadFile()
+        [HttpGet("download/{mediaFileIdStr}")]
+        public async Task<ActionResult> DownloadFile(string mediaFileIdStr)
         {
-            await _fileDownloadService.DownloadFile();
+            if (!MediaFileId.TryParse(mediaFileIdStr, out var mediaFileId))
+                return BadRequest($"{nameof(mediaFileIdStr)} is invalid");
+            
+            await _fileDownloadService.DownloadFile(mediaFileId);
             return StatusCode(202);
         }
     }

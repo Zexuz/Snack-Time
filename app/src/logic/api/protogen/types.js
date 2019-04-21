@@ -292,6 +292,7 @@ export const snacktime = $root.snacktime = (() => {
                  * Properties of a DownloadFileRequest.
                  * @memberof snacktime.series.file
                  * @interface IDownloadFileRequest
+                 * @property {string|null} [mediaFileId] DownloadFileRequest mediaFileId
                  */
 
                 /**
@@ -308,6 +309,14 @@ export const snacktime = $root.snacktime = (() => {
                             if (properties[keys[i]] != null)
                                 this[keys[i]] = properties[keys[i]];
                 }
+
+                /**
+                 * DownloadFileRequest mediaFileId.
+                 * @member {string} mediaFileId
+                 * @memberof snacktime.series.file.DownloadFileRequest
+                 * @instance
+                 */
+                DownloadFileRequest.prototype.mediaFileId = "";
 
                 return DownloadFileRequest;
             })();
@@ -1314,6 +1323,7 @@ export const snacktime = $root.snacktime = (() => {
              * @property {string|null} [mediaId] Session mediaId
              * @property {snacktime.storage.IDuration|null} [duration] Session duration
              * @property {number|null} [mediaLenghtInSec] Session mediaLenghtInSec
+             * @property {string|null} [fromDevice] Session fromDevice
              */
 
             /**
@@ -1378,6 +1388,14 @@ export const snacktime = $root.snacktime = (() => {
              * @instance
              */
             Session.prototype.mediaLenghtInSec = 0;
+
+            /**
+             * Session fromDevice.
+             * @member {string} fromDevice
+             * @memberof snacktime.storage.Session
+             * @instance
+             */
+            Session.prototype.fromDevice = "";
 
             return Session;
         })();

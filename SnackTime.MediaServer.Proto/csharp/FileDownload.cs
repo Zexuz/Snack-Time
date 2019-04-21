@@ -25,19 +25,19 @@ namespace SnackTime.MediaServer.Service.File {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "CiZwcm90by9maWxlLXNlcnZpY2UvZmlsZS1kb3dubG9hZC5wcm90bxIVc25h",
-            "Y2t0aW1lLnNlcmllcy5maWxlIhUKE0Rvd25sb2FkRmlsZVJlcXVlc3QisAEK",
-            "FFJlc3BvbnNlRG93bmxvYWRGaWxlEjEKB3N0YXJ0ZWQYASABKAsyHi5zbmFj",
-            "a3RpbWUuc2VyaWVzLmZpbGUuU3RhcnRlZEgAEjAKCHByb2dyZXNzGAIgASgL",
-            "Mhwuc25hY2t0aW1lLnNlcmllcy5maWxlLkNodW5rSAASKwoEZG9uZRgDIAEo",
-            "CzIbLnNuYWNrdGltZS5zZXJpZXMuZmlsZS5Eb25lSABCBgoEdHlwZSJBCgdT",
-            "dGFydGVkEg4KBmxlbmdodBgBIAEoARIUCgxzaXplUGVyQ2h1bmsYAiABKAUS",
-            "EAoIRmlsZU5hbWUYAyABKAkiGAoFQ2h1bmsSDwoHQ29udGVudBgBIAEoDCIU",
-            "CgREb25lEgwKBEhhc2gYASABKAlCJaoCIlNuYWNrVGltZS5NZWRpYVNlcnZl",
-            "ci5TZXJ2aWNlLkZpbGViBnByb3RvMw=="));
+            "Y2t0aW1lLnNlcmllcy5maWxlIioKE0Rvd25sb2FkRmlsZVJlcXVlc3QSEwoL",
+            "bWVkaWFGaWxlSWQYASABKAkisAEKFFJlc3BvbnNlRG93bmxvYWRGaWxlEjEK",
+            "B3N0YXJ0ZWQYASABKAsyHi5zbmFja3RpbWUuc2VyaWVzLmZpbGUuU3RhcnRl",
+            "ZEgAEjAKCHByb2dyZXNzGAIgASgLMhwuc25hY2t0aW1lLnNlcmllcy5maWxl",
+            "LkNodW5rSAASKwoEZG9uZRgDIAEoCzIbLnNuYWNrdGltZS5zZXJpZXMuZmls",
+            "ZS5Eb25lSABCBgoEdHlwZSJBCgdTdGFydGVkEg4KBmxlbmdodBgBIAEoARIU",
+            "CgxzaXplUGVyQ2h1bmsYAiABKAUSEAoIRmlsZU5hbWUYAyABKAkiGAoFQ2h1",
+            "bmsSDwoHQ29udGVudBgBIAEoDCIUCgREb25lEgwKBEhhc2gYASABKAlCJaoC",
+            "IlNuYWNrVGltZS5NZWRpYVNlcnZlci5TZXJ2aWNlLkZpbGViBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Service.File.DownloadFileRequest), global::SnackTime.MediaServer.Service.File.DownloadFileRequest.Parser, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Service.File.DownloadFileRequest), global::SnackTime.MediaServer.Service.File.DownloadFileRequest.Parser, new[]{ "MediaFileId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Service.File.ResponseDownloadFile), global::SnackTime.MediaServer.Service.File.ResponseDownloadFile.Parser, new[]{ "Started", "Progress", "Done" }, new[]{ "Type" }, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Service.File.Started), global::SnackTime.MediaServer.Service.File.Started.Parser, new[]{ "Lenght", "SizePerChunk", "FileName" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Service.File.Chunk), global::SnackTime.MediaServer.Service.File.Chunk.Parser, new[]{ "Content" }, null, null, null),
@@ -73,12 +73,24 @@ namespace SnackTime.MediaServer.Service.File {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public DownloadFileRequest(DownloadFileRequest other) : this() {
+      mediaFileId_ = other.mediaFileId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public DownloadFileRequest Clone() {
       return new DownloadFileRequest(this);
+    }
+
+    /// <summary>Field number for the "mediaFileId" field.</summary>
+    public const int MediaFileIdFieldNumber = 1;
+    private string mediaFileId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string MediaFileId {
+      get { return mediaFileId_; }
+      set {
+        mediaFileId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -94,12 +106,14 @@ namespace SnackTime.MediaServer.Service.File {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (MediaFileId != other.MediaFileId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
+      if (MediaFileId.Length != 0) hash ^= MediaFileId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -113,6 +127,10 @@ namespace SnackTime.MediaServer.Service.File {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+      if (MediaFileId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(MediaFileId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -121,6 +139,9 @@ namespace SnackTime.MediaServer.Service.File {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
+      if (MediaFileId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(MediaFileId);
+      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -131,6 +152,9 @@ namespace SnackTime.MediaServer.Service.File {
     public void MergeFrom(DownloadFileRequest other) {
       if (other == null) {
         return;
+      }
+      if (other.MediaFileId.Length != 0) {
+        MediaFileId = other.MediaFileId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -143,6 +167,10 @@ namespace SnackTime.MediaServer.Service.File {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
+          case 10: {
+            MediaFileId = input.ReadString();
+            break;
+          }
         }
       }
     }

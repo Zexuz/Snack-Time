@@ -19,6 +19,7 @@ message Session {
     string mediaId = 4;
     Duration duration = 5;
     double mediaLenghtInSec = 6;
+    string fromDevice = 7;
 }
 
 message Duration {

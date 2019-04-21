@@ -5,6 +5,8 @@ using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using SnackTime.Core;
+using SnackTime.Core.Settings;
 using SnackTime.MediaServer.Service.File;
 using File = System.IO.File;
 
@@ -15,22 +17,31 @@ namespace SnackTime.WebApi.Services
         private readonly ILogger<FileDownloadService>             _logger;
         private readonly MediaServer.Service.File.File.FileClient _client;
         private readonly FileService                              _fileService;
+        private readonly SettingsService                          _settingsService;
 
         public FileDownloadService
         (
             ILogger<FileDownloadService> logger,
             MediaServer.Service.File.File.FileClient client,
-            FileService fileService
+            FileService fileService,
+            SettingsService settingsService
         )
         {
             _logger = logger;
             _client = client;
             _fileService = fileService;
+            _settingsService = settingsService;
         }
 
-        public async Task DownloadFile()
+        public async Task DownloadFile(MediaFileId id)
         {
-            var streamingCall = _client.Download(new DownloadFileRequest());
+            var streamingCall = _client.Download(new DownloadFileRequest
+            {
+                MediaFileId = id.ToString(),
+            });
+
+            var settings = _settingsService.Get();
+
 
             double nrOfChunks = 0;
 
@@ -39,11 +50,9 @@ namespace SnackTime.WebApi.Services
 
             FileStream fileStream = null;
 
-            const string tempPath = "D:\\SnackTime\\Temp\\";
             const int tempFileSize = 1024 * 10 * 10;
 
             var fileName = "";
-            var fileOutputPath = "D:\\SnackTime\\";
 
             _logger.LogInformation($"Starting to download file");
 
@@ -70,7 +79,7 @@ namespace SnackTime.WebApi.Services
                                 fileStream.Dispose();
                             }
 
-                            fileStream = File.Create(tempPath + $"{fileName}.{currentTempFileIndex}.temp");
+                            fileStream = File.Create(settings.TempFileDir + $"{fileName}.{currentTempFileIndex}.temp");
 
                             currentTempFileIndex++;
                         }
@@ -93,10 +102,10 @@ namespace SnackTime.WebApi.Services
 
                         var sw = Stopwatch.StartNew();
                         var filePattern = $"{fileName}.*.temp";
-                        await _fileService.CombineMultipleFilesIntoSingleFile(tempPath, filePattern, fileOutputPath + fileName);
+                        await _fileService.CombineMultipleFilesIntoSingleFile(settings.TempFileDir, filePattern, settings.FileDir + fileName);
 
                         string hash;
-                        using (Stream source = File.OpenRead(fileOutputPath + fileName))
+                        using (Stream source = File.OpenRead(settings.FileDir + fileName))
                         using (var md5 = MD5.Create())
                         {
                             var byteHash = md5.ComputeHash(source);

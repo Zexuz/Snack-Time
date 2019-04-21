@@ -79,7 +79,13 @@
                     </button>
                     <ul :id="episode.title" class="dropdown-content">
                       <li><a href="JavaScript:void(0);">Mark as seen</a></li>
-                      <li><a href="JavaScript:void(0);">Download</a></li>
+                      <li>
+                        <a
+                          @click="download(episode.playableId)"
+                          href="JavaScript:void(0);"
+                          >Download</a
+                        >
+                      </li>
                     </ul>
                   </td>
                 </tr>
@@ -159,8 +165,13 @@ export default class SeriesInfo extends Vue {
     return Number(this.$route.params["id"]);
   }
 
+  private async download(mediaFileId: string): Promise<void> {
+    let res = await HttpClient.get<object>(
+      "/api/file/v1/download/" + mediaFileId
+    );
+  }
+
   private getTotalDuration(episode: Episode): number {
-    console.log("episode");
     if (
       !episode.progress ||
       !episode.progress.watchedInSec ||
