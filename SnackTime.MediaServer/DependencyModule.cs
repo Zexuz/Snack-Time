@@ -1,4 +1,5 @@
 using Autofac;
+using SnackTime.Core.Media.Series;
 
 namespace SnackTime.MediaServer
 {
@@ -6,6 +7,9 @@ namespace SnackTime.MediaServer
     {
         protected override void Load(ContainerBuilder builder)
         {
+
+            builder.RegisterType<SeriesProvider>().AsSelf();
+            
             builder.RegisterType<SeriesController>().As<Service.Series.Series.SeriesBase>();
             builder.RegisterType<EpisodeController>().As<Service.Episode.Episode.EpisodeBase>();
             builder.RegisterType<FileController>().As<Service.File.File.FileBase>();

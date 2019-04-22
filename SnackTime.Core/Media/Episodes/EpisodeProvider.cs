@@ -10,9 +10,9 @@ namespace SnackTime.Core.Media.Episodes
         private readonly SonarrClient   _client;
         private readonly EpisodeBuilder _seriesBuilder;
 
-        public EpisodeProvider(SonarrClient client, EpisodeBuilder episodeBuilder)
+        public EpisodeProvider(SonarrFactory sonarrFactory, EpisodeBuilder episodeBuilder)
         {
-            _client = client;
+            _client = sonarrFactory.GetClient();
             _seriesBuilder = episodeBuilder;
         }
 

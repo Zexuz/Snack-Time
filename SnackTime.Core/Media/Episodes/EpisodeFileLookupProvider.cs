@@ -7,9 +7,9 @@ namespace SnackTime.Core.Media.Episodes
     {
         private readonly SonarrClient _client;
 
-        public EpisodeFileLookupProvider(SonarrClient client)
+        public EpisodeFileLookupProvider(SonarrFactory sonarrFactory)
         {
-            _client = client;
+            _client = sonarrFactory.GetClient();
         }
 
         public async Task<Temp> GetFileInfoForId(int id)

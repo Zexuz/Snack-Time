@@ -10,17 +10,9 @@ namespace SnackTime.Core
 {
     public class DependencyModule : Module
     {
-        private readonly SonarrConfig _sonarrConfig;
-
-        public DependencyModule(SonarrConfig sonarrConfig)
-        {
-            _sonarrConfig = sonarrConfig;
-        }
-
         protected override void Load(ContainerBuilder builder)
         {
-            var sonarrClient = new SonarrClient(_sonarrConfig.Host, _sonarrConfig.Port, _sonarrConfig.ApiKey);
-            builder.RegisterInstance(sonarrClient).As<SonarrClient>();
+            builder.RegisterType<SonarrFactory>().AsSelf();
 
             builder.RegisterType<DatabaseFactory>().AsSelf();
 
@@ -43,6 +35,33 @@ namespace SnackTime.Core
             public string Host   { get; set; }
             public int    Port   { get; set; }
             public string ApiKey { get; set; }
+        }
+    }
+
+    public class SonarrFactory
+    {
+        private readonly SettingsService _settingsService;
+
+        public SonarrFactory(SettingsService settingsService)
+        {
+            _settingsService = settingsService;
+        }
+
+        public SonarrClient GetClient()
+        {
+            var host = "localhost";
+            var port = 8989;
+            var apiKey = "2e8fcac32bf147608239cab343617485";
+
+            var settings = _settingsService.Get();
+
+            if (!string.IsNullOrWhiteSpace(settings.MediaServerAddress))
+            {
+                host = settings.MediaServerAddress;
+            }
+
+
+            return new SonarrClient(host, port, apiKey);
         }
     }
 }

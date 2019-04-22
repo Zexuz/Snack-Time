@@ -26,14 +26,7 @@ namespace SnackTime.WebApi
         {
             builder.RegisterModule(new DependencyModule());
             builder.RegisterModule(new Mpv.JsonIpc.DependencyModule());
-            builder.RegisterModule(new Core.DependencyModule(
-                new Core.DependencyModule.SonarrConfig
-                {
-                    Host = "localhost",
-                    Port = 8989,
-                    ApiKey = "2e8fcac32bf147608239cab343617485"
-                })
-            );
+            builder.RegisterModule(new Core.DependencyModule());
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -49,14 +42,14 @@ namespace SnackTime.WebApi
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseLoggingMiddleware();
-            
+
             app.UseCors(builder => builder
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowAnyOrigin()
                 .Build()
             );
-            
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

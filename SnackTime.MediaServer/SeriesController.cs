@@ -10,9 +10,9 @@ namespace SnackTime.MediaServer
     {
         private readonly SeriesProvider _seriesProvider;
 
-        public SeriesController(SonarrClient client)
+        public SeriesController(SeriesProvider seriesProvider)
         {
-            _seriesProvider = new SeriesProvider(client);
+            _seriesProvider = seriesProvider;
         }
 
         public override async Task<GetAllResponse> GetAll(GetAllRequest request, ServerCallContext context)
