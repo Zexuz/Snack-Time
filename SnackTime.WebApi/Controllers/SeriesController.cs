@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SnackTime.Core;
 using SnackTime.MediaServer.Service.Series;
 using SnackTime.WebApi.Helpers;
 

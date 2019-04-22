@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option csharp_namespace = "SnackTime.MediaServer.Service.File";
 
-package snacktime.series.file;
+package snacktime.file.service;
 
 
 message DownloadFileRequest {

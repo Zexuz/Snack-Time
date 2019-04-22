@@ -24,16 +24,17 @@ namespace SnackTime.MediaServer.Service.File {
     static FileDownloadReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "CiZwcm90by9maWxlLXNlcnZpY2UvZmlsZS1kb3dubG9hZC5wcm90bxIVc25h",
-            "Y2t0aW1lLnNlcmllcy5maWxlIioKE0Rvd25sb2FkRmlsZVJlcXVlc3QSEwoL",
-            "bWVkaWFGaWxlSWQYASABKAkisAEKFFJlc3BvbnNlRG93bmxvYWRGaWxlEjEK",
-            "B3N0YXJ0ZWQYASABKAsyHi5zbmFja3RpbWUuc2VyaWVzLmZpbGUuU3RhcnRl",
-            "ZEgAEjAKCHByb2dyZXNzGAIgASgLMhwuc25hY2t0aW1lLnNlcmllcy5maWxl",
-            "LkNodW5rSAASKwoEZG9uZRgDIAEoCzIbLnNuYWNrdGltZS5zZXJpZXMuZmls",
-            "ZS5Eb25lSABCBgoEdHlwZSJBCgdTdGFydGVkEg4KBmxlbmdodBgBIAEoARIU",
-            "CgxzaXplUGVyQ2h1bmsYAiABKAUSEAoIRmlsZU5hbWUYAyABKAkiGAoFQ2h1",
-            "bmsSDwoHQ29udGVudBgBIAEoDCIUCgREb25lEgwKBEhhc2gYASABKAlCJaoC",
-            "IlNuYWNrVGltZS5NZWRpYVNlcnZlci5TZXJ2aWNlLkZpbGViBnByb3RvMw=="));
+            "CiZwcm90by9maWxlLXNlcnZpY2UvZmlsZS1kb3dubG9hZC5wcm90bxIWc25h",
+            "Y2t0aW1lLmZpbGUuc2VydmljZSIqChNEb3dubG9hZEZpbGVSZXF1ZXN0EhMK",
+            "C21lZGlhRmlsZUlkGAEgASgJIrMBChRSZXNwb25zZURvd25sb2FkRmlsZRIy",
+            "CgdzdGFydGVkGAEgASgLMh8uc25hY2t0aW1lLmZpbGUuc2VydmljZS5TdGFy",
+            "dGVkSAASMQoIcHJvZ3Jlc3MYAiABKAsyHS5zbmFja3RpbWUuZmlsZS5zZXJ2",
+            "aWNlLkNodW5rSAASLAoEZG9uZRgDIAEoCzIcLnNuYWNrdGltZS5maWxlLnNl",
+            "cnZpY2UuRG9uZUgAQgYKBHR5cGUiQQoHU3RhcnRlZBIOCgZsZW5naHQYASAB",
+            "KAESFAoMc2l6ZVBlckNodW5rGAIgASgFEhAKCEZpbGVOYW1lGAMgASgJIhgK",
+            "BUNodW5rEg8KB0NvbnRlbnQYASABKAwiFAoERG9uZRIMCgRIYXNoGAEgASgJ",
+            "QiWqAiJTbmFja1RpbWUuTWVkaWFTZXJ2ZXIuU2VydmljZS5GaWxlYgZwcm90",
+            "bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {

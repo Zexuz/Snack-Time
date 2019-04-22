@@ -11,20 +11,21 @@ namespace SnackTime.WebApi.Controllers
     public class SessionController : ControllerBase
     {
         private readonly ILogger<SessionController> _logger;
-        private readonly SessionService             _sessionService;
+        private readonly ISessionRepoFactory        _sessionRepoFactory;
         private readonly SessionSyncService         _sessionSyncService;
 
-        public SessionController(ILogger<SessionController> logger, SessionService sessionService, SessionSyncService sessionSyncService)
+        public SessionController(ILogger<SessionController> logger, SessionSyncService sessionSyncService, ISessionRepoFactory sessionRepoFactory)
         {
             _logger = logger;
-            _sessionService = sessionService;
             _sessionSyncService = sessionSyncService;
+            _sessionRepoFactory = sessionRepoFactory;
         }
 
         [HttpGet("")]
-        public ActionResult GetAll()
+        public async Task<ActionResult> GetAll()
         {
-            return Ok(_sessionService.GetAll());
+            var session = await _sessionRepoFactory.GetRepo();
+            return Ok(await session.GetAll());
         }
 
         [HttpGet("sync")]

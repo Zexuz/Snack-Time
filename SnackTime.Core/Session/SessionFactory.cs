@@ -1,18 +1,17 @@
 using System;
-using System.Collections.Generic;
+using System.Linq;
 using SnackTime.Core.Database;
+using SnackTime.MediaServer.Service.Session;
 using SnackTime.MediaServer.Storage.ProtoGenerated;
 
 namespace SnackTime.Core.Session
 {
-    public class SessionService
+    public class SessionFactory
     {
-        private readonly DatabaseFactory _databaseFactory;
-        private readonly TimeService     _timeService;
+        private readonly TimeService _timeService;
 
-        public SessionService(DatabaseFactory databaseFactory, TimeService timeService)
+        public SessionFactory(TimeService timeService)
         {
-            _databaseFactory = databaseFactory;
             _timeService = timeService;
         }
 
@@ -30,32 +29,16 @@ namespace SnackTime.Core.Session
                 timeWatched.EndPostionInSec = startPosition.Value.TotalSeconds;
             }
 
-            var sessionId = Guid.NewGuid().ToString("N");
-            return new MediaServer.Storage.ProtoGenerated.Session
+            var session = new MediaServer.Storage.ProtoGenerated.Session
             {
-                Id = sessionId,
+                Id = Guid.NewGuid().ToString("N"),
                 MediaId = mediaFileId.ToString(),
                 Duration = timeWatched,
                 StartUTC = _timeService.GetCurrentTimeAsUnixSeconds(),
                 EndUTC = _timeService.GetCurrentTimeAsUnixSeconds(),
                 MediaLenghtInSec = mediaDuration.TotalSeconds,
             };
-        }
-
-        public void UpsertSession(MediaServer.Storage.ProtoGenerated.Session session)
-        {
-            using (var db = _databaseFactory.GetRepository())
-            {
-                db.Upsert(session);
-            }
-        }
-
-        public IList<MediaServer.Storage.ProtoGenerated.Session> GetAll()
-        {
-            using (var db = _databaseFactory.GetRepository())
-            {
-                return db.Fetch<MediaServer.Storage.ProtoGenerated.Session>();
-            }
+            return session;
         }
     }
 }

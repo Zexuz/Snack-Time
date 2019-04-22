@@ -7,26 +7,26 @@ namespace SnackTime.MediaServer
 {
     public class SessionController : Session.SessionBase
     {
-        private readonly SessionService _sessionService;
+        private readonly ILocalSessionRepo _localSessionRepo;
 
-        public SessionController(SessionService sessionService)
+        public SessionController(ILocalSessionRepo localSessionRepo)
         {
-            _sessionService = sessionService;
+            _localSessionRepo = localSessionRepo;
         }
 
-        public override Task<GetAllResponse> GetAll(GetAllRequest request, ServerCallContext context)
+        public override async Task<GetAllResponse> GetAll(GetAllRequest request, ServerCallContext context)
         {
-            var sessions = _sessionService.GetAll();
-            return Task.FromResult(new GetAllResponse
+            var sessions = await _localSessionRepo.GetAll();
+            return new GetAllResponse
             {
                 Sessions = {sessions}
-            });
+            };
         }
 
-        public override Task<UpsertResponse> Upsert(UpsertRequest request, ServerCallContext context)
+        public override async Task<UpsertResponse> Upsert(UpsertRequest request, ServerCallContext context)
         {
-            _sessionService.UpsertSession(request.Session);
-            return Task.FromResult(new UpsertResponse());
+            await _localSessionRepo.UpsertSession(request.Session);
+            return new UpsertResponse();
         }
     }
 }

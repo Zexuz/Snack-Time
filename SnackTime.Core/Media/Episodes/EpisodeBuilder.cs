@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using SnackTime.Core.Session;
 using SnackTime.MediaServer.Models.ProtoGenerated;
 using SnackTime.MediaServer.Storage.ProtoGenerated;
@@ -8,21 +9,24 @@ namespace SnackTime.Core.Media.Episodes
 {
     public class EpisodeBuilder
     {
-        private readonly SessionService _sessionService;
+        private readonly ISessionRepoFactory _sessionRepoFactory;
 
-        public EpisodeBuilder(SessionService sessionService)
+        public EpisodeBuilder(ISessionRepoFactory sessionRepoFactory)
         {
-            _sessionService = sessionService;
+            _sessionRepoFactory = sessionRepoFactory;
         }
 
-        public List<Episode> Build(IEnumerable<SonarrSharp.Models.Episode> episodes)
+        public async Task<List<Episode>> Build(IEnumerable<SonarrSharp.Models.Episode> episodes)
         {
-            return episodes.Select(Build)
+            var tasks = episodes.Select(Build).ToList();
+            await Task.WhenAll(tasks);
+
+            return tasks.Select(task => task.Result)
                 .OrderByDescending(episode => episode.SeasonNumber)
                 .ToList();
         }
 
-        public Episode Build(SonarrSharp.Models.Episode episode)
+        public async Task<Episode> Build(SonarrSharp.Models.Episode episode)
         {
             var mediaFileId = new MediaFileId
             {
@@ -30,12 +34,13 @@ namespace SnackTime.Core.Media.Episodes
                 MediaId = episode.SeriesId,
                 FileId = episode.EpisodeFileId,
             };
+            var sessionRepo = await _sessionRepoFactory.GetRepo();
 
-            var allSessionsForCurrentEpisode = _sessionService.GetAll()
+            var allSessionsForCurrentEpisode = (await sessionRepo.GetAll())
                 .Where(session => session.MediaId == mediaFileId.ToString())
                 .ToList();
 
-            var lastSession = allSessionsForCurrentEpisode.OrderBy(session => session.EndUTC).FirstOrDefault();
+            var lastSession = allSessionsForCurrentEpisode.OrderByDescending(session => session.EndUTC).FirstOrDefault();
 
             return new Episode
             {

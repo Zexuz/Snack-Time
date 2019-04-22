@@ -1,6 +1,8 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SnackTime.Core.Session;
+using SnackTime.WebApi.Services;
 
 namespace SnackTime.WebApi.Controllers
 {
@@ -21,16 +23,17 @@ namespace SnackTime.WebApi.Controllers
 
     public class HistoryService
     {
-        private readonly SessionService _sessionService;
+        private readonly ISessionRepoFactory _sessionRepoFactory;
 
-        public HistoryService(SessionService sessionService)
+        public HistoryService(ISessionRepoFactory sessionRepoFactory)
         {
-            _sessionService = sessionService;
+            _sessionRepoFactory = sessionRepoFactory;
         }
 
-        public MediaServer.Models.ProtoGenerated.Series GetLatestWatched()
+        public async Task<MediaServer.Models.ProtoGenerated.Series> GetLatestWatched()
         {
-            var sessions = _sessionService.GetAll();
+            var sessionRepo = await _sessionRepoFactory.GetRepo();
+            var sessions = await sessionRepo.GetAll();
 
             sessions
                 .OrderBy(session => session.EndUTC)
@@ -40,6 +43,5 @@ namespace SnackTime.WebApi.Controllers
 
             return null;
         }
-        
     }
 }

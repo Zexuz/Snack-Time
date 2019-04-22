@@ -40,6 +40,20 @@ namespace Mpv.JsonIpc
         public async Task<TimeSpan> GetDuration()
         {
             var result = await _ipc.GetProperty<double>(Property.Duration);
+
+            int counter = 0;
+            while (Math.Abs(result.Data) < 1)
+            {
+                await Task.Delay(100);
+                result = await _ipc.GetProperty<double>(Property.Duration);
+
+                counter++;
+                if (counter > 20)
+                {
+                    break;
+                }
+            }
+
             return TimeSpan.FromSeconds(result.Data);
         }
     }

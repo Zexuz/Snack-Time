@@ -24,12 +24,12 @@ namespace SnackTime.MediaServer.Service.File {
     static FileServiceReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "CiVwcm90by9maWxlLXNlcnZpY2UvZmlsZS1zZXJ2aWNlLnByb3RvEhVzbmFj",
-            "a3RpbWUuc2VyaWVzLmZpbGUaJnByb3RvL2ZpbGUtc2VydmljZS9maWxlLWRv",
-            "d25sb2FkLnByb3RvMm8KBEZpbGUSZwoIRG93bmxvYWQSKi5zbmFja3RpbWUu",
-            "c2VyaWVzLmZpbGUuRG93bmxvYWRGaWxlUmVxdWVzdBorLnNuYWNrdGltZS5z",
-            "ZXJpZXMuZmlsZS5SZXNwb25zZURvd25sb2FkRmlsZSIAMAFCJaoCIlNuYWNr",
-            "VGltZS5NZWRpYVNlcnZlci5TZXJ2aWNlLkZpbGViBnByb3RvMw=="));
+            "CiVwcm90by9maWxlLXNlcnZpY2UvZmlsZS1zZXJ2aWNlLnByb3RvEhZzbmFj",
+            "a3RpbWUuZmlsZS5zZXJ2aWNlGiZwcm90by9maWxlLXNlcnZpY2UvZmlsZS1k",
+            "b3dubG9hZC5wcm90bzJxCgRGaWxlEmkKCERvd25sb2FkEisuc25hY2t0aW1l",
+            "LmZpbGUuc2VydmljZS5Eb3dubG9hZEZpbGVSZXF1ZXN0Giwuc25hY2t0aW1l",
+            "LmZpbGUuc2VydmljZS5SZXNwb25zZURvd25sb2FkRmlsZSIAMAFCJaoCIlNu",
+            "YWNrVGltZS5NZWRpYVNlcnZlci5TZXJ2aWNlLkZpbGViBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::SnackTime.MediaServer.Service.File.FileDownloadReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null));

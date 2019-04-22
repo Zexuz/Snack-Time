@@ -4,7 +4,7 @@ option csharp_namespace = "SnackTime.MediaServer.Service.File";
 
 import "proto/file-service/file-download.proto";
 
-package snacktime.series.file;
+package snacktime.file.service;
 
 service File {
     rpc Download (DownloadFileRequest) returns (stream ResponseDownloadFile) {

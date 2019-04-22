@@ -79,7 +79,7 @@ namespace SnackTime.WebApi.Services
                                 fileStream.Dispose();
                             }
 
-                            fileStream = File.Create(settings.TempFileDir + $"{fileName}.{currentTempFileIndex}.temp");
+                            fileStream = File.Create(settings.System.TempFileDir + $"{fileName}.{currentTempFileIndex}.temp");
 
                             currentTempFileIndex++;
                         }
@@ -102,10 +102,10 @@ namespace SnackTime.WebApi.Services
 
                         var sw = Stopwatch.StartNew();
                         var filePattern = $"{fileName}.*.temp";
-                        await _fileService.CombineMultipleFilesIntoSingleFile(settings.TempFileDir, filePattern, settings.FileDir + fileName);
+                        await _fileService.CombineMultipleFilesIntoSingleFile(settings.System.TempFileDir, filePattern, settings.System.FileDir + fileName);
 
                         string hash;
-                        using (Stream source = File.OpenRead(settings.FileDir + fileName))
+                        using (Stream source = File.OpenRead(settings.System.FileDir + fileName))
                         using (var md5 = MD5.Create())
                         {
                             var byteHash = md5.ComputeHash(source);

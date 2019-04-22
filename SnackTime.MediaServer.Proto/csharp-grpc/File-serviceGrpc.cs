@@ -10,17 +10,17 @@ using grpc = global::Grpc.Core;
 namespace SnackTime.MediaServer.Service.File {
   public static partial class File
   {
-    static readonly string __ServiceName = "snacktime.series.file.File";
+    static readonly string __ServiceName = "snacktime.file.service.File";
 
-    static readonly grpc::Marshaller<global::SnackTime.MediaServer.Service.File.DownloadFileRequest> __Marshaller_snacktime_series_file_DownloadFileRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SnackTime.MediaServer.Service.File.DownloadFileRequest.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::SnackTime.MediaServer.Service.File.ResponseDownloadFile> __Marshaller_snacktime_series_file_ResponseDownloadFile = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SnackTime.MediaServer.Service.File.ResponseDownloadFile.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SnackTime.MediaServer.Service.File.DownloadFileRequest> __Marshaller_snacktime_file_service_DownloadFileRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SnackTime.MediaServer.Service.File.DownloadFileRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SnackTime.MediaServer.Service.File.ResponseDownloadFile> __Marshaller_snacktime_file_service_ResponseDownloadFile = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SnackTime.MediaServer.Service.File.ResponseDownloadFile.Parser.ParseFrom);
 
     static readonly grpc::Method<global::SnackTime.MediaServer.Service.File.DownloadFileRequest, global::SnackTime.MediaServer.Service.File.ResponseDownloadFile> __Method_Download = new grpc::Method<global::SnackTime.MediaServer.Service.File.DownloadFileRequest, global::SnackTime.MediaServer.Service.File.ResponseDownloadFile>(
         grpc::MethodType.ServerStreaming,
         __ServiceName,
         "Download",
-        __Marshaller_snacktime_series_file_DownloadFileRequest,
-        __Marshaller_snacktime_series_file_ResponseDownloadFile);
+        __Marshaller_snacktime_file_service_DownloadFileRequest,
+        __Marshaller_snacktime_file_service_ResponseDownloadFile);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor

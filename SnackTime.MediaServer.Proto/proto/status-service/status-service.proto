@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option csharp_namespace = "SnackTime.MediaServer.Service.Status";
+
+package snacktime.status.service;
+
+import "proto/status-service/status-ping.proto";
+
+
+service Status {
+    rpc Ping (PingRequest) returns (PingResponse) {
+    }
+}

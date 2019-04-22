@@ -18,9 +18,11 @@ namespace SnackTime.Core
 
             builder.RegisterType<SettingsService>().AsSelf();
             builder.RegisterType<SettingsRepo>().AsSelf();
+            
+            builder.RegisterType<LocalSessionRepo>().As<ILocalSessionRepo>();
 
             builder.RegisterType<TimeService>().AsSelf();
-            builder.RegisterType<SessionService>().AsSelf();
+            builder.RegisterType<SessionFactory>().AsSelf();
             builder.RegisterType<Queue<Item>>().AsSelf().SingleInstance();
 
             builder.RegisterType<EpisodeFileLookupProvider>().AsSelf();
@@ -28,13 +30,6 @@ namespace SnackTime.Core
 
             builder.RegisterType<ProcessManager>().AsSelf();
             builder.RegisterType<EpisodeBuilder>().AsSelf();
-        }
-
-        public class SonarrConfig
-        {
-            public string Host   { get; set; }
-            public int    Port   { get; set; }
-            public string ApiKey { get; set; }
         }
     }
 
@@ -55,9 +50,9 @@ namespace SnackTime.Core
 
             var settings = _settingsService.Get();
 
-            if (!string.IsNullOrWhiteSpace(settings.MediaServerAddress))
+            if (!string.IsNullOrWhiteSpace(settings.Remote.MediaServerAddress))
             {
-                host = settings.MediaServerAddress;
+                host = settings.Remote.MediaServerAddress;
             }
 
 

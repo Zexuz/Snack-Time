@@ -6,25 +6,34 @@ using Mpv.JsonIpc;
 using SnackTime.Core;
 using SnackTime.Core.Session;
 using SnackTime.MediaServer.Storage.ProtoGenerated;
+using SnackTime.WebApi.Services;
 
 namespace SnackTime.WebApi
 {
     public class MediaPlayerObserver : IHostedService
     {
-        private readonly Queue<Item>    _queue;
-        private readonly SessionService _sessionService;
-        private readonly IApi           _api;
-        private readonly TimeService _timeService;
+        private readonly Queue<Item>         _queue;
+        private readonly SessionFactory      _sessionFactory;
+        private readonly IApi                _api;
+        private readonly TimeService         _timeService;
+        private readonly ISessionRepoFactory _sessionRepoFactory;
 
         private CancellationToken _token;
         private Task              _task;
 
-        public MediaPlayerObserver(Queue<Item> queue, SessionService sessionService, IApi api, TimeService timeService)
+        public MediaPlayerObserver
+        (
+            Queue<Item> queue,
+            SessionFactory sessionFactory,
+            IApi api, TimeService timeService,
+            ISessionRepoFactory sessionRepoFactory
+        )
         {
             _queue = queue;
-            _sessionService = sessionService;
+            _sessionFactory = sessionFactory;
             _api = api;
             _timeService = timeService;
+            _sessionRepoFactory = sessionRepoFactory;
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
@@ -51,14 +60,16 @@ namespace SnackTime.WebApi
                     await _api.ShowText($"Now playing {item.Path.Substring(item.Path.LastIndexOf('\\') + 1)}", TimeSpan.FromSeconds(5));
                     await _api.PlayMedia(item.Path);
                     var duration = await _api.GetDuration();
-                    currentSession = _sessionService.CreateNewSession(item.MediaFileId, duration);
+                    currentSession = _sessionFactory.CreateNewSession(item.MediaFileId, duration);
                 }
 
                 if (currentSession != null)
                 {
                     currentSession.Duration.EndPostionInSec = (await _api.GetCurrentPosition()).TotalSeconds;
                     currentSession.EndUTC = _timeService.GetCurrentTimeAsUnixSeconds();
-                    _sessionService.UpsertSession(currentSession);
+
+                    var sessionRepo = await _sessionRepoFactory.GetRepo();
+                    await sessionRepo.UpsertSession(currentSession);
                 }
 
                 //How do we create a new WatchSession?

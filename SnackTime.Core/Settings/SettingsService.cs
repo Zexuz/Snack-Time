@@ -1,4 +1,6 @@
 using Microsoft.Extensions.Logging;
+using SnackTime.App.Settings.ProtoGenerated;
+using SonarrSharp.Models;
 
 namespace SnackTime.Core.Settings
 {
@@ -25,7 +27,19 @@ namespace SnackTime.Core.Settings
 
         public App.Settings.ProtoGenerated.Settings Get()
         {
-            return _settingsRepo.Get()?.Value ?? new App.Settings.ProtoGenerated.Settings();
+            var setting = _settingsRepo.Get()?.Value ?? new App.Settings.ProtoGenerated.Settings();
+
+            if (setting.Remote == null)
+            {
+                setting.Remote = new Remote();
+            }
+
+            if (setting.System == null)
+            {
+                setting.System = new LocalSystem();
+            }
+
+            return setting;
         }
     }
 }

@@ -1,45 +1,57 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using SnackTime.Core.Session;
-using SnackTime.MediaServer.Service.Session;
+using SnackTime.Core.Settings;
 
 namespace SnackTime.WebApi.Services
 {
     public class SessionSyncService
     {
         private readonly ILogger<SessionSyncService> _logger;
-        private readonly SessionService              _sessionService;
-        private readonly Session.SessionClient       _sessionClient;
+        private readonly ILocalSessionRepo           _localSessionRepo;
+        private readonly IRemoteSessionRepo          _remoteSessionRepo;
+        private readonly SettingsService _settingsService;
 
-        public SessionSyncService(ILogger<SessionSyncService> logger, SessionService sessionService, GrpcClientProvider clientProvider)
+        public SessionSyncService
+        (
+            ILogger<SessionSyncService> logger,
+            ILocalSessionRepo localSessionRepo,
+            IRemoteSessionRepo remoteSessionRepo,
+            SettingsService settingsService
+        )
         {
             _logger = logger;
-            _sessionService = sessionService;
-            _sessionClient = clientProvider.GetSessionClient();
+            _localSessionRepo = localSessionRepo;
+            _remoteSessionRepo = remoteSessionRepo;
+            _settingsService = settingsService;
         }
 
         public async Task Sync()
         {
+            var settings = _settingsService.Get();
+            if (!settings.Remote.IsOnline)
+            {
+                throw new Exception("Can't sync servers when we are offline");
+            }
+            
             _logger.LogInformation("Starting sync of sessions");
-            var sessions = _sessionService.GetAll();
-            var response = await _sessionClient.GetAllAsync(new GetAllRequest());
+            var localSessions = await _localSessionRepo.GetAll();
+            var remoteSessions = await _remoteSessionRepo.GetAll();
 
-            _logger.LogDebug($"Have {sessions.Count} sessions locally");
-            _logger.LogDebug($"Have {response.Sessions.Count} sessions on server");
+            _logger.LogDebug($"Have {localSessions.Count} sessions locally");
+            _logger.LogDebug($"Have {remoteSessions.Count} sessions on server");
 
-            foreach (var session in sessions)
+            foreach (var session in localSessions)
             {
                 _logger.LogDebug($"Upsert {session.Id} to server");
-                _sessionClient.Upsert(new UpsertRequest
-                {
-                    Session = session
-                });
+                await _remoteSessionRepo.UpsertSession(session);
             }
 
-            foreach (var session in response.Sessions)
+            foreach (var session in remoteSessions)
             {
                 _logger.LogDebug($"Upsert {session.Id} locally");
-                _sessionService.UpsertSession(session);
+                await _localSessionRepo.UpsertSession(session);
             }
         }
     }

@@ -268,40 +268,40 @@ export const snacktime = $root.snacktime = (() => {
         return episode;
     })();
 
-    snacktime.series = (function() {
+    snacktime.file = (function() {
 
         /**
-         * Namespace series.
+         * Namespace file.
          * @memberof snacktime
          * @namespace
          */
-        const series = {};
+        const file = {};
 
-        series.file = (function() {
+        file.service = (function() {
 
             /**
-             * Namespace file.
-             * @memberof snacktime.series
+             * Namespace service.
+             * @memberof snacktime.file
              * @namespace
              */
-            const file = {};
+            const service = {};
 
-            file.DownloadFileRequest = (function() {
+            service.DownloadFileRequest = (function() {
 
                 /**
                  * Properties of a DownloadFileRequest.
-                 * @memberof snacktime.series.file
+                 * @memberof snacktime.file.service
                  * @interface IDownloadFileRequest
                  * @property {string|null} [mediaFileId] DownloadFileRequest mediaFileId
                  */
 
                 /**
                  * Constructs a new DownloadFileRequest.
-                 * @memberof snacktime.series.file
+                 * @memberof snacktime.file.service
                  * @classdesc Represents a DownloadFileRequest.
                  * @implements IDownloadFileRequest
                  * @constructor
-                 * @param {snacktime.series.file.IDownloadFileRequest=} [properties] Properties to set
+                 * @param {snacktime.file.service.IDownloadFileRequest=} [properties] Properties to set
                  */
                 function DownloadFileRequest(properties) {
                     if (properties)
@@ -313,7 +313,7 @@ export const snacktime = $root.snacktime = (() => {
                 /**
                  * DownloadFileRequest mediaFileId.
                  * @member {string} mediaFileId
-                 * @memberof snacktime.series.file.DownloadFileRequest
+                 * @memberof snacktime.file.service.DownloadFileRequest
                  * @instance
                  */
                 DownloadFileRequest.prototype.mediaFileId = "";
@@ -321,24 +321,24 @@ export const snacktime = $root.snacktime = (() => {
                 return DownloadFileRequest;
             })();
 
-            file.ResponseDownloadFile = (function() {
+            service.ResponseDownloadFile = (function() {
 
                 /**
                  * Properties of a ResponseDownloadFile.
-                 * @memberof snacktime.series.file
+                 * @memberof snacktime.file.service
                  * @interface IResponseDownloadFile
-                 * @property {snacktime.series.file.IStarted|null} [started] ResponseDownloadFile started
-                 * @property {snacktime.series.file.IChunk|null} [progress] ResponseDownloadFile progress
-                 * @property {snacktime.series.file.IDone|null} [done] ResponseDownloadFile done
+                 * @property {snacktime.file.service.IStarted|null} [started] ResponseDownloadFile started
+                 * @property {snacktime.file.service.IChunk|null} [progress] ResponseDownloadFile progress
+                 * @property {snacktime.file.service.IDone|null} [done] ResponseDownloadFile done
                  */
 
                 /**
                  * Constructs a new ResponseDownloadFile.
-                 * @memberof snacktime.series.file
+                 * @memberof snacktime.file.service
                  * @classdesc Represents a ResponseDownloadFile.
                  * @implements IResponseDownloadFile
                  * @constructor
-                 * @param {snacktime.series.file.IResponseDownloadFile=} [properties] Properties to set
+                 * @param {snacktime.file.service.IResponseDownloadFile=} [properties] Properties to set
                  */
                 function ResponseDownloadFile(properties) {
                     if (properties)
@@ -349,24 +349,24 @@ export const snacktime = $root.snacktime = (() => {
 
                 /**
                  * ResponseDownloadFile started.
-                 * @member {snacktime.series.file.IStarted|null|undefined} started
-                 * @memberof snacktime.series.file.ResponseDownloadFile
+                 * @member {snacktime.file.service.IStarted|null|undefined} started
+                 * @memberof snacktime.file.service.ResponseDownloadFile
                  * @instance
                  */
                 ResponseDownloadFile.prototype.started = null;
 
                 /**
                  * ResponseDownloadFile progress.
-                 * @member {snacktime.series.file.IChunk|null|undefined} progress
-                 * @memberof snacktime.series.file.ResponseDownloadFile
+                 * @member {snacktime.file.service.IChunk|null|undefined} progress
+                 * @memberof snacktime.file.service.ResponseDownloadFile
                  * @instance
                  */
                 ResponseDownloadFile.prototype.progress = null;
 
                 /**
                  * ResponseDownloadFile done.
-                 * @member {snacktime.series.file.IDone|null|undefined} done
-                 * @memberof snacktime.series.file.ResponseDownloadFile
+                 * @member {snacktime.file.service.IDone|null|undefined} done
+                 * @memberof snacktime.file.service.ResponseDownloadFile
                  * @instance
                  */
                 ResponseDownloadFile.prototype.done = null;
@@ -377,7 +377,7 @@ export const snacktime = $root.snacktime = (() => {
                 /**
                  * ResponseDownloadFile type.
                  * @member {"started"|"progress"|"done"|undefined} type
-                 * @memberof snacktime.series.file.ResponseDownloadFile
+                 * @memberof snacktime.file.service.ResponseDownloadFile
                  * @instance
                  */
                 Object.defineProperty(ResponseDownloadFile.prototype, "type", {
@@ -388,11 +388,11 @@ export const snacktime = $root.snacktime = (() => {
                 return ResponseDownloadFile;
             })();
 
-            file.Started = (function() {
+            service.Started = (function() {
 
                 /**
                  * Properties of a Started.
-                 * @memberof snacktime.series.file
+                 * @memberof snacktime.file.service
                  * @interface IStarted
                  * @property {number|null} [lenght] Started lenght
                  * @property {number|null} [sizePerChunk] Started sizePerChunk
@@ -401,11 +401,11 @@ export const snacktime = $root.snacktime = (() => {
 
                 /**
                  * Constructs a new Started.
-                 * @memberof snacktime.series.file
+                 * @memberof snacktime.file.service
                  * @classdesc Represents a Started.
                  * @implements IStarted
                  * @constructor
-                 * @param {snacktime.series.file.IStarted=} [properties] Properties to set
+                 * @param {snacktime.file.service.IStarted=} [properties] Properties to set
                  */
                 function Started(properties) {
                     if (properties)
@@ -417,7 +417,7 @@ export const snacktime = $root.snacktime = (() => {
                 /**
                  * Started lenght.
                  * @member {number} lenght
-                 * @memberof snacktime.series.file.Started
+                 * @memberof snacktime.file.service.Started
                  * @instance
                  */
                 Started.prototype.lenght = 0;
@@ -425,7 +425,7 @@ export const snacktime = $root.snacktime = (() => {
                 /**
                  * Started sizePerChunk.
                  * @member {number} sizePerChunk
-                 * @memberof snacktime.series.file.Started
+                 * @memberof snacktime.file.service.Started
                  * @instance
                  */
                 Started.prototype.sizePerChunk = 0;
@@ -433,7 +433,7 @@ export const snacktime = $root.snacktime = (() => {
                 /**
                  * Started FileName.
                  * @member {string} FileName
-                 * @memberof snacktime.series.file.Started
+                 * @memberof snacktime.file.service.Started
                  * @instance
                  */
                 Started.prototype.FileName = "";
@@ -441,22 +441,22 @@ export const snacktime = $root.snacktime = (() => {
                 return Started;
             })();
 
-            file.Chunk = (function() {
+            service.Chunk = (function() {
 
                 /**
                  * Properties of a Chunk.
-                 * @memberof snacktime.series.file
+                 * @memberof snacktime.file.service
                  * @interface IChunk
                  * @property {Uint8Array|null} [Content] Chunk Content
                  */
 
                 /**
                  * Constructs a new Chunk.
-                 * @memberof snacktime.series.file
+                 * @memberof snacktime.file.service
                  * @classdesc Represents a Chunk.
                  * @implements IChunk
                  * @constructor
-                 * @param {snacktime.series.file.IChunk=} [properties] Properties to set
+                 * @param {snacktime.file.service.IChunk=} [properties] Properties to set
                  */
                 function Chunk(properties) {
                     if (properties)
@@ -468,7 +468,7 @@ export const snacktime = $root.snacktime = (() => {
                 /**
                  * Chunk Content.
                  * @member {Uint8Array} Content
-                 * @memberof snacktime.series.file.Chunk
+                 * @memberof snacktime.file.service.Chunk
                  * @instance
                  */
                 Chunk.prototype.Content = $util.newBuffer([]);
@@ -476,22 +476,22 @@ export const snacktime = $root.snacktime = (() => {
                 return Chunk;
             })();
 
-            file.Done = (function() {
+            service.Done = (function() {
 
                 /**
                  * Properties of a Done.
-                 * @memberof snacktime.series.file
+                 * @memberof snacktime.file.service
                  * @interface IDone
                  * @property {string|null} [Hash] Done Hash
                  */
 
                 /**
                  * Constructs a new Done.
-                 * @memberof snacktime.series.file
+                 * @memberof snacktime.file.service
                  * @classdesc Represents a Done.
                  * @implements IDone
                  * @constructor
-                 * @param {snacktime.series.file.IDone=} [properties] Properties to set
+                 * @param {snacktime.file.service.IDone=} [properties] Properties to set
                  */
                 function Done(properties) {
                     if (properties)
@@ -503,7 +503,7 @@ export const snacktime = $root.snacktime = (() => {
                 /**
                  * Done Hash.
                  * @member {string} Hash
-                 * @memberof snacktime.series.file.Done
+                 * @memberof snacktime.file.service.Done
                  * @instance
                  */
                 Done.prototype.Hash = "";
@@ -511,11 +511,11 @@ export const snacktime = $root.snacktime = (() => {
                 return Done;
             })();
 
-            file.File = (function() {
+            service.File = (function() {
 
                 /**
                  * Constructs a new File service.
-                 * @memberof snacktime.series.file
+                 * @memberof snacktime.file.service
                  * @classdesc Represents a File
                  * @extends $protobuf.rpc.Service
                  * @constructor
@@ -530,43 +530,303 @@ export const snacktime = $root.snacktime = (() => {
                 (File.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = File;
 
                 /**
-                 * Callback as used by {@link snacktime.series.file.File#download}.
-                 * @memberof snacktime.series.file.File
+                 * Callback as used by {@link snacktime.file.service.File#download}.
+                 * @memberof snacktime.file.service.File
                  * @typedef DownloadCallback
                  * @type {function}
                  * @param {Error|null} error Error, if any
-                 * @param {snacktime.series.file.ResponseDownloadFile} [response] ResponseDownloadFile
+                 * @param {snacktime.file.service.ResponseDownloadFile} [response] ResponseDownloadFile
                  */
 
                 /**
                  * Calls Download.
                  * @function download
-                 * @memberof snacktime.series.file.File
+                 * @memberof snacktime.file.service.File
                  * @instance
-                 * @param {snacktime.series.file.IDownloadFileRequest} request DownloadFileRequest message or plain object
-                 * @param {snacktime.series.file.File.DownloadCallback} callback Node-style callback called with the error, if any, and ResponseDownloadFile
+                 * @param {snacktime.file.service.IDownloadFileRequest} request DownloadFileRequest message or plain object
+                 * @param {snacktime.file.service.File.DownloadCallback} callback Node-style callback called with the error, if any, and ResponseDownloadFile
                  * @returns {undefined}
                  * @variation 1
                  */
                 Object.defineProperty(File.prototype.download = function download(request, callback) {
-                    return this.rpcCall(download, $root.snacktime.series.file.DownloadFileRequest, $root.snacktime.series.file.ResponseDownloadFile, request, callback);
+                    return this.rpcCall(download, $root.snacktime.file.service.DownloadFileRequest, $root.snacktime.file.service.ResponseDownloadFile, request, callback);
                 }, "name", { value: "Download" });
 
                 /**
                  * Calls Download.
                  * @function download
-                 * @memberof snacktime.series.file.File
+                 * @memberof snacktime.file.service.File
                  * @instance
-                 * @param {snacktime.series.file.IDownloadFileRequest} request DownloadFileRequest message or plain object
-                 * @returns {Promise<snacktime.series.file.ResponseDownloadFile>} Promise
+                 * @param {snacktime.file.service.IDownloadFileRequest} request DownloadFileRequest message or plain object
+                 * @returns {Promise<snacktime.file.service.ResponseDownloadFile>} Promise
                  * @variation 2
                  */
 
                 return File;
             })();
 
-            return file;
+            return service;
         })();
+
+        return file;
+    })();
+
+    snacktime.media = (function() {
+
+        /**
+         * Namespace media.
+         * @memberof snacktime
+         * @namespace
+         */
+        const media = {};
+
+        media.Series = (function() {
+
+            /**
+             * Properties of a Series.
+             * @memberof snacktime.media
+             * @interface ISeries
+             * @property {number|null} [id] Series id
+             * @property {string|null} [title] Series title
+             * @property {snacktime.media.IImagesUrl|null} [imagesUrl] Series imagesUrl
+             * @property {string|null} [overview] Series overview
+             * @property {boolean|null} [monitored] Series monitored
+             */
+
+            /**
+             * Constructs a new Series.
+             * @memberof snacktime.media
+             * @classdesc Represents a Series.
+             * @implements ISeries
+             * @constructor
+             * @param {snacktime.media.ISeries=} [properties] Properties to set
+             */
+            function Series(properties) {
+                if (properties)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * Series id.
+             * @member {number} id
+             * @memberof snacktime.media.Series
+             * @instance
+             */
+            Series.prototype.id = 0;
+
+            /**
+             * Series title.
+             * @member {string} title
+             * @memberof snacktime.media.Series
+             * @instance
+             */
+            Series.prototype.title = "";
+
+            /**
+             * Series imagesUrl.
+             * @member {snacktime.media.IImagesUrl|null|undefined} imagesUrl
+             * @memberof snacktime.media.Series
+             * @instance
+             */
+            Series.prototype.imagesUrl = null;
+
+            /**
+             * Series overview.
+             * @member {string} overview
+             * @memberof snacktime.media.Series
+             * @instance
+             */
+            Series.prototype.overview = "";
+
+            /**
+             * Series monitored.
+             * @member {boolean} monitored
+             * @memberof snacktime.media.Series
+             * @instance
+             */
+            Series.prototype.monitored = false;
+
+            return Series;
+        })();
+
+        media.ImagesUrl = (function() {
+
+            /**
+             * Properties of an ImagesUrl.
+             * @memberof snacktime.media
+             * @interface IImagesUrl
+             * @property {string|null} [banner] ImagesUrl banner
+             * @property {string|null} [fanart] ImagesUrl fanart
+             * @property {string|null} [poster] ImagesUrl poster
+             */
+
+            /**
+             * Constructs a new ImagesUrl.
+             * @memberof snacktime.media
+             * @classdesc Represents an ImagesUrl.
+             * @implements IImagesUrl
+             * @constructor
+             * @param {snacktime.media.IImagesUrl=} [properties] Properties to set
+             */
+            function ImagesUrl(properties) {
+                if (properties)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * ImagesUrl banner.
+             * @member {string} banner
+             * @memberof snacktime.media.ImagesUrl
+             * @instance
+             */
+            ImagesUrl.prototype.banner = "";
+
+            /**
+             * ImagesUrl fanart.
+             * @member {string} fanart
+             * @memberof snacktime.media.ImagesUrl
+             * @instance
+             */
+            ImagesUrl.prototype.fanart = "";
+
+            /**
+             * ImagesUrl poster.
+             * @member {string} poster
+             * @memberof snacktime.media.ImagesUrl
+             * @instance
+             */
+            ImagesUrl.prototype.poster = "";
+
+            return ImagesUrl;
+        })();
+
+        media.Episode = (function() {
+
+            /**
+             * Properties of an Episode.
+             * @memberof snacktime.media
+             * @interface IEpisode
+             * @property {number|null} [seriesId] Episode seriesId
+             * @property {number|null} [episodeFileId] Episode episodeFileId
+             * @property {number|null} [seasonNumber] Episode seasonNumber
+             * @property {number|null} [episideNumber] Episode episideNumber
+             * @property {string|null} [title] Episode title
+             * @property {string|null} [overview] Episode overview
+             * @property {string|null} [playableId] Episode playableId
+             * @property {snacktime.storage.IProgress|null} [progress] Episode progress
+             */
+
+            /**
+             * Constructs a new Episode.
+             * @memberof snacktime.media
+             * @classdesc Represents an Episode.
+             * @implements IEpisode
+             * @constructor
+             * @param {snacktime.media.IEpisode=} [properties] Properties to set
+             */
+            function Episode(properties) {
+                if (properties)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * Episode seriesId.
+             * @member {number} seriesId
+             * @memberof snacktime.media.Episode
+             * @instance
+             */
+            Episode.prototype.seriesId = 0;
+
+            /**
+             * Episode episodeFileId.
+             * @member {number} episodeFileId
+             * @memberof snacktime.media.Episode
+             * @instance
+             */
+            Episode.prototype.episodeFileId = 0;
+
+            /**
+             * Episode seasonNumber.
+             * @member {number} seasonNumber
+             * @memberof snacktime.media.Episode
+             * @instance
+             */
+            Episode.prototype.seasonNumber = 0;
+
+            /**
+             * Episode episideNumber.
+             * @member {number} episideNumber
+             * @memberof snacktime.media.Episode
+             * @instance
+             */
+            Episode.prototype.episideNumber = 0;
+
+            /**
+             * Episode title.
+             * @member {string} title
+             * @memberof snacktime.media.Episode
+             * @instance
+             */
+            Episode.prototype.title = "";
+
+            /**
+             * Episode overview.
+             * @member {string} overview
+             * @memberof snacktime.media.Episode
+             * @instance
+             */
+            Episode.prototype.overview = "";
+
+            /**
+             * Episode playableId.
+             * @member {string} playableId
+             * @memberof snacktime.media.Episode
+             * @instance
+             */
+            Episode.prototype.playableId = "";
+
+            /**
+             * Episode progress.
+             * @member {snacktime.storage.IProgress|null|undefined} progress
+             * @memberof snacktime.media.Episode
+             * @instance
+             */
+            Episode.prototype.progress = null;
+
+            return Episode;
+        })();
+
+        /**
+         * Providers enum.
+         * @name snacktime.media.Providers
+         * @enum {string}
+         * @property {number} Sonarr=0 Sonarr value
+         * @property {number} Radarr=1 Radarr value
+         */
+        media.Providers = (function() {
+            const valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "Sonarr"] = 0;
+            values[valuesById[1] = "Radarr"] = 1;
+            return values;
+        })();
+
+        return media;
+    })();
+
+    snacktime.series = (function() {
+
+        /**
+         * Namespace series.
+         * @memberof snacktime
+         * @namespace
+         */
+        const series = {};
 
         series.service = (function() {
 
@@ -1119,254 +1379,6 @@ export const snacktime = $root.snacktime = (() => {
         return series;
     })();
 
-    snacktime.media = (function() {
-
-        /**
-         * Namespace media.
-         * @memberof snacktime
-         * @namespace
-         */
-        const media = {};
-
-        media.Series = (function() {
-
-            /**
-             * Properties of a Series.
-             * @memberof snacktime.media
-             * @interface ISeries
-             * @property {number|null} [id] Series id
-             * @property {string|null} [title] Series title
-             * @property {snacktime.media.IImagesUrl|null} [imagesUrl] Series imagesUrl
-             * @property {string|null} [overview] Series overview
-             * @property {boolean|null} [monitored] Series monitored
-             */
-
-            /**
-             * Constructs a new Series.
-             * @memberof snacktime.media
-             * @classdesc Represents a Series.
-             * @implements ISeries
-             * @constructor
-             * @param {snacktime.media.ISeries=} [properties] Properties to set
-             */
-            function Series(properties) {
-                if (properties)
-                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
-                            this[keys[i]] = properties[keys[i]];
-            }
-
-            /**
-             * Series id.
-             * @member {number} id
-             * @memberof snacktime.media.Series
-             * @instance
-             */
-            Series.prototype.id = 0;
-
-            /**
-             * Series title.
-             * @member {string} title
-             * @memberof snacktime.media.Series
-             * @instance
-             */
-            Series.prototype.title = "";
-
-            /**
-             * Series imagesUrl.
-             * @member {snacktime.media.IImagesUrl|null|undefined} imagesUrl
-             * @memberof snacktime.media.Series
-             * @instance
-             */
-            Series.prototype.imagesUrl = null;
-
-            /**
-             * Series overview.
-             * @member {string} overview
-             * @memberof snacktime.media.Series
-             * @instance
-             */
-            Series.prototype.overview = "";
-
-            /**
-             * Series monitored.
-             * @member {boolean} monitored
-             * @memberof snacktime.media.Series
-             * @instance
-             */
-            Series.prototype.monitored = false;
-
-            return Series;
-        })();
-
-        media.ImagesUrl = (function() {
-
-            /**
-             * Properties of an ImagesUrl.
-             * @memberof snacktime.media
-             * @interface IImagesUrl
-             * @property {string|null} [banner] ImagesUrl banner
-             * @property {string|null} [fanart] ImagesUrl fanart
-             * @property {string|null} [poster] ImagesUrl poster
-             */
-
-            /**
-             * Constructs a new ImagesUrl.
-             * @memberof snacktime.media
-             * @classdesc Represents an ImagesUrl.
-             * @implements IImagesUrl
-             * @constructor
-             * @param {snacktime.media.IImagesUrl=} [properties] Properties to set
-             */
-            function ImagesUrl(properties) {
-                if (properties)
-                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
-                            this[keys[i]] = properties[keys[i]];
-            }
-
-            /**
-             * ImagesUrl banner.
-             * @member {string} banner
-             * @memberof snacktime.media.ImagesUrl
-             * @instance
-             */
-            ImagesUrl.prototype.banner = "";
-
-            /**
-             * ImagesUrl fanart.
-             * @member {string} fanart
-             * @memberof snacktime.media.ImagesUrl
-             * @instance
-             */
-            ImagesUrl.prototype.fanart = "";
-
-            /**
-             * ImagesUrl poster.
-             * @member {string} poster
-             * @memberof snacktime.media.ImagesUrl
-             * @instance
-             */
-            ImagesUrl.prototype.poster = "";
-
-            return ImagesUrl;
-        })();
-
-        media.Episode = (function() {
-
-            /**
-             * Properties of an Episode.
-             * @memberof snacktime.media
-             * @interface IEpisode
-             * @property {number|null} [seriesId] Episode seriesId
-             * @property {number|null} [episodeFileId] Episode episodeFileId
-             * @property {number|null} [seasonNumber] Episode seasonNumber
-             * @property {number|null} [episideNumber] Episode episideNumber
-             * @property {string|null} [title] Episode title
-             * @property {string|null} [overview] Episode overview
-             * @property {string|null} [playableId] Episode playableId
-             * @property {snacktime.storage.IProgress|null} [progress] Episode progress
-             */
-
-            /**
-             * Constructs a new Episode.
-             * @memberof snacktime.media
-             * @classdesc Represents an Episode.
-             * @implements IEpisode
-             * @constructor
-             * @param {snacktime.media.IEpisode=} [properties] Properties to set
-             */
-            function Episode(properties) {
-                if (properties)
-                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
-                            this[keys[i]] = properties[keys[i]];
-            }
-
-            /**
-             * Episode seriesId.
-             * @member {number} seriesId
-             * @memberof snacktime.media.Episode
-             * @instance
-             */
-            Episode.prototype.seriesId = 0;
-
-            /**
-             * Episode episodeFileId.
-             * @member {number} episodeFileId
-             * @memberof snacktime.media.Episode
-             * @instance
-             */
-            Episode.prototype.episodeFileId = 0;
-
-            /**
-             * Episode seasonNumber.
-             * @member {number} seasonNumber
-             * @memberof snacktime.media.Episode
-             * @instance
-             */
-            Episode.prototype.seasonNumber = 0;
-
-            /**
-             * Episode episideNumber.
-             * @member {number} episideNumber
-             * @memberof snacktime.media.Episode
-             * @instance
-             */
-            Episode.prototype.episideNumber = 0;
-
-            /**
-             * Episode title.
-             * @member {string} title
-             * @memberof snacktime.media.Episode
-             * @instance
-             */
-            Episode.prototype.title = "";
-
-            /**
-             * Episode overview.
-             * @member {string} overview
-             * @memberof snacktime.media.Episode
-             * @instance
-             */
-            Episode.prototype.overview = "";
-
-            /**
-             * Episode playableId.
-             * @member {string} playableId
-             * @memberof snacktime.media.Episode
-             * @instance
-             */
-            Episode.prototype.playableId = "";
-
-            /**
-             * Episode progress.
-             * @member {snacktime.storage.IProgress|null|undefined} progress
-             * @memberof snacktime.media.Episode
-             * @instance
-             */
-            Episode.prototype.progress = null;
-
-            return Episode;
-        })();
-
-        /**
-         * Providers enum.
-         * @name snacktime.media.Providers
-         * @enum {string}
-         * @property {number} Sonarr=0 Sonarr value
-         * @property {number} Radarr=1 Radarr value
-         */
-        media.Providers = (function() {
-            const valuesById = {}, values = Object.create(valuesById);
-            values[valuesById[0] = "Sonarr"] = 0;
-            values[valuesById[1] = "Radarr"] = 1;
-            return values;
-        })();
-
-        return media;
-    })();
-
     snacktime.app = (function() {
 
         /**
@@ -1391,11 +1403,8 @@ export const snacktime = $root.snacktime = (() => {
                  * Properties of a Settings.
                  * @memberof snacktime.app.settings
                  * @interface ISettings
-                 * @property {string|null} [fileDir] Settings fileDir
-                 * @property {string|null} [tempFileDir] Settings tempFileDir
-                 * @property {string|null} [mpvPath] Settings mpvPath
-                 * @property {string|null} [svpPath] Settings svpPath
-                 * @property {string|null} [mediaServerAddress] Settings mediaServerAddress
+                 * @property {snacktime.app.settings.ILocalSystem|null} [system] Settings system
+                 * @property {snacktime.app.settings.IRemote|null} [remote] Settings remote
                  */
 
                 /**
@@ -1414,52 +1423,264 @@ export const snacktime = $root.snacktime = (() => {
                 }
 
                 /**
-                 * Settings fileDir.
-                 * @member {string} fileDir
+                 * Settings system.
+                 * @member {snacktime.app.settings.ILocalSystem|null|undefined} system
                  * @memberof snacktime.app.settings.Settings
                  * @instance
                  */
-                Settings.prototype.fileDir = "";
+                Settings.prototype.system = null;
 
                 /**
-                 * Settings tempFileDir.
-                 * @member {string} tempFileDir
+                 * Settings remote.
+                 * @member {snacktime.app.settings.IRemote|null|undefined} remote
                  * @memberof snacktime.app.settings.Settings
                  * @instance
                  */
-                Settings.prototype.tempFileDir = "";
-
-                /**
-                 * Settings mpvPath.
-                 * @member {string} mpvPath
-                 * @memberof snacktime.app.settings.Settings
-                 * @instance
-                 */
-                Settings.prototype.mpvPath = "";
-
-                /**
-                 * Settings svpPath.
-                 * @member {string} svpPath
-                 * @memberof snacktime.app.settings.Settings
-                 * @instance
-                 */
-                Settings.prototype.svpPath = "";
-
-                /**
-                 * Settings mediaServerAddress.
-                 * @member {string} mediaServerAddress
-                 * @memberof snacktime.app.settings.Settings
-                 * @instance
-                 */
-                Settings.prototype.mediaServerAddress = "";
+                Settings.prototype.remote = null;
 
                 return Settings;
+            })();
+
+            settings.LocalSystem = (function() {
+
+                /**
+                 * Properties of a LocalSystem.
+                 * @memberof snacktime.app.settings
+                 * @interface ILocalSystem
+                 * @property {string|null} [fileDir] LocalSystem fileDir
+                 * @property {string|null} [tempFileDir] LocalSystem tempFileDir
+                 * @property {string|null} [mpvPath] LocalSystem mpvPath
+                 * @property {string|null} [svpPath] LocalSystem svpPath
+                 */
+
+                /**
+                 * Constructs a new LocalSystem.
+                 * @memberof snacktime.app.settings
+                 * @classdesc Represents a LocalSystem.
+                 * @implements ILocalSystem
+                 * @constructor
+                 * @param {snacktime.app.settings.ILocalSystem=} [properties] Properties to set
+                 */
+                function LocalSystem(properties) {
+                    if (properties)
+                        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * LocalSystem fileDir.
+                 * @member {string} fileDir
+                 * @memberof snacktime.app.settings.LocalSystem
+                 * @instance
+                 */
+                LocalSystem.prototype.fileDir = "";
+
+                /**
+                 * LocalSystem tempFileDir.
+                 * @member {string} tempFileDir
+                 * @memberof snacktime.app.settings.LocalSystem
+                 * @instance
+                 */
+                LocalSystem.prototype.tempFileDir = "";
+
+                /**
+                 * LocalSystem mpvPath.
+                 * @member {string} mpvPath
+                 * @memberof snacktime.app.settings.LocalSystem
+                 * @instance
+                 */
+                LocalSystem.prototype.mpvPath = "";
+
+                /**
+                 * LocalSystem svpPath.
+                 * @member {string} svpPath
+                 * @memberof snacktime.app.settings.LocalSystem
+                 * @instance
+                 */
+                LocalSystem.prototype.svpPath = "";
+
+                return LocalSystem;
+            })();
+
+            settings.Remote = (function() {
+
+                /**
+                 * Properties of a Remote.
+                 * @memberof snacktime.app.settings
+                 * @interface IRemote
+                 * @property {string|null} [mediaServerAddress] Remote mediaServerAddress
+                 * @property {boolean|null} [isOnline] Remote isOnline
+                 */
+
+                /**
+                 * Constructs a new Remote.
+                 * @memberof snacktime.app.settings
+                 * @classdesc Represents a Remote.
+                 * @implements IRemote
+                 * @constructor
+                 * @param {snacktime.app.settings.IRemote=} [properties] Properties to set
+                 */
+                function Remote(properties) {
+                    if (properties)
+                        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * Remote mediaServerAddress.
+                 * @member {string} mediaServerAddress
+                 * @memberof snacktime.app.settings.Remote
+                 * @instance
+                 */
+                Remote.prototype.mediaServerAddress = "";
+
+                /**
+                 * Remote isOnline.
+                 * @member {boolean} isOnline
+                 * @memberof snacktime.app.settings.Remote
+                 * @instance
+                 */
+                Remote.prototype.isOnline = false;
+
+                return Remote;
             })();
 
             return settings;
         })();
 
         return app;
+    })();
+
+    snacktime.status = (function() {
+
+        /**
+         * Namespace status.
+         * @memberof snacktime
+         * @namespace
+         */
+        const status = {};
+
+        status.service = (function() {
+
+            /**
+             * Namespace service.
+             * @memberof snacktime.status
+             * @namespace
+             */
+            const service = {};
+
+            service.PingRequest = (function() {
+
+                /**
+                 * Properties of a PingRequest.
+                 * @memberof snacktime.status.service
+                 * @interface IPingRequest
+                 */
+
+                /**
+                 * Constructs a new PingRequest.
+                 * @memberof snacktime.status.service
+                 * @classdesc Represents a PingRequest.
+                 * @implements IPingRequest
+                 * @constructor
+                 * @param {snacktime.status.service.IPingRequest=} [properties] Properties to set
+                 */
+                function PingRequest(properties) {
+                    if (properties)
+                        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                return PingRequest;
+            })();
+
+            service.PingResponse = (function() {
+
+                /**
+                 * Properties of a PingResponse.
+                 * @memberof snacktime.status.service
+                 * @interface IPingResponse
+                 */
+
+                /**
+                 * Constructs a new PingResponse.
+                 * @memberof snacktime.status.service
+                 * @classdesc Represents a PingResponse.
+                 * @implements IPingResponse
+                 * @constructor
+                 * @param {snacktime.status.service.IPingResponse=} [properties] Properties to set
+                 */
+                function PingResponse(properties) {
+                    if (properties)
+                        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                return PingResponse;
+            })();
+
+            service.Status = (function() {
+
+                /**
+                 * Constructs a new Status service.
+                 * @memberof snacktime.status.service
+                 * @classdesc Represents a Status
+                 * @extends $protobuf.rpc.Service
+                 * @constructor
+                 * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+                 * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+                 * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+                 */
+                function Status(rpcImpl, requestDelimited, responseDelimited) {
+                    $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+                }
+
+                (Status.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Status;
+
+                /**
+                 * Callback as used by {@link snacktime.status.service.Status#ping}.
+                 * @memberof snacktime.status.service.Status
+                 * @typedef PingCallback
+                 * @type {function}
+                 * @param {Error|null} error Error, if any
+                 * @param {snacktime.status.service.PingResponse} [response] PingResponse
+                 */
+
+                /**
+                 * Calls Ping.
+                 * @function ping
+                 * @memberof snacktime.status.service.Status
+                 * @instance
+                 * @param {snacktime.status.service.IPingRequest} request PingRequest message or plain object
+                 * @param {snacktime.status.service.Status.PingCallback} callback Node-style callback called with the error, if any, and PingResponse
+                 * @returns {undefined}
+                 * @variation 1
+                 */
+                Object.defineProperty(Status.prototype.ping = function ping(request, callback) {
+                    return this.rpcCall(ping, $root.snacktime.status.service.PingRequest, $root.snacktime.status.service.PingResponse, request, callback);
+                }, "name", { value: "Ping" });
+
+                /**
+                 * Calls Ping.
+                 * @function ping
+                 * @memberof snacktime.status.service.Status
+                 * @instance
+                 * @param {snacktime.status.service.IPingRequest} request PingRequest message or plain object
+                 * @returns {Promise<snacktime.status.service.PingResponse>} Promise
+                 * @variation 2
+                 */
+
+                return Status;
+            })();
+
+            return service;
+        })();
+
+        return status;
     })();
 
     snacktime.storage = (function() {

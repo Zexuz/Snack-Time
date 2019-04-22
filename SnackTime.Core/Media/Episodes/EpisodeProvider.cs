@@ -19,13 +19,13 @@ namespace SnackTime.Core.Media.Episodes
         public async Task<List<Episode>> GetEpisodesForSeriesById(int seriesId)
         {
             var episodes = await _client.Episode.GetEpisodes(seriesId);
-            return _seriesBuilder.Build(episodes);
+            return await _seriesBuilder.Build(episodes);
         }
 
         public async Task<Episode> GetEpisodeById(int id)
         {
             var episodes = await _client.Episode.GetEpisode(id);
-            return _seriesBuilder.Build(episodes);
+            return await _seriesBuilder.Build(episodes);
         }
     }
 }

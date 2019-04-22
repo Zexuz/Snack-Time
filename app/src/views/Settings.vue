@@ -90,7 +90,7 @@
           <div class="switch">
             <label>
               Offline
-              <input type="checkbox" checked />
+              <input type="checkbox" v-model="isOnline" />
               <span class="lever"></span>
               Online
             </label>
@@ -117,26 +117,52 @@ export default class Settings extends Vue {
   private mpvPath: string = "";
   private svpPath: string = "";
   private mediaLocation: string = "";
+  private isOnline: boolean = false;
 
   async mounted() {
     let res = await HttpClient.get<snackTimeSettings>(Endpoints.SaveSettings());
 
-    this.storagePath = res.payload.fileDir;
-    this.storagePathTemp = res.payload.tempFileDir;
-    this.mpvPath = res.payload.mpvPath;
-    this.svpPath = res.payload.svpPath;
-    this.mediaLocation = res.payload.mediaServerAddress;
+    this.storagePath =
+      res.payload.system && res.payload.system.fileDir
+        ? res.payload.system.fileDir
+        : "";
+    this.storagePathTemp =
+      res.payload.system && res.payload.system.tempFileDir
+        ? res.payload.system.tempFileDir
+        : "";
+    this.mpvPath =
+      res.payload.system && res.payload.system.mpvPath
+        ? res.payload.system.mpvPath
+        : "";
+    this.svpPath =
+      res.payload.system && res.payload.system.svpPath
+        ? res.payload.system.svpPath
+        : "";
+    this.mediaLocation =
+      res.payload.remote && res.payload.remote.mediaServerAddress
+        ? res.payload.remote.mediaServerAddress
+        : "";
+    this.isOnline =
+      res.payload.remote && res.payload.remote.isOnline
+        ? res.payload.remote.isOnline
+        : false;
   }
 
   async save(): Promise<void> {
     let payload = {
-      fileDir: this.storagePath,
-      tempFileDir: this.storagePathTemp,
-      mpvPath: this.mpvPath,
-      svpPath: this.svpPath,
-      mediaServerAddress: this.mediaLocation
+      system: {
+        fileDir: this.storagePath,
+        tempFileDir: this.storagePathTemp,
+        mpvPath: this.mpvPath,
+        svpPath: this.svpPath
+      },
+      remote: {
+        isOnline: this.isOnline,
+        mediaServerAddress: this.mediaLocation
+      }
     } as snackTimeSettings;
 
+    console.log(payload);
     await HttpClient.post(Endpoints.SaveSettings(), payload);
   }
 }
