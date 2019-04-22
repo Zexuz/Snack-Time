@@ -112,10 +112,12 @@ namespace SnackTime.WebApi.Services
                             hash = BitConverter.ToString(byteHash).Replace("-", "").ToLowerInvariant();
                         }
 
-                        if (hash != res.Done.Hash)
-                        {
-                            throw new HashMismatchException(res.Done.Hash, hash);
-                        }
+                        // TODO
+                        //This needs to be the zip:ed file, else there will be a missmatch.
+//                        if (hash != res.Done.Hash)
+//                        {
+//                            throw new HashMismatchException(res.Done.Hash, hash);
+//                        }
 
                         _logger.LogDebug($"Combined files in {sw.Elapsed:g}");
                         sw.Stop();

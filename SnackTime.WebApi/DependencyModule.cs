@@ -18,6 +18,7 @@ namespace SnackTime.WebApi
             builder.RegisterType<MediaPlayerObserver>().As<IHostedService>().SingleInstance();
 
             builder.RegisterType<FileService>().AsSelf();
+            builder.RegisterType<SessionSyncService>().AsSelf();
             builder.RegisterType<FileDownloadService>().AsSelf();
         }
     }
@@ -65,7 +66,9 @@ namespace SnackTime.WebApi
             }
 
             _lastAddress = address;
-            return new Channel(_lastAddress, 50052, ChannelCredentials.Insecure);
+            _lastChannel = new Channel(_lastAddress, 50052, ChannelCredentials.Insecure);
+
+            return _lastChannel;
         }
     }
 }

@@ -24,9 +24,9 @@ namespace SnackTime.WebApi
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            builder.RegisterModule(new DependencyModule());
             builder.RegisterModule(new Mpv.JsonIpc.DependencyModule());
             builder.RegisterModule(new Core.DependencyModule());
+            builder.RegisterModule(new DependencyModule());
         }
 
         public void ConfigureServices(IServiceCollection services)
