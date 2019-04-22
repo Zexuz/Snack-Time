@@ -894,6 +894,228 @@ export const snacktime = $root.snacktime = (() => {
             return service;
         })();
 
+        series.session = (function() {
+
+            /**
+             * Namespace session.
+             * @memberof snacktime.series
+             * @namespace
+             */
+            const session = {};
+
+            session.GetAllRequest = (function() {
+
+                /**
+                 * Properties of a GetAllRequest.
+                 * @memberof snacktime.series.session
+                 * @interface IGetAllRequest
+                 */
+
+                /**
+                 * Constructs a new GetAllRequest.
+                 * @memberof snacktime.series.session
+                 * @classdesc Represents a GetAllRequest.
+                 * @implements IGetAllRequest
+                 * @constructor
+                 * @param {snacktime.series.session.IGetAllRequest=} [properties] Properties to set
+                 */
+                function GetAllRequest(properties) {
+                    if (properties)
+                        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                return GetAllRequest;
+            })();
+
+            session.GetAllResponse = (function() {
+
+                /**
+                 * Properties of a GetAllResponse.
+                 * @memberof snacktime.series.session
+                 * @interface IGetAllResponse
+                 * @property {Array.<snacktime.storage.ISession>|null} [sessions] GetAllResponse sessions
+                 */
+
+                /**
+                 * Constructs a new GetAllResponse.
+                 * @memberof snacktime.series.session
+                 * @classdesc Represents a GetAllResponse.
+                 * @implements IGetAllResponse
+                 * @constructor
+                 * @param {snacktime.series.session.IGetAllResponse=} [properties] Properties to set
+                 */
+                function GetAllResponse(properties) {
+                    this.sessions = [];
+                    if (properties)
+                        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * GetAllResponse sessions.
+                 * @member {Array.<snacktime.storage.ISession>} sessions
+                 * @memberof snacktime.series.session.GetAllResponse
+                 * @instance
+                 */
+                GetAllResponse.prototype.sessions = $util.emptyArray;
+
+                return GetAllResponse;
+            })();
+
+            session.Session = (function() {
+
+                /**
+                 * Constructs a new Session service.
+                 * @memberof snacktime.series.session
+                 * @classdesc Represents a Session
+                 * @extends $protobuf.rpc.Service
+                 * @constructor
+                 * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+                 * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+                 * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+                 */
+                function Session(rpcImpl, requestDelimited, responseDelimited) {
+                    $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+                }
+
+                (Session.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Session;
+
+                /**
+                 * Callback as used by {@link snacktime.series.session.Session#getAll}.
+                 * @memberof snacktime.series.session.Session
+                 * @typedef GetAllCallback
+                 * @type {function}
+                 * @param {Error|null} error Error, if any
+                 * @param {snacktime.series.session.GetAllResponse} [response] GetAllResponse
+                 */
+
+                /**
+                 * Calls GetAll.
+                 * @function getAll
+                 * @memberof snacktime.series.session.Session
+                 * @instance
+                 * @param {snacktime.series.session.IGetAllRequest} request GetAllRequest message or plain object
+                 * @param {snacktime.series.session.Session.GetAllCallback} callback Node-style callback called with the error, if any, and GetAllResponse
+                 * @returns {undefined}
+                 * @variation 1
+                 */
+                Object.defineProperty(Session.prototype.getAll = function getAll(request, callback) {
+                    return this.rpcCall(getAll, $root.snacktime.series.session.GetAllRequest, $root.snacktime.series.session.GetAllResponse, request, callback);
+                }, "name", { value: "GetAll" });
+
+                /**
+                 * Calls GetAll.
+                 * @function getAll
+                 * @memberof snacktime.series.session.Session
+                 * @instance
+                 * @param {snacktime.series.session.IGetAllRequest} request GetAllRequest message or plain object
+                 * @returns {Promise<snacktime.series.session.GetAllResponse>} Promise
+                 * @variation 2
+                 */
+
+                /**
+                 * Callback as used by {@link snacktime.series.session.Session#upsert}.
+                 * @memberof snacktime.series.session.Session
+                 * @typedef UpsertCallback
+                 * @type {function}
+                 * @param {Error|null} error Error, if any
+                 * @param {snacktime.series.session.UpsertResponse} [response] UpsertResponse
+                 */
+
+                /**
+                 * Calls Upsert.
+                 * @function upsert
+                 * @memberof snacktime.series.session.Session
+                 * @instance
+                 * @param {snacktime.series.session.IUpsertRequest} request UpsertRequest message or plain object
+                 * @param {snacktime.series.session.Session.UpsertCallback} callback Node-style callback called with the error, if any, and UpsertResponse
+                 * @returns {undefined}
+                 * @variation 1
+                 */
+                Object.defineProperty(Session.prototype.upsert = function upsert(request, callback) {
+                    return this.rpcCall(upsert, $root.snacktime.series.session.UpsertRequest, $root.snacktime.series.session.UpsertResponse, request, callback);
+                }, "name", { value: "Upsert" });
+
+                /**
+                 * Calls Upsert.
+                 * @function upsert
+                 * @memberof snacktime.series.session.Session
+                 * @instance
+                 * @param {snacktime.series.session.IUpsertRequest} request UpsertRequest message or plain object
+                 * @returns {Promise<snacktime.series.session.UpsertResponse>} Promise
+                 * @variation 2
+                 */
+
+                return Session;
+            })();
+
+            session.UpsertRequest = (function() {
+
+                /**
+                 * Properties of an UpsertRequest.
+                 * @memberof snacktime.series.session
+                 * @interface IUpsertRequest
+                 * @property {snacktime.storage.ISession|null} [session] UpsertRequest session
+                 */
+
+                /**
+                 * Constructs a new UpsertRequest.
+                 * @memberof snacktime.series.session
+                 * @classdesc Represents an UpsertRequest.
+                 * @implements IUpsertRequest
+                 * @constructor
+                 * @param {snacktime.series.session.IUpsertRequest=} [properties] Properties to set
+                 */
+                function UpsertRequest(properties) {
+                    if (properties)
+                        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * UpsertRequest session.
+                 * @member {snacktime.storage.ISession|null|undefined} session
+                 * @memberof snacktime.series.session.UpsertRequest
+                 * @instance
+                 */
+                UpsertRequest.prototype.session = null;
+
+                return UpsertRequest;
+            })();
+
+            session.UpsertResponse = (function() {
+
+                /**
+                 * Properties of an UpsertResponse.
+                 * @memberof snacktime.series.session
+                 * @interface IUpsertResponse
+                 */
+
+                /**
+                 * Constructs a new UpsertResponse.
+                 * @memberof snacktime.series.session
+                 * @classdesc Represents an UpsertResponse.
+                 * @implements IUpsertResponse
+                 * @constructor
+                 * @param {snacktime.series.session.IUpsertResponse=} [properties] Properties to set
+                 */
+                function UpsertResponse(properties) {
+                    if (properties)
+                        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                return UpsertResponse;
+            })();
+
+            return session;
+        })();
+
         return series;
     })();
 

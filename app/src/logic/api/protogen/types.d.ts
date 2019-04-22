@@ -506,6 +506,135 @@ export namespace snacktime {
                 type GetByIdCallback = (error: (Error|null), response?: snacktime.series.service.GetByIdResponse) => void;
             }
         }
+
+        /** Namespace session. */
+        namespace session {
+
+            /** Properties of a GetAllRequest. */
+            interface IGetAllRequest {
+            }
+
+            /** Represents a GetAllRequest. */
+            class GetAllRequest implements IGetAllRequest {
+
+                /**
+                 * Constructs a new GetAllRequest.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: snacktime.series.session.IGetAllRequest);
+            }
+
+            /** Properties of a GetAllResponse. */
+            interface IGetAllResponse {
+
+                /** GetAllResponse sessions */
+                sessions?: (snacktime.storage.ISession[]|null);
+            }
+
+            /** Represents a GetAllResponse. */
+            class GetAllResponse implements IGetAllResponse {
+
+                /**
+                 * Constructs a new GetAllResponse.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: snacktime.series.session.IGetAllResponse);
+
+                /** GetAllResponse sessions. */
+                public sessions: snacktime.storage.ISession[];
+            }
+
+            /** Represents a Session */
+            class Session extends $protobuf.rpc.Service {
+
+                /**
+                 * Constructs a new Session service.
+                 * @param rpcImpl RPC implementation
+                 * @param [requestDelimited=false] Whether requests are length-delimited
+                 * @param [responseDelimited=false] Whether responses are length-delimited
+                 */
+                constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean);
+
+                /**
+                 * Calls GetAll.
+                 * @param request GetAllRequest message or plain object
+                 * @param callback Node-style callback called with the error, if any, and GetAllResponse
+                 */
+                public getAll(request: snacktime.series.session.IGetAllRequest, callback: snacktime.series.session.Session.GetAllCallback): void;
+
+                /**
+                 * Calls GetAll.
+                 * @param request GetAllRequest message or plain object
+                 * @returns Promise
+                 */
+                public getAll(request: snacktime.series.session.IGetAllRequest): Promise<snacktime.series.session.GetAllResponse>;
+
+                /**
+                 * Calls Upsert.
+                 * @param request UpsertRequest message or plain object
+                 * @param callback Node-style callback called with the error, if any, and UpsertResponse
+                 */
+                public upsert(request: snacktime.series.session.IUpsertRequest, callback: snacktime.series.session.Session.UpsertCallback): void;
+
+                /**
+                 * Calls Upsert.
+                 * @param request UpsertRequest message or plain object
+                 * @returns Promise
+                 */
+                public upsert(request: snacktime.series.session.IUpsertRequest): Promise<snacktime.series.session.UpsertResponse>;
+            }
+
+            namespace Session {
+
+                /**
+                 * Callback as used by {@link snacktime.series.session.Session#getAll}.
+                 * @param error Error, if any
+                 * @param [response] GetAllResponse
+                 */
+                type GetAllCallback = (error: (Error|null), response?: snacktime.series.session.GetAllResponse) => void;
+
+                /**
+                 * Callback as used by {@link snacktime.series.session.Session#upsert}.
+                 * @param error Error, if any
+                 * @param [response] UpsertResponse
+                 */
+                type UpsertCallback = (error: (Error|null), response?: snacktime.series.session.UpsertResponse) => void;
+            }
+
+            /** Properties of an UpsertRequest. */
+            interface IUpsertRequest {
+
+                /** UpsertRequest session */
+                session?: (snacktime.storage.ISession|null);
+            }
+
+            /** Represents an UpsertRequest. */
+            class UpsertRequest implements IUpsertRequest {
+
+                /**
+                 * Constructs a new UpsertRequest.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: snacktime.series.session.IUpsertRequest);
+
+                /** UpsertRequest session. */
+                public session?: (snacktime.storage.ISession|null);
+            }
+
+            /** Properties of an UpsertResponse. */
+            interface IUpsertResponse {
+            }
+
+            /** Represents an UpsertResponse. */
+            class UpsertResponse implements IUpsertResponse {
+
+                /**
+                 * Constructs a new UpsertResponse.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: snacktime.series.session.IUpsertResponse);
+            }
+        }
     }
 
     /** Namespace media. */

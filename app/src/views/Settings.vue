@@ -1,64 +1,103 @@
 <template>
   <div class="container">
     <h3>Snack-Time Settings</h3>
-    <div class="row">
-      <div class="col s6">
-        <input
-          id="fileDir"
-          type="text"
-          placeholder="D:\Snack-Time\"
-          v-model="storagePath"
-        />
-        <label for="fileDir">Snack-Time storage</label>
+    <setting-card>
+      <span class="card-title">Local System</span>
+      <div class="row">
+        <div class="col s6">
+          <input
+            id="fileDir"
+            type="text"
+            placeholder="D:\Snack-Time\"
+            v-model="storagePath"
+          />
+          <label for="fileDir">Snack-Time storage</label>
+        </div>
+        <div class="col s6">
+          <input
+            id="fileDirTemp"
+            type="text"
+            placeholder="D:\Snack-Time\Temp"
+            v-model="storagePathTemp"
+          />
+          <label for="fileDirTemp">Snack-Time Temp storage</label>
+        </div>
       </div>
-      <div class="col s6">
-        <input
-          id="fileDirTemp"
-          type="text"
-          placeholder="D:\Snack-Time\Temp"
-          v-model="storagePathTemp"
-        />
-        <label for="fileDirTemp">Snack-Time Temp storage</label>
+      <div class="row">
+        <div class="col s12">
+          <input
+            id="mpv-location"
+            type="text"
+            placeholder="C:\Program Files (x86)\SVP 4\mpv64\mpv.exe"
+            v-model="mpvPath"
+          />
+          <label for="mpv-location">Mpv location</label>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col s12">
-        <input
-          id="mpv-location"
-          type="text"
-          placeholder="C:\Program Files (x86)\SVP 4\mpv64\mpv.exe"
-          v-model="mpvPath"
-        />
-        <label for="mpv-location">Mpv location</label>
+      <div class="row">
+        <div class="col s12">
+          <label>
+            <input
+              type="text"
+              placeholder="C:\Program Files (x86)\SVP 4\SVPManager.exe"
+              v-model="svpPath"
+            />
+            SVP location
+          </label>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col s12">
-        <input
-          id="svp-location"
-          type="text"
-          placeholder="C:\Program Files (x86)\SVP 4\SVPManager.exe"
-          v-model="svpPath"
-        />
-        <label for="svp-location">SVP location</label>
+      <div class="row">
+        <div class="col s12">
+          <button class="btn right" @click="save()">Save</button>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col s12">
-        <input
-          id="media-server-address"
-          type="text"
-          placeholder="ASd"
-          v-model="mediaLocation"
-        />
-        <label for="media-server-address">
-          Snack-Time Media server address
-        </label>
+    </setting-card>
+    <setting-card>
+      <span class="card-title">Database</span>
+      <div class="row">
+        <div class="col s12">
+          <p>Last synced [DATE]</p>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <button class="btn right" @click="save()">Save</button>
-    </div>
+      <div class="row">
+        <div class="col s12">
+          <label>
+            <input type="text" placeholder="ASd" v-model="mediaLocation" />
+            Snack-Time Media server address
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <button class="btn">Sync now!</button>
+        </div>
+      </div>
+    </setting-card>
+    <setting-card>
+      <span class="card-title">Offline</span>
+      <div class="row">
+        <div class="col s12">
+          <p>Nr of downloaded files: 9</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <p>Total length of downloaded content: 0 Days and 00:00:00</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <div class="switch">
+            <label>
+              Offline
+              <input type="checkbox" checked />
+              <span class="lever"></span>
+              Online
+            </label>
+          </div>
+        </div>
+      </div>
+    </setting-card>
   </div>
 </template>
 
@@ -67,9 +106,10 @@ import { Component, Vue } from "vue-property-decorator";
 import { Settings as snackTimeSettings } from "@/logic/api/types";
 import { HttpClient } from "@/logic/http/httpClient";
 import { Endpoints } from "@/logic/api/settings/endpoints";
+import SettingCard from "@/components/SettingCard.vue";
 
 @Component({
-  components: {}
+  components: { SettingCard }
 })
 export default class Settings extends Vue {
   private storagePath: string = "";
@@ -102,4 +142,11 @@ export default class Settings extends Vue {
 }
 </script>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+.clearfix:after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+}
+</style>

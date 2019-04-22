@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option csharp_namespace = "SnackTime.MediaServer.Service.Session";
+
+package snacktime.series.session;
+
+import "proto/storage.proto";
+
+message UpsertRequest {
+    snacktime.storage.Session session = 1;
+}
+message UpsertResponse {
+}

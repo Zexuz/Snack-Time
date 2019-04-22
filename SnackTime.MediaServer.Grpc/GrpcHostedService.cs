@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Grpc.Core;
@@ -10,23 +11,17 @@ namespace SnackTime.MediaServer.Grpc
     {
         private readonly Server _server;
 
-        public GrpcHostedService(
-            ServerPort serverPort,
-            Service.Series.Series.SeriesBase seriesImpl,
-            Service.Episode.Episode.EpisodeBase episodeImpl,
-            Service.File.File.FileBase fileImpl
-        )
+        public GrpcHostedService(ServerPort serverPort, IEnumerable<ServerServiceDefinition> serviceDefinitions)
         {
             var server = new Server
             {
-                Services =
-                {
-                    Service.Series.Series.BindService(seriesImpl),
-                    Service.Episode.Episode.BindService(episodeImpl),
-                    Service.File.File.BindService(fileImpl)
-                },
                 Ports = {serverPort}
             };
+
+            foreach (var definition in serviceDefinitions)
+            {
+                server.Services.Add(definition);
+            }
 
             _server = server;
         }
