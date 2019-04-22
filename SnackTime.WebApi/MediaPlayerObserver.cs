@@ -57,8 +57,9 @@ namespace SnackTime.WebApi
                     }
 
                     var item = _queue.Pop();
+                    await _api.PlayMedia(item.Path, item.StartPosition);
                     await _api.ShowText($"Now playing {item.Path.Substring(item.Path.LastIndexOf('\\') + 1)}", TimeSpan.FromSeconds(5));
-                    await _api.PlayMedia(item.Path);
+
                     var duration = await _api.GetDuration();
                     currentSession = _sessionFactory.CreateNewSession(item.MediaFileId, duration);
                 }

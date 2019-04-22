@@ -25,9 +25,9 @@ namespace Mpv.JsonIpc
             return result.Data;
         }
 
-        public async Task PlayMedia(string path)
+        public async Task PlayMedia(string path, TimeSpan startPosition)
         {
-            var request = _ipc.CreateCommand(new[] {"loadfile", path});
+            var request = _ipc.CreateCommand(new[] {"loadfile", path, "replace", $"start={startPosition.TotalSeconds}"});
             await _ipc.ExecuteCommand<string>(request);
         }
 

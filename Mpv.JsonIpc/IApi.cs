@@ -7,7 +7,7 @@ namespace Mpv.JsonIpc
     {
         Task        ShowText(string text, TimeSpan duration);
         Task<float> GetVolume();
-        Task PlayMedia(string path);
+        Task PlayMedia(string path, TimeSpan startPosition);
         Task<TimeSpan> GetCurrentPosition();
         Task<TimeSpan> GetDuration();
     }

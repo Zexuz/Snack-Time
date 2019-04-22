@@ -52,7 +52,7 @@
                   <td>
                     <button
                       :disabled="episode.playableId === ''"
-                      @click="play(episode.playableId)"
+                      @click="play(episode)"
                       class="btn"
                     >
                       play
@@ -128,8 +128,14 @@ export default class SeriesInfo extends Vue {
     M.AutoInit();
   }
 
-  private async play(fileId: string) {
-    let res = await HttpClient.get<object>(Endpoints.PlayFile(fileId));
+  private async play(episode: Episode) {
+    let startPos =
+      episode.progress && episode.progress.watchedInSec
+        ? episode.progress.watchedInSec
+        : 0;
+    await HttpClient.get<object>(
+      Endpoints.PlayFileOnStartPosition(episode.playableId, startPos)
+    );
   }
 
   get imageUrl(): string {

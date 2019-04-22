@@ -4,4 +4,8 @@ export class Endpoints {
   public static PlayFile(id: string) {
     return `${this.prefix}/play/${id}`;
   }
+
+  public static PlayFileOnStartPosition(id: string, seconds: number) {
+    return `${this.prefix}/play/${id}/${seconds}`;
+  }
 }
