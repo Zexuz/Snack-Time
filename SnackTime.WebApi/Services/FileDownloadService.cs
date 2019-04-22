@@ -22,13 +22,13 @@ namespace SnackTime.WebApi.Services
         public FileDownloadService
         (
             ILogger<FileDownloadService> logger,
-            MediaServer.Service.File.File.FileClient client,
+            GrpcClientProvider clientProvider,
             FileService fileService,
             SettingsService settingsService
         )
         {
             _logger = logger;
-            _client = client;
+            _client = clientProvider.GetFileClient();
             _fileService = fileService;
             _settingsService = settingsService;
         }

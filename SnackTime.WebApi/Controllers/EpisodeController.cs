@@ -11,9 +11,9 @@ namespace SnackTime.WebApi.Controllers
     {
         private readonly MediaServer.Service.Episode.Episode.EpisodeClient _episodeProvider;
 
-        public Episode(MediaServer.Service.Episode.Episode.EpisodeClient episodeProvider)
+        public Episode(GrpcClientProvider clientProvider)
         {
-            _episodeProvider = episodeProvider;
+            _episodeProvider = clientProvider.GetEpisodeClient();
         }
 
         [HttpGet("series/{seriesId}")]

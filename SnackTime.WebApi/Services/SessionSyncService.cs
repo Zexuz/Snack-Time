@@ -11,11 +11,11 @@ namespace SnackTime.WebApi.Services
         private readonly SessionService              _sessionService;
         private readonly Session.SessionClient       _sessionClient;
 
-        public SessionSyncService(ILogger<SessionSyncService> logger, SessionService sessionService, Session.SessionClient sessionClient)
+        public SessionSyncService(ILogger<SessionSyncService> logger, SessionService sessionService, GrpcClientProvider clientProvider)
         {
             _logger = logger;
             _sessionService = sessionService;
-            _sessionClient = sessionClient;
+            _sessionClient = clientProvider.GetSessionClient();
         }
 
         public async Task Sync()

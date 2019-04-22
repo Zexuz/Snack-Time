@@ -12,9 +12,9 @@ namespace SnackTime.WebApi.Controllers
     {
         private readonly MediaServer.Service.Series.Series.SeriesClient _seriesProvider;
 
-        public Series(MediaServer.Service.Series.Series.SeriesClient seriesProvider)
+        public Series(GrpcClientProvider clientProvider)
         {
-            _seriesProvider = seriesProvider;
+            _seriesProvider = clientProvider.GetSeriesClient();
         }
 
         [HttpGet("last-downloaded")]
