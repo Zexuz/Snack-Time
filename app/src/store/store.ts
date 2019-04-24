@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex, { StoreOptions } from "vuex";
 import { series } from "./modules/series";
+import { status } from "./modules/status";
 import { episodes } from "./modules/episodes";
 import { notifications } from "./modules/notification";
 import { RootState } from "./types";
@@ -12,7 +13,8 @@ Vue.use(Vuex);
 export const enum Module {
   SERIES = "series",
   EPISODES = "episodes",
-  NOTIFICATIONS = "notifications"
+  NOTIFICATIONS = "notifications",
+  STATUS = "status"
 }
 
 const storage: StoreOptions<RootState> = {
@@ -24,7 +26,8 @@ const storage: StoreOptions<RootState> = {
   modules: {
     [Module.SERIES]: series,
     [Module.EPISODES]: episodes,
-    [Module.NOTIFICATIONS]: notifications
+    [Module.NOTIFICATIONS]: notifications,
+    [Module.STATUS]: status
   }
 };
 

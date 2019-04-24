@@ -108,7 +108,8 @@ import { ActionTypes } from "@/store/modules/episodes/actions";
 import { Methods, Season } from "@/store/modules/episodes/getters";
 import M from "materialize-css";
 import { HttpClient } from "@/logic/http/httpClient";
-import { Endpoints } from "@/logic/api/remote/endpoints";
+import { Endpoints as RemoteEndpoints } from "@/logic/api/remote/endpoints";
+import { Endpoints as FileEndpoints } from "@/logic/api/file/endpoints";
 
 @Component({
   components: {}
@@ -134,7 +135,7 @@ export default class SeriesInfo extends Vue {
         ? episode.progress.watchedInSec
         : 0;
     await HttpClient.get<object>(
-      Endpoints.PlayFileOnStartPosition(episode.playableId, startPos)
+      RemoteEndpoints.PlayFileOnStartPosition(episode.playableId, startPos)
     );
   }
 
@@ -171,9 +172,9 @@ export default class SeriesInfo extends Vue {
     return Number(this.$route.params["id"]);
   }
 
-  private async download(mediaFileId: string): Promise<void> {
-    let res = await HttpClient.get<object>(
-      "/api/file/v1/download/" + mediaFileId
+  private async downloadedFiles(): Promise<void> {
+    let res = await HttpClient.get<string[]>(
+      FileEndpoints.GetDownloadedFiles()
     );
   }
 

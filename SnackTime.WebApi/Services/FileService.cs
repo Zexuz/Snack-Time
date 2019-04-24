@@ -1,16 +1,21 @@
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using SnackTime.App.Settings.ProtoGenerated;
+using SnackTime.Core.Settings;
 
 namespace SnackTime.WebApi.Services
 {
     public class FileService
     {
         private readonly ILogger<FileService> _logger;
+        private readonly SettingsService _settingsService;
 
-        public FileService(ILogger<FileService> logger)
+        public FileService(ILogger<FileService> logger, SettingsService settingsService)
         {
             _logger = logger;
+            _settingsService = settingsService;
         }
 
         public async Task CombineMultipleFilesIntoSingleFile(
@@ -20,7 +25,7 @@ namespace SnackTime.WebApi.Services
             bool removeWhenComplete = true
         )
         {
-            var filePaths = Directory.GetFiles(inputDirectoryPath, filePattern);
+            var filePaths = GetFilesInPath(inputDirectoryPath, filePattern);
             _logger.LogDebug("Number of files: {0}.", filePaths.Length);
             using (var outputStream = File.Create(outputFilePath))
             {
@@ -44,5 +49,24 @@ namespace SnackTime.WebApi.Services
                 }
             }
         }
+        
+        public string[] GetLocalFiles()
+        {
+            var fileDir = _settingsService.Get().System.FileDir;
+            if (string.IsNullOrWhiteSpace(fileDir))
+            {
+                throw new Exception($"The settings prop {nameof(LocalSystem.FileDir)} has not been set");
+            }
+
+
+            return GetFilesInPath(fileDir);
+        }
+
+        private static string[] GetFilesInPath(string path, string pattern = "*")
+        {
+            return Directory.GetFiles(path, pattern);
+        }
+        
+       
     }
 }
