@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using System;
+using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -33,7 +34,8 @@ namespace SnackTime.WebApi
         {
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
-                .AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
+                .AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
 
             AddSwagger(services);
         }
@@ -60,6 +62,29 @@ namespace SnackTime.WebApi
                 app.UseHsts();
             }
 
+            app.UseWebSockets();
+            app.Use(async (context, next) =>
+            {
+                if (context.Request.Path == "/ws")
+                {
+                    if (context.WebSockets.IsWebSocketRequest)
+                    {
+                        var webSocket = await context.WebSockets.AcceptWebSocketAsync();
+                        context.Items["websocket"] = webSocket;
+                    }
+                    else
+                    {
+                        context.Response.StatusCode = 400;
+                    }
+                }
+                else
+                {
+                    await next();
+                }
+
+            });
+
+            
             app.UseStaticFiles();
             app.UseMvc();
         }
