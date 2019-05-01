@@ -1,4 +1,5 @@
 using Autofac;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
 using SnackTime.Core;
 using SnackTime.Core.Session;
@@ -17,9 +18,14 @@ namespace SnackTime.WebApi
             builder.RegisterType<StatusService>().AsSelf();
             builder.RegisterType<SessionSyncService>().AsSelf();
             builder.RegisterType<FileDownloadService>().AsSelf();
-            
+
             builder.RegisterType<RemoteSessionRepo>().As<IRemoteSessionRepo>();
             builder.RegisterType<SessionRepoFactory>().As<ISessionRepoFactory>();
+
+            builder.RegisterType<WebSocketNotify>().As<INotify>();
+            builder.RegisterType<WebSocketManager>().AsSelf().SingleInstance();
+            
+            builder.RegisterType<HttpContextAccessor>().As<IHttpContextAccessor>();
         }
     }
 }

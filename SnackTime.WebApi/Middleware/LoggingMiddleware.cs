@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Serilog.Context;
 
-namespace SnackTime.WebApi.Middlewares
+namespace SnackTime.WebApi.Middleware
 {
-    public static class LoggingMiddlewareeExtensions
+    public static class LoggingMiddlewareExtensions
     {
         public static IApplicationBuilder UseLoggingMiddleware(this IApplicationBuilder builder)
         {

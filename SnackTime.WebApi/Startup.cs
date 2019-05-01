@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
-using SnackTime.WebApi.Middlewares;
+using SnackTime.WebApi.Middleware;
 
 namespace SnackTime.WebApi
 {
@@ -63,27 +63,7 @@ namespace SnackTime.WebApi
             }
 
             app.UseWebSockets();
-            app.Use(async (context, next) =>
-            {
-                if (context.Request.Path == "/ws")
-                {
-                    if (context.WebSockets.IsWebSocketRequest)
-                    {
-                        var webSocket = await context.WebSockets.AcceptWebSocketAsync();
-                        context.Items["websocket"] = webSocket;
-                    }
-                    else
-                    {
-                        context.Response.StatusCode = 400;
-                    }
-                }
-                else
-                {
-                    await next();
-                }
-
-            });
-
+            app.UseCustomWebSockets();
             
             app.UseStaticFiles();
             app.UseMvc();
