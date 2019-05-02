@@ -1,14 +1,16 @@
+using System;
+using System.IO;
 using LiteDB;
 
 namespace SnackTime.Core.Database
 {
     public class DatabaseFactory
     {
-        private const string ConnectionString = "Media.db";
 
         public LiteDatabase GetDatabase()
         {
-            return new LiteDatabase(ConnectionString);
+            var connectionString = Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Media.db");
+            return new LiteDatabase(connectionString);
         }
         
         public LiteRepository GetRepository()

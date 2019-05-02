@@ -32,7 +32,7 @@ namespace Mpv.JsonIpc
 
             var messageToSend = JsonConvert.SerializeObject(request);
             await _pipeWriter.WriteLineAsync(messageToSend);
-            await _pipeWriter.FlushAsync();
+            await _pipeWriter.FlushAsync(); //TODO Maybe return a flag instead of just throwing...
 
             var counter = 0;
             while (true)
