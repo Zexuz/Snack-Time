@@ -2,9 +2,8 @@ using System.Threading.Tasks;
 using Grpc.Core;
 using SnackTime.Core.Media.Series;
 using SnackTime.MediaServer.Service.Series;
-using SonarrSharp;
 
-namespace SnackTime.MediaServer
+namespace SnackTime.MediaServer.Controllers
 {
     public class SeriesController : Series.SeriesBase
     {

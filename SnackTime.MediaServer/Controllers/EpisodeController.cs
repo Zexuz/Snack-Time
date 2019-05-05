@@ -3,7 +3,7 @@ using Grpc.Core;
 using SnackTime.Core.Media.Episodes;
 using SnackTime.MediaServer.Service.Episode;
 
-namespace SnackTime.MediaServer
+namespace SnackTime.MediaServer.Controllers
 {
     public class EpisodeController : Episode.EpisodeBase
     {

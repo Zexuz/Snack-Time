@@ -2,6 +2,7 @@ using Autofac;
 using SnackTime.Core;
 using SnackTime.Core.Media.Series;
 using SnackTime.Core.Session;
+using SnackTime.MediaServer.Controllers;
 
 namespace SnackTime.MediaServer
 {

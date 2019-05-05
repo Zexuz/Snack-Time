@@ -55,7 +55,17 @@ namespace SnackTime.WebApi
 
                 if (currentSession != null)
                 {
-                    await UpdateCurrentSession(currentSession);
+                    try
+                    {
+                        await UpdateCurrentSession(currentSession);
+                    }
+                    catch (Exception e)
+                    {
+                        // after we crash, we come back with the last session, but it hangs. Then MPV comes back up, we update the last session with the new values. BAD!!!!
+                        //TODO Here we need to know why we got the exception? Is mpv still running? 
+                        _logger.LogWarning(e, "Received error when trying to get current position");
+                        currentSession = null;
+                    }
                 }
 
                 if (!_queue.HasItems()) continue;
@@ -71,18 +81,11 @@ namespace SnackTime.WebApi
 
         private async Task UpdateCurrentSession(Session currentSession)
         {
-            try
-            {
-                currentSession.Duration.EndPostionInSec = (await _api.GetCurrentPosition()).TotalSeconds;
-                currentSession.EndUTC = _timeService.GetCurrentTimeAsUnixSeconds();
+            currentSession.Duration.EndPostionInSec = (await _api.GetCurrentPosition()).TotalSeconds;
+            currentSession.EndUTC = _timeService.GetCurrentTimeAsUnixSeconds();
 
-                var sessionRepo = await _sessionRepoFactory.GetRepo();
-                await sessionRepo.UpsertSession(currentSession);
-            }
-            catch (Exception e)
-            {
-                _logger.LogWarning(e, "Received error when trying to get current position");
-            }
+            var sessionRepo = await _sessionRepoFactory.GetRepo();
+            await sessionRepo.UpsertSession(currentSession);
         }
 
         public Task StopAsync(CancellationToken cancellationToken)

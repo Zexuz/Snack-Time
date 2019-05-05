@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using System.Security.Cryptography;
-using System.Threading;
 using System.Threading.Tasks;
 using Google.Protobuf;
 using Grpc.Core;
@@ -10,7 +9,7 @@ using SnackTime.Core.Media.Episodes;
 using SnackTime.MediaServer.Service.File;
 using File = System.IO.File;
 
-namespace SnackTime.MediaServer
+namespace SnackTime.MediaServer.Controllers
 {
     class FileController : SnackTime.MediaServer.Service.File.File.FileBase
     {

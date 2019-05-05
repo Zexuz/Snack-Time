@@ -3,7 +3,7 @@ using Grpc.Core;
 using SnackTime.MediaServer.Service.Status;
 using Status = SnackTime.MediaServer.Service.Status.Status;
 
-namespace SnackTime.MediaServer
+namespace SnackTime.MediaServer.Controllers
 {
     public class StatusController : Status.StatusBase
     {

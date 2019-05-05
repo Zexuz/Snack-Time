@@ -3,7 +3,7 @@ using Grpc.Core;
 using SnackTime.Core.Session;
 using SnackTime.MediaServer.Service.Session;
 
-namespace SnackTime.MediaServer
+namespace SnackTime.MediaServer.Controllers
 {
     public class SessionController : Session.SessionBase
     {
