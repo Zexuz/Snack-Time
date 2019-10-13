@@ -27,7 +27,7 @@ namespace SnackTime.MediaServer.Controllers
             ServerCallContext context
         )
         {
-            if (!MediaFileId.TryParse(request.MediaFileId, out var mediaFileId))
+            if (!PlayableId.TryParse(request.MediaFileId, out var mediaFileId))
             {
                 throw new Exception("Invalid mediaFileId");
             }

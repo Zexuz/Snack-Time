@@ -27,20 +27,20 @@ namespace SnackTime.MediaServer.Storage.ProtoGenerated {
             "ChNwcm90by9zdG9yYWdlLnByb3RvEhFzbmFja3RpbWUuc3RvcmFnZSJfCglN",
             "ZWRpYUZpbGUSEAoIZmlsZU5hbWUYASABKAkSEQoJbWVkaWFOYW1lGAIgASgJ",
             "EhUKDWRvd25sb2FkZWRVVEMYAyABKAkSFgoObGFzdFdhdGNoZWRVVEMYBCAB",
-            "KAkipQEKB1Nlc3Npb24SCgoCaWQYASABKAkSEAoIc3RhcnRVVEMYAiABKAMS",
-            "DgoGZW5kVVRDGAMgASgDEg8KB21lZGlhSWQYBCABKAkSLQoIZHVyYXRpb24Y",
-            "BSABKAsyGy5zbmFja3RpbWUuc3RvcmFnZS5EdXJhdGlvbhIYChBtZWRpYUxl",
-            "bmdodEluU2VjGAYgASgBEhIKCmZyb21EZXZpY2UYByABKAkiPgoIRHVyYXRp",
-            "b24SGQoRc3RhcnRQb3N0aW9uSW5TZWMYASABKAESFwoPZW5kUG9zdGlvbklu",
-            "U2VjGAIgASgBIkgKCFByb2dyZXNzEhQKDHdhdGNoZWRJblNlYxgBIAEoARIO",
-            "CgZsZW5naHQYAiABKAESFgoObGFzdFdhdGNoZWRVdGMYAyABKAFCL6oCLFNu",
-            "YWNrVGltZS5NZWRpYVNlcnZlci5TdG9yYWdlLlByb3RvR2VuZXJhdGVkYgZw",
-            "cm90bzM="));
+            "KAkitQEKB1Nlc3Npb24SCgoCaWQYASABKAkSEAoIc3RhcnRVVEMYAiABKAMS",
+            "DgoGZW5kVVRDGAMgASgDEg8KB21lZGlhSWQYBCABKAkSDgoGZmlsZUlkGAUg",
+            "ASgJEi0KCGR1cmF0aW9uGAYgASgLMhsuc25hY2t0aW1lLnN0b3JhZ2UuRHVy",
+            "YXRpb24SGAoQbWVkaWFMZW5naHRJblNlYxgHIAEoARISCgpmcm9tRGV2aWNl",
+            "GAggASgJIj4KCER1cmF0aW9uEhkKEXN0YXJ0UG9zdGlvbkluU2VjGAEgASgB",
+            "EhcKD2VuZFBvc3Rpb25JblNlYxgCIAEoASJICghQcm9ncmVzcxIUCgx3YXRj",
+            "aGVkSW5TZWMYASABKAESDgoGbGVuZ2h0GAIgASgBEhYKDmxhc3RXYXRjaGVk",
+            "VXRjGAMgASgBQi+qAixTbmFja1RpbWUuTWVkaWFTZXJ2ZXIuU3RvcmFnZS5Q",
+            "cm90b0dlbmVyYXRlZGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Storage.ProtoGenerated.MediaFile), global::SnackTime.MediaServer.Storage.ProtoGenerated.MediaFile.Parser, new[]{ "FileName", "MediaName", "DownloadedUTC", "LastWatchedUTC" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Storage.ProtoGenerated.Session), global::SnackTime.MediaServer.Storage.ProtoGenerated.Session.Parser, new[]{ "Id", "StartUTC", "EndUTC", "MediaId", "Duration", "MediaLenghtInSec", "FromDevice" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Storage.ProtoGenerated.Session), global::SnackTime.MediaServer.Storage.ProtoGenerated.Session.Parser, new[]{ "Id", "StartUTC", "EndUTC", "MediaId", "FileId", "Duration", "MediaLenghtInSec", "FromDevice" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Storage.ProtoGenerated.Duration), global::SnackTime.MediaServer.Storage.ProtoGenerated.Duration.Parser, new[]{ "StartPostionInSec", "EndPostionInSec" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Storage.ProtoGenerated.Progress), global::SnackTime.MediaServer.Storage.ProtoGenerated.Progress.Parser, new[]{ "WatchedInSec", "Lenght", "LastWatchedUtc" }, null, null, null)
           }));
@@ -291,6 +291,7 @@ namespace SnackTime.MediaServer.Storage.ProtoGenerated {
       startUTC_ = other.startUTC_;
       endUTC_ = other.endUTC_;
       mediaId_ = other.mediaId_;
+      fileId_ = other.fileId_;
       duration_ = other.duration_ != null ? other.duration_.Clone() : null;
       mediaLenghtInSec_ = other.mediaLenghtInSec_;
       fromDevice_ = other.fromDevice_;
@@ -346,8 +347,19 @@ namespace SnackTime.MediaServer.Storage.ProtoGenerated {
       }
     }
 
+    /// <summary>Field number for the "fileId" field.</summary>
+    public const int FileIdFieldNumber = 5;
+    private string fileId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string FileId {
+      get { return fileId_; }
+      set {
+        fileId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     /// <summary>Field number for the "duration" field.</summary>
-    public const int DurationFieldNumber = 5;
+    public const int DurationFieldNumber = 6;
     private global::SnackTime.MediaServer.Storage.ProtoGenerated.Duration duration_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::SnackTime.MediaServer.Storage.ProtoGenerated.Duration Duration {
@@ -358,7 +370,7 @@ namespace SnackTime.MediaServer.Storage.ProtoGenerated {
     }
 
     /// <summary>Field number for the "mediaLenghtInSec" field.</summary>
-    public const int MediaLenghtInSecFieldNumber = 6;
+    public const int MediaLenghtInSecFieldNumber = 7;
     private double mediaLenghtInSec_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public double MediaLenghtInSec {
@@ -369,7 +381,7 @@ namespace SnackTime.MediaServer.Storage.ProtoGenerated {
     }
 
     /// <summary>Field number for the "fromDevice" field.</summary>
-    public const int FromDeviceFieldNumber = 7;
+    public const int FromDeviceFieldNumber = 8;
     private string fromDevice_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string FromDevice {
@@ -396,6 +408,7 @@ namespace SnackTime.MediaServer.Storage.ProtoGenerated {
       if (StartUTC != other.StartUTC) return false;
       if (EndUTC != other.EndUTC) return false;
       if (MediaId != other.MediaId) return false;
+      if (FileId != other.FileId) return false;
       if (!object.Equals(Duration, other.Duration)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(MediaLenghtInSec, other.MediaLenghtInSec)) return false;
       if (FromDevice != other.FromDevice) return false;
@@ -409,6 +422,7 @@ namespace SnackTime.MediaServer.Storage.ProtoGenerated {
       if (StartUTC != 0L) hash ^= StartUTC.GetHashCode();
       if (EndUTC != 0L) hash ^= EndUTC.GetHashCode();
       if (MediaId.Length != 0) hash ^= MediaId.GetHashCode();
+      if (FileId.Length != 0) hash ^= FileId.GetHashCode();
       if (duration_ != null) hash ^= Duration.GetHashCode();
       if (MediaLenghtInSec != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(MediaLenghtInSec);
       if (FromDevice.Length != 0) hash ^= FromDevice.GetHashCode();
@@ -441,16 +455,20 @@ namespace SnackTime.MediaServer.Storage.ProtoGenerated {
         output.WriteRawTag(34);
         output.WriteString(MediaId);
       }
-      if (duration_ != null) {
+      if (FileId.Length != 0) {
         output.WriteRawTag(42);
+        output.WriteString(FileId);
+      }
+      if (duration_ != null) {
+        output.WriteRawTag(50);
         output.WriteMessage(Duration);
       }
       if (MediaLenghtInSec != 0D) {
-        output.WriteRawTag(49);
+        output.WriteRawTag(57);
         output.WriteDouble(MediaLenghtInSec);
       }
       if (FromDevice.Length != 0) {
-        output.WriteRawTag(58);
+        output.WriteRawTag(66);
         output.WriteString(FromDevice);
       }
       if (_unknownFields != null) {
@@ -472,6 +490,9 @@ namespace SnackTime.MediaServer.Storage.ProtoGenerated {
       }
       if (MediaId.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(MediaId);
+      }
+      if (FileId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(FileId);
       }
       if (duration_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Duration);
@@ -504,6 +525,9 @@ namespace SnackTime.MediaServer.Storage.ProtoGenerated {
       }
       if (other.MediaId.Length != 0) {
         MediaId = other.MediaId;
+      }
+      if (other.FileId.Length != 0) {
+        FileId = other.FileId;
       }
       if (other.duration_ != null) {
         if (duration_ == null) {
@@ -545,17 +569,21 @@ namespace SnackTime.MediaServer.Storage.ProtoGenerated {
             break;
           }
           case 42: {
+            FileId = input.ReadString();
+            break;
+          }
+          case 50: {
             if (duration_ == null) {
               duration_ = new global::SnackTime.MediaServer.Storage.ProtoGenerated.Duration();
             }
             input.ReadMessage(duration_);
             break;
           }
-          case 49: {
+          case 57: {
             MediaLenghtInSec = input.ReadDouble();
             break;
           }
-          case 58: {
+          case 66: {
             FromDevice = input.ReadString();
             break;
           }

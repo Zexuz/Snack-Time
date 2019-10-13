@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Mpv.JsonIpc;
 using SnackTime.Core;
+using SnackTime.Core.Media;
 using SnackTime.Core.Media.Episodes;
 using SnackTime.Core.Process;
 using SnackTime.Core.Session;
@@ -33,11 +34,11 @@ namespace SnackTime.WebApi.Controllers
             _settingsService = settingsService;
         }
 
-        [HttpGet("play/{mediaFileIdStr}/{startPositionInSec?}")]
-        public async Task<ActionResult> PlayMedia(string mediaFileIdStr, double startPositionInSec)
+        [HttpGet("play/{playableIdStr}/{startPositionInSec?}")]
+        public async Task<ActionResult> PlayMedia(string playableIdStr, double startPositionInSec)
         {
-            if (!MediaFileId.TryParse(mediaFileIdStr, out var mediaFileId))
-                return BadRequest($"{nameof(mediaFileIdStr)} is invalid");
+            if (!PlayableId.TryParse(playableIdStr, out var playableId))
+                return BadRequest($"{nameof(playableIdStr)} is invalid");
 
             if (startPositionInSec < 0)
                 return BadRequest($"{nameof(startPositionInSec)} must be > 0");
@@ -58,12 +59,13 @@ namespace SnackTime.WebApi.Controllers
                 _processManager.StartProcess(settings.System.SvpPath);
             }
 
-            var fileInfo = await _fileLookupProvider.GetFileInfoForId(mediaFileId.FileId);
+            var fileInfo = await _fileLookupProvider.GetFileInfoForId(playableId.FileId);
 
             _queue.AddToQueue(new Item
             {
                 Path = fileInfo.Path,
-                MediaFileId = mediaFileId,
+                MediaId = new MediaId() //TODO compine MediaId and PlayableId...
+                PlayableId = playableId,
                 StartPosition = TimeSpan.FromSeconds(startPositionInSec),
             });
 

@@ -28,16 +28,11 @@ namespace SnackTime.Core.Media.Episodes
 
         public async Task<Episode> Build(SonarrSharp.Models.Episode episode)
         {
-            var mediaFileId = new MediaFileId
-            {
-                Provider = Providers.Sonarr,
-                MediaId = episode.SeriesId,
-                FileId = episode.EpisodeFileId,
-            };
+            var mediaId = new MediaIdFactory().FromEpisode(episode);
             var sessionRepo = await _sessionRepoFactory.GetRepo();
 
             var allSessionsForCurrentEpisode = (await sessionRepo.GetAll())
-                .Where(session => session.MediaId == mediaFileId.ToString())
+                .Where(session => session.MediaId == mediaId.ToString())
                 .ToList();
 
             var lastSession = allSessionsForCurrentEpisode.OrderByDescending(session => session.EndUTC).FirstOrDefault();
@@ -50,7 +45,7 @@ namespace SnackTime.Core.Media.Episodes
                 SeasonNumber = episode.SeasonNumber,
                 EpisideNumber = episode.EpisodeNumber,
                 EpisodeFileId = episode.EpisodeFileId,
-                PlayableId = mediaFileId.ToString(),
+                PlayableId = new PlayableId(Provider.Sonarr, episode.EpisodeFileId).ToString(),
                 Progress = new Progress
                 {
                     LastWatchedUtc = lastSession?.EndUTC                 ?? 0,

@@ -14,6 +14,8 @@ namespace SnackTime.MediaServer.Service.Episode {
 
     static readonly grpc::Marshaller<global::SnackTime.MediaServer.Service.Episode.GetBySeriesIdRequest> __Marshaller_snacktime_episode_service_GetBySeriesIdRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SnackTime.MediaServer.Service.Episode.GetBySeriesIdRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SnackTime.MediaServer.Service.Episode.GetBySeriesIdResponse> __Marshaller_snacktime_episode_service_GetBySeriesIdResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SnackTime.MediaServer.Service.Episode.GetBySeriesIdResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SnackTime.MediaServer.Service.Episode.GetRecommendedBySeriesIdRequest> __Marshaller_snacktime_episode_service_GetRecommendedBySeriesIdRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SnackTime.MediaServer.Service.Episode.GetRecommendedBySeriesIdRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SnackTime.MediaServer.Service.Episode.GetRecommendedBySeriesIdResponse> __Marshaller_snacktime_episode_service_GetRecommendedBySeriesIdResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SnackTime.MediaServer.Service.Episode.GetRecommendedBySeriesIdResponse.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SnackTime.MediaServer.Service.Episode.GetByIdRequest> __Marshaller_snacktime_episode_service_GetByIdRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SnackTime.MediaServer.Service.Episode.GetByIdRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SnackTime.MediaServer.Service.Episode.GetByIdResponse> __Marshaller_snacktime_episode_service_GetByIdResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SnackTime.MediaServer.Service.Episode.GetByIdResponse.Parser.ParseFrom);
 
@@ -23,6 +25,13 @@ namespace SnackTime.MediaServer.Service.Episode {
         "GetBySeriesId",
         __Marshaller_snacktime_episode_service_GetBySeriesIdRequest,
         __Marshaller_snacktime_episode_service_GetBySeriesIdResponse);
+
+    static readonly grpc::Method<global::SnackTime.MediaServer.Service.Episode.GetRecommendedBySeriesIdRequest, global::SnackTime.MediaServer.Service.Episode.GetRecommendedBySeriesIdResponse> __Method_GetRecommendedBySeriesId = new grpc::Method<global::SnackTime.MediaServer.Service.Episode.GetRecommendedBySeriesIdRequest, global::SnackTime.MediaServer.Service.Episode.GetRecommendedBySeriesIdResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetRecommendedBySeriesId",
+        __Marshaller_snacktime_episode_service_GetRecommendedBySeriesIdRequest,
+        __Marshaller_snacktime_episode_service_GetRecommendedBySeriesIdResponse);
 
     static readonly grpc::Method<global::SnackTime.MediaServer.Service.Episode.GetByIdRequest, global::SnackTime.MediaServer.Service.Episode.GetByIdResponse> __Method_GetById = new grpc::Method<global::SnackTime.MediaServer.Service.Episode.GetByIdRequest, global::SnackTime.MediaServer.Service.Episode.GetByIdResponse>(
         grpc::MethodType.Unary,
@@ -41,6 +50,11 @@ namespace SnackTime.MediaServer.Service.Episode {
     public abstract partial class EpisodeBase
     {
       public virtual global::System.Threading.Tasks.Task<global::SnackTime.MediaServer.Service.Episode.GetBySeriesIdResponse> GetBySeriesId(global::SnackTime.MediaServer.Service.Episode.GetBySeriesIdRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::SnackTime.MediaServer.Service.Episode.GetRecommendedBySeriesIdResponse> GetRecommendedBySeriesId(global::SnackTime.MediaServer.Service.Episode.GetRecommendedBySeriesIdRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -91,6 +105,22 @@ namespace SnackTime.MediaServer.Service.Episode {
       {
         return CallInvoker.AsyncUnaryCall(__Method_GetBySeriesId, null, options, request);
       }
+      public virtual global::SnackTime.MediaServer.Service.Episode.GetRecommendedBySeriesIdResponse GetRecommendedBySeriesId(global::SnackTime.MediaServer.Service.Episode.GetRecommendedBySeriesIdRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetRecommendedBySeriesId(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::SnackTime.MediaServer.Service.Episode.GetRecommendedBySeriesIdResponse GetRecommendedBySeriesId(global::SnackTime.MediaServer.Service.Episode.GetRecommendedBySeriesIdRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetRecommendedBySeriesId, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::SnackTime.MediaServer.Service.Episode.GetRecommendedBySeriesIdResponse> GetRecommendedBySeriesIdAsync(global::SnackTime.MediaServer.Service.Episode.GetRecommendedBySeriesIdRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetRecommendedBySeriesIdAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::SnackTime.MediaServer.Service.Episode.GetRecommendedBySeriesIdResponse> GetRecommendedBySeriesIdAsync(global::SnackTime.MediaServer.Service.Episode.GetRecommendedBySeriesIdRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetRecommendedBySeriesId, null, options, request);
+      }
       public virtual global::SnackTime.MediaServer.Service.Episode.GetByIdResponse GetById(global::SnackTime.MediaServer.Service.Episode.GetByIdRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return GetById(request, new grpc::CallOptions(headers, deadline, cancellationToken));
@@ -120,6 +150,7 @@ namespace SnackTime.MediaServer.Service.Episode {
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
           .AddMethod(__Method_GetBySeriesId, serviceImpl.GetBySeriesId)
+          .AddMethod(__Method_GetRecommendedBySeriesId, serviceImpl.GetRecommendedBySeriesId)
           .AddMethod(__Method_GetById, serviceImpl.GetById).Build();
     }
 
@@ -130,6 +161,7 @@ namespace SnackTime.MediaServer.Service.Episode {
     public static void BindService(grpc::ServiceBinderBase serviceBinder, EpisodeBase serviceImpl)
     {
       serviceBinder.AddMethod(__Method_GetBySeriesId, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::SnackTime.MediaServer.Service.Episode.GetBySeriesIdRequest, global::SnackTime.MediaServer.Service.Episode.GetBySeriesIdResponse>(serviceImpl.GetBySeriesId));
+      serviceBinder.AddMethod(__Method_GetRecommendedBySeriesId, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::SnackTime.MediaServer.Service.Episode.GetRecommendedBySeriesIdRequest, global::SnackTime.MediaServer.Service.Episode.GetRecommendedBySeriesIdResponse>(serviceImpl.GetRecommendedBySeriesId));
       serviceBinder.AddMethod(__Method_GetById, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::SnackTime.MediaServer.Service.Episode.GetByIdRequest, global::SnackTime.MediaServer.Service.Episode.GetByIdResponse>(serviceImpl.GetById));
     }
 

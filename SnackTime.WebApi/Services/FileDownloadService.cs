@@ -33,7 +33,7 @@ namespace SnackTime.WebApi.Services
             _settingsService = settingsService;
         }
 
-        public async Task DownloadFile(MediaFileId id)
+        public async Task DownloadFile(PlayableId id)
         {
             var streamingCall = _client.Download(new DownloadFileRequest
             {

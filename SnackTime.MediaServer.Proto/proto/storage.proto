@@ -17,9 +17,10 @@ message Session {
     int64 startUTC = 2;
     int64 endUTC = 3;
     string mediaId = 4;
-    Duration duration = 5;
-    double mediaLenghtInSec = 6;
-    string fromDevice = 7;
+    string fileId = 5;
+    Duration duration = 6;
+    double mediaLenghtInSec = 7;
+    string fromDevice = 8;
 }
 
 message Duration {

@@ -27,15 +27,20 @@ namespace SnackTime.MediaServer.Service.Episode {
             "Citwcm90by9lcGlzb2RlLXNlcnZpY2UvZXBpc29kZS1zZXJ2aWNlLnByb3Rv",
             "EhlzbmFja3RpbWUuZXBpc29kZS5zZXJ2aWNlGitwcm90by9lcGlzb2RlLXNl",
             "cnZpY2UvZXBpc29kZS1nZXRCeUlkLnByb3RvGjFwcm90by9lcGlzb2RlLXNl",
-            "cnZpY2UvZXBpc29kZS1nZXRCeVNlcmllc0lkLnByb3RvMuMBCgdFcGlzb2Rl",
-            "EnQKDUdldEJ5U2VyaWVzSWQSLy5zbmFja3RpbWUuZXBpc29kZS5zZXJ2aWNl",
-            "LkdldEJ5U2VyaWVzSWRSZXF1ZXN0GjAuc25hY2t0aW1lLmVwaXNvZGUuc2Vy",
-            "dmljZS5HZXRCeVNlcmllc0lkUmVzcG9uc2UiABJiCgdHZXRCeUlkEikuc25h",
-            "Y2t0aW1lLmVwaXNvZGUuc2VydmljZS5HZXRCeUlkUmVxdWVzdBoqLnNuYWNr",
-            "dGltZS5lcGlzb2RlLnNlcnZpY2UuR2V0QnlJZFJlc3BvbnNlIgBCKKoCJVNu",
-            "YWNrVGltZS5NZWRpYVNlcnZlci5TZXJ2aWNlLkVwaXNvZGViBnByb3RvMw=="));
+            "cnZpY2UvZXBpc29kZS1nZXRCeVNlcmllc0lkLnByb3RvGkNwcm90by9lcGlz",
+            "b2RlLXNlcnZpY2UvZXBpc29kZS1nZXRSZWNvbW1lbmRlZEJ5U2VyaWVzSWRS",
+            "ZXF1ZXN0LnByb3RvMvsCCgdFcGlzb2RlEnQKDUdldEJ5U2VyaWVzSWQSLy5z",
+            "bmFja3RpbWUuZXBpc29kZS5zZXJ2aWNlLkdldEJ5U2VyaWVzSWRSZXF1ZXN0",
+            "GjAuc25hY2t0aW1lLmVwaXNvZGUuc2VydmljZS5HZXRCeVNlcmllc0lkUmVz",
+            "cG9uc2UiABKVAQoYR2V0UmVjb21tZW5kZWRCeVNlcmllc0lkEjouc25hY2t0",
+            "aW1lLmVwaXNvZGUuc2VydmljZS5HZXRSZWNvbW1lbmRlZEJ5U2VyaWVzSWRS",
+            "ZXF1ZXN0Gjsuc25hY2t0aW1lLmVwaXNvZGUuc2VydmljZS5HZXRSZWNvbW1l",
+            "bmRlZEJ5U2VyaWVzSWRSZXNwb25zZSIAEmIKB0dldEJ5SWQSKS5zbmFja3Rp",
+            "bWUuZXBpc29kZS5zZXJ2aWNlLkdldEJ5SWRSZXF1ZXN0Giouc25hY2t0aW1l",
+            "LmVwaXNvZGUuc2VydmljZS5HZXRCeUlkUmVzcG9uc2UiAEIoqgIlU25hY2tU",
+            "aW1lLk1lZGlhU2VydmVyLlNlcnZpY2UuRXBpc29kZWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::SnackTime.MediaServer.Service.Episode.EpisodeGetByIdReflection.Descriptor, global::SnackTime.MediaServer.Service.Episode.EpisodeGetBySeriesIdReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::SnackTime.MediaServer.Service.Episode.EpisodeGetByIdReflection.Descriptor, global::SnackTime.MediaServer.Service.Episode.EpisodeGetBySeriesIdReflection.Descriptor, global::SnackTime.MediaServer.Service.Episode.EpisodeGetRecommendedBySeriesIdRequestReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null));
     }
     #endregion

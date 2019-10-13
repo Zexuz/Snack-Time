@@ -22,6 +22,15 @@ namespace SnackTime.MediaServer.Controllers
             };
         }
 
+        public override async Task<GetRecommendedBySeriesIdResponse> GetRecommendedBySeriesId(GetRecommendedBySeriesIdRequest request, ServerCallContext context)
+        {
+            var episode = await _episodeProvider.GetRecommended(request.SeriesId);
+            return new GetRecommendedBySeriesIdResponse
+            {
+                Episode = episode
+            };
+        }
+
         public override async Task<GetBySeriesIdResponse> GetBySeriesId(GetBySeriesIdRequest request, ServerCallContext context)
         {
             return new GetBySeriesIdResponse

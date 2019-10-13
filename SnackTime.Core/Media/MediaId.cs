@@ -1,13 +1,15 @@
 using System;
+using SnackTime.Core.Database;
+using SnackTime.MediaServer.Models.ProtoGenerated;
 
 namespace SnackTime.Core.Media
 {
     public class MediaId
     {
         public Provider Type           { get; }
-        public int      IdFromProvider { get; }
+        public string   IdFromProvider { get; }
 
-        public MediaId(Provider type, int idFromProvider)
+        public MediaId(Provider type, string idFromProvider)
         {
             IdFromProvider = idFromProvider;
             Type = type;
@@ -15,27 +17,27 @@ namespace SnackTime.Core.Media
 
         public override string ToString()
         {
-            return $"{Type.ToString()}:{IdFromProvider}";
+            return $"{Type.ToString()}-{IdFromProvider}";
         }
 
-        public static MediaId Parse(string mediaId)
+
+        public static bool TryParse(string idStr, out MediaId mediaId)
         {
-            var parts = mediaId.Split(":");
+            mediaId = null;
+            var parts = idStr.Split("-");
 
             if (parts.Length != 2)
             {
-                throw new ArgumentException($"The MediaId {mediaId} is not valid");
+                return false;
             }
 
-            var typeStr = parts[0];
-            var idFromProvider = int.Parse(parts[1]);
-
-            if (!Enum.TryParse(typeof(Provider), typeStr, true, out var type))
+            if (!Enum.TryParse<Provider>(parts[0], out var provider))
             {
-                throw new ArgumentException($"Can't parse str {typeStr} to enum");
+                return false;
             }
 
-            return new MediaId((Provider) type, idFromProvider);
+            mediaId = new MediaId(provider, parts[1]);
+            return true;
         }
     }
 }

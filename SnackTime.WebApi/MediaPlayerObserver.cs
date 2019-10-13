@@ -5,6 +5,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Mpv.JsonIpc;
 using SnackTime.Core;
+using SnackTime.Core.Media;
 using SnackTime.Core.Session;
 using SnackTime.MediaServer.Storage.ProtoGenerated;
 using SnackTime.WebApi.Services;
@@ -75,7 +76,7 @@ namespace SnackTime.WebApi
                 await _api.ShowText($"Now playing {item.Path.Substring(item.Path.LastIndexOf('\\') + 1)}", TimeSpan.FromSeconds(5));
 
                 var duration = await _api.GetDuration();
-                currentSession = _sessionFactory.CreateNewSession(item.MediaFileId, duration);
+                currentSession = _sessionFactory.CreateNewSession(item.MediaId, item.PlayableId, duration);
             }
         }
 

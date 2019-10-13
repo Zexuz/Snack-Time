@@ -88,6 +88,46 @@ export namespace snacktime {
                 public episodes: snacktime.media.IEpisode[];
             }
 
+            /** Properties of a GetRecommendedBySeriesIdRequest. */
+            interface IGetRecommendedBySeriesIdRequest {
+
+                /** GetRecommendedBySeriesIdRequest seriesId */
+                seriesId?: (number|null);
+            }
+
+            /** Represents a GetRecommendedBySeriesIdRequest. */
+            class GetRecommendedBySeriesIdRequest implements IGetRecommendedBySeriesIdRequest {
+
+                /**
+                 * Constructs a new GetRecommendedBySeriesIdRequest.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: snacktime.episode.service.IGetRecommendedBySeriesIdRequest);
+
+                /** GetRecommendedBySeriesIdRequest seriesId. */
+                public seriesId: number;
+            }
+
+            /** Properties of a GetRecommendedBySeriesIdResponse. */
+            interface IGetRecommendedBySeriesIdResponse {
+
+                /** GetRecommendedBySeriesIdResponse episode */
+                episode?: (snacktime.media.IEpisode|null);
+            }
+
+            /** Represents a GetRecommendedBySeriesIdResponse. */
+            class GetRecommendedBySeriesIdResponse implements IGetRecommendedBySeriesIdResponse {
+
+                /**
+                 * Constructs a new GetRecommendedBySeriesIdResponse.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: snacktime.episode.service.IGetRecommendedBySeriesIdResponse);
+
+                /** GetRecommendedBySeriesIdResponse episode. */
+                public episode?: (snacktime.media.IEpisode|null);
+            }
+
             /** Represents an Episode */
             class Episode extends $protobuf.rpc.Service {
 
@@ -114,6 +154,20 @@ export namespace snacktime {
                 public getBySeriesId(request: snacktime.episode.service.IGetBySeriesIdRequest): Promise<snacktime.episode.service.GetBySeriesIdResponse>;
 
                 /**
+                 * Calls GetRecommendedBySeriesId.
+                 * @param request GetRecommendedBySeriesIdRequest message or plain object
+                 * @param callback Node-style callback called with the error, if any, and GetRecommendedBySeriesIdResponse
+                 */
+                public getRecommendedBySeriesId(request: snacktime.episode.service.IGetRecommendedBySeriesIdRequest, callback: snacktime.episode.service.Episode.GetRecommendedBySeriesIdCallback): void;
+
+                /**
+                 * Calls GetRecommendedBySeriesId.
+                 * @param request GetRecommendedBySeriesIdRequest message or plain object
+                 * @returns Promise
+                 */
+                public getRecommendedBySeriesId(request: snacktime.episode.service.IGetRecommendedBySeriesIdRequest): Promise<snacktime.episode.service.GetRecommendedBySeriesIdResponse>;
+
+                /**
                  * Calls GetById.
                  * @param request GetByIdRequest message or plain object
                  * @param callback Node-style callback called with the error, if any, and GetByIdResponse
@@ -136,6 +190,13 @@ export namespace snacktime {
                  * @param [response] GetBySeriesIdResponse
                  */
                 type GetBySeriesIdCallback = (error: (Error|null), response?: snacktime.episode.service.GetBySeriesIdResponse) => void;
+
+                /**
+                 * Callback as used by {@link snacktime.episode.service.Episode#getRecommendedBySeriesId}.
+                 * @param error Error, if any
+                 * @param [response] GetRecommendedBySeriesIdResponse
+                 */
+                type GetRecommendedBySeriesIdCallback = (error: (Error|null), response?: snacktime.episode.service.GetRecommendedBySeriesIdResponse) => void;
 
                 /**
                  * Callback as used by {@link snacktime.episode.service.Episode#getById}.
@@ -459,8 +520,8 @@ export namespace snacktime {
             public progress?: (snacktime.storage.IProgress|null);
         }
 
-        /** Providers enum. */
-        enum Providers {
+        /** Provider enum. */
+        enum Provider {
             Sonarr = 0,
             Radarr = 1
         }
@@ -1015,6 +1076,9 @@ export namespace snacktime {
             /** Session mediaId */
             mediaId?: (string|null);
 
+            /** Session fileId */
+            fileId?: (string|null);
+
             /** Session duration */
             duration?: (snacktime.storage.IDuration|null);
 
@@ -1045,6 +1109,9 @@ export namespace snacktime {
 
             /** Session mediaId. */
             public mediaId: string;
+
+            /** Session fileId. */
+            public fileId: string;
 
             /** Session duration. */
             public duration?: (snacktime.storage.IDuration|null);

@@ -26,7 +26,7 @@ namespace SnackTime.WebApi.Controllers
         [HttpGet("download/{mediaFileIdStr}")]
         public async Task<ActionResult> DownloadFile(string mediaFileIdStr)
         {
-            if (!MediaFileId.TryParse(mediaFileIdStr, out var mediaFileId))
+            if (!PlayableId.TryParse(mediaFileIdStr, out var mediaFileId))
                 return BadRequest($"{nameof(mediaFileIdStr)} is invalid");
 
             await _fileDownloadService.DownloadFile(mediaFileId);

@@ -33,12 +33,12 @@ namespace SnackTime.MediaServer.Models.ProtoGenerated {
             "FQoNZXBpc29kZUZpbGVJZBgCIAEoBRIUCgxzZWFzb25OdW1iZXIYAyABKAUS",
             "FQoNZXBpc2lkZU51bWJlchgEIAEoBRINCgV0aXRsZRgFIAEoCRIQCghvdmVy",
             "dmlldxgGIAEoCRISCgpwbGF5YWJsZUlkGAcgASgJEi0KCHByb2dyZXNzGAgg",
-            "ASgLMhsuc25hY2t0aW1lLnN0b3JhZ2UuUHJvZ3Jlc3MqIwoJUHJvdmlkZXJz",
-            "EgoKBlNvbmFychAAEgoKBlJhZGFychABQi6qAitTbmFja1RpbWUuTWVkaWFT",
-            "ZXJ2ZXIuTW9kZWxzLlByb3RvR2VuZXJhdGVkYgZwcm90bzM="));
+            "ASgLMhsuc25hY2t0aW1lLnN0b3JhZ2UuUHJvZ3Jlc3MqIgoIUHJvdmlkZXIS",
+            "CgoGU29uYXJyEAASCgoGUmFkYXJyEAFCLqoCK1NuYWNrVGltZS5NZWRpYVNl",
+            "cnZlci5Nb2RlbHMuUHJvdG9HZW5lcmF0ZWRiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::SnackTime.MediaServer.Storage.ProtoGenerated.StorageReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::SnackTime.MediaServer.Models.ProtoGenerated.Providers), }, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::SnackTime.MediaServer.Models.ProtoGenerated.Provider), }, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Models.ProtoGenerated.Series), global::SnackTime.MediaServer.Models.ProtoGenerated.Series.Parser, new[]{ "Id", "Title", "ImagesUrl", "Overview", "Monitored" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Models.ProtoGenerated.ImagesUrl), global::SnackTime.MediaServer.Models.ProtoGenerated.ImagesUrl.Parser, new[]{ "Banner", "Fanart", "Poster" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SnackTime.MediaServer.Models.ProtoGenerated.Episode), global::SnackTime.MediaServer.Models.ProtoGenerated.Episode.Parser, new[]{ "SeriesId", "EpisodeFileId", "SeasonNumber", "EpisideNumber", "Title", "Overview", "PlayableId", "Progress" }, null, null, null)
@@ -48,7 +48,7 @@ namespace SnackTime.MediaServer.Models.ProtoGenerated {
 
   }
   #region Enums
-  public enum Providers {
+  public enum Provider {
     [pbr::OriginalName("Sonarr")] Sonarr = 0,
     [pbr::OriginalName("Radarr")] Radarr = 1,
   }

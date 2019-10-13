@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using SnackTime.Core.Media;
 
 namespace SnackTime.Core.Session
 {
@@ -7,6 +8,7 @@ namespace SnackTime.Core.Session
     {
         Task                                                   UpsertSession(MediaServer.Storage.ProtoGenerated.Session session);
         Task<List<MediaServer.Storage.ProtoGenerated.Session>> GetAll();
+        Task<MediaServer.Storage.ProtoGenerated.Session>       GetLastSessionForMedia(MediaId mediaId);
     }
 
     public interface ILocalSessionRepo : ISessionRepo

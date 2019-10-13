@@ -175,6 +175,76 @@ export const snacktime = $root.snacktime = (() => {
                 return GetBySeriesIdResponse;
             })();
 
+            service.GetRecommendedBySeriesIdRequest = (function() {
+
+                /**
+                 * Properties of a GetRecommendedBySeriesIdRequest.
+                 * @memberof snacktime.episode.service
+                 * @interface IGetRecommendedBySeriesIdRequest
+                 * @property {number|null} [seriesId] GetRecommendedBySeriesIdRequest seriesId
+                 */
+
+                /**
+                 * Constructs a new GetRecommendedBySeriesIdRequest.
+                 * @memberof snacktime.episode.service
+                 * @classdesc Represents a GetRecommendedBySeriesIdRequest.
+                 * @implements IGetRecommendedBySeriesIdRequest
+                 * @constructor
+                 * @param {snacktime.episode.service.IGetRecommendedBySeriesIdRequest=} [properties] Properties to set
+                 */
+                function GetRecommendedBySeriesIdRequest(properties) {
+                    if (properties)
+                        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * GetRecommendedBySeriesIdRequest seriesId.
+                 * @member {number} seriesId
+                 * @memberof snacktime.episode.service.GetRecommendedBySeriesIdRequest
+                 * @instance
+                 */
+                GetRecommendedBySeriesIdRequest.prototype.seriesId = 0;
+
+                return GetRecommendedBySeriesIdRequest;
+            })();
+
+            service.GetRecommendedBySeriesIdResponse = (function() {
+
+                /**
+                 * Properties of a GetRecommendedBySeriesIdResponse.
+                 * @memberof snacktime.episode.service
+                 * @interface IGetRecommendedBySeriesIdResponse
+                 * @property {snacktime.media.IEpisode|null} [episode] GetRecommendedBySeriesIdResponse episode
+                 */
+
+                /**
+                 * Constructs a new GetRecommendedBySeriesIdResponse.
+                 * @memberof snacktime.episode.service
+                 * @classdesc Represents a GetRecommendedBySeriesIdResponse.
+                 * @implements IGetRecommendedBySeriesIdResponse
+                 * @constructor
+                 * @param {snacktime.episode.service.IGetRecommendedBySeriesIdResponse=} [properties] Properties to set
+                 */
+                function GetRecommendedBySeriesIdResponse(properties) {
+                    if (properties)
+                        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * GetRecommendedBySeriesIdResponse episode.
+                 * @member {snacktime.media.IEpisode|null|undefined} episode
+                 * @memberof snacktime.episode.service.GetRecommendedBySeriesIdResponse
+                 * @instance
+                 */
+                GetRecommendedBySeriesIdResponse.prototype.episode = null;
+
+                return GetRecommendedBySeriesIdResponse;
+            })();
+
             service.Episode = (function() {
 
                 /**
@@ -223,6 +293,39 @@ export const snacktime = $root.snacktime = (() => {
                  * @instance
                  * @param {snacktime.episode.service.IGetBySeriesIdRequest} request GetBySeriesIdRequest message or plain object
                  * @returns {Promise<snacktime.episode.service.GetBySeriesIdResponse>} Promise
+                 * @variation 2
+                 */
+
+                /**
+                 * Callback as used by {@link snacktime.episode.service.Episode#getRecommendedBySeriesId}.
+                 * @memberof snacktime.episode.service.Episode
+                 * @typedef GetRecommendedBySeriesIdCallback
+                 * @type {function}
+                 * @param {Error|null} error Error, if any
+                 * @param {snacktime.episode.service.GetRecommendedBySeriesIdResponse} [response] GetRecommendedBySeriesIdResponse
+                 */
+
+                /**
+                 * Calls GetRecommendedBySeriesId.
+                 * @function getRecommendedBySeriesId
+                 * @memberof snacktime.episode.service.Episode
+                 * @instance
+                 * @param {snacktime.episode.service.IGetRecommendedBySeriesIdRequest} request GetRecommendedBySeriesIdRequest message or plain object
+                 * @param {snacktime.episode.service.Episode.GetRecommendedBySeriesIdCallback} callback Node-style callback called with the error, if any, and GetRecommendedBySeriesIdResponse
+                 * @returns {undefined}
+                 * @variation 1
+                 */
+                Object.defineProperty(Episode.prototype.getRecommendedBySeriesId = function getRecommendedBySeriesId(request, callback) {
+                    return this.rpcCall(getRecommendedBySeriesId, $root.snacktime.episode.service.GetRecommendedBySeriesIdRequest, $root.snacktime.episode.service.GetRecommendedBySeriesIdResponse, request, callback);
+                }, "name", { value: "GetRecommendedBySeriesId" });
+
+                /**
+                 * Calls GetRecommendedBySeriesId.
+                 * @function getRecommendedBySeriesId
+                 * @memberof snacktime.episode.service.Episode
+                 * @instance
+                 * @param {snacktime.episode.service.IGetRecommendedBySeriesIdRequest} request GetRecommendedBySeriesIdRequest message or plain object
+                 * @returns {Promise<snacktime.episode.service.GetRecommendedBySeriesIdResponse>} Promise
                  * @variation 2
                  */
 
@@ -803,13 +906,13 @@ export const snacktime = $root.snacktime = (() => {
         })();
 
         /**
-         * Providers enum.
-         * @name snacktime.media.Providers
+         * Provider enum.
+         * @name snacktime.media.Provider
          * @enum {string}
          * @property {number} Sonarr=0 Sonarr value
          * @property {number} Radarr=1 Radarr value
          */
-        media.Providers = (function() {
+        media.Provider = (function() {
             const valuesById = {}, values = Object.create(valuesById);
             values[valuesById[0] = "Sonarr"] = 0;
             values[valuesById[1] = "Radarr"] = 1;
@@ -1764,6 +1867,7 @@ export const snacktime = $root.snacktime = (() => {
              * @property {number|Long|null} [startUTC] Session startUTC
              * @property {number|Long|null} [endUTC] Session endUTC
              * @property {string|null} [mediaId] Session mediaId
+             * @property {string|null} [fileId] Session fileId
              * @property {snacktime.storage.IDuration|null} [duration] Session duration
              * @property {number|null} [mediaLenghtInSec] Session mediaLenghtInSec
              * @property {string|null} [fromDevice] Session fromDevice
@@ -1815,6 +1919,14 @@ export const snacktime = $root.snacktime = (() => {
              * @instance
              */
             Session.prototype.mediaId = "";
+
+            /**
+             * Session fileId.
+             * @member {string} fileId
+             * @memberof snacktime.storage.Session
+             * @instance
+             */
+            Session.prototype.fileId = "";
 
             /**
              * Session duration.

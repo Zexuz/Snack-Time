@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SnackTime.Core;
+using SnackTime.Core.Media;
 using SnackTime.Core.Session;
 using SnackTime.MediaServer.Service.Session;
 
@@ -28,6 +29,11 @@ namespace SnackTime.WebApi.Services
         {
             var res = await _sessionClient.GetAllAsync(new GetAllRequest());
             return res.Sessions.ToList();
+        }
+
+        public Task<MediaServer.Storage.ProtoGenerated.Session> GetLastSessionForMedia(MediaId mediaId)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

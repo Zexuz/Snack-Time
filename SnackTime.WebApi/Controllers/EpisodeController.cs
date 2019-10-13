@@ -24,6 +24,13 @@ namespace SnackTime.WebApi.Controllers
             return Ok(ApiResponseFactory.CreateSuccess(res.Episodes));
         }
 
+        [HttpGet("series/{seriesId}/recommended")]
+        public async Task<ActionResult> GetRecommendedEpisodeBySeriesId(int seriesId)
+        {
+            var res = await _episodeProvider.GetRecommendedBySeriesIdAsync(new GetRecommendedBySeriesIdRequest {SeriesId = seriesId});
+            return Ok(ApiResponseFactory.CreateSuccess(res.Episode));
+        }
+
         [HttpGet("{episodeId}")]
         public async Task<ActionResult> GetEpisodeById(int episodeId)
         {

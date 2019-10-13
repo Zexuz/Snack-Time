@@ -31,7 +31,7 @@ message Episode {
     snacktime.storage.Progress progress = 8;
 }
 
-enum Providers {
+enum Provider {
     Sonarr = 0;
     Radarr = 1;
 }

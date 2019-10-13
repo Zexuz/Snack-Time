@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using SnackTime.Core.Database;
+using SnackTime.Core.Media;
 using SnackTime.MediaServer.Service.Session;
 using SnackTime.MediaServer.Storage.ProtoGenerated;
 
@@ -17,7 +18,8 @@ namespace SnackTime.Core.Session
 
         public MediaServer.Storage.ProtoGenerated.Session CreateNewSession
         (
-            MediaFileId mediaFileId,
+            MediaId mediaId,
+            PlayableId playableId,
             TimeSpan mediaDuration,
             TimeSpan? startPosition = null
         )
@@ -32,7 +34,8 @@ namespace SnackTime.Core.Session
             var session = new MediaServer.Storage.ProtoGenerated.Session
             {
                 Id = Guid.NewGuid().ToString("N"),
-                MediaId = mediaFileId.ToString(),
+                FileId = playableId.ToString(),
+                MediaId = mediaId.ToString(),
                 Duration = timeWatched,
                 StartUTC = _timeService.GetCurrentTimeAsUnixSeconds(),
                 EndUTC = _timeService.GetCurrentTimeAsUnixSeconds(),
