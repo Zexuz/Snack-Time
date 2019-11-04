@@ -1,3 +1,0 @@
-namespace SnackTime.Core.Media
-{
-}

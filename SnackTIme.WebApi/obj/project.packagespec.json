@@ -1,0 +1,45 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "D:\\DeleteME\\LocalNetflix\\SnackTIme.WebApi\\SnackTIme.WebApi.csproj",
+    "projectName": "SnackTIme.WebApi",
+    "projectPath": "D:\\DeleteME\\LocalNetflix\\SnackTIme.WebApi\\SnackTIme.WebApi.csproj",
+    "outputPath": "D:\\DeleteME\\LocalNetflix\\SnackTIme.WebApi\\obj\\",
+    "projectStyle": "PackageReference",
+    "fallbackFolders": [
+      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+    ],
+    "originalTargetFrameworks": [
+      "netcoreapp3.0"
+    ],
+    "sources": {
+      "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+      "https://api.nuget.org/v3/index.json": {},
+      "https://www.myget.org/F/stratsys-feed/auth/1a85798d-dd20-417a-851f-53253a799133/api/v3/index.json": {}
+    },
+    "frameworks": {
+      "netcoreapp3.0": {
+        "projectReferences": {}
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "netcoreapp3.0": {
+      "imports": [
+        "net461",
+        "net462",
+        "net47",
+        "net471",
+        "net472",
+        "net48"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}

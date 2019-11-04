@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-protoc.exe -I ./SnackTime.MediaServer.Proto --csharp_out ./SnackTime.MediaServer.Proto/csharp/ ./SnackTime.MediaServer.Proto/proto/**/*.proto --plugin=protoc-gen-grpc=grpc_csharp_plugin.exe --grpc_out=./SnackTime.MediaServer.Proto/csharp-grpc/
-protoc.exe -I ./SnackTime.MediaServer.Proto --csharp_out ./SnackTime.MediaServer.Proto/csharp/ ./SnackTime.MediaServer.Proto/proto/*.proto --plugin=protoc-gen-grpc=grpc_csharp_plugin.exe --grpc_out=./SnackTime.MediaServer.Proto/csharp-grpc/
