@@ -16,6 +16,7 @@ namespace SnackTime.Core.Repository
 
                 col.InsertBulk(episodes);
                 col.EnsureIndex(x => x.SeriesId);
+                col.EnsureIndex(x => x.ProviderId);
             }
         }
     }

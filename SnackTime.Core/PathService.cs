@@ -1,8 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 
-namespace SnackTime.Core.Repository
+namespace SnackTime.Core
 {
     public class PathService
     {

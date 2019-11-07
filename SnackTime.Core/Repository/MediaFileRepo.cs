@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using SonarrSharp.Models;
 
 namespace SnackTime.Core.Repository
 {
@@ -8,13 +10,13 @@ namespace SnackTime.Core.Repository
         {
         }
 
-        internal void Upsert(IEnumerable<MediaFile> mediaFiles)
+        internal void Upsert(MediaFile mediaFiles)
         {
             using (var db = GetDb())
             {
                 var col = db.GetCollection<MediaFile>();
 
-                col.InsertBulk(mediaFiles);
+                col.Insert(mediaFiles);
                 col.EnsureIndex(x => x.EpisodeId);
             }
         }

@@ -1,6 +1,6 @@
 using System;
 
-namespace SnackTime.Core.Repository
+namespace SnackTime.Core
 {
 
     internal enum Provider

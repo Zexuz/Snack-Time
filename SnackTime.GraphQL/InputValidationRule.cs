@@ -6,9 +6,7 @@ namespace SnackTime.GraphQL
     {
         public INodeVisitor Validate(ValidationContext context)
         {
-            return new EnterLeaveListener(_ =>
-            {
-            });
+            return new EnterLeaveListener(_ => { });
         }
     }
 }

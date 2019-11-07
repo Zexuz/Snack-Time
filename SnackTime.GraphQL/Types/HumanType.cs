@@ -1,3 +1,5 @@
+using GraphQL.Types;
+
 namespace SnackTime.GraphQL.Types
 {
     public class HumanType : ObjectGraphType<Human>

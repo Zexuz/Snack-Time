@@ -8,8 +8,6 @@
         <PackageReference Include="Autofac">
             <Version>4.9.2</Version>
         </PackageReference>
-        <PackageReference Include="Google.Protobuf" Version="3.7.0" />
-        <PackageReference Include="Grpc.Tools" Version="1.19.0" />
         <PackageReference Include="LiteDB" Version="4.1.4" />
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
         <PackageReference Include="SonarrSharp">

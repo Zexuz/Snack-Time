@@ -1,3 +1,5 @@
+using GraphQL.Types;
+
 namespace SnackTime.GraphQL.Types
 {
     public class EpisodeEnum : EnumerationGraphType
@@ -10,5 +12,12 @@ namespace SnackTime.GraphQL.Types
             AddValue("EMPIRE", "Released in 1980.", 5);
             AddValue("JEDI", "Released in 1983.", 6);
         }
+    }
+
+    public enum Episodes
+    {
+        NEWHOPE = 4,
+        EMPIRE  = 5,
+        JEDI    = 6
     }
 }

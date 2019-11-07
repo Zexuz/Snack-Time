@@ -6,7 +6,10 @@
 
     <ItemGroup>
       <PackageReference Include="GraphQL.Server.Transports.AspNetCore" Version="3.5.0-alpha0027" />
-      <PackageReference Include="GraphQL.Server.Ui.Playground" Version="3.5.0-alpha0027" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SnackTime.GraphQL\SnackTime.GraphQL.csproj" />
     </ItemGroup>
 
 </Project>

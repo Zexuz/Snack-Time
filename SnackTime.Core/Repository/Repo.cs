@@ -11,7 +11,7 @@ namespace SnackTime.Core.Repository
             _pathService = pathService;
         }
 
-        protected LiteDatabase GetDb()
+        public LiteDatabase GetDb()
         {
             return new LiteDatabase(_pathService.GetDatabasePath());
         }
