@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\DeleteME\\LocalNetflix\\SnackTIme.WebApi\\SnackTIme.WebApi.csproj": {}
+    "D:\\DeleteME\\LocalNetflix\\SnackTime.GraphQL\\SnackTime.GraphQL.csproj": {}
   },
   "projects": {
-    "D:\\DeleteME\\LocalNetflix\\SnackTIme.WebApi\\SnackTIme.WebApi.csproj": {
+    "D:\\DeleteME\\LocalNetflix\\SnackTime.GraphQL\\SnackTime.GraphQL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\DeleteME\\LocalNetflix\\SnackTIme.WebApi\\SnackTIme.WebApi.csproj",
-        "projectName": "SnackTIme.WebApi",
-        "projectPath": "D:\\DeleteME\\LocalNetflix\\SnackTIme.WebApi\\SnackTIme.WebApi.csproj",
+        "projectUniqueName": "D:\\DeleteME\\LocalNetflix\\SnackTime.GraphQL\\SnackTime.GraphQL.csproj",
+        "projectName": "SnackTime.GraphQL",
+        "projectPath": "D:\\DeleteME\\LocalNetflix\\SnackTime.GraphQL\\SnackTime.GraphQL.csproj",
         "packagesPath": "C:\\Users\\desktop\\.nuget\\packages\\",
-        "outputPath": "D:\\DeleteME\\LocalNetflix\\SnackTIme.WebApi\\obj\\",
+        "outputPath": "D:\\DeleteME\\LocalNetflix\\SnackTime.GraphQL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -41,6 +41,12 @@
       },
       "frameworks": {
         "netcoreapp3.0": {
+          "dependencies": {
+            "GraphQL": {
+              "target": "Package",
+              "version": "[3.0.0-preview-1271, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

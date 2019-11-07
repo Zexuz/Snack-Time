@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace SnackTIme.WebApi
+namespace SnackTime.WebApi
 {
     public class Program
     {
