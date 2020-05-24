@@ -1,0 +1,31 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: RootQuery
+}
+
+type Image {
+    coverType: Cover
+    url: String
+}
+
+type RootQuery {
+    "Fetches all series"
+    series: [Series]
+}
+
+type Series {
+    id: Int
+    image: [Image]
+    title: String
+}
+
+"What kind of cover image"
+enum Cover {
+    "banner"
+    BANNER
+    "fanart"
+    FANART
+    "poster"
+    POSTER
+}

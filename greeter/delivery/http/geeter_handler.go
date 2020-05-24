@@ -5,7 +5,7 @@ import (
 	"github.com/go-chi/chi"
 	"github.com/go-chi/render"
 	"net/http"
-	infra "snack-time/infrastructure/http"
+	infra "snack-time/ineternal/infrastructure/http"
 )
 
 type GreeterHandler struct {
@@ -21,7 +21,7 @@ type EchoRequest struct {
 
 func NewGreeterHandler(r *chi.Mux) {
 	r.Get("/api/v1/hello", getHelloText)
-	r.Post("/api/v1/echo", echo)
+	r.Post("/api/v1/websocker_handler_m,aybe", echo)
 }
 
 func echo(w http.ResponseWriter, r *http.Request) {
