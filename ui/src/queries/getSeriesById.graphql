@@ -1,0 +1,17 @@
+query GetSeriesById($seriesId: Int) {
+    seriesById(SeriesId: $seriesId){
+        id
+        title
+        images{
+            coverType
+            url
+        }
+        seasons{
+            number
+            episodes{
+                number
+                title
+            }
+        }
+    }
+}
