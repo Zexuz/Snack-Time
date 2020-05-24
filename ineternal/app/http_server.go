@@ -2,12 +2,15 @@ package app
 
 import (
 	"fmt"
+	"github.com/go-chi/chi"
 	"github.com/graphql-go/handler"
 	"log"
 	"net/http"
 	"os"
 	"os/exec"
 	"snack-time/graph"
+	"snack-time/ineternal/infrastructure/http/middleware"
+
 	mp "snack-time/ineternal/media_player"
 	mpFactory "snack-time/ineternal/media_player/factory"
 	"time"
@@ -25,10 +28,13 @@ func Start(addr string) {
 		Playground: true,
 	})
 
-	http.Handle("/graphql", h)
+	r := chi.NewRouter()
+	r.Use(middleware.CorsMiddleware())
+
+	r.Handle("/graphql", h)
 
 	log.Printf("connect to http://%s for GraphQL playground", addr)
-	log.Fatal(http.ListenAndServe(addr, nil))
+	log.Fatal(http.ListenAndServe(addr, r))
 
 	//mediaFile := "D:\\Downloads\\TorrentDay\\Brooklyn Nine-Nine\\Season 7\\Brooklyn Nine-Nine - S07E13 - Lights Out WEBDL-1080p.mkv"
 	//startMpvProcess(mediaFile)

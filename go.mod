@@ -10,6 +10,7 @@ require (
 	github.com/go-chi/cors v1.1.1
 	github.com/go-chi/render v1.0.1
 	github.com/golang/protobuf v1.4.2 // indirect
+	github.com/gorilla/mux v1.6.1 // indirect
 	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/graph-gophers/graphql-go v0.0.0-20200309224638-dae41bde9ef9 // indirect
 	github.com/graphql-go/graphql v0.7.9

@@ -16,6 +16,8 @@ github.com/go-chi/cors
 github.com/go-chi/render
 # github.com/golang/protobuf v1.4.2
 ## explicit
+# github.com/gorilla/mux v1.6.1
+## explicit
 # github.com/gorilla/websocket v1.4.2
 ## explicit
 # github.com/graph-gophers/graphql-go v0.0.0-20200309224638-dae41bde9ef9

@@ -1,6 +1,7 @@
 package graph
 
 import (
+	"errors"
 	"github.com/graphql-go/graphql"
 	"log"
 	"net/url"
@@ -22,23 +23,31 @@ type Image struct {
 }
 
 type Series struct {
-	Id    int
-	Title string
-	Image []Image
+	Id     int
+	Title  string
+	Images []Image
+}
+
+var client sonarr.ProviderClient
+
+func init() {
+	u, err := url.Parse("http://localhost:8989")
+	if err != nil {
+		panic(err)
+	}
+	client = sonarr.NewClient("2e8fcac32bf147608239cab343617485", u)
+}
+
+func newNoneNullList(t graphql.Type) graphql.Output {
+	return graphql.NewNonNull(graphql.NewList(graphql.NewNonNull(t)))
 }
 
 var rootQuery = graphql.NewObject(graphql.ObjectConfig{
 	Name: "RootQuery",
 	Fields: graphql.Fields{
 		"series": &graphql.Field{
-			Type:        graphql.NewList(seriesType),
-			Description: "Fetches all series",
+			Type: newNoneNullList(seriesType),
 			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-				u, err := url.Parse("http://localhost:8989")
-				if err != nil {
-					panic(err)
-				}
-				client := sonarr.NewClient("2e8fcac32bf147608239cab343617485", u)
 				series, err := client.GetSeries()
 				if err != nil {
 					panic(err)
@@ -68,12 +77,59 @@ var rootQuery = graphql.NewObject(graphql.ObjectConfig{
 					}
 
 					seriesMapped = append(seriesMapped, Series{
-						Id:    s.ID,
-						Title: s.Title,
-						Image: imagesMapped,
+						Id:     s.ID,
+						Title:  s.Title,
+						Images: imagesMapped,
 					})
 				}
 				return seriesMapped, nil
+			},
+			Description: "Fetches all series",
+		},
+		"seriesById": &graphql.Field{
+			Type: seriesType,
+			Args: map[string]*graphql.ArgumentConfig{
+				"SeriesId": {
+					Type:         graphql.Int,
+					DefaultValue: nil,
+					Description:  "Id of series to fetch",
+				},
+			},
+			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+				value, ok := p.Args["SeriesId"].(int)
+				if !ok {
+					return nil, errors.New("must provide seriesId")
+				}
+				series, err := client.GetSeriesById(value)
+				if err != nil {
+					return nil, err
+				}
+
+				var imagesMapped = make([]Image, 0)
+				for _, image := range series.Images {
+					getCoverType := func(t string) Cover {
+						switch strings.ToLower(t) {
+						case "fanart":
+							return Fanart
+						case "poster":
+							return Poster
+						case "banner":
+							return Banner
+						}
+						log.Fatalf("unknown cover type %s", t)
+						return 0
+					}
+					imagesMapped = append(imagesMapped, Image{
+						CoverType: getCoverType(image.CoverType),
+						Url:       image.Url,
+					})
+				}
+
+				return Series{
+					Id:     series.ID,
+					Title:  series.Title,
+					Images: imagesMapped,
+				}, nil
 			},
 		},
 	},
@@ -106,13 +162,47 @@ var coverEnum = graphql.NewEnum(graphql.EnumConfig{
 })
 
 var imageType = graphql.NewObject(graphql.ObjectConfig{
-	Name: "Image",
+	Name: "Images",
 	Fields: graphql.Fields{
 		"url": &graphql.Field{
-			Type: graphql.String,
+			Type: graphql.NewNonNull(graphql.String),
 		},
 		"coverType": &graphql.Field{
-			Type: coverEnum,
+			Type: graphql.NewNonNull(coverEnum),
+		},
+	},
+})
+
+type Season struct {
+	Number   int
+	Episodes []Episode
+}
+
+type Episode struct {
+	Number int
+	Title  string
+}
+
+var seasonType = graphql.NewObject(graphql.ObjectConfig{
+	Name: "Season",
+	Fields: graphql.Fields{
+		"number": &graphql.Field{
+			Type: graphql.NewNonNull(graphql.Int),
+		},
+		"episodes": &graphql.Field{
+			Type: newNoneNullList(episodeType),
+		},
+	},
+})
+
+var episodeType = graphql.NewObject(graphql.ObjectConfig{
+	Name: "Episode",
+	Fields: graphql.Fields{
+		"number": &graphql.Field{
+			Type: graphql.NewNonNull(graphql.Int),
+		},
+		"title": &graphql.Field{
+			Type: graphql.NewNonNull(graphql.String),
 		},
 	},
 })
@@ -121,13 +211,52 @@ var seriesType = graphql.NewObject(graphql.ObjectConfig{
 	Name: "Series",
 	Fields: graphql.Fields{
 		"id": &graphql.Field{
-			Type: graphql.Int,
+			Type: graphql.NewNonNull(graphql.Int),
 		},
 		"title": &graphql.Field{
-			Type: graphql.String,
+			Type: graphql.NewNonNull(graphql.String),
 		},
-		"image": &graphql.Field{
-			Type: graphql.NewList(imageType),
+		"images": &graphql.Field{
+			Type: newNoneNullList(imageType),
+		},
+		"seasons": &graphql.Field{
+			Type: newNoneNullList(seasonType),
+			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+				value, ok := p.Source.(Series)
+				if !ok {
+					return nil, errors.New("error parsing source")
+				}
+				season := make([]Season, 0)
+				episodes, err := client.GetEpisodes(value.Id)
+				if err != nil {
+					return nil, err
+				}
+				seasons := make(map[int][]sonarr.Episode)
+				for _, episode := range episodes {
+					if _, ok := seasons[episode.SeasonNumber]; !ok {
+						seasons[episode.SeasonNumber] = make([]sonarr.Episode, 0)
+					}
+					seasons[episode.SeasonNumber] = append(seasons[episode.SeasonNumber], episode)
+				}
+
+				for seasonNumber, eps := range seasons {
+					seasonEpisodes := make([]Episode, 0)
+
+					for _, ep := range eps {
+						seasonEpisodes = append(seasonEpisodes, Episode{
+							Number: ep.EpisodeNumber,
+							Title:  ep.Title,
+						})
+					}
+
+					season = append(season, Season{
+						Number:   seasonNumber,
+						Episodes: seasonEpisodes,
+					})
+				}
+
+				return season, nil
+			},
 		},
 	},
 })
