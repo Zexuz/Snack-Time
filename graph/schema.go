@@ -3,6 +3,7 @@ package graph
 import (
 	"errors"
 	"github.com/graphql-go/graphql"
+	bolt "go.etcd.io/bbolt"
 	"log"
 	"net/url"
 	"snack-time/ineternal/media_provider/sonarr"
@@ -45,6 +46,31 @@ func newNoneNullList(t graphql.Type) graphql.Output {
 var rootQuery = graphql.NewObject(graphql.ObjectConfig{
 	Name: "RootQuery",
 	Fields: graphql.Fields{
+		"settings": &graphql.Field{
+			Type: graphql.NewNonNull(settingsType),
+			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+				db, err := bolt.Open("my.db", 0600, nil)
+				if err != nil {
+					log.Fatal(err)
+				}
+				defer db.Close()
+
+				var mpvPath []byte
+				err = db.View(func(tx *bolt.Tx) error {
+					b := tx.Bucket([]byte("Settings"))
+					mpvPathTemp := b.Get([]byte("mpvPath"))
+					log.Printf("Path is %s", mpvPathTemp)
+					mpvPath = make([]byte, len(mpvPathTemp))
+					copy(mpvPath, mpvPathTemp)
+					return nil
+				})
+
+				return Settings{
+					MpvPath: string(mpvPath),
+				}, err
+			},
+			Description: "Get all settings",
+		},
 		"series": &graphql.Field{
 			Type: newNoneNullList(seriesType),
 			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
@@ -135,12 +161,55 @@ var rootQuery = graphql.NewObject(graphql.ObjectConfig{
 	},
 })
 
-//var rootMutation = graphql.NewObject(graphql.ObjectConfig{
-//	Name: "RootMutation",
-//	Fields: graphql.Fields{
-//		"":graphql.Field{}
-//	},
-//})
+type Settings struct {
+	MpvPath string
+}
+
+var settingsType = graphql.NewObject(graphql.ObjectConfig{
+	Name: "Settings",
+	Fields: graphql.Fields{
+		"mpvPath": &graphql.Field{
+			Type: graphql.String,
+		},
+	},
+})
+
+var rootMutation = graphql.NewObject(graphql.ObjectConfig{
+	Name: "RootMutation",
+	Fields: graphql.Fields{
+		"updateSettings": &graphql.Field{
+			Name: "",
+			Type: settingsType,
+			Args: graphql.FieldConfigArgument{
+				"mpvPath": &graphql.ArgumentConfig{
+					Type: graphql.NewNonNull(graphql.String),
+				},
+			},
+			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+				text, _ := p.Args["mpvPath"].(string)
+
+				// Open the my.db data file in your current directory.
+				// It will be created if it doesn't exist.
+				db, err := bolt.Open("my.db", 0600, nil)
+				if err != nil {
+					log.Fatal(err)
+				}
+				defer db.Close()
+
+				err = db.Update(func(tx *bolt.Tx) error {
+					b, err := tx.CreateBucketIfNotExists([]byte("Settings"))
+					if err != nil {
+						return err
+					}
+					err = b.Put([]byte("mpvPath"), []byte(text))
+					return err
+				})
+
+				return Settings{MpvPath: text}, err
+			},
+		},
+	},
+})
 
 var coverEnum = graphql.NewEnum(graphql.EnumConfig{
 	Name:        "Cover",
@@ -263,8 +332,8 @@ var seriesType = graphql.NewObject(graphql.ObjectConfig{
 
 func GetSchema() (graphql.Schema, error) {
 	schemaConfig := graphql.SchemaConfig{
-		Query: rootQuery,
-		//Mutation: rootMutation,
+		Query:    rootQuery,
+		Mutation: rootMutation,
 	}
 	return graphql.NewSchema(schemaConfig)
 }

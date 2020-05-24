@@ -18,6 +18,7 @@ require (
 	github.com/improbable-eng/grpc-web v0.12.0 // indirect
 	github.com/rs/cors v1.7.0 // indirect
 	github.com/vektah/gqlparser/v2 v2.0.1 // indirect
+	go.etcd.io/bbolt v1.3.4
 	google.golang.org/grpc v1.29.1 // indirect
 	google.golang.org/protobuf v1.23.0 // indirect
 	gopkg.in/natefinch/npipe.v2 v2.0.0-20160621034901-c1b8fa8bdcce // indirect
