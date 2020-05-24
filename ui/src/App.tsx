@@ -6,12 +6,19 @@ import {
     useParams,
     Link
 } from "react-router-dom";
-import {useQuery} from "@apollo/client";
+import {useMutation, useQuery,} from "@apollo/client";
 
-import {GetSeriesQuery, GetSeriesByIdQuery, GetSeriesByIdQueryVariables} from "./generated/graphql";
+import {
+    GetSeriesQuery,
+    GetSeriesByIdQuery,
+    GetSeriesByIdQueryVariables,
+    PlayFileMutation,
+    PlayFileMutationVariables
+} from "./generated/graphql";
 import './App.css';
 import GET_SERIES from './queries/getSeries.graphql';
 import GET_SERIES_BY_ID from './queries/getSeriesById.graphql';
+import PLAY_FILE from './queries/playFile.graphql';
 import {sortByStringValue} from "./utils";
 
 console.log(GET_SERIES);
@@ -23,12 +30,15 @@ function Settings() {
 function SeriesDetails() {
     let {id} = useParams();
     const {loading, error, data} = useQuery<GetSeriesByIdQuery, GetSeriesByIdQueryVariables>(GET_SERIES_BY_ID, {variables: {seriesId: id}});
+    const [playFile] = useMutation<PlayFileMutation, PlayFileMutationVariables>(PLAY_FILE);
 
     if (loading || !data?.seriesById) return <p>Loading...</p>;
     if (error) return <p>Error :(</p>;
 
-    const handleOnClick = () => {
+    const handleOnClick = async (filepath?: string | null) => {
+        if (!filepath) return
 
+        await playFile({variables: {filepath}})
     }
 
 
@@ -41,7 +51,12 @@ function SeriesDetails() {
                 <ul>
                     {season.episodes.map((episode, index1) =>
                         <li key={`s${season.number}e${episode.number}`}>
-                            <button onClick={handleOnClick}>{episode.title}</button>
+                            <button
+                                disabled={!episode.filepath}
+                                onClick={() => handleOnClick(episode.filepath)}
+                            >
+                                {episode.title}
+                            </button>
                         </li>
                     )}
                 </ul>

@@ -66,7 +66,7 @@ func (c client) GetEpisodes(seriesId int) ([]Episode, error) {
 	return episodes, err
 }
 
-func (c client) GetEpisodeFiles(seriesId int) ([]*EpisodeFile, error) {
+func (c client) GetEpisodeFiles(seriesId int) ([]EpisodeFile, error) {
 	u := fmt.Sprintf("%s/api/episodefile?seriesId=%d&apikey=%s", c.baseUrl.String(), seriesId, c.apiKey)
 
 	r, err := c.httpClient.Get(u)
@@ -77,7 +77,7 @@ func (c client) GetEpisodeFiles(seriesId int) ([]*EpisodeFile, error) {
 	b, err := ioutil.ReadAll(r.Body)
 	defer r.Body.Close()
 
-	var episodeFile []*EpisodeFile
+	var episodeFile []EpisodeFile
 	err = json.Unmarshal(b, &episodeFile)
 
 	return episodeFile, err
@@ -87,7 +87,7 @@ type ProviderClient interface {
 	GetSeries() ([]Series, error)
 	GetSeriesById(id int) (*Series, error)
 	GetEpisodes(seriesId int) ([]Episode, error)
-	GetEpisodeFiles(seriesId int) ([]*EpisodeFile, error)
+	GetEpisodeFiles(seriesId int) ([]EpisodeFile, error)
 }
 
 func NewClient(apiKey string, baseUrl *url.URL) *client {

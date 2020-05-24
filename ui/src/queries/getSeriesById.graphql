@@ -11,6 +11,7 @@ query GetSeriesById($seriesId: Int) {
             episodes{
                 number
                 title
+                filepath
             }
         }
     }

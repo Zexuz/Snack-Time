@@ -2,9 +2,11 @@
 
 schema {
     query: RootQuery
+    mutation: RootMutation
 }
 
 type Episode {
+    filepath: String
     number: Int!
     title: String!
 }
@@ -14,6 +16,11 @@ type Images {
     url: String!
 }
 
+type RootMutation {
+    playFile(filepath: String!): Boolean
+    updateSettings(mpvPath: String!): Settings
+}
+
 type RootQuery {
     "Fetches all series"
     series: [Series!]!
@@ -21,6 +28,8 @@ type RootQuery {
         "Id of series to fetch"
         SeriesId: Int
     ): Series
+    "Get all settings"
+    settings: Settings!
 }
 
 type Season {
@@ -33,6 +42,10 @@ type Series {
     images: [Images!]!
     seasons: [Season!]!
     title: String!
+}
+
+type Settings {
+    mpvPath: String
 }
 
 "What kind of cover image"

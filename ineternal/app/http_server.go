@@ -33,11 +33,19 @@ func Start(addr string) {
 
 	r.Handle("/graphql", h)
 
+	go func() {
+		for true {
+			select {
+			case mediaFile := <-graph.FilesToPlayChan:
+				startMpvProcess(mediaFile)
+			}
+		}
+	}()
+
 	log.Printf("connect to http://%s for GraphQL playground", addr)
 	log.Fatal(http.ListenAndServe(addr, r))
 
 	//mediaFile := "D:\\Downloads\\TorrentDay\\Brooklyn Nine-Nine\\Season 7\\Brooklyn Nine-Nine - S07E13 - Lights Out WEBDL-1080p.mkv"
-	//startMpvProcess(mediaFile)
 
 	//TODO
 	// Get media player type and preference

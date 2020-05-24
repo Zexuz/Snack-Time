@@ -18,6 +18,8 @@ const (
 	Poster
 )
 
+var FilesToPlayChan = make(chan string, 1)
+
 type Image struct {
 	CoverType Cover
 	Url       string
@@ -178,7 +180,6 @@ var rootMutation = graphql.NewObject(graphql.ObjectConfig{
 	Name: "RootMutation",
 	Fields: graphql.Fields{
 		"updateSettings": &graphql.Field{
-			Name: "",
 			Type: settingsType,
 			Args: graphql.FieldConfigArgument{
 				"mpvPath": &graphql.ArgumentConfig{
@@ -206,6 +207,22 @@ var rootMutation = graphql.NewObject(graphql.ObjectConfig{
 				})
 
 				return Settings{MpvPath: text}, err
+			},
+		},
+		"playFile": &graphql.Field{
+			Type: graphql.Boolean,
+			Args: graphql.FieldConfigArgument{
+				"filepath": &graphql.ArgumentConfig{
+					Type: graphql.NewNonNull(graphql.String),
+				},
+			},
+			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+				filepath, ok := p.Args["filepath"].(string)
+				if !ok {
+					return nil, errors.New("can't get filepath")
+				}
+				FilesToPlayChan <- filepath
+				return true, nil
 			},
 		},
 	},
@@ -248,8 +265,9 @@ type Season struct {
 }
 
 type Episode struct {
-	Number int
-	Title  string
+	Number   int
+	Title    string
+	Filepath string
 }
 
 var seasonType = graphql.NewObject(graphql.ObjectConfig{
@@ -272,6 +290,9 @@ var episodeType = graphql.NewObject(graphql.ObjectConfig{
 		},
 		"title": &graphql.Field{
 			Type: graphql.NewNonNull(graphql.String),
+		},
+		"filepath": &graphql.Field{
+			Type: graphql.String,
 		},
 	},
 })
@@ -300,6 +321,17 @@ var seriesType = graphql.NewObject(graphql.ObjectConfig{
 				if err != nil {
 					return nil, err
 				}
+
+				episodeFiles, err := client.GetEpisodeFiles(value.Id)
+				if err != nil {
+					return nil, err
+				}
+
+				episodeFileMap := make(map[int]sonarr.EpisodeFile)
+				for _, epFile := range episodeFiles {
+					episodeFileMap[epFile.ID] = epFile
+				}
+
 				seasons := make(map[int][]sonarr.Episode)
 				for _, episode := range episodes {
 					if _, ok := seasons[episode.SeasonNumber]; !ok {
@@ -313,8 +345,9 @@ var seriesType = graphql.NewObject(graphql.ObjectConfig{
 
 					for _, ep := range eps {
 						seasonEpisodes = append(seasonEpisodes, Episode{
-							Number: ep.EpisodeNumber,
-							Title:  ep.Title,
+							Number:   ep.EpisodeNumber,
+							Title:    ep.Title,
+							Filepath: episodeFileMap[ep.EpisodeFileID].Path,
 						})
 					}
 

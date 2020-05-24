@@ -1,0 +1,3 @@
+mutation PlayFile($filepath: String!){
+    playFile(filepath: $filepath)
+}
