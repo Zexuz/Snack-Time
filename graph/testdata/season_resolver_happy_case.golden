@@ -1,0 +1,22 @@
+[
+	{
+		"Number": 1,
+		"Episodes": [
+			{
+				"Number": 1,
+				"Title": "S01E01",
+				"Filepath": ""
+			},
+			{
+				"Number": 2,
+				"Title": "S01E02",
+				"Filepath": ""
+			},
+			{
+				"Number": 3,
+				"Title": "S01E03",
+				"Filepath": "/some/path"
+			}
+		]
+	}
+]

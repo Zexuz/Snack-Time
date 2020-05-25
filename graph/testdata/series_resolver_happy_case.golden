@@ -1,0 +1,38 @@
+[
+	{
+		"Id": 5,
+		"Title": "Series title (5)",
+		"Images": [
+			{
+				"CoverType": 0,
+				"Url": "fanartUrl:5"
+			},
+			{
+				"CoverType": 2,
+				"Url": "posetUrl:5"
+			},
+			{
+				"CoverType": 1,
+				"Url": "bannerUrl:5"
+			}
+		]
+	},
+	{
+		"Id": 8,
+		"Title": "Series title (8)",
+		"Images": [
+			{
+				"CoverType": 0,
+				"Url": "fanartUrl:8"
+			},
+			{
+				"CoverType": 2,
+				"Url": "posetUrl:8"
+			},
+			{
+				"CoverType": 1,
+				"Url": "bannerUrl:8"
+			}
+		]
+	}
+]

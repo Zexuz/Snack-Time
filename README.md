@@ -8,7 +8,7 @@ Now we have the most basic a Minimal Value Product ready. Next step is to create
 - [ ] Cleanup GQL schema on backend (move to own folders)
 - [ ] Remove code duplicates on the backend, create services and repositories to handle common functionality.
 - [ ] Create a CD pipe that builds new releases, 
-- [ ] Create a installer that can install from github releases
+- [ ] Create a installer that can install from github releases https://github.com/inconshreveable/go-update
 
 #### Frontend
 - [ ] Add better linting
